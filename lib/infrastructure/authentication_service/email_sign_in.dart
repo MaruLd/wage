@@ -1,19 +1,14 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/SignIn/sign_in_model.dart';
 
-class ApiService {
-  Future<List> getCharactersDatas() async {
-    final response = await Dio().get(
-      "https://rickandmortyapi.com/api/character",
-    );
-    return response.data["results"];
-  }
+class AuthService {
+  // var data = {"emailAddress": "admin@gmail.com", "password": "Asd123@@"};
 
-  var formData = {"emailAddress": "admin@gmail.co", "password": "Asd123@@"};
-
-  Future<SignIn> getAuthDatas() async {
+  Future<SignIn> loginWithEmailPassword(String email, String password) async {
+    var formData = {"emailAddress": email, "password": password};
     final response =
         await Dio().post('https://api.uniinc-cnb.com/v1/users/login',
             data: formData,
@@ -22,9 +17,12 @@ class ApiService {
             }));
     if (response.statusCode == 200) {
       final auth = SignIn.fromJson(response.data["message"]);
+      print(auth);
       return auth;
     } else {
       throw Exception(response.statusMessage);
     }
   }
 }
+
+final authServiceProvider = Provider<AuthService>((ref) => AuthService());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/pages/signin/components/welcome.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -44,28 +45,40 @@ class _NavigationState extends State<Navigation> {
           selectedIndex: currentPageIndex,
           destinations: <Widget>[
             NavigationDestination(
-              icon: Icon(
+              selectedIcon: Icon(
                 Icons.home_outlined,
                 color: global.primary,
+              ),
+              icon: Icon(
+                Icons.home_outlined,
               ),
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(
+              selectedIcon: Icon(
                 Icons.history,
                 color: global.primary,
+              ),
+              icon: Icon(
+                Icons.history,
               ),
               label: 'History',
             ),
             SizedBox(width: 48.0),
             NavigationDestination(
-              selectedIcon: Icon(Icons.book),
-              icon: Icon(Icons.bookmark_border),
+              selectedIcon: Icon(
+                Icons.card_giftcard,
+                color: global.primary,
+              ),
+              icon: Icon(Icons.card_giftcard),
               label: 'Saved',
             ),
             NavigationDestination(
-              selectedIcon: Icon(Icons.bookmark),
-              icon: Icon(Icons.bookmark_border),
+              selectedIcon: Icon(
+                Icons.person,
+                color: global.primary,
+              ),
+              icon: Icon(Icons.person),
               label: 'Saved',
             ),
           ],
@@ -85,7 +98,7 @@ class _NavigationState extends State<Navigation> {
           child: WelcomeBody(),
         ),
         Container(
-          child: WelcomeBody(),
+          child: SettingPage(),
         ),
       ][currentPageIndex],
     );

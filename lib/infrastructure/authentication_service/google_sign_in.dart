@@ -1,8 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:wage/domain/Auth/auth_model.dart';
 
-class GoogleSignInProvider extends ChangeNotifier {
+import '../DAO/authDAO.dart';
+
+class GoogleSignInService extends ChangeNotifier {
   static final GoogleSignIn _googleSignIn =
       GoogleSignIn(scopes: <String>['email', 'profile']);
 
@@ -19,9 +23,9 @@ class GoogleSignInProvider extends ChangeNotifier {
 
     final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-    print(googleAuth.idToken);
+
     await FirebaseAuth.instance.signInWithCredential(credential);
-    // getAndStoreJwtToken();
+    getAuthInfo();
     notifyListeners();
   }
 
@@ -38,23 +42,20 @@ class GoogleSignInProvider extends ChangeNotifier {
     return FirebaseAuth.instance.currentUser?.getIdToken();
   }
 
-  // static Future<String?> getAndStoreJwtToken() async {
-  //   final storage = new FlutterSecureStorage();
-  //   String? jwtToken = await storage.read(key: 'jwt');
-  //   if (jwtToken == null) {
-  //     String? userToken = await getUserToken();
-  //     if (userToken != null) {
-  //       var authDAO = await AuthDAO().getJwtToken();
-  //       jwtToken = authDAO.token;
-  //       await storage.write(key: 'jwt', value: jwtToken);
-  //       return jwtToken;
-  //     } else {
-  //       print("User Token not found!");
-  //     }
-  //   } else {
-  //     return jwtToken;
-  //   }
-  // }
+  static Future<AuthDTO?> getAuthInfo() async {
+    final storage = new FlutterSecureStorage();
+    String? jwtToken = null;
+    String? userToken = await getUserToken();
+    if (userToken != null) {
+      AuthDTO authInfo =
+          (await AuthDAO().getAuthInformation()) as AuthDTO;
+      jwtToken = authInfo.token;
+      await storage.write(key: 'jwt', value: jwtToken);
+      return authInfo;
+    } else {
+      print("User Token not found!");
+    }
+  }
 
   static Future refreshFirebaseUser() async {
     if (FirebaseAuth.instance.currentUser != null) {

@@ -7,7 +7,9 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 class HomePageHeader extends StatelessWidget {
   final String? username;
-  const HomePageHeader({Key? key, this.username}) : super(key: key);
+  final String? avatarUrl;
+  const HomePageHeader({Key? key, this.username, this.avatarUrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +61,11 @@ class HomePageHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: Image.asset(
-                      'assets/images/ANYAA.png',
-                    ),
+                    child: avatarUrl != null
+                        ? Image.network(avatarUrl!)
+                        : Image.asset(
+                            'assets/images/ANYAA.png',
+                          ),
                   ),
                 ),
               ),
@@ -443,9 +447,8 @@ class MenuBody extends StatelessWidget {
 }
 
 class PointCard extends StatelessWidget {
-  const PointCard({
-    Key? key,
-  }) : super(key: key);
+  final int? point;
+  const PointCard({Key? key, this.point}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -489,7 +492,7 @@ class PointCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Số coin khả dụng',
+                              'Số point khả dụng',
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: global.background,
@@ -505,7 +508,7 @@ class PointCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text('3,000', style: global.boldTextStyle),
+                            Text('$point', style: global.boldTextStyle),
                           ],
                         ),
                       ),
