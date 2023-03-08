@@ -14,14 +14,15 @@ class SettingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(authProvider.select(
-      (value) => value.valueOrNull?.displayName,
-    ));
 
     return Scaffold(
         body: ListView(
       padding: EdgeInsets.all(24),
       children: [
+        const SizedBox(
+          height: 12,
+        ),
+        Profile(),
         SettingsGroup(title: 'GENERAL', children: <Widget>[
           const SizedBox(
             height: 8,

@@ -25,7 +25,7 @@ class GoogleSignInService extends ChangeNotifier {
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
     await FirebaseAuth.instance.signInWithCredential(credential);
-    getAuthInfo();
+    await AuthDAO().getAuthInformation();
     notifyListeners();
   }
 
@@ -34,27 +34,14 @@ class GoogleSignInService extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     // Sign out with google
     await _googleSignIn.signOut();
+    final storage = new FlutterSecureStorage();
+    await storage.delete(key: 'jwt');
 
     notifyListeners();
   }
 
   static Future<String>? getUserToken() {
     return FirebaseAuth.instance.currentUser?.getIdToken();
-  }
-
-  static Future<AuthDTO?> getAuthInfo() async {
-    final storage = new FlutterSecureStorage();
-    String? jwtToken = null;
-    String? userToken = await getUserToken();
-    if (userToken != null) {
-      AuthDTO authInfo =
-          (await AuthDAO().getAuthInformation()) as AuthDTO;
-      jwtToken = authInfo.token;
-      await storage.write(key: 'jwt', value: jwtToken);
-      return authInfo;
-    } else {
-      print("User Token not found!");
-    }
   }
 
   static Future refreshFirebaseUser() async {

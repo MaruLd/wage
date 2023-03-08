@@ -11,10 +11,11 @@ _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       emailAddress: json['emailAddress'] as String,
       fullName: json['fullName'] as String,
       phoneNumber: json['phoneNumber'] as String?,
-      imageUrl: json['imageUrl'] as String,
+      imageUrl: json['imageUrl'] as String?,
       facebookUrl: json['facebookUrl'] as String?,
       memberLevels:
           MemberLevels.fromJson(json['memberLevels'] as Map<String, dynamic>),
+      role: Role.fromJson(json['role'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'facebookUrl': instance.facebookUrl,
       'memberLevels': instance.memberLevels,
+      'role': instance.role,
     };
 
 _$_MemberLevels _$$_MemberLevelsFromJson(Map<String, dynamic> json) =>
@@ -55,4 +57,14 @@ Map<String, dynamic> _$$_LevelToJson(_$_Level instance) => <String, dynamic>{
       'basePointPerHour': instance.basePointPerHour,
       'loyal': instance.loyal,
       'xpNeeded': instance.xpNeeded,
+    };
+
+_$_Role _$$_RoleFromJson(Map<String, dynamic> json) => _$_Role(
+      roleId: json['roleId'] as String,
+      roleName: json['roleName'] as String,
+    );
+
+Map<String, dynamic> _$$_RoleToJson(_$_Role instance) => <String, dynamic>{
+      'roleId': instance.roleId,
+      'roleName': instance.roleName,
     };

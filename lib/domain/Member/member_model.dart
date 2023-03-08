@@ -10,9 +10,10 @@ class Member with _$Member {
     required String emailAddress,
     required String fullName,
     String? phoneNumber,
-    required String imageUrl,
+    String? imageUrl,
     String? facebookUrl,
     required MemberLevels memberLevels,
+    required Role role,
   }) = _Member;
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 }
@@ -40,4 +41,14 @@ class Level with _$Level {
     required int xpNeeded,
   }) = _Level;
   factory Level.fromJson(Map<String, dynamic> json) => _$LevelFromJson(json);
+}
+
+@freezed
+class Role with _$Role {
+  const Role._();
+  factory Role({
+    required String roleId,
+    required String roleName,
+  }) = _Role;
+  factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
 }

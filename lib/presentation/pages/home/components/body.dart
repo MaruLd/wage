@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/presentation/pages/changeCoin/change_coin_page.dart';
+import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-class HomePageHeader extends StatelessWidget {
-  final String? username;
-  final String? avatarUrl;
-  const HomePageHeader({Key? key, this.username, this.avatarUrl})
-      : super(key: key);
-
+class HomePageHeader extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userData = ref.watch(userDataProvider);
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
       child: Row(
@@ -34,15 +35,25 @@ class HomePageHeader extends StatelessWidget {
                       'Xin chào,',
                       style: global.textStyle,
                     ),
-                    Text(
-                      '$username',
-                      style: global.boldTextStyle,
-                    ),
+                    userData.when(
+                        // show previous data/error on loading
+                        skipLoadingOnReload: true,
+                        // show previous data if there's an error
+                        skipError: true,
+                        data: (userData) => Text(
+                              userData.fullName,
+                              style: global.boldTextStyle,
+                            ),
+                        error: (error, stackTrace) {
+                          print(error.toString());
+                          return Text('Hoang Long');
+                        },
+                        loading: () => CircularProgressIndicator().centered()),
                   ],
                 ),
               ],
             ),
-          ),
+          ).flexible(),
           Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -61,11 +72,21 @@ class HomePageHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: avatarUrl != null
-                        ? Image.network(avatarUrl!)
-                        : Image.asset(
+                    child: userData.when(
+                        // show previous data/error on loading
+                        skipLoadingOnReload: true,
+                        // show previous data if there's an error
+                        skipError: true,
+                        data: (userData) => userData.imageUrl != null
+                            ? Image.network(userData.imageUrl!)
+                            : Image.asset('assets/images/ANYAA.png'),
+                        error: (error, stackTrace) {
+                          print(error.toString());
+                          return Image.asset(
                             'assets/images/ANYAA.png',
-                          ),
+                          );
+                        },
+                        loading: () => CircularProgressIndicator().centered()),
                   ),
                 ),
               ),
@@ -128,23 +149,33 @@ class MenuBody extends StatelessWidget {
                         ],
                         borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.handHoldingDollar,
-                            color: global.background,
-                            size: 25.sp,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Text(
-                              ' Đổi coin',
-                              style: global.boldSmallTextStyle,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangeCoinPage()),
+                          );
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.handHoldingDollar,
+                              color: global.background,
+                              size: 25.sp,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Text(
+                                'Đổi coin',
+                                style: global.boldSmallTextStyle,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
@@ -446,12 +477,12 @@ class MenuBody extends StatelessWidget {
   }
 }
 
-class PointCard extends StatelessWidget {
-  final int? point;
-  const PointCard({Key? key, this.point}) : super(key: key);
+class PointCard extends ConsumerWidget {
+  const PointCard({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final walletsData = ref.watch(walletsDataProvider);
     return Padding(
         padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
         child: Row(
@@ -508,7 +539,22 @@ class PointCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text('$point', style: global.boldTextStyle),
+                            walletsData.when(
+                              // show previous data/error on loading
+                              skipLoadingOnReload: true,
+                              // show previous data if there's an error
+                              skipError: true,
+                              data: (walletData) {
+                                return Text(walletData.totalPoint.toString(),
+                                    style: global.boldTextStyle);
+                              },
+                              error: (error, stackTrace) {
+                                print(error.toString());
+                                return Text('0');
+                              },
+                              loading: () =>
+                                  CircularProgressIndicator().centered(),
+                            ),
                           ],
                         ),
                       ),

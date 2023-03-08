@@ -3,7 +3,10 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import 'components/body.dart';
 
-class VoucherPage extends StatelessWidget {
+class ChangeCoinPage extends StatelessWidget {
+  static String get routeName => 'changeCoin';
+  static String get routeLocation => '/changeCoin';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +15,11 @@ class VoucherPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [],
+          children: [
+            HomePageHeader(),
+            Profile(),
+            ChangeCoinBody(),
+          ],
         ),
       ),
     );

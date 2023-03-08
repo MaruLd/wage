@@ -17,7 +17,7 @@ class AuthService {
             }));
     if (response.statusCode == 200) {
       final auth = SignIn.fromJson(response.data["message"]);
-      print(auth);
+      print('Login With Email Password success');
       return auth;
     } else {
       throw Exception(response.statusMessage);

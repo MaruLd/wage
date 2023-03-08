@@ -28,6 +28,11 @@ TextStyle boldTextStyle = GoogleFonts.montserrat(
   fontWeight: FontWeight.w700,
   fontSize: 24.sp,
 );
+TextStyle boldNumberStyle = GoogleFonts.montserrat(
+  color: background,
+  fontWeight: FontWeight.w700,
+  fontSize: 40.sp,
+);
 TextStyle textStyle = GoogleFonts.openSans(
   color: background,
   fontWeight: FontWeight.w400,

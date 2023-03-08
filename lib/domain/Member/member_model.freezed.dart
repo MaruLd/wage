@@ -24,9 +24,10 @@ mixin _$Member {
   String get emailAddress => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   String? get facebookUrl => throw _privateConstructorUsedError;
   MemberLevels get memberLevels => throw _privateConstructorUsedError;
+  Role get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,11 +44,13 @@ abstract class $MemberCopyWith<$Res> {
       String emailAddress,
       String fullName,
       String? phoneNumber,
-      String imageUrl,
+      String? imageUrl,
       String? facebookUrl,
-      MemberLevels memberLevels});
+      MemberLevels memberLevels,
+      Role role});
 
   $MemberLevelsCopyWith<$Res> get memberLevels;
+  $RoleCopyWith<$Res> get role;
 }
 
 /// @nodoc
@@ -67,9 +70,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
     Object? emailAddress = null,
     Object? fullName = null,
     Object? phoneNumber = freezed,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
     Object? facebookUrl = freezed,
     Object? memberLevels = null,
+    Object? role = null,
   }) {
     return _then(_value.copyWith(
       memberId: null == memberId
@@ -88,10 +92,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       facebookUrl: freezed == facebookUrl
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
@@ -100,6 +104,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.memberLevels
           : memberLevels // ignore: cast_nullable_to_non_nullable
               as MemberLevels,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Role,
     ) as $Val);
   }
 
@@ -108,6 +116,14 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
   $MemberLevelsCopyWith<$Res> get memberLevels {
     return $MemberLevelsCopyWith<$Res>(_value.memberLevels, (value) {
       return _then(_value.copyWith(memberLevels: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoleCopyWith<$Res> get role {
+    return $RoleCopyWith<$Res>(_value.role, (value) {
+      return _then(_value.copyWith(role: value) as $Val);
     });
   }
 }
@@ -123,12 +139,15 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       String emailAddress,
       String fullName,
       String? phoneNumber,
-      String imageUrl,
+      String? imageUrl,
       String? facebookUrl,
-      MemberLevels memberLevels});
+      MemberLevels memberLevels,
+      Role role});
 
   @override
   $MemberLevelsCopyWith<$Res> get memberLevels;
+  @override
+  $RoleCopyWith<$Res> get role;
 }
 
 /// @nodoc
@@ -145,9 +164,10 @@ class __$$_MemberCopyWithImpl<$Res>
     Object? emailAddress = null,
     Object? fullName = null,
     Object? phoneNumber = freezed,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
     Object? facebookUrl = freezed,
     Object? memberLevels = null,
+    Object? role = null,
   }) {
     return _then(_$_Member(
       memberId: null == memberId
@@ -166,10 +186,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       facebookUrl: freezed == facebookUrl
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
@@ -178,6 +198,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.memberLevels
           : memberLevels // ignore: cast_nullable_to_non_nullable
               as MemberLevels,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Role,
     ));
   }
 }
@@ -190,9 +214,10 @@ class _$_Member extends _Member {
       required this.emailAddress,
       required this.fullName,
       this.phoneNumber,
-      required this.imageUrl,
+      this.imageUrl,
       this.facebookUrl,
-      required this.memberLevels})
+      required this.memberLevels,
+      required this.role})
       : super._();
 
   factory _$_Member.fromJson(Map<String, dynamic> json) =>
@@ -207,15 +232,17 @@ class _$_Member extends _Member {
   @override
   final String? phoneNumber;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
   final String? facebookUrl;
   @override
   final MemberLevels memberLevels;
+  @override
+  final Role role;
 
   @override
   String toString() {
-    return 'Member(memberId: $memberId, emailAddress: $emailAddress, fullName: $fullName, phoneNumber: $phoneNumber, imageUrl: $imageUrl, facebookUrl: $facebookUrl, memberLevels: $memberLevels)';
+    return 'Member(memberId: $memberId, emailAddress: $emailAddress, fullName: $fullName, phoneNumber: $phoneNumber, imageUrl: $imageUrl, facebookUrl: $facebookUrl, memberLevels: $memberLevels, role: $role)';
   }
 
   @override
@@ -236,13 +263,14 @@ class _$_Member extends _Member {
             (identical(other.facebookUrl, facebookUrl) ||
                 other.facebookUrl == facebookUrl) &&
             (identical(other.memberLevels, memberLevels) ||
-                other.memberLevels == memberLevels));
+                other.memberLevels == memberLevels) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, memberId, emailAddress, fullName,
-      phoneNumber, imageUrl, facebookUrl, memberLevels);
+      phoneNumber, imageUrl, facebookUrl, memberLevels, role);
 
   @JsonKey(ignore: true)
   @override
@@ -264,9 +292,10 @@ abstract class _Member extends Member {
       required final String emailAddress,
       required final String fullName,
       final String? phoneNumber,
-      required final String imageUrl,
+      final String? imageUrl,
       final String? facebookUrl,
-      required final MemberLevels memberLevels}) = _$_Member;
+      required final MemberLevels memberLevels,
+      required final Role role}) = _$_Member;
   _Member._() : super._();
 
   factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
@@ -280,11 +309,13 @@ abstract class _Member extends Member {
   @override
   String? get phoneNumber;
   @override
-  String get imageUrl;
+  String? get imageUrl;
   @override
   String? get facebookUrl;
   @override
   MemberLevels get memberLevels;
+  @override
+  Role get role;
   @override
   @JsonKey(ignore: true)
   _$$_MemberCopyWith<_$_Member> get copyWith =>
@@ -698,4 +729,150 @@ abstract class _Level extends Level {
   @JsonKey(ignore: true)
   _$$_LevelCopyWith<_$_Level> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+Role _$RoleFromJson(Map<String, dynamic> json) {
+  return _Role.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Role {
+  String get roleId => throw _privateConstructorUsedError;
+  String get roleName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RoleCopyWith<Role> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoleCopyWith<$Res> {
+  factory $RoleCopyWith(Role value, $Res Function(Role) then) =
+      _$RoleCopyWithImpl<$Res, Role>;
+  @useResult
+  $Res call({String roleId, String roleName});
+}
+
+/// @nodoc
+class _$RoleCopyWithImpl<$Res, $Val extends Role>
+    implements $RoleCopyWith<$Res> {
+  _$RoleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roleId = null,
+    Object? roleName = null,
+  }) {
+    return _then(_value.copyWith(
+      roleId: null == roleId
+          ? _value.roleId
+          : roleId // ignore: cast_nullable_to_non_nullable
+              as String,
+      roleName: null == roleName
+          ? _value.roleName
+          : roleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
+  factory _$$_RoleCopyWith(_$_Role value, $Res Function(_$_Role) then) =
+      __$$_RoleCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String roleId, String roleName});
+}
+
+/// @nodoc
+class __$$_RoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res, _$_Role>
+    implements _$$_RoleCopyWith<$Res> {
+  __$$_RoleCopyWithImpl(_$_Role _value, $Res Function(_$_Role) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roleId = null,
+    Object? roleName = null,
+  }) {
+    return _then(_$_Role(
+      roleId: null == roleId
+          ? _value.roleId
+          : roleId // ignore: cast_nullable_to_non_nullable
+              as String,
+      roleName: null == roleName
+          ? _value.roleName
+          : roleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Role extends _Role {
+  _$_Role({required this.roleId, required this.roleName}) : super._();
+
+  factory _$_Role.fromJson(Map<String, dynamic> json) => _$$_RoleFromJson(json);
+
+  @override
+  final String roleId;
+  @override
+  final String roleName;
+
+  @override
+  String toString() {
+    return 'Role(roleId: $roleId, roleName: $roleName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Role &&
+            (identical(other.roleId, roleId) || other.roleId == roleId) &&
+            (identical(other.roleName, roleName) ||
+                other.roleName == roleName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, roleId, roleName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RoleCopyWith<_$_Role> get copyWith =>
+      __$$_RoleCopyWithImpl<_$_Role>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RoleToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Role extends Role {
+  factory _Role(
+      {required final String roleId, required final String roleName}) = _$_Role;
+  _Role._() : super._();
+
+  factory _Role.fromJson(Map<String, dynamic> json) = _$_Role.fromJson;
+
+  @override
+  String get roleId;
+  @override
+  String get roleName;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RoleCopyWith<_$_Role> get copyWith => throw _privateConstructorUsedError;
 }

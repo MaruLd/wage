@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wage/presentation/pages/signin/components/body.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-class WelcomeBody extends StatelessWidget {
+import '../../../providers/api_provider.dart';
+
+class WelcomeBody extends ConsumerWidget {
   const WelcomeBody({Key? key}) : super(key: key);
-  
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final googleSignInProvider = ref.watch(googleProvider);
     void _navigateToSignInBody(BuildContext context) {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => SignInBody()));
@@ -78,26 +82,37 @@ class WelcomeBody extends StatelessWidget {
                 bottom: 40.h,
                 left: 10.w,
                 right: 10.w,
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    googleSignInProvider.googleLogin();
+                  },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.all(18.0)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13.0))),
+                        borderRadius: BorderRadius.circular(13.r))),
                     backgroundColor:
                         MaterialStateProperty.all<Color>(global.primary),
                   ),
-                  child: Text(
-                    'Bắt đầu',
+                  icon: Container(
+                    width: 30,
+                    height: 30,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: global.background,
+                      shape: BoxShape.circle,
+                    ),
+                    child:
+                        SvgPicture.asset('assets/images/SignInGoogleLogo.svg'),
+                  ),
+                  label: Text(
+                    'Đăng nhập với Google',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: global.background,
                         fontFamily: global.headerFont,
-                        fontSize: 22.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w700),
                   ),
-                  onPressed: () {
-                    _navigateToSignInBody(context);
-                  },
                 )),
           ]),
         ));

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
-import 'package:wage/presentation/pages/signin/components/welcome.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import '../home/home_page.dart';
@@ -52,7 +51,7 @@ class _NavigationState extends State<Navigation> {
               icon: Icon(
                 Icons.home_outlined,
               ),
-              label: 'Home',
+              label: 'Trang Chủ',
             ),
             NavigationDestination(
               selectedIcon: Icon(
@@ -62,16 +61,16 @@ class _NavigationState extends State<Navigation> {
               icon: Icon(
                 Icons.history,
               ),
-              label: 'History',
+              label: 'Lịch Sử',
             ),
             SizedBox(width: 48.0),
             NavigationDestination(
               selectedIcon: Icon(
-                Icons.card_giftcard,
+                Icons.topic_outlined,
                 color: global.primary,
               ),
-              icon: Icon(Icons.card_giftcard),
-              label: 'Saved',
+              icon: Icon(Icons.topic_outlined),
+              label: 'Phiếu Lương',
             ),
             NavigationDestination(
               selectedIcon: Icon(
@@ -79,7 +78,7 @@ class _NavigationState extends State<Navigation> {
                 color: global.primary,
               ),
               icon: Icon(Icons.person),
-              label: 'Saved',
+              label: 'Cá Nhân',
             ),
           ],
         ),
@@ -92,10 +91,10 @@ class _NavigationState extends State<Navigation> {
           child: HomePage(),
         ),
         Container(
-          child: WelcomeBody(),
+          child: Text('empty'),
         ),
         Container(
-          child: WelcomeBody(),
+          child: Text('empty'),
         ),
         Container(
           child: SettingPage(),

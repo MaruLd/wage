@@ -14,34 +14,21 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(authProvider.select(
-      (value) => value.valueOrNull?.displayName,
-    ));
-
-    final userData = ref.watch(userDataProvider);
-
     return Scaffold(
-      backgroundColor: global.primary2,
-      body: userData.when(
-        data: (userData) {
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                //header
-                HomePageHeader(username: name, avatarUrl: userData.imageUrl),
-                //point card
-                PointCard(point: userData.memberLevels.level.basePoint),
-                // 3 menu
-                MenuBody(),
-              ],
-            ).safeArea(),
-          );
-        },
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => CircularProgressIndicator().centered(),
-      ),
-    );
+        backgroundColor: global.primary2,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              //header
+              HomePageHeader(),
+              //point card
+              PointCard(),
+              // 3 menu
+              MenuBody(),
+            ],
+          ).safeArea(),
+        ));
   }
 }
