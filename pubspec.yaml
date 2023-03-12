@@ -63,6 +63,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
 
   flutter_settings_screens: 
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

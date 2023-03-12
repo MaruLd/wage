@@ -16,6 +16,7 @@ var underline = Color.fromRGBO(14, 95, 76, 1);
 var normalText = Color.fromRGBO(58, 58, 58, 1);
 var smallText = Color.fromRGBO(116, 112, 112, 1);
 var headerText = Color.fromRGBO(81, 107, 158, 1);
+var circle = Color.fromRGBO(244, 241, 222, 1);
 
 // font styles
 var headerFont = 'Open Sans';
@@ -25,6 +26,11 @@ var numberFont = 'Montserrat';
 
 TextStyle boldTextStyle = GoogleFonts.montserrat(
   color: background,
+  fontWeight: FontWeight.w700,
+  fontSize: 24.sp,
+);
+TextStyle boldTextDarkStyle = GoogleFonts.montserrat(
+  color: normalText,
   fontWeight: FontWeight.w700,
   fontSize: 24.sp,
 );

@@ -6,9 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/changeCoin/change_coin_page.dart';
+import 'package:wage/presentation/pages/profile/profile_page.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
+
+import '../../voucher/voucher_page.dart';
 
 class HomePageHeader extends ConsumerWidget {
   @override
@@ -154,7 +156,7 @@ class MenuBody extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ChangeCoinPage()),
+                                builder: (context) => VoucherPage()),
                           );
                         },
                         child: Column(
@@ -170,7 +172,7 @@ class MenuBody extends StatelessWidget {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
-                                'Đổi coin',
+                                'Voucher',
                                 style: global.boldSmallTextStyle,
                               ),
                             ),
@@ -431,22 +433,31 @@ class MenuBody extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 10, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        'Xem thêm',
-                                        style: TextStyle(
-                                          fontFamily: 'Rubik',
-                                          color: global.background,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18.sp,
+                                MaterialButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ProfilePage()),
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        15, 10, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Xem thêm',
+                                          style: TextStyle(
+                                            fontFamily: 'Rubik',
+                                            color: global.background,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18.sp,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],

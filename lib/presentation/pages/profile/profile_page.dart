@@ -3,9 +3,9 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import 'components/body.dart';
 
-class ChangeCoinPage extends StatelessWidget {
-  static String get routeName => 'changeCoin';
-  static String get routeLocation => '/changeCoin';
+class ProfilePage extends StatelessWidget {
+  static String get routeName => 'profile';
+  static String get routeLocation => '/profile';
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,10 @@ class ChangeCoinPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             HomePageHeader(),
-            Profile(),
-            ChangeCoinBody(),
+            const SizedBox(
+              height: 40,
+            ),
+            ProfileBody(),
           ],
         ),
       ),

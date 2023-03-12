@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wage/presentation/pages/navbar/navbar.dart';
 import 'package:wage/presentation/pages/signin/sign_in_page.dart';
-import 'package:wage/presentation/pages/changeCoin/change_coin_page.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
 import 'package:wage/presentation/providers/auth_datas_provider.dart';
 import 'package:wage/presentation/providers/states/login_states.dart';

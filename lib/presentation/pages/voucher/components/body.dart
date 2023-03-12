@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -131,13 +133,13 @@ class Profile extends ConsumerWidget {
   }
 }
 
-class ChangeCoinBody extends StatelessWidget {
-  const ChangeCoinBody({
+class VoucherBody extends ConsumerWidget {
+  const VoucherBody({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
         child: Container(
@@ -159,7 +161,147 @@ class ChangeCoinBody extends StatelessWidget {
               topRight: Radius.circular(40.r),
             ),
           ),
-          child: Column(mainAxisSize: MainAxisSize.max, children: []),
+          child: MyVoucherItem(),
         ));
+  }
+}
+
+class MyVoucherItem extends StatelessWidget {
+  MyVoucherItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+          padding: EdgeInsets.all(8),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(1, 1), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Text('image'),
+              SizedBox(
+                width: 8,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.62,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'data',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: global.normalText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      children: [
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        Icon(
+                          Icons.schedule_rounded,
+                          color: global.primary,
+                          size: 14,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          'Data 1',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: global.primary,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: global.darkGreen,
+                          size: 14,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Flexible(
+                          child: Text(
+                            'data',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 12, color: global.background),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          )),
+    );
+  }
+
+  Widget buildProgress(
+      {Color? activeColor,
+      Color? inactiveColor,
+      double progress = 1,
+      double? height,
+      double width = 100}) {
+    if (inactiveColor == null) {
+      inactiveColor = Colors.grey;
+    }
+    if (height == null) {
+      height = 4;
+    }
+    if (progress > 1) {
+      progress /= 100;
+    }
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+          color: inactiveColor,
+          borderRadius: BorderRadius.all(Radius.circular(4))),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: width * progress,
+            height: height,
+            decoration: BoxDecoration(
+                color: activeColor,
+                borderRadius: BorderRadius.all(Radius.circular(4))),
+          )
+        ],
+      ),
+    );
   }
 }
