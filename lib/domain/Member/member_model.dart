@@ -38,6 +38,7 @@ class Level with _$Level {
     required int basePoint,
     required int basePointPerHour,
     required int loyal,
+    required String levelColor,
     required int xpNeeded,
   }) = _Level;
   factory Level.fromJson(Map<String, dynamic> json) => _$LevelFromJson(json);

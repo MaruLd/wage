@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/presentation/pages/profile/components/project_carousel.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -176,42 +176,7 @@ class ProfileBody extends StatelessWidget {
                 ),
               ],
             ).px20(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    lineWidth: 7.0,
-                    percent: 0.5,
-                    center: new Text("50%"),
-                    progressColor: Colors.green,
-                  ),
-                  Text(
-                    'Capstone 1',
-                    style: TextStyle(
-                      color: global.normalText,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18.sp,
-                    ),
-                  ).p12(),
-                ]),
-                CircularPercentIndicator(
-                  radius: 40.0,
-                  lineWidth: 7.0,
-                  percent: 0.5,
-                  center: new Text("50%"),
-                  progressColor: Colors.green,
-                ),
-                CircularPercentIndicator(
-                  radius: 40.0,
-                  lineWidth: 7.0,
-                  percent: 0.5,
-                  center: new Text("50%"),
-                  progressColor: Colors.green,
-                )
-              ],
-            ).p20(),
+            ProjectCarousel(),
           ]).offset(offset: Offset(0, -50)),
         ));
   }

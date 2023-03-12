@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
-import 'package:wage/infrastructure/DAO/authDAO.dart';
+import 'package:wage/infrastructure/api_services/authDAO.dart';
 
 class MemberDAO {
   Future<Member> getMember() async {
