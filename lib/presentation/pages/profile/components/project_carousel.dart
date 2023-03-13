@@ -14,33 +14,23 @@ class ProjectCarousel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectDatasProvider);
+    final projectList = ref.watch(projectListDatasProvider);
 
     return projectList.when(
         data: (projectData) {
           return SizedBox(
-            width: 350.w,
+            width: 360.w,
             height: 180.h,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
+                mainAxisSpacing: 2,
+                childAspectRatio: 1.45,
               ),
               scrollDirection: Axis.horizontal,
               itemCount: projectData.length,
               itemBuilder: (context, int index) {
-                return Container(
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      ProjectItem(onTap: () {}, project: projectData[index])
-                    ],
-                  ),
-                );
+                return ProjectItem(onTap: () {}, project: projectData[index]);
               },
             ),
           );

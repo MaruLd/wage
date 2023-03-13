@@ -3,6 +3,7 @@ part 'project_model.freezed.dart';
 part 'project_model.g.dart';
 
 @freezed
+@JsonSerializable()
 class Project with _$Project {
   const Project._();
   factory Project({
@@ -17,12 +18,12 @@ class Project with _$Project {
     DateTime? startedAt,
     DateTime? endedAt,
     DateTime? updatedAt,
-    ProjectFiles? projectFiles,
+    required List<ProjectFiles> projectFiles,
   }) = _Project;
   factory Project.fromJson(Map<String, dynamic> json) =>
       _$ProjectFromJson(json);
-  factory Project.empty() =>
-      Project(projectId: "", projectName: "", projectStatus: "");
+  factory Project.empty() => Project(
+      projectId: "", projectName: "", projectStatus: "", projectFiles: []);
 }
 
 @freezed

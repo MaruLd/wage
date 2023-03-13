@@ -26,9 +26,9 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      projectFiles: json['projectFiles'] == null
-          ? null
-          : ProjectFiles.fromJson(json['projectFiles'] as Map<String, dynamic>),
+      projectFiles: (json['projectFiles'] as List<dynamic>)
+          .map((e) => ProjectFiles.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>

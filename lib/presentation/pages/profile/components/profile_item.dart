@@ -15,6 +15,52 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(project);
+    Color percentIndicatorColor = Colors.grey;
+    double switchPercent(String percent) {
+      switch (percent) {
+        case 'created':
+          return 0.25;
+        case 'started':
+          percentIndicatorColor = Color.fromARGB(255, 244, 248, 140);
+          return 0.50;
+        case 'ended':
+          percentIndicatorColor = Color.fromARGB(255, 133, 255, 155);
+          return 1.0;
+        default:
+          return 0;
+      }
+    }
+
+    Color switchPercentColor(String percent) {
+      switch (percent) {
+        case 'created':
+          return Color.fromARGB(255, 255, 93, 158);
+        case 'started':
+          return Color.fromARGB(255, 92, 72, 204);
+        case 'ended':
+          return Color.fromARGB(255, 42, 143, 59);
+        default:
+          return Colors.grey;
+      }
+    }
+
+    String translateStatus(String percent) {
+      switch (percent) {
+        case 'created':
+          return 'Khởi tạo';
+        case 'started':
+          return 'Hiện thực';
+        case 'ended':
+          return 'Hoàn thành';
+        default:
+          return '';
+      }
+    }
+
+    ;
+    String percentToIndicator =
+        "${(switchPercent(project.projectStatus) * 100).toInt()}%";
+
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -22,12 +68,26 @@ class ProjectItem extends StatelessWidget {
             builder: (context) => ProjectDetail(project: project)),
       ),
       child: Column(children: [
+        const SizedBox(
+          height: 12,
+        ),
         CircularPercentIndicator(
           radius: 40.0,
           lineWidth: 7.0,
-          percent: 0.5,
-          center: new Text("50%"),
-          progressColor: Colors.green,
+          percent: switchPercent(project.projectStatus),
+          center: new Text(
+            percentToIndicator,
+            style: TextStyle(
+              color: global.normalText,
+              fontFamily: global.numberFont,
+              fontWeight: FontWeight.w500,
+              fontSize: 20.sp,
+            ),
+          ),
+          progressColor: switchPercentColor(project.projectStatus),
+        ),
+        const SizedBox(
+          height: 12,
         ),
         Text(
           project.projectName,
@@ -36,15 +96,19 @@ class ProjectItem extends StatelessWidget {
             fontWeight: FontWeight.w700,
             fontSize: 18.sp,
           ),
-        ).p12(),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
         Text(
-          project.projectStatus ?? 'Not started',
+          translateStatus(project.projectStatus),
           style: TextStyle(
-            color: global.normalText,
+            color: switchPercentColor(project.projectStatus),
+            fontFamily: global.headerFont,
             fontWeight: FontWeight.w500,
-            fontSize: 14.sp,
+            fontSize: 16.sp,
           ),
-        ).p4(),
+        ),
       ]),
     );
   }

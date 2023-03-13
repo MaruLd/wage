@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/signin/components/body.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -52,7 +53,7 @@ class WelcomeBody extends ConsumerWidget {
                           BorderRadius.all(Radius.elliptical(445, 406)),
                     ))),
             Positioned(
-                top: 510.h,
+                top: 480.h,
                 left: 31.w,
                 right: 31.w,
                 child: Text(
@@ -63,7 +64,7 @@ class WelcomeBody extends ConsumerWidget {
                       fontFamily: global.headerFont,
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w700),
-                )),
+                ).p4()),
             Positioned(
                 top: 590.h,
                 left: 31.w,
@@ -76,7 +77,7 @@ class WelcomeBody extends ConsumerWidget {
                     fontFamily: global.smoothFont,
                     fontSize: 21.sp,
                   ),
-                )),
+                ).p4()),
             // ----------Begin button----------
             Positioned(
                 bottom: 40.h,

@@ -31,7 +31,7 @@ mixin _$Project {
   DateTime? get startedAt => throw _privateConstructorUsedError;
   DateTime? get endedAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
-  ProjectFiles? get projectFiles => throw _privateConstructorUsedError;
+  List<ProjectFiles> get projectFiles => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,9 +55,7 @@ abstract class $ProjectCopyWith<$Res> {
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
-      ProjectFiles? projectFiles});
-
-  $ProjectFilesCopyWith<$Res>? get projectFiles;
+      List<ProjectFiles> projectFiles});
 }
 
 /// @nodoc
@@ -84,7 +82,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? updatedAt = freezed,
-    Object? projectFiles = freezed,
+    Object? projectFiles = null,
   }) {
     return _then(_value.copyWith(
       projectId: null == projectId
@@ -131,23 +129,11 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      projectFiles: freezed == projectFiles
+      projectFiles: null == projectFiles
           ? _value.projectFiles
           : projectFiles // ignore: cast_nullable_to_non_nullable
-              as ProjectFiles?,
+              as List<ProjectFiles>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProjectFilesCopyWith<$Res>? get projectFiles {
-    if (_value.projectFiles == null) {
-      return null;
-    }
-
-    return $ProjectFilesCopyWith<$Res>(_value.projectFiles!, (value) {
-      return _then(_value.copyWith(projectFiles: value) as $Val);
-    });
   }
 }
 
@@ -170,10 +156,7 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
-      ProjectFiles? projectFiles});
-
-  @override
-  $ProjectFilesCopyWith<$Res>? get projectFiles;
+      List<ProjectFiles> projectFiles});
 }
 
 /// @nodoc
@@ -197,7 +180,7 @@ class __$$_ProjectCopyWithImpl<$Res>
     Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? updatedAt = freezed,
-    Object? projectFiles = freezed,
+    Object? projectFiles = null,
   }) {
     return _then(_$_Project(
       projectId: null == projectId
@@ -244,10 +227,10 @@ class __$$_ProjectCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      projectFiles: freezed == projectFiles
-          ? _value.projectFiles
+      projectFiles: null == projectFiles
+          ? _value._projectFiles
           : projectFiles // ignore: cast_nullable_to_non_nullable
-              as ProjectFiles?,
+              as List<ProjectFiles>,
     ));
   }
 }
@@ -267,8 +250,9 @@ class _$_Project extends _Project {
       this.startedAt,
       this.endedAt,
       this.updatedAt,
-      this.projectFiles})
-      : super._();
+      required final List<ProjectFiles> projectFiles})
+      : _projectFiles = projectFiles,
+        super._();
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
@@ -295,8 +279,13 @@ class _$_Project extends _Project {
   final DateTime? endedAt;
   @override
   final DateTime? updatedAt;
+  final List<ProjectFiles> _projectFiles;
   @override
-  final ProjectFiles? projectFiles;
+  List<ProjectFiles> get projectFiles {
+    if (_projectFiles is EqualUnmodifiableListView) return _projectFiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_projectFiles);
+  }
 
   @override
   String toString() {
@@ -330,8 +319,8 @@ class _$_Project extends _Project {
             (identical(other.endedAt, endedAt) || other.endedAt == endedAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            (identical(other.projectFiles, projectFiles) ||
-                other.projectFiles == projectFiles));
+            const DeepCollectionEquality()
+                .equals(other._projectFiles, _projectFiles));
   }
 
   @JsonKey(ignore: true)
@@ -349,7 +338,7 @@ class _$_Project extends _Project {
       startedAt,
       endedAt,
       updatedAt,
-      projectFiles);
+      const DeepCollectionEquality().hash(_projectFiles));
 
   @JsonKey(ignore: true)
   @override
@@ -378,7 +367,7 @@ abstract class _Project extends Project {
       final DateTime? startedAt,
       final DateTime? endedAt,
       final DateTime? updatedAt,
-      final ProjectFiles? projectFiles}) = _$_Project;
+      required final List<ProjectFiles> projectFiles}) = _$_Project;
   _Project._() : super._();
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
@@ -406,7 +395,7 @@ abstract class _Project extends Project {
   @override
   DateTime? get updatedAt;
   @override
-  ProjectFiles? get projectFiles;
+  List<ProjectFiles> get projectFiles;
   @override
   @JsonKey(ignore: true)
   _$$_ProjectCopyWith<_$_Project> get copyWith =>

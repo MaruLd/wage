@@ -31,66 +31,10 @@ final walletsDataProvider = FutureProvider.autoDispose<Wallets>(
   },
 );
 
-final projectDatasProvider = FutureProvider.autoDispose<List<Project>>(
-  (ref) {
-    return ref.read(projectProvider).getProjects().then(
-      (projects) {
-        final List<Project> characterList = [];
-        for (var i = 0; i < projects.length; i++) {
-          try {
-            characterList.add(Project(
-              projectId: projects[i]["projectId"],
-              projectName: projects[i]["projectName"],
-              projectStatus: projects[i]["projectStatus"],
-              projectType: projects[i]["projectType"],
-              projectVisibility: projects[i]["projectVisibility"],
-              createdAt: DateTime.parse(projects[i]["createdAt"]),
-              // startedAt: projects[i]["startedAt"] != null
-              //     ? DateTime.parse(projects[i]["startedAt"])
-              //     : null,
-              // endedAt: projects[i]["endedAt"] != null
-              //     ? DateTime.parse(projects[i]["endedAt"])
-              //     : null,
-              // updatedAt: projects[i]["updatedAt"] != null
-              //     ? DateTime.parse(projects[i]["updatedAt"])
-              //     : null,
-              // projectFiles: projects[i]["projectFiles"] != null
-              //     ? ProjectFiles(
-              //         file: projects[i]["projectFiles"]["file"] != null
-              //             ? File(
-              //                 directUrl: projects[i]["projectFiles"]["file"]
-              //                             ["directUrl"] !=
-              //                         null
-              //                     ? projects[i]["projectFiles"]["file"]
-              //                         ["directUrl"]
-              //                     : '',
-              //                 createdAt: projects[i]["projectFiles"]["file"]
-              //                             ["createdAt"] !=
-              //                         null
-              //                     ? DateTime.parse(projects[i]["projectFiles"]
-              //                         ["file"]["createdAt"])
-              //                     : null,
-              //                 updatedAt: projects[i]["projectFiles"]["file"]
-              //                             ["updatedAt"] !=
-              //                         null
-              //                     ? DateTime.parse(projects[i]["projectFiles"]
-              //                         ["file"]["updatedAt"])
-              //                     : null,
-              //               )
-              //             : null,
-              //         fileType: projects[i]["projectFiles"]["fileType"])
-              //     : null,
-            ));
-          } catch (e) {
-            print(e);
-          }
-          ;
-        }
-        return characterList;
-      },
-    );
-  },
-);
+final projectListDatasProvider =
+    FutureProvider.autoDispose<List<Project>>((ref) {
+  return ref.read(projectProvider).getProjects();
+});
 
 final loginStatesProvider = FutureProvider<String?>(
   (ref) {

@@ -129,11 +129,15 @@ class Profile extends ConsumerWidget {
   }
 }
 
-class ProfileBody extends StatelessWidget {
-  const ProfileBody({
-    Key? key,
-  }) : super(key: key);
+class ProfileBody extends StatefulWidget {
+  ProfileBody({Key? key, required this.notifyParent}) : super(key: key);
+  final Function() notifyParent;
 
+  @override
+  State<ProfileBody> createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<ProfileBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -166,12 +170,17 @@ class ProfileBody extends StatelessWidget {
                   'Dự án tham gia',
                   style: global.boldTextDarkStyle,
                 ),
-                Text(
-                  'Xem tất cả',
-                  style: TextStyle(
-                    color: global.forgetButton,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14.sp,
+                TextButton(
+                  onPressed: () {
+                    return widget.notifyParent();
+                  },
+                  child: Text(
+                    'Xem tất cả',
+                    style: TextStyle(
+                      color: global.forgetButton,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
               ],

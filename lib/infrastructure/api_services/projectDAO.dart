@@ -8,7 +8,7 @@ import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/authDAO.dart';
 
 class ProjectDAO {
-  Future<List> getProjects() async {
+  Future<List<Project>> getProjects() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -25,8 +25,11 @@ class ProjectDAO {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       if (response.statusCode == 200) {
-        print(response.data["message"][0]["projectStatus"]);
-        return response.data["message"];
+        print(response.data["message"]);
+        List data = response.data["message"];
+        List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
+        print(projects);
+        return projects;
       } else {
         throw Exception(response.statusMessage);
       }
