@@ -10,6 +10,14 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/presentation/providers/api_provider.dart';
 
 import '../../../providers/login_controller_provider.dart';
+import '../../profile/profile_page.dart';
+
+void _ProfilePageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePage()),
+  );
+}
 
 class Profile extends ConsumerWidget {
   @override
@@ -28,26 +36,31 @@ class Profile extends ConsumerWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Card(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: global.darkGreen,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
+              TextButton(
+                onPressed: () {
+                  _ProfilePageNavigation(context);
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: global.darkGreen,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: userData.imageUrl != null
+                          ? Image.network(userData.imageUrl!)
+                          : Image.asset(
+                              'assets/images/ANYAA.png',
+                            ),
                     ),
-                    child: userData.imageUrl != null
-                        ? Image.network(userData.imageUrl!)
-                        : Image.asset(
-                            'assets/images/ANYAA.png',
-                          ),
                   ),
                 ),
               ),

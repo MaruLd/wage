@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-import 'package:wage/presentation/providers/auth_datas_provider.dart';
-
-import '../../providers/api_provider.dart';
 import 'components/body.dart';
 
 class HomePage extends ConsumerWidget {
@@ -21,11 +18,10 @@ class HomePage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              //header
               HomePageHeader(),
-              //point card
-              PointCard(),
-              // 3 menu
+              const SizedBox(
+                height: 60,
+              ),
               MenuBody(),
             ],
           ).safeArea(),

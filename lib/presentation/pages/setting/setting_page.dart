@@ -14,7 +14,6 @@ class SettingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return Scaffold(
         body: ListView(
       padding: EdgeInsets.all(24),
@@ -23,7 +22,7 @@ class SettingPage extends ConsumerWidget {
           height: 12,
         ),
         Profile(),
-        SettingsGroup(title: 'GENERAL', children: <Widget>[
+        SettingsGroup(title: 'Tổng quan', children: <Widget>[
           const SizedBox(
             height: 8,
           ),

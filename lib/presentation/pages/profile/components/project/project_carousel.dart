@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/presentation/pages/profile/components/profile_item.dart';
+import 'package:wage/presentation/pages/profile/components/project/project_item.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -36,6 +36,6 @@ class ProjectCarousel extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) => Text(error.toString()),
-        loading: () => CircularProgressIndicator().centered());
+        loading: () => CircularProgressIndicator(color: global.primary).centered());
   }
 }

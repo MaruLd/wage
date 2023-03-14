@@ -25,7 +25,6 @@ class MemberDAO {
               }));
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
-        print(member);
         return member;
       } else {
         throw Exception(response.statusMessage);

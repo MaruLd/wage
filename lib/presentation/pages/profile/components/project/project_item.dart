@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/presentation/pages/profile/components/profile_detail.dart';
+import 'package:wage/presentation/pages/profile/components/project/project_detail.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 class ProjectItem extends StatelessWidget {
@@ -14,7 +14,6 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(project);
     Color percentIndicatorColor = Colors.grey;
     double switchPercent(String percent) {
       switch (percent) {

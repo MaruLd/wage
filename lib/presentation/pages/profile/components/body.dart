@@ -3,57 +3,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/profile/components/project_carousel.dart';
+import 'package:wage/presentation/pages/profile/components/project/project_carousel.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-class HomePageHeader extends ConsumerWidget {
+import 'profile_overview/overview_row.dart';
+
+class ProfileHeader extends StatefulWidget {
+  const ProfileHeader(
+      {Key? key,
+      required this.backFunctions,
+      required this.overview,
+      required this.overviewDetail,
+      required this.projectsDetail})
+      : super(key: key);
+  final Function backFunctions;
+  final bool overview;
+  final bool overviewDetail;
+  final bool projectsDetail;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(children: [
-                        TextButton.icon(
-                            onPressed: () => Navigator.pop(context),
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: global.background,
-                              size: 25.sp,
+  State<ProfileHeader> createState() => _ProfileHeaderState();
+}
+
+class _ProfileHeaderState extends State<ProfileHeader> {
+  @override
+  Widget build(BuildContext context) {
+    String pageHeader() {
+      if (widget.overview) {
+        return 'HỒ SƠ';
+      } else if (widget.overviewDetail) {
+        return 'THÀNH TÍCH';
+      } else if (widget.projectsDetail) {
+        return 'CÁC DỰ ÁN';
+      } else {
+        return '';
+      }
+    }
+
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          TextButton.icon(
+                              onPressed: () => widget.backFunctions(context),
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: global.background,
+                                size: 25.sp,
+                              ),
+                              label: Text('')),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                pageHeader(),
+                                style: global.boldTextStyle,
+                              ),
                             ),
-                            label: Text('')),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'THÀNH TÍCH',
-                          style: global.boldTextStyle,
-                        ),
-                      ]),
-                    ],
-                  ),
-                ],
-              ),
-            ).flexible(),
-          ],
-        ),
+                          ),
+                          const SizedBox(
+                            width: 75,
+                          )
+                        ]),
+                  ],
+                ),
+              ],
+            ),
+          ).flexible(),
+        ],
       ),
     );
   }
@@ -126,67 +160,5 @@ class Profile extends ConsumerWidget {
             ],
           );
         });
-  }
-}
-
-class ProfileBody extends StatefulWidget {
-  ProfileBody({Key? key, required this.notifyParent}) : super(key: key);
-  final Function() notifyParent;
-
-  @override
-  State<ProfileBody> createState() => _ProfileBodyState();
-}
-
-class _ProfileBodyState extends State<ProfileBody> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1,
-          decoration: BoxDecoration(
-            color: global.background,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 4,
-                color: Color(0x34000000),
-                offset: Offset(0, -2),
-              )
-            ],
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(0),
-              bottomRight: Radius.circular(0),
-              topLeft: Radius.circular(40.r),
-              topRight: Radius.circular(40.r),
-            ),
-          ),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Profile(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Dự án tham gia',
-                  style: global.boldTextDarkStyle,
-                ),
-                TextButton(
-                  onPressed: () {
-                    return widget.notifyParent();
-                  },
-                  child: Text(
-                    'Xem tất cả',
-                    style: TextStyle(
-                      color: global.forgetButton,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                ),
-              ],
-            ).px20(),
-            ProjectCarousel(),
-          ]).offset(offset: Offset(0, -50)),
-        ));
   }
 }

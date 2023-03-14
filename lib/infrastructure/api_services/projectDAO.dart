@@ -25,10 +25,8 @@ class ProjectDAO {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       if (response.statusCode == 200) {
-        print(response.data["message"]);
         List data = response.data["message"];
         List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
-        print(projects);
         return projects;
       } else {
         throw Exception(response.statusMessage);

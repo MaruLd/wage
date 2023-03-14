@@ -6,11 +6,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/presentation/pages/home/components/point_card.dart';
 import 'package:wage/presentation/pages/profile/profile_page.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-
 import '../../voucher/voucher_page.dart';
+
+void _ProfilePageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePage()),
+  );
+}
+
+void _PointPageNavigation(context) {}
 
 class HomePageHeader extends ConsumerWidget {
   @override
@@ -48,9 +57,11 @@ class HomePageHeader extends ConsumerWidget {
                             ),
                         error: (error, stackTrace) {
                           print(error.toString());
-                          return Text('Hoang Long');
+                          return Text('Username');
                         },
-                        loading: () => CircularProgressIndicator().centered()),
+                        loading: () =>
+                            CircularProgressIndicator(color: global.primary)
+                                .centered()),
                   ],
                 ),
               ],
@@ -59,36 +70,43 @@ class HomePageHeader extends ConsumerWidget {
           Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Card(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: global.darkGreen,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
+              TextButton(
+                onPressed: () {
+                  _ProfilePageNavigation(context);
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: global.darkGreen,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: userData.when(
+                          // show previous data/error on loading
+                          skipLoadingOnReload: true,
+                          // show previous data if there's an error
+                          skipError: true,
+                          data: (userData) => userData.imageUrl != null
+                              ? Image.network(userData.imageUrl!)
+                              : Image.asset('assets/images/ANYAA.png'),
+                          error: (error, stackTrace) {
+                            print(error.toString());
+                            return Image.asset(
+                              'assets/images/ANYAA.png',
+                            );
+                          },
+                          loading: () =>
+                              CircularProgressIndicator(color: global.primary)
+                                  .centered()),
                     ),
-                    child: userData.when(
-                        // show previous data/error on loading
-                        skipLoadingOnReload: true,
-                        // show previous data if there's an error
-                        skipError: true,
-                        data: (userData) => userData.imageUrl != null
-                            ? Image.network(userData.imageUrl!)
-                            : Image.asset('assets/images/ANYAA.png'),
-                        error: (error, stackTrace) {
-                          print(error.toString());
-                          return Image.asset(
-                            'assets/images/ANYAA.png',
-                          );
-                        },
-                        loading: () => CircularProgressIndicator().centered()),
                   ),
                 ),
               ),
@@ -131,6 +149,7 @@ class MenuBody extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              const PointCard(),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(30.w, 25.h, 30.w, 40.h),
                 child: Row(
@@ -435,11 +454,7 @@ class MenuBody extends StatelessWidget {
                                 ),
                                 MaterialButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ProfilePage()),
-                                    );
+                                    _PointPageNavigation(context);
                                   },
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -483,106 +498,7 @@ class MenuBody extends StatelessWidget {
                     ],
                   )),
             ],
-          )),
+          ).offset(offset: Offset(0, -85))),
     );
-  }
-}
-
-class PointCard extends ConsumerWidget {
-  const PointCard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final walletsData = ref.watch(walletsDataProvider);
-    return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 130.h,
-              width: 318.w,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 6,
-                    color: Colors.black,
-                    offset: Offset(0, 2),
-                  )
-                ],
-                gradient: LinearGradient(
-                  colors: [Color(0xFF014131), Color(0xD2026E5A)],
-                  stops: [0, 1],
-                  begin: AlignmentDirectional(0, -1),
-                  end: AlignmentDirectional(0, 1),
-                ),
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(25, 35, 2, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Số point khả dụng',
-                              style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: global.background,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(25, 10, 20, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            walletsData.when(
-                              // show previous data/error on loading
-                              skipLoadingOnReload: true,
-                              // show previous data if there's an error
-                              skipError: true,
-                              data: (walletData) {
-                                return Text(walletData.totalPoint.toString(),
-                                    style: global.boldTextStyle);
-                              },
-                              error: (error, stackTrace) {
-                                print(error.toString());
-                                return Text('0');
-                              },
-                              loading: () =>
-                                  CircularProgressIndicator().centered(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Image.asset(
-                        'assets/images/ANYAA.png',
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ));
   }
 }
