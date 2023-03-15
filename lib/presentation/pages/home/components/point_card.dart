@@ -83,7 +83,7 @@ class PointCard extends ConsumerWidget {
                               loading: () => CircularProgressIndicator(
                                       color: global.primary)
                                   .centered(),
-                            ),
+                            )
                           ],
                         ),
                       ),
