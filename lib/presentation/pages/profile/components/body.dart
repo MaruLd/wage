@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/profile/components/project/project_carousel.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-
-import 'profile_overview/overview_row.dart';
 
 class ProfileHeader extends StatefulWidget {
   const ProfileHeader(
@@ -103,7 +100,10 @@ class Profile extends ConsumerWidget {
         skipLoadingOnReload: true,
         // show previous data if there's an error
         skipError: true,
-        error: (error, stackTrace) => Text(error.toString()),
+        error: (error, stackTrace) => Text(
+              'Sorry, server currently down!',
+              style: global.boldTextStyle,
+            ),
         loading: () => CircularProgressIndicator().centered(),
         data: (userData) {
           return Column(

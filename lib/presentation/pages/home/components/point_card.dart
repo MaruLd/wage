@@ -78,7 +78,7 @@ class PointCard extends ConsumerWidget {
                               },
                               error: (error, stackTrace) {
                                 print(error.toString());
-                                return Text('0');
+                                return Text('0', style: global.boldTextStyle);
                               },
                               loading: () => CircularProgressIndicator(
                                       color: global.primary)

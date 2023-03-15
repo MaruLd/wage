@@ -57,7 +57,7 @@ class HomePageHeader extends ConsumerWidget {
                             ),
                         error: (error, stackTrace) {
                           print(error.toString());
-                          return Text('Username');
+                          return Text('Username', style: global.boldTextStyle);
                         },
                         loading: () =>
                             CircularProgressIndicator(color: global.primary)

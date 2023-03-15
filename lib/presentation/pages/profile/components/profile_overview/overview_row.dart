@@ -105,7 +105,10 @@ class OverviewRow extends ConsumerWidget {
                 ],
               ).px8());
         },
-        error: (error, stackTrace) => Text(error.toString()),
+        error: (error, stackTrace) => Text(
+              'Sorry, server currently down!',
+              style: global.boldTextDarkStyle,
+            ),
         loading: () =>
             CircularProgressIndicator(color: global.primary).centered());
   }
