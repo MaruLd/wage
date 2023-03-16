@@ -89,7 +89,7 @@ class ProjectItem extends StatelessWidget {
           height: 12,
         ),
         Text(
-          project.projectName,
+          project.projectShortName ?? 'Project',
           style: TextStyle(
             color: global.normalText,
             fontWeight: FontWeight.w700,

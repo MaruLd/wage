@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/home/components/point_card.dart';
+import 'package:wage/presentation/widgets/xp_card.dart';
 import 'package:wage/presentation/pages/profile/profile_page.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
@@ -19,7 +20,19 @@ void _ProfilePageNavigation(BuildContext context) {
   );
 }
 
-void _PointPageNavigation(context) {}
+void _ProjectsPageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePage()),
+  );
+}
+
+void _WalletPageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePage()),
+  );
+}
 
 class HomePageHeader extends ConsumerWidget {
   @override
@@ -213,23 +226,29 @@ class MenuBody extends StatelessWidget {
                         ],
                         borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.swap_vert_outlined,
-                            color: global.background,
-                            size: 25.sp,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Text(
-                              'Biến động',
-                              style: global.boldSmallTextStyle,
+                      child: TextButton(
+                        onPressed: () {
+                          _ProjectsPageNavigation(context);
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.folder_copy,
+                              color: global.background,
+                              size: 25.sp,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Text(
+                                'Các dự án',
+                                style: global.boldSmallTextStyle,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
@@ -246,23 +265,29 @@ class MenuBody extends StatelessWidget {
                         ],
                         borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.account_balance_wallet,
-                            color: global.background,
-                            size: 25.sp,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Text(
-                              'Ví của tôi',
-                              style: global.boldSmallTextStyle,
+                      child: TextButton(
+                        onPressed: () {
+                          _WalletPageNavigation(context);
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.account_balance_wallet,
+                              color: global.background,
+                              size: 25.sp,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Text(
+                                'Ví của tôi',
+                                style: global.boldSmallTextStyle,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -380,123 +405,8 @@ class MenuBody extends StatelessWidget {
                   ],
                 ),
               ),
-              // card rank
-              Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 151.h,
-                        width: 325.w,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 6,
-                              color: Colors.black,
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(83, 160, 110, 1),
-                              Color.fromARGB(255, 101, 197, 134)
-                            ],
-                            stops: [0, 5],
-                            begin: AlignmentDirectional(0, 0),
-                            end: AlignmentDirectional(0, 5),
-                          ),
-                          borderRadius: BorderRadius.circular(18.r),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 15, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text('Leader',
-                                          style: global.boldTextStyle),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 10, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Flexible(
-                                        child: Container(
-                                          width: 150.w,
-                                          child: Text(
-                                            'Còn 1235 point nữa bạn sẽ thăng hạng',
-                                            style: TextStyle(
-                                              fontFamily: 'Rubik',
-                                              color: global.background,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14.sp,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                MaterialButton(
-                                  onPressed: () {
-                                    _PointPageNavigation(context);
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15, 10, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          'Xem thêm',
-                                          style: TextStyle(
-                                            fontFamily: 'Rubik',
-                                            color: global.background,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18.sp,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/Level 4.svg',
-                                    width: 102.w,
-                                    height: 122.h,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
+              // xp card
+              XpCard(),
             ],
           ).offset(offset: Offset(0, -85))),
     );

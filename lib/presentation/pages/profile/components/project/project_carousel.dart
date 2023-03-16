@@ -19,23 +19,29 @@ class ProjectCarousel extends ConsumerWidget {
     return projectList.when(
         data: (projectData) {
           return SizedBox(
-            width: 360.w,
+            width: 380.w,
             height: 180.h,
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                mainAxisSpacing: 2,
-                childAspectRatio: 1.45,
+            child: Scrollbar(
+              radius: Radius.circular(60),
+              thickness: 6,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: projectData.length,
+                itemBuilder: (context, int index) {
+                  return Container(
+                    width: 130,
+                    alignment: Alignment.center,
+                    child:
+                        ProjectItem(onTap: () {}, project: projectData[index])
+                            .px20(),
+                  );
+                },
               ),
-              scrollDirection: Axis.horizontal,
-              itemCount: projectData.length,
-              itemBuilder: (context, int index) {
-                return ProjectItem(onTap: () {}, project: projectData[index]);
-              },
             ),
           );
         },
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => CircularProgressIndicator(color: global.primary).centered());
+        error: (error, stackTrace) => Text('Server currently down'),
+        loading: () =>
+            CircularProgressIndicator(color: global.primary).centered());
   }
 }

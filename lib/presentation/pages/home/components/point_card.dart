@@ -72,8 +72,8 @@ class PointCard extends ConsumerWidget {
                               skipLoadingOnReload: true,
                               // show previous data if there's an error
                               skipError: true,
-                              data: (walletData) {
-                                return Text(walletData.totalPoint.toString(),
+                              data: (wallet) {
+                                return Text(wallet.totalPoint.toString(),
                                     style: global.boldTextStyle);
                               },
                               error: (error, stackTrace) {
@@ -91,7 +91,7 @@ class PointCard extends ConsumerWidget {
                   ),
                   Image.asset(
                     'assets/images/PointCardBackground.png',
-                  ).offset(offset: Offset(8, 5)),
+                  ).offset(offset: Offset(8, 4)),
                 ],
               ),
             ),

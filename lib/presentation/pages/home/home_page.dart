@@ -31,13 +31,16 @@ class HomePage extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
                   HomePageHeader(),
                   const SizedBox(
                     height: 60,
                   ),
                   MenuBody(),
                 ],
-              ).safeArea(),
+              ),
             )
           ]),
         ));

@@ -40,7 +40,8 @@ class _ProfileOverviewState extends State<ProfileOverview> {
           ),
         ],
       ).px20(),
-      OverviewRow()
+      OverviewRow(),
+      
     ]);
   }
 }
