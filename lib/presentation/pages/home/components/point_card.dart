@@ -89,14 +89,9 @@ class PointCard extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Image.asset(
-                        'assets/images/ANYAA.png',
-                      ),
-                    ],
-                  ),
+                  Image.asset(
+                    'assets/images/PointCardBackground.png',
+                  ).offset(offset: Offset(8, 5)),
                 ],
               ),
             ),

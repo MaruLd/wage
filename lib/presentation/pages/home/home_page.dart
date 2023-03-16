@@ -21,6 +21,7 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
         backgroundColor: global.primary2,
         body: RefreshIndicator(
+          color: global.primary,
           triggerMode: RefreshIndicatorTriggerMode.anywhere,
           onRefresh: _refreshData,
           child: Stack(children: <Widget>[
