@@ -12,6 +12,7 @@ import 'package:wage/presentation/pages/profile/profile_page.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 import '../../voucher/voucher_page.dart';
+import '../../wallet/wallet_page.dart';
 
 void _ProfilePageNavigation(BuildContext context) {
   Navigator.push(
@@ -30,7 +31,7 @@ void _ProjectsPageNavigation(BuildContext context) {
 void _WalletPageNavigation(BuildContext context) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ProfilePage()),
+    MaterialPageRoute(builder: (context) => WalletPage()),
   );
 }
 

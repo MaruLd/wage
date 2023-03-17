@@ -9,8 +9,8 @@ import 'package:wage/presentation/pages/profile/components/project/project_item.
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-class ProjectCarousel extends ConsumerWidget {
-  const ProjectCarousel({Key? key}) : super(key: key);
+class ProjectXPListView extends ConsumerWidget {
+  const ProjectXPListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,25 +18,18 @@ class ProjectCarousel extends ConsumerWidget {
 
     return projectList.when(
         data: (projectData) {
-          return SizedBox(
-            width: 380.w,
-            height: 180.h,
-            child: Scrollbar(
-              radius: Radius.circular(60),
-              thickness: 6,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: projectData.length,
-                itemBuilder: (context, int index) {
-                  return Container(
-                    width: 130,
-                    alignment: Alignment.center,
-                    child:
-                        ProjectItem(onTap: () {}, project: projectData[index])
-                            .px20(),
-                  );
-                },
-              ),
+          return SingleChildScrollView(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: projectData.length,
+              itemBuilder: (context, int index) {
+                return Container(
+                  width: 130,
+                  alignment: Alignment.center,
+                  child:
+                      ProjectXPItem(onTap: () {}, project: projectData[index]),
+                );
+              },
             ),
           );
         },

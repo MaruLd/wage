@@ -55,7 +55,7 @@ class SignInBody extends ConsumerWidget {
                     fontSize: 18.sp,
                   ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: global.underline),
+                    borderSide: BorderSide(color: global.darkGreen),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: global.primary2),
@@ -96,7 +96,7 @@ class SignInBody extends ConsumerWidget {
                     fontSize: 18.sp,
                   ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: global.underline),
+                    borderSide: BorderSide(color: global.darkGreen),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: global.primary2),
@@ -197,7 +197,7 @@ class SignInBody extends ConsumerWidget {
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.all(18.0)),
                   side: MaterialStateProperty.all(
-                      BorderSide(color: global.underline, width: 1)),
+                      BorderSide(color: global.darkGreen, width: 1)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(13.r))),
                 ),
