@@ -32,7 +32,7 @@ class ProjectListView extends ConsumerWidget {
                     width: 130,
                     alignment: Alignment.center,
                     child:
-                        ProjectXPItem(onTap: () {}, project: projectData[index])
+                        ProjectItem(onTap: () {}, project: projectData[index])
                             .px20(),
                   );
                 },

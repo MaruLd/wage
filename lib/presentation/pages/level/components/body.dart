@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
+
+import 'level_detail/level_circle_progress.dart';
+import 'level_detail/level_progress.dart';
 
 class WalletHeader extends StatefulWidget {
   const WalletHeader({
@@ -93,42 +94,11 @@ class Profile extends ConsumerWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: global.primary2),
-                child: CircularPercentIndicator(
-                  percent: 0.5,
-                  radius: 100,
-                  lineWidth: 35,
-                  reverse: true,
-                  progressColor: global.background,
-                  backgroundColor: Color.fromARGB(66, 255, 255, 255),
-                  circularStrokeCap: CircularStrokeCap.round,
-                  center: Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: global.militaryGreen),
-                    width: 130,
-                    height: 130,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/Level 4.svg',
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.fitHeight,
-                          ),
-                          Text(
-                            'Leader',
-                            style: global.boldSmallTextStyle,
-                          )
-                        ]),
-                  ),
-                ).p24(),
-              ),
+              LevelCircleProgress(),
               const SizedBox(
-                height: 18,
+                height: 10,
               ),
+              LevelProgress(),
             ],
           );
         });

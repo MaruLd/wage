@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// api url
+const apiUrl = "https://api.uniinc-cnb.com";
+
 // colors
 var background = Colors.white;
 var primary = Color.fromRGBO(0, 178, 113, 1);

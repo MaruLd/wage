@@ -7,9 +7,8 @@ import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/pages/profile/components/project/project_detail.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-class ProjectXPItem extends StatelessWidget {
-  ProjectXPItem({Key? key, required this.project, this.onTap})
-      : super(key: key);
+class ProjectItem extends StatelessWidget {
+  ProjectItem({Key? key, required this.project, this.onTap}) : super(key: key);
   Project project;
   final GestureTapCallback? onTap;
 
@@ -75,6 +74,8 @@ class ProjectXPItem extends StatelessWidget {
           radius: 40.0,
           lineWidth: 7.0,
           percent: switchPercent(project.projectStatus),
+          animationDuration: 800,
+          animation: true,
           center: new Text(
             percentToIndicator,
             style: TextStyle(

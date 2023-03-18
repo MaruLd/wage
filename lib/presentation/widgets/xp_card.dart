@@ -6,7 +6,14 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-void _XpPageNavigation(context) {}
+import '../pages/level/level_page.dart';
+
+void _XpPageNavigation(context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => LevelPage()),
+  );
+}
 
 class XpCard extends ConsumerWidget {
   const XpCard({Key? key}) : super(key: key);

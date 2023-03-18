@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
-import 'package:wage/domain/Member/member_model.dart';
-import 'package:wage/domain/Wallets/wallets_model.dart';
-import 'package:wage/infrastructure/api_services/authDAO.dart';
+import 'package:wage/infrastructure/api_services/authService.dart';
 
-class WalletsDAO {
-  Future<Wallets> getWallets() async {
+import '../../domain/Level/level_model.dart';
+import '../../presentation/settings/global_settings.dart' as global;
+
+class LevelsDAO {
+  Future<Level> getLevels() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -19,13 +20,13 @@ class WalletsDAO {
         jwtToken = auth.token;
       }
       final response =
-          await Dio().get('https://api.uniinc-cnb.com/v1/members/@me/wallets',
+          await Dio().get('${global.apiUrl}/v1/members/@me/wallets',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       if (response.statusCode == 200) {
-        final wallets = Wallets.fromJson(response.data["message"]);
+        final wallets = Level.fromJson(response.data["message"]);
         return wallets;
       } else {
         throw Exception(response.statusMessage);

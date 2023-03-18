@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:wage/domain/SignIn/sign_in_model.dart';
 import '../../domain/Auth/auth_model.dart';
+import '../../presentation/settings/global_settings.dart' as global;
 
 class AuthDAO {
   Future<AuthDTO> getAuthInformation() async {
@@ -12,7 +12,7 @@ class AuthDAO {
     String? token = await FirebaseAuth.instance.currentUser?.getIdToken();
     var formData = {"token": token};
     final response =
-        await Dio().post('https://api.uniinc-cnb.com/v1/users/login-google',
+        await Dio().post('${global.apiUrl}/v1/users/login-google',
             data: formData,
             options: Options(headers: {
               HttpHeaders.contentTypeHeader: "application/json",

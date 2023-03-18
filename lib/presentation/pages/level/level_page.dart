@@ -4,17 +4,17 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import 'components/body.dart';
-import 'components/profile_overview_detail/profile_overview_detail.dart';
+import 'components/level_detail/level_detail.dart';
 
-class WalletPage extends StatefulWidget {
+class LevelPage extends StatefulWidget {
   static String get routeName => 'profile';
   static String get routeLocation => '/profile';
 
   @override
-  State<WalletPage> createState() => _WalletPageState();
+  State<LevelPage> createState() => _LevelPageState();
 }
 
-class _WalletPageState extends State<WalletPage> {
+class _LevelPageState extends State<LevelPage> {
   bool overview = true;
   bool overviewDetail = false;
   bool projectsDetail = false;
@@ -63,8 +63,8 @@ class _WalletPageState extends State<WalletPage> {
                     ),
                     child: Column(children: [
                       Profile(),
-                      ProfileOverviewDetail(viewProjects: viewProjects),
-                    ]).offset(offset: Offset(0, -115))))
+                      LevelsDetail(viewProjects: viewProjects),
+                    ]).offset(offset: Offset(0, -120))))
           ],
         ).safeArea(),
       ),
