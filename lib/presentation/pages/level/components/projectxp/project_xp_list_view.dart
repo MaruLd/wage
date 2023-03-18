@@ -15,15 +15,16 @@ class ProjectXPListView extends ConsumerWidget {
 
     return projectList.when(
         data: (projectData) {
-          return SingleChildScrollView(
+          return Container(
+            width: 340,
             child: ListView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
               itemCount: projectData.length,
               itemBuilder: (context, int index) {
                 return Container(
-                  width: 130,
-                  height: 300,
-                  alignment: Alignment.center,
+                  width: 300,
                   child: ProjectXPItem(
                     onTap: () {},
                     project: projectData[index],

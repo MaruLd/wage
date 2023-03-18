@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -15,29 +14,6 @@ class LevelPage extends StatefulWidget {
 }
 
 class _LevelPageState extends State<LevelPage> {
-  bool overview = true;
-  bool overviewDetail = false;
-  bool projectsDetail = false;
-  viewProjects() {
-    setState(() {
-      overviewDetail = !overviewDetail;
-      projectsDetail = !projectsDetail;
-    });
-  }
-
-  viewOverviewDetail() {
-    setState(() {
-      overview = !overview;
-      overviewDetail = !overviewDetail;
-    });
-  }
-
-  backFunctions(BuildContext context) {
-    if (overview) {
-      Navigator.pop(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +23,7 @@ class _LevelPageState extends State<LevelPage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            WalletHeader(
-              backFunctions: backFunctions,
-            ),
+            LevelHeader(),
             const SizedBox(
               height: 80,
             ),
@@ -63,7 +37,7 @@ class _LevelPageState extends State<LevelPage> {
                     ),
                     child: Column(children: [
                       Profile(),
-                      LevelsDetail(viewProjects: viewProjects),
+                      LevelsDetail(),
                     ]).offset(offset: Offset(0, -120))))
           ],
         ).safeArea(),

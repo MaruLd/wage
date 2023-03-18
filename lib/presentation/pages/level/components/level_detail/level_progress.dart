@@ -55,6 +55,7 @@ class LevelProgress extends ConsumerWidget {
                       child: Text('Hiện có: 1,000 exp',
                           style: TextStyle(
                             color: global.background,
+                            fontFamily: global.headerFont,
                             fontWeight: FontWeight.w500,
                             fontSize: 16.sp,
                           )),

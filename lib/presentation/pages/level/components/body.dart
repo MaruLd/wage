@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,18 +8,16 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'level_detail/level_circle_progress.dart';
 import 'level_detail/level_progress.dart';
 
-class WalletHeader extends StatefulWidget {
-  const WalletHeader({
+class LevelHeader extends StatefulWidget {
+  const LevelHeader({
     Key? key,
-    required this.backFunctions,
   }) : super(key: key);
-  final Function backFunctions;
 
   @override
-  State<WalletHeader> createState() => _WalletHeaderState();
+  State<LevelHeader> createState() => _LevelHeaderState();
 }
 
-class _WalletHeaderState extends State<WalletHeader> {
+class _LevelHeaderState extends State<LevelHeader> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,7 +41,7 @@ class _WalletHeaderState extends State<WalletHeader> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           TextButton.icon(
-                              onPressed: () => widget.backFunctions(context),
+                              onPressed: () => Navigator.pop(context),
                               icon: Icon(
                                 Icons.arrow_back,
                                 color: global.background,
