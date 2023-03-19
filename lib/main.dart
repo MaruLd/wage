@@ -8,11 +8,6 @@ import 'package:wage/presentation/providers/router.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: const CircularProgressIndicator().centered().safeArea(),
-    ),
-  ));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: const MyApp()));

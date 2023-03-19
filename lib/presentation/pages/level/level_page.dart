@@ -6,6 +6,7 @@ import 'components/body.dart';
 import 'components/level_detail/level_detail.dart';
 
 class LevelPage extends StatefulWidget {
+  const LevelPage({super.key});
   static String get routeName => 'profile';
   static String get routeLocation => '/profile';
 

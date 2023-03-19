@@ -40,7 +40,7 @@ class ProjectXPItem extends StatelessWidget {
             ),
           ]),
           const SizedBox(
-            height: 8,
+            height: 4,
           ),
           Row(
             children: [

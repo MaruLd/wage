@@ -4,9 +4,8 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import 'components/body.dart';
 
-class VoucherPage extends StatelessWidget {
-  static String get routeName => 'voucher';
-  static String get routeLocation => '/voucher';
+class HistoryPage extends StatelessWidget {
+  const HistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class VoucherPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              'Empty',
+              'History',
               style: global.boldTextStyle,
             ).centered()
           ],

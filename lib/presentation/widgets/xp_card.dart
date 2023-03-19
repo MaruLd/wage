@@ -9,9 +9,10 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import '../pages/level/level_page.dart';
 
 void _XpPageNavigation(context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => LevelPage()),
+  Navigator.of(context, rootNavigator: true).push(
+    MaterialPageRoute(
+      builder: (_) => LevelPage(),
+    ),
   );
 }
 

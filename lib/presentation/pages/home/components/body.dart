@@ -15,18 +15,14 @@ import '../../voucher/voucher_page.dart';
 import '../../level/level_page.dart';
 
 void _ProfilePageNavigation(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ProfilePage()),
+  Navigator.of(context, rootNavigator: true).push(
+    MaterialPageRoute(
+      builder: (_) => ProfilePage(),
+    ),
   );
 }
 
-void _ProjectsPageNavigation(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ProfilePage()),
-  );
-}
+void _ProjectsPageNavigation(BuildContext context) {}
 
 void _WalletPageNavigation(BuildContext context) {
   Navigator.push(
