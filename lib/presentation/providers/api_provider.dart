@@ -25,6 +25,12 @@ final userDataProvider = FutureProvider.autoDispose<Member>(
   },
 );
 
+final memberWorkHoursProvider = FutureProvider.autoDispose<int>(
+  (ref) {
+    return ref.watch(userProvider).getAchievement();
+  },
+);
+
 final walletsDataProvider = FutureProvider.autoDispose<Wallets>(
   (ref) {
     return ref.watch(walletsProvider).getWallets();
@@ -34,6 +40,10 @@ final walletsDataProvider = FutureProvider.autoDispose<Wallets>(
 final projectListDatasProvider =
     FutureProvider.autoDispose<List<Project>>((ref) {
   return ref.read(projectProvider).getProjects();
+});
+
+final projectsCountProvider = FutureProvider.autoDispose<int>((ref) {
+  return ref.read(projectProvider).getProjectsCount();
 });
 
 final loginStatesProvider = FutureProvider<String?>(

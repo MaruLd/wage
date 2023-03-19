@@ -18,15 +18,41 @@ class MemberDAO {
         auth = await AuthDAO().getAuthInformation();
         jwtToken = auth.token;
       }
+      final response = await Dio().get('${global.apiUrl}/v1/members/@me',
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
+      if (response.statusCode == 200) {
+        final member = Member.fromJson(response.data["message"]);
+        return member;
+      } else {
+        throw Exception(response.statusMessage);
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<int> getAchievement() async {
+    final storage = new FlutterSecureStorage();
+    try {
+      String? jwtToken = await storage.read(key: 'jwt');
+      AuthDTO auth;
+      if (jwtToken == null) {
+        print('jwt token not found in storage!');
+        auth = await AuthDAO().getAuthInformation();
+        jwtToken = auth.token;
+      }
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/@me',
+          await Dio().get('${global.apiUrl}/v1/members/@me/achievement',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       if (response.statusCode == 200) {
-        final member = Member.fromJson(response.data["message"]);
-        return member;
+        final hour = response.data["message"]["totalWorkHours"];
+        return hour;
       } else {
         throw Exception(response.statusMessage);
       }

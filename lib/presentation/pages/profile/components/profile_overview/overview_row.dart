@@ -15,101 +15,96 @@ class OverviewRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final projectList = ref.watch(projectListDatasProvider);
+    final projectsCount =
+        ref.watch(projectsCountProvider).whenOrNull(data: (data) => data);
+    final totalWorkHours =
+        ref.watch(memberWorkHoursProvider).whenOrNull(data: (data) => data);
 
-    return projectList.when(
-        data: (projectData) {
-          return SizedBox(
-              width: 360.w,
-              height: 60.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '56',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.numberFont,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Giờ làm việc',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.headerFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                    ],
+    return SizedBox(
+        width: 360.w,
+        height: 60.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  totalWorkHours != null ? '$totalWorkHours' : '-',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.numberFont,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.sp,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '40',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.numberFont,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Dự án tham gia',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.headerFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                    ],
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Giờ làm việc',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.headerFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '14',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.numberFont,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Chứng chỉ',
-                        style: TextStyle(
-                          color: global.normalText,
-                          fontFamily: global.headerFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ).px8());
-        },
-        error: (error, stackTrace) => Text(
-              'Sorry, server currently down!',
-              style: global.boldTextDarkStyle,
+                ),
+              ],
             ),
-        loading: () =>
-            CircularProgressIndicator(color: global.primary).centered());
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  projectsCount != null ? '$projectsCount' : '-',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.numberFont,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.sp,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Dự án tham gia',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.headerFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '-',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.numberFont,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.sp,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Chứng chỉ',
+                  style: TextStyle(
+                    color: global.normalText,
+                    fontFamily: global.headerFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ).px8());
   }
 }
