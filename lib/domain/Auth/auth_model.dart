@@ -5,7 +5,7 @@ part 'auth_model.g.dart';
 
 @freezed
 class AuthDTO with _$AuthDTO {
-  factory AuthDTO({User? user, SubMember? member, String? token}) = _AuthDTO;
+  factory AuthDTO({User? user, SubMember? member, String? token, bool? isNewUser}) = _AuthDTO;
   factory AuthDTO.fromJson(Map<String, Object?> json) =>
       _$AuthDTOFromJson(json);
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
+
+import '../../../widgets/loading_shimmer.dart';
 
 class PointCard extends ConsumerWidget {
   const PointCard({Key? key}) : super(key: key);
@@ -52,11 +56,10 @@ class PointCard extends ConsumerWidget {
                           children: [
                             Text(
                               'Số point khả dụng',
-                              style: TextStyle(
-                                fontFamily: 'Montserrat',
+                              style: GoogleFonts.montserrat(
                                 color: global.background,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ],
@@ -74,15 +77,24 @@ class PointCard extends ConsumerWidget {
                               skipError: true,
                               data: (wallet) {
                                 return Text(wallet.totalPoint.toString(),
-                                    style: global.boldTextStyle);
+                                    style: GoogleFonts.montserrat(
+                                      color: global.background,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 25.sp,
+                                    ));
                               },
                               error: (error, stackTrace) {
                                 print(error.toString());
-                                return Text('0', style: global.boldTextStyle);
+                                return LoadingShimmer(
+                                  height: 25.0,
+                                  width: 70.0,
+                                  color: Color.fromARGB(146, 31, 255, 206),
+                                );
                               },
-                              loading: () => CircularProgressIndicator(
-                                      color: global.primary)
-                                  .centered(),
+                              loading: () => LoadingShimmer(
+                                  height: 25.0,
+                                  width: 70.0,
+                                  color: Color.fromARGB(146, 31, 255, 206)),
                             )
                           ],
                         ),

@@ -6,29 +6,6 @@ part of 'project_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
-//       projectId: json['projectId'] as String,
-//       projectName: json['projectName'] as String,
-//       projectShortName: json['projectShortName'] as String,
-//       projectShortDescription: json['projectShortDescription'] as String?,
-//       projectStatus: json['projectStatus'] as String,
-//       projectType: json['projectType'] as String?,
-//       projectVisibility: json['projectVisibility'] as String?,
-//       createdAt: json['createdAt'] == null
-//           ? null
-//           : DateTime.parse(json['createdAt'] as String),
-//       startedAt: json['startedAt'] == null
-//           ? null
-//           : DateTime.parse(json['startedAt'] as String),
-//       endedAt: json['endedAt'] == null
-//           ? null
-//           : DateTime.parse(json['endedAt'] as String),
-//       updatedAt: json['updatedAt'] == null
-//           ? null
-//           : DateTime.parse(json['updatedAt'] as String),
-//       role: json['role'] as String?,
-//     );
-
 Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'projectId': instance.projectId,
       'projectName': instance.projectName,

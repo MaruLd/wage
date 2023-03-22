@@ -8,26 +8,20 @@ import 'package:wage/infrastructure/api_services/authService.dart';
 import '../../domain/Level/level_model.dart';
 import '../../presentation/settings/global_settings.dart' as global;
 
-class LevelsDAO {
-  Future<Level> getLevels() async {
+class LevelService {
+  Future<Level> getNextLevel(int? MinXPNeeded) async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      AuthDTO auth;
-      if (jwtToken == null) {
-        print('jwt token not found in storage!');
-        auth = await AuthDAO().getAuthInformation();
-        jwtToken = auth.token;
-      }
-      final response =
-          await Dio().get('${global.apiUrl}/v1/members/@me/wallets',
-              options: Options(headers: {
-                HttpHeaders.contentTypeHeader: "application/json",
-                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
-              }));
+      final response = await Dio().get('${global.apiUrl}/v1/levels',
+          queryParameters: {'MinXPNeeded': MinXPNeeded == 0 ? 1 : MinXPNeeded},
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
       if (response.statusCode == 200) {
-        final wallets = Level.fromJson(response.data["message"]);
-        return wallets;
+        final level = Level.fromJson(response.data["message"][0]);
+        return level;
       } else {
         throw Exception(response.statusMessage);
       }

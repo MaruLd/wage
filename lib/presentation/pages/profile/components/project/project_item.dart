@@ -103,6 +103,7 @@ class ProjectItem extends StatelessWidget {
         ),
         Text(
           translateStatus(project.projectStatus),
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: switchPercentColor(project.projectStatus),
             fontFamily: global.headerFont,

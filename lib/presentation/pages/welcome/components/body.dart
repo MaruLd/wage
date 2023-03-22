@@ -24,14 +24,14 @@ class WelcomeBody extends ConsumerWidget {
         body: SafeArea(
           child: Stack(children: <Widget>[
             Positioned(
-              top: 156.h,
-              left: 7.w,
-              right: 7.w,
+              top: 156,
+              left: 7,
+              right: 7,
               child: SvgPicture.asset('assets/images/SplashBackground.svg'),
             ),
             Positioned(
-                top: 70.h,
-                left: 15.w,
+                top: 70,
+                left: 15,
                 right: 0,
                 child: Container(
                     height: 485,
@@ -42,8 +42,8 @@ class WelcomeBody extends ConsumerWidget {
                           fit: BoxFit.fitWidth),
                     ))),
             Positioned(
-                top: 440.h,
-                left: -55.w,
+                top: 440,
+                left: -55,
                 child: Container(
                     width: 455,
                     height: 455,
@@ -53,36 +53,36 @@ class WelcomeBody extends ConsumerWidget {
                           BorderRadius.all(Radius.elliptical(445, 406)),
                     ))),
             Positioned(
-                top: 480.h,
-                left: 31.w,
-                right: 31.w,
+                top: 480,
+                left: 31,
+                right: 31,
                 child: Text(
                   'Wallet for storing your Awards, Gains and Earnings',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: global.primary2,
                       fontFamily: global.headerFont,
-                      fontSize: 25.sp,
+                      fontSize: 25,
                       fontWeight: FontWeight.w700),
                 ).p4()),
             Positioned(
-                top: 590.h,
-                left: 31.w,
-                right: 31.w,
+                top: 590,
+                left: 31,
+                right: 31,
                 child: Text(
                   'Ví lưu trữ phúc lợi chỉ có tại\nUni Incubator',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: global.normalText,
                     fontFamily: global.smoothFont,
-                    fontSize: 21.sp,
+                    fontSize: 21,
                   ),
                 ).p4()),
             // ----------Begin button----------
             Positioned(
-                bottom: 40.h,
-                left: 10.w,
-                right: 10.w,
+                bottom: 40,
+                left: 10,
+                right: 10,
                 child: ElevatedButton.icon(
                   onPressed: () {
                     googleSignInProvider.googleLogin();
@@ -111,7 +111,7 @@ class WelcomeBody extends ConsumerWidget {
                     style: TextStyle(
                         color: global.background,
                         fontFamily: global.headerFont,
-                        fontSize: 20.sp,
+                        fontSize: 20,
                         fontWeight: FontWeight.w700),
                   ),
                 )),

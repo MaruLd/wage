@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 import '../../providers/api_provider.dart';
+import '../error/error_page.dart';
 import 'components/body.dart';
 
 class HomePage extends ConsumerWidget {
@@ -12,10 +13,21 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final serverAvailable =
+        ref.refresh(serverAvailableProvider).whenOrNull(data: (data) => data);
+    print(serverAvailable);
+    if (serverAvailable == false) {
+      Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+        builder: (_) => ErrorPage(),
+      ));
+    }
     Future<Null> _refreshData() async {
-      ref.refresh(userDataProvider);
-      ref.refresh(walletsDataProvider);
-      print('refreshing data...');
+      Future.delayed(const Duration(milliseconds: 500), () {
+        ref.refresh(userDataProvider);
+        ref.refresh(walletsDataProvider);
+        ref.refresh(serverAvailableProvider);
+        print('refreshing data...');
+      });
     }
 
     return Scaffold(

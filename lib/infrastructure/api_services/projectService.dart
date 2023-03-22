@@ -12,14 +12,8 @@ class ProjectDAO {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      AuthDTO auth;
-      if (jwtToken == null) {
-        print('jwt token not found in storage!');
-        auth = await AuthDAO().getAuthInformation();
-        jwtToken = auth.token;
-      }
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/@me/projects',
+          await Dio().get('${global.apiUrl}/v1/members/me/projects',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
@@ -46,8 +40,8 @@ class ProjectDAO {
         auth = await AuthDAO().getAuthInformation();
         jwtToken = auth.token;
       }
-      final response = await Dio()
-          .get('https://api.uniinc-cnb.com/v1/members/@me/projects/count',
+      final response =
+          await Dio().get('${global.apiUrl}/v1/members/me/projects/count',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"

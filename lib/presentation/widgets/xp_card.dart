@@ -7,6 +7,7 @@ import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import '../pages/level/level_page.dart';
+import 'loading_shimmer.dart';
 
 void _XpPageNavigation(context) {
   Navigator.of(context, rootNavigator: true).push(
@@ -22,6 +23,9 @@ class XpCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userData = ref.watch(userDataProvider);
+    final nextLevel = ref.watch(nextLevelDataProvider);
+    final walletData = ref.watch(walletsDataProvider);
+
     String? levelColor =
         userData.whenOrNull(data: (data) => data.memberLevels.level.levelColor);
     return Padding(
@@ -65,41 +69,52 @@ class XpCard extends ConsumerWidget {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 0),
                         child: userData.when(
-                            data: (data) => Text(
-                                data.memberLevels.level.levelName,
-                                style: global.boldTextStyle),
-                            error: (error, stackTrace) =>
-                                Text('No Rank', style: global.boldTextStyle),
-                            loading: () =>
-                                CircularProgressIndicator(color: global.primary)
-                                    .centered()),
+                          data: (data) => Text(
+                              data.memberLevels.level.levelName,
+                              style: global.boldTextStyle),
+                          error: (error, stackTrace) => LoadingShimmer(
+                            height: 30.0,
+                            width: 100.0,
+                            color: Color.fromARGB(118, 2, 193, 123),
+                          ),
+                          loading: () => LoadingShimmer(
+                            height: 30.0,
+                            width: 100.0,
+                            color: Color.fromARGB(118, 2, 193, 123),
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(15, 10, 0, 0),
                         child: Container(
                           width: 150.w,
-                          child: userData.when(
-                              data: (data) => Text(
-                                    'Còn ${data.memberLevels.level.xpNeeded} xp nữa bạn sẽ thăng hạng',
-                                    style: TextStyle(
-                                      fontFamily: 'Rubik',
-                                      color: global.background,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14.sp,
-                                    ),
-                                  ),
-                              error: (error, stackTrace) => Text(
-                                    'Còn 0 xp nữa bạn sẽ thăng hạng',
-                                    style: TextStyle(
-                                      fontFamily: 'Rubik',
-                                      color: global.background,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14.sp,
-                                    ),
-                                  ),
-                              loading: () => CircularProgressIndicator(
-                                      color: global.primary)
-                                  .centered()),
+                          child: nextLevel.when(
+                            data: (data) {
+                              int? userXp = walletData.whenOrNull(
+                                  data: (data) => data.totalXP);
+                              int xpNeededToLevelUp =
+                                  data.xpNeeded - (userXp != null ? userXp : 0);
+                              return Text(
+                                'Còn $xpNeededToLevelUp xp nữa bạn sẽ thăng hạng',
+                                style: TextStyle(
+                                  fontFamily: 'Rubik',
+                                  color: global.background,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14.sp,
+                                ),
+                              );
+                            },
+                            error: (error, stackTrace) => LoadingShimmer(
+                              height: 35.0,
+                              width: 240.0,
+                              color: Color.fromARGB(118, 2, 193, 123),
+                            ),
+                            loading: () => LoadingShimmer(
+                              height: 35.0,
+                              width: 240.0,
+                              color: Color.fromARGB(118, 2, 193, 123),
+                            ),
+                          ),
                         ),
                       ),
                       MaterialButton(

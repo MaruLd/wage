@@ -16,6 +16,10 @@ _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       memberLevels:
           MemberLevels.fromJson(json['memberLevels'] as Map<String, dynamic>),
       role: Role.fromJson(json['role'] as Map<String, dynamic>),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
@@ -27,6 +31,8 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'facebookUrl': instance.facebookUrl,
       'memberLevels': instance.memberLevels,
       'role': instance.role,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
 _$_MemberLevels _$$_MemberLevelsFromJson(Map<String, dynamic> json) =>

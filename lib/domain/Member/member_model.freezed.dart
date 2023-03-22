@@ -28,6 +28,8 @@ mixin _$Member {
   String? get facebookUrl => throw _privateConstructorUsedError;
   MemberLevels get memberLevels => throw _privateConstructorUsedError;
   Role get role => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +49,9 @@ abstract class $MemberCopyWith<$Res> {
       String? imageUrl,
       String? facebookUrl,
       MemberLevels memberLevels,
-      Role role});
+      Role role,
+      DateTime createdAt,
+      DateTime? updatedAt});
 
   $MemberLevelsCopyWith<$Res> get memberLevels;
   $RoleCopyWith<$Res> get role;
@@ -74,6 +78,8 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
     Object? facebookUrl = freezed,
     Object? memberLevels = null,
     Object? role = null,
+    Object? createdAt = null,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       memberId: null == memberId
@@ -108,6 +114,14 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -142,7 +156,9 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       String? imageUrl,
       String? facebookUrl,
       MemberLevels memberLevels,
-      Role role});
+      Role role,
+      DateTime createdAt,
+      DateTime? updatedAt});
 
   @override
   $MemberLevelsCopyWith<$Res> get memberLevels;
@@ -168,6 +184,8 @@ class __$$_MemberCopyWithImpl<$Res>
     Object? facebookUrl = freezed,
     Object? memberLevels = null,
     Object? role = null,
+    Object? createdAt = null,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_Member(
       memberId: null == memberId
@@ -202,6 +220,14 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -217,7 +243,9 @@ class _$_Member extends _Member {
       this.imageUrl,
       this.facebookUrl,
       required this.memberLevels,
-      required this.role})
+      required this.role,
+      required this.createdAt,
+      this.updatedAt})
       : super._();
 
   factory _$_Member.fromJson(Map<String, dynamic> json) =>
@@ -239,10 +267,14 @@ class _$_Member extends _Member {
   final MemberLevels memberLevels;
   @override
   final Role role;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Member(memberId: $memberId, emailAddress: $emailAddress, fullName: $fullName, phoneNumber: $phoneNumber, imageUrl: $imageUrl, facebookUrl: $facebookUrl, memberLevels: $memberLevels, role: $role)';
+    return 'Member(memberId: $memberId, emailAddress: $emailAddress, fullName: $fullName, phoneNumber: $phoneNumber, imageUrl: $imageUrl, facebookUrl: $facebookUrl, memberLevels: $memberLevels, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -264,13 +296,27 @@ class _$_Member extends _Member {
                 other.facebookUrl == facebookUrl) &&
             (identical(other.memberLevels, memberLevels) ||
                 other.memberLevels == memberLevels) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, memberId, emailAddress, fullName,
-      phoneNumber, imageUrl, facebookUrl, memberLevels, role);
+  int get hashCode => Object.hash(
+      runtimeType,
+      memberId,
+      emailAddress,
+      fullName,
+      phoneNumber,
+      imageUrl,
+      facebookUrl,
+      memberLevels,
+      role,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +341,9 @@ abstract class _Member extends Member {
       final String? imageUrl,
       final String? facebookUrl,
       required final MemberLevels memberLevels,
-      required final Role role}) = _$_Member;
+      required final Role role,
+      required final DateTime createdAt,
+      final DateTime? updatedAt}) = _$_Member;
   _Member._() : super._();
 
   factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
@@ -316,6 +364,10 @@ abstract class _Member extends Member {
   MemberLevels get memberLevels;
   @override
   Role get role;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_MemberCopyWith<_$_Member> get copyWith =>

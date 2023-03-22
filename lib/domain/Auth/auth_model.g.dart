@@ -14,6 +14,7 @@ _$_AuthDTO _$$_AuthDTOFromJson(Map<String, dynamic> json) => _$_AuthDTO(
           ? null
           : SubMember.fromJson(json['member'] as Map<String, dynamic>),
       token: json['token'] as String?,
+      isNewUser: json['isNewUser'] as bool?,
     );
 
 Map<String, dynamic> _$$_AuthDTOToJson(_$_AuthDTO instance) =>
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_AuthDTOToJson(_$_AuthDTO instance) =>
       'user': instance.user,
       'member': instance.member,
       'token': instance.token,
+      'isNewUser': instance.isNewUser,
     };
 
 _$_SubMember _$$_SubMemberFromJson(Map<String, dynamic> json) => _$_SubMember(

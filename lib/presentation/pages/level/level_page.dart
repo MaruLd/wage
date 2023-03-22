@@ -26,7 +26,7 @@ class _LevelPageState extends State<LevelPage> {
           children: [
             LevelHeader(),
             const SizedBox(
-              height: 80,
+              height: 100,
             ),
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),

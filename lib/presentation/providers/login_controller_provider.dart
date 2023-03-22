@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/SignIn/sign_in_model.dart';
-import 'package:wage/presentation/providers/states/login_states.dart';
+import 'package:wage/presentation/repository/states/login_states.dart';
 import 'package:wage/presentation/repository/auth_repository.dart';
 
 class LoginController extends StateNotifier<LoginState> {

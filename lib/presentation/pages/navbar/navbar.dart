@@ -59,12 +59,12 @@ class _NavigationState extends State<Navigation> {
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: BottomNavigationBar(
-          unselectedItemColor: global.secondary2,
+          unselectedItemColor: Color.fromARGB(255, 119, 119, 119),
           selectedItemColor: global.primary,
+          selectedFontSize: 12,
           backgroundColor: global.background,
           showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
-          selectedFontSize: 12,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           items: <BottomNavigationBarItem>[

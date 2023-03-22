@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,14 +8,24 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/home/components/point_card.dart';
+import 'package:wage/presentation/widgets/loading_shimmer.dart';
 import 'package:wage/presentation/widgets/xp_card.dart';
 import 'package:wage/presentation/pages/profile/profile_page.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
+import '../../error/error_page.dart';
 import '../../voucher/voucher_page.dart';
 import '../../level/level_page.dart';
 
 void _ProfilePageNavigation(BuildContext context) {
+  Navigator.of(context, rootNavigator: true).push(
+    MaterialPageRoute(
+      builder: (_) => ProfilePage(),
+    ),
+  );
+}
+
+void _NotificationsPageNavigation(BuildContext context) {
   Navigator.of(context, rootNavigator: true).push(
     MaterialPageRoute(
       builder: (_) => ProfilePage(),
@@ -27,7 +38,7 @@ void _ProjectsPageNavigation(BuildContext context) {}
 void _WalletPageNavigation(BuildContext context) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => LevelPage()),
+    MaterialPageRoute(builder: (context) => ErrorPage()),
   );
 }
 
@@ -57,26 +68,48 @@ class HomePageHeader extends ConsumerWidget {
                       style: global.textStyle,
                     ),
                     userData.when(
-                        // show previous data/error on loading
-                        skipLoadingOnReload: true,
-                        // show previous data if there's an error
-                        skipError: true,
-                        data: (userData) => Text(
-                              userData.fullName,
-                              style: global.boldTextStyle,
-                            ),
-                        error: (error, stackTrace) {
-                          print(error.toString());
-                          return Text('Username', style: global.boldTextStyle);
-                        },
-                        loading: () =>
-                            CircularProgressIndicator(color: global.primary)
-                                .centered()),
+                      // show previous data/error on loading
+                      skipLoadingOnReload: true,
+                      // show previous data if there's an error
+                      skipError: true,
+                      data: (userData) => Text(
+                        userData.fullName,
+                        style: global.boldTextStyle,
+                      ),
+                      error: (error, stackTrace) {
+                        print(error.toString());
+                        return LoadingShimmer(
+                          height: 25.0,
+                          width: 190.0,
+                          color: Color.fromARGB(118, 2, 193, 123),
+                          baseColor: Color.fromARGB(118, 0, 100, 63),
+                        );
+                      },
+                      loading: () => LoadingShimmer(
+                        height: 25.0,
+                        width: 190.0,
+                        color: Color.fromARGB(118, 2, 193, 123),
+                        baseColor: Color.fromARGB(118, 0, 100, 63),
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
           ).flexible(),
+          const SizedBox(
+            width: 20,
+          ),
+          IconButton(
+            onPressed: () {
+              _NotificationsPageNavigation(context);
+            },
+            icon: Icon(
+              CupertinoIcons.bell_solid,
+              color: global.background,
+              size: 30.0,
+            ),
+          ),
           Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -100,26 +133,31 @@ class HomePageHeader extends ConsumerWidget {
                         shape: BoxShape.circle,
                       ),
                       child: userData.when(
-                          // show previous data/error on loading
-                          skipLoadingOnReload: true,
-                          // show previous data if there's an error
-                          skipError: true,
-                          data: (userData) => userData.imageUrl != null
-                              ? Image.network(userData.imageUrl!)
-                              : Image.asset('assets/images/ANYAA.png'),
-                          error: (error, stackTrace) {
-                            print(error.toString());
-                            return Image.asset(
-                              'assets/images/ANYAA.png',
-                            );
-                          },
-                          loading: () =>
-                              CircularProgressIndicator(color: global.primary)
-                                  .centered()),
+                        // show previous data/error on loading
+                        skipLoadingOnReload: true,
+                        // show previous data if there's an error
+                        skipError: true,
+                        data: (userData) => userData.imageUrl != null
+                            ? Image.network(userData.imageUrl!)
+                            : Image.asset('assets/images/ANYAA.png'),
+                        error: (error, stackTrace) {
+                          print(error.toString());
+                          return LoadingShimmer(
+                            height: 25.0,
+                            width: 190.0,
+                            color: Color.fromARGB(118, 2, 193, 123),
+                          );
+                        },
+                        loading: () => LoadingShimmer(
+                          height: 25.0,
+                          width: 190.0,
+                          color: Color.fromARGB(118, 2, 193, 123),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ],
@@ -195,7 +233,7 @@ class MenuBody extends StatelessWidget {
                             FaIcon(
                               FontAwesomeIcons.handHoldingDollar,
                               color: global.background,
-                              size: 25.sp,
+                              size: 25,
                             ),
                             Padding(
                               padding:
@@ -234,14 +272,20 @@ class MenuBody extends StatelessWidget {
                             Icon(
                               Icons.folder_copy,
                               color: global.background,
-                              size: 25.sp,
+                              size: 25,
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
                                 'Các dự án',
-                                style: global.boldSmallTextStyle,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: global.background,
+                                  fontFamily: global.headerFont,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ],
@@ -273,14 +317,20 @@ class MenuBody extends StatelessWidget {
                             Icon(
                               Icons.account_balance_wallet,
                               color: global.background,
-                              size: 25.sp,
+                              size: 25,
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
                                 'Ví của tôi',
-                                style: global.boldSmallTextStyle,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: global.background,
+                                  fontFamily: global.headerFont,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ],
@@ -321,7 +371,7 @@ class MenuBody extends StatelessWidget {
                             child: FaIcon(
                               FontAwesomeIcons.fileInvoiceDollar,
                               color: Colors.grey,
-                              size: 22.sp,
+                              size: 22,
                             ),
                           ),
                           Expanded(
@@ -338,7 +388,7 @@ class MenuBody extends StatelessWidget {
                                     style: GoogleFonts.montserrat(
                                       color: Colors.brown,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 14.sp,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ],
@@ -389,7 +439,7 @@ class MenuBody extends StatelessWidget {
                                     style: GoogleFonts.montserrat(
                                       color: Colors.brown,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 14.sp,
+                                      fontSize: 14,
                                     ),
                                   ),
                                 ],

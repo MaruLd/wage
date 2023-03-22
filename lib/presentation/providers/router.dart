@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wage/presentation/pages/navbar/navbar.dart';
-import 'package:wage/presentation/pages/signin/sign_in_page.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
 import 'package:wage/presentation/providers/auth_datas_provider.dart';
-import 'package:wage/presentation/providers/states/login_states.dart';
 
+import 'api_provider.dart';
 import 'login_controller_provider.dart';
 
 final _key = GlobalKey<NavigatorState>();
@@ -35,11 +34,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
     redirect: (context, state) {
-      final loginState = ref.read(loginControllerProvider);
       // If our async state is loading, don't perform redirects, yet
       if (authState.isLoading || authState.hasError) return null;
-
-      // Here we guarantee that hasData == true, i.e. we have a readable value
 
       // This has to do with how the FirebaseAuth SDK handles the "log-in" state
       // Returning `null` means "we are not authorized"

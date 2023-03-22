@@ -14,14 +14,8 @@ class WalletsDAO {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      AuthDTO auth;
-      if (jwtToken == null) {
-        print('jwt token not found in storage!');
-        auth = await AuthDAO().getAuthInformation();
-        jwtToken = auth.token;
-      }
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/@me/wallets',
+          await Dio().get('${global.apiUrl}/v1/members/me/wallets',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"

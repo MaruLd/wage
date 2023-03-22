@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,12 +92,26 @@ class Logout extends ConsumerWidget {
         title: 'Đăng Xuất',
         leading: Icon(
           Icons.logout,
-          color: Colors.green,
+          color: global.primary,
           size: 30.0,
         ),
         onTap: () {
           authProvider.signOutWithGoogle();
           stateProvider.logout();
         });
+  }
+}
+
+class Notifications extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SimpleSettingsTile(
+        title: 'Thông báo',
+        leading: Icon(
+          CupertinoIcons.bell_fill,
+          color: global.primary,
+          size: 30.0,
+        ),
+        onTap: () {});
   }
 }

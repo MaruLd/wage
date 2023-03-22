@@ -9,55 +9,66 @@ import 'package:wage/presentation/pages/level/components/projectxp/project_xp_it
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
+import '../../../../widgets/loading_shimmer.dart';
+
 class LevelCircleProgress extends ConsumerWidget {
   const LevelCircleProgress({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListDatasProvider);
+    final nextLevel = ref.watch(nextLevelDataProvider);
+    final walletData = ref.watch(walletsDataProvider);
 
-    return projectList.when(
-        data: (projectData) {
-          return Container(
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: global.primary2),
-            child: CircularPercentIndicator(
-              percent: 0.5,
-              radius: 100,
-              lineWidth: 35,
-              reverse: true,
-              animationDuration: 800,
-              animation: true,
-              progressColor: global.background,
-              backgroundColor: Color.fromARGB(66, 255, 255, 255),
-              circularStrokeCap: CircularStrokeCap.round,
-              center: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: global.militaryGreen),
-                width: 130,
-                height: 130,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/Level 4.svg',
-                        width: 80,
-                        height: 80,
-                        fit: BoxFit.fitHeight,
-                      ),
-                      Text('Leader',
-                          style: TextStyle(
-                            color: global.background,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
-                          ))
-                    ]),
+    return Container(
+      decoration: BoxDecoration(shape: BoxShape.circle, color: global.primary2),
+      child: CircularPercentIndicator(
+        percent: 0.5,
+        radius: 100,
+        lineWidth: 35,
+        reverse: true,
+        animationDuration: 800,
+        animation: true,
+        progressColor: global.background,
+        backgroundColor: Color.fromARGB(66, 255, 255, 255),
+        circularStrokeCap: CircularStrokeCap.round,
+        center: Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: global.militaryGreen),
+            width: 130,
+            height: 130,
+            child: walletData.when(
+              data: (data) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/Level 4.svg',
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.fitHeight,
+                    ),
+                    Text('Leader',
+                        style: TextStyle(
+                          color: global.background,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp,
+                        ))
+                  ]),
+              error: (error, stackTrace) => ClipOval(
+                child: LoadingShimmer(
+                  height: 30.0,
+                  width: 100.0,
+                  color: Color.fromARGB(118, 2, 193, 123),
+                ),
               ),
-            ).p24(),
-          );
-        },
-        error: (error, stackTrace) => Text('Server currently down'),
-        loading: () =>
-            CircularProgressIndicator(color: global.primary).centered());
+              loading: () => ClipOval(
+                child: LoadingShimmer(
+                  height: 30.0,
+                  width: 100.0,
+                  color: Color.fromARGB(118, 2, 193, 123),
+                ),
+              ),
+            )),
+      ).p24(),
+    );
   }
 }

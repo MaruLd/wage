@@ -26,7 +26,9 @@ class SettingPage extends ConsumerWidget {
           const SizedBox(
             height: 8,
           ),
+          Notifications(),
           Logout(),
+          
         ])
       ],
     ));

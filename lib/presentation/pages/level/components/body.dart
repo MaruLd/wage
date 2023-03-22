@@ -5,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
+import '../../../widgets/loading_shimmer.dart';
 import 'level_detail/level_circle_progress.dart';
 import 'level_detail/level_progress.dart';
 
@@ -74,29 +75,16 @@ class _LevelHeaderState extends State<LevelHeader> {
 class Profile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userData = ref.watch(userDataProvider);
-    return userData.when(
-        // show previous data/error on loading
-        skipLoadingOnReload: true,
-        // show previous data if there's an error
-        skipError: true,
-        error: (error, stackTrace) => Text(
-              'Sorry, server currently down!',
-              style: global.boldTextStyle,
-            ),
-        loading: () => CircularProgressIndicator().centered(),
-        data: (userData) {
-          return Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              LevelCircleProgress(),
-              const SizedBox(
-                height: 10,
-              ),
-              LevelProgress(),
-            ],
-          );
-        });
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        LevelCircleProgress(),
+        const SizedBox(
+          height: 10,
+        ),
+        LevelProgress(),
+      ],
+    );
   }
 }

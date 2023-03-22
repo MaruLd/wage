@@ -16,6 +16,8 @@ class Member with _$Member {
     String? facebookUrl,
     required MemberLevels memberLevels,
     required Role role,
+    required DateTime createdAt,
+    DateTime? updatedAt,
   }) = _Member;
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 }

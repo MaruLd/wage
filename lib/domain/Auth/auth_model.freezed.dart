@@ -23,6 +23,7 @@ mixin _$AuthDTO {
   User? get user => throw _privateConstructorUsedError;
   SubMember? get member => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
+  bool? get isNewUser => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $AuthDTOCopyWith<$Res> {
   factory $AuthDTOCopyWith(AuthDTO value, $Res Function(AuthDTO) then) =
       _$AuthDTOCopyWithImpl<$Res, AuthDTO>;
   @useResult
-  $Res call({User? user, SubMember? member, String? token});
+  $Res call({User? user, SubMember? member, String? token, bool? isNewUser});
 
   $UserCopyWith<$Res>? get user;
   $SubMemberCopyWith<$Res>? get member;
@@ -56,6 +57,7 @@ class _$AuthDTOCopyWithImpl<$Res, $Val extends AuthDTO>
     Object? user = freezed,
     Object? member = freezed,
     Object? token = freezed,
+    Object? isNewUser = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -70,6 +72,10 @@ class _$AuthDTOCopyWithImpl<$Res, $Val extends AuthDTO>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      isNewUser: freezed == isNewUser
+          ? _value.isNewUser
+          : isNewUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -105,7 +111,7 @@ abstract class _$$_AuthDTOCopyWith<$Res> implements $AuthDTOCopyWith<$Res> {
       __$$_AuthDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, SubMember? member, String? token});
+  $Res call({User? user, SubMember? member, String? token, bool? isNewUser});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -126,6 +132,7 @@ class __$$_AuthDTOCopyWithImpl<$Res>
     Object? user = freezed,
     Object? member = freezed,
     Object? token = freezed,
+    Object? isNewUser = freezed,
   }) {
     return _then(_$_AuthDTO(
       user: freezed == user
@@ -140,6 +147,10 @@ class __$$_AuthDTOCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      isNewUser: freezed == isNewUser
+          ? _value.isNewUser
+          : isNewUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -147,7 +158,7 @@ class __$$_AuthDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthDTO implements _AuthDTO {
-  _$_AuthDTO({this.user, this.member, this.token});
+  _$_AuthDTO({this.user, this.member, this.token, this.isNewUser});
 
   factory _$_AuthDTO.fromJson(Map<String, dynamic> json) =>
       _$$_AuthDTOFromJson(json);
@@ -158,10 +169,12 @@ class _$_AuthDTO implements _AuthDTO {
   final SubMember? member;
   @override
   final String? token;
+  @override
+  final bool? isNewUser;
 
   @override
   String toString() {
-    return 'AuthDTO(user: $user, member: $member, token: $token)';
+    return 'AuthDTO(user: $user, member: $member, token: $token, isNewUser: $isNewUser)';
   }
 
   @override
@@ -171,12 +184,14 @@ class _$_AuthDTO implements _AuthDTO {
             other is _$_AuthDTO &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.member, member) || other.member == member) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.isNewUser, isNewUser) ||
+                other.isNewUser == isNewUser));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user, member, token);
+  int get hashCode => Object.hash(runtimeType, user, member, token, isNewUser);
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +211,8 @@ abstract class _AuthDTO implements AuthDTO {
   factory _AuthDTO(
       {final User? user,
       final SubMember? member,
-      final String? token}) = _$_AuthDTO;
+      final String? token,
+      final bool? isNewUser}) = _$_AuthDTO;
 
   factory _AuthDTO.fromJson(Map<String, dynamic> json) = _$_AuthDTO.fromJson;
 
@@ -206,6 +222,8 @@ abstract class _AuthDTO implements AuthDTO {
   SubMember? get member;
   @override
   String? get token;
+  @override
+  bool? get isNewUser;
   @override
   @JsonKey(ignore: true)
   _$$_AuthDTOCopyWith<_$_AuthDTO> get copyWith =>
