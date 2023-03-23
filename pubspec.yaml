@@ -52,7 +52,7 @@ dependencies:
 
   go_router: ^5.0.5
   flutter_riverpod: ^2.2.0
-  dio: ^4.0.6
+  dio: ^5.0.3
   # Freeze from JSON
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
@@ -73,6 +73,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   shimmer: ^2.0.0
   flutter_phoenix: ^1.1.0
+  dio_http2_adapter: ^2.1.0
 
 dev_dependencies:
   flutter_test:

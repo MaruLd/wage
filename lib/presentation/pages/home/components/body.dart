@@ -11,7 +11,7 @@ import 'package:wage/presentation/pages/home/components/point_card.dart';
 import 'package:wage/presentation/widgets/loading_shimmer.dart';
 import 'package:wage/presentation/widgets/xp_card.dart';
 import 'package:wage/presentation/pages/profile/profile_page.dart';
-import 'package:wage/presentation/providers/api_provider.dart';
+import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 import '../../error/error_page.dart';
 import '../../voucher/voucher_page.dart';

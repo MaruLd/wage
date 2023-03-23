@@ -8,9 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-import 'package:wage/presentation/providers/api_provider.dart';
+import 'package:wage/application/providers/api_provider.dart';
 
-import '../../../providers/login_controller_provider.dart';
 import '../../profile/profile_page.dart';
 
 void _ProfilePageNavigation(BuildContext context) {
@@ -87,7 +86,6 @@ class Logout extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authProvider = ref.watch(googleProvider);
-    final stateProvider = ref.read(loginControllerProvider.notifier);
     return SimpleSettingsTile(
         title: 'Đăng Xuất',
         leading: Icon(
@@ -97,7 +95,6 @@ class Logout extends ConsumerWidget {
         ),
         onTap: () {
           authProvider.signOutWithGoogle();
-          stateProvider.logout();
         });
   }
 }

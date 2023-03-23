@@ -5,14 +5,17 @@ import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/walletsService.dart';
 import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
-import 'package:wage/presentation/providers/login_controller_provider.dart';
 
+import '../../domain/Auth/auth_model.dart';
 import '../../infrastructure/api_services/ServerService.dart';
+import '../../infrastructure/api_services/authService.dart';
 import '../../infrastructure/api_services/levelService.dart';
 import '../../infrastructure/api_services/memberService.dart';
 import '../../infrastructure/api_services/projectService.dart';
 
 final googleProvider = Provider((ref) => GoogleSignInService());
+
+final tokenProvider = Provider((ref) => AuthDAO());
 
 final userProvider = Provider((ref) => MemberDAO());
 
@@ -24,31 +27,38 @@ final serverProvider = Provider((ref) => ServerService());
 
 final levelProvider = Provider((ref) => LevelService());
 
-final serverAvailableProvider = FutureProvider.autoDispose<bool>(
+final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
     return ref.watch(serverProvider).checkServerStatus();
   },
 );
 
-final userDataProvider = FutureProvider.autoDispose<Member>(
+final apiTokenProvider = FutureProvider<AuthDTO>(
+  (ref) {
+    return ref.watch(tokenProvider).getAuthInformation();
+  },
+);
+
+final userDataProvider = FutureProvider<Member>(
   (ref) {
     return ref.watch(userProvider).getMember();
   },
 );
 
-final memberWorkHoursProvider = FutureProvider.autoDispose<int>(
+final memberWorkHoursProvider = FutureProvider<int>(
   (ref) {
-    return ref.watch(userProvider).getAchievement();
+    var respone = ref.watch(userProvider).getAchievement();
+    return respone;
   },
 );
 
-final walletsDataProvider = FutureProvider.autoDispose<Wallets>(
+final walletsDataProvider = FutureProvider<Wallets>(
   (ref) {
     return ref.watch(walletsProvider).getWallets();
   },
 );
 
-final nextLevelDataProvider = FutureProvider.autoDispose<Level>(
+final nextLevelDataProvider = FutureProvider<Level>(
   (ref) {
     final xpNeeded =
         ref.watch(walletsDataProvider).whenOrNull(data: (data) => data.totalXP);
@@ -56,12 +66,11 @@ final nextLevelDataProvider = FutureProvider.autoDispose<Level>(
   },
 );
 
-final projectListDatasProvider =
-    FutureProvider.autoDispose<List<Project>>((ref) {
+final projectListDatasProvider = FutureProvider<List<Project>>((ref) {
   return ref.read(projectProvider).getProjects();
 });
 
-final projectsCountProvider = FutureProvider.autoDispose<int>((ref) {
+final projectsCountProvider = FutureProvider<int>((ref) {
   return ref.read(projectProvider).getProjectsCount();
 });
 

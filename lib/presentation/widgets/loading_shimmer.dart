@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:wage/presentation/pages/error/error_page.dart';
 
 class LoadingShimmer extends StatelessWidget {
   const LoadingShimmer(

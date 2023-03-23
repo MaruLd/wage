@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/providers/api_provider.dart';
+import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 class OverviewRow extends ConsumerWidget {

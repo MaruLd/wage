@@ -6,7 +6,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/signin/components/body.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-import '../../../providers/api_provider.dart';
+import '../../../../application/providers/api_provider.dart';
 
 class WelcomeBody extends ConsumerWidget {
   const WelcomeBody({Key? key}) : super(key: key);

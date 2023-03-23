@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-import 'package:wage/presentation/providers/api_provider.dart';
-
-import '../../../providers/login_controller_provider.dart';
+import 'package:wage/application/providers/api_provider.dart';
 
 class SignInBody extends ConsumerWidget {
   SignInBody({Key? key}) : super(key: key);
@@ -16,10 +14,8 @@ class SignInBody extends ConsumerWidget {
     TextEditingController passwordController = TextEditingController();
 
     final googleSignInProvider = ref.watch(googleProvider);
-    final stateProvider = ref.read(loginControllerProvider.notifier);
 
     void login(String email, String password) async {
-      ref.read(loginControllerProvider.notifier).login(email, password);
     }
 
     return Scaffold(
@@ -192,7 +188,6 @@ class SignInBody extends ConsumerWidget {
               child: OutlinedButton.icon(
                 onPressed: () {
                   googleSignInProvider.googleLogin();
-                  stateProvider.googleLogin();
                 },
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.all(18.0)),

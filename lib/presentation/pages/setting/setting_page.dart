@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-import 'package:wage/presentation/providers/auth_datas_provider.dart';
+import 'package:wage/application/providers/auth_datas_provider.dart';
 
 import 'components/body.dart';
 

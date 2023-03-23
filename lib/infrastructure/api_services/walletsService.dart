@@ -6,6 +6,7 @@ import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/infrastructure/api_services/authService.dart';
+import 'package:wage/infrastructure/network_services/dioAdapter.dart';
 
 import '../../presentation/settings/global_settings.dart' as global;
 
@@ -15,7 +16,7 @@ class WalletsDAO {
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/me/wallets',
+          await dio.get('/v1/members/me/wallets',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"

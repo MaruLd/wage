@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/authService.dart';
+import 'package:wage/infrastructure/network_services/dioAdapter.dart';
 import '../../presentation/settings/global_settings.dart' as global;
 
 class ProjectDAO {
@@ -13,7 +14,7 @@ class ProjectDAO {
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/me/projects',
+          await dio.get('/v1/members/me/projects',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
@@ -34,14 +35,8 @@ class ProjectDAO {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      AuthDTO auth;
-      if (jwtToken == null) {
-        print('jwt token not found in storage!');
-        auth = await AuthDAO().getAuthInformation();
-        jwtToken = auth.token;
-      }
       final response =
-          await Dio().get('${global.apiUrl}/v1/members/me/projects/count',
+          await dio.get('/v1/members/me/projects/count',
               options: Options(headers: {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
