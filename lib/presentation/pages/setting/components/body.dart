@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/application/providers/api_provider.dart';
+import 'package:wage/presentation/widgets/loading_shimmer.dart';
 
 import '../../profile/profile_page.dart';
 
@@ -29,8 +30,16 @@ class Profile extends ConsumerWidget {
         skipLoadingOnReload: true,
         // show previous data if there's an error
         skipError: true,
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => CircularProgressIndicator().centered(),
+        error: (error, stackTrace) => LoadingShimmer(
+            height: 100.0,
+            width: 50.0,
+            color: Color.fromARGB(118, 2, 193, 123),
+            baseColor: Color.fromARGB(118, 0, 100, 63)),
+        loading: () => LoadingShimmer(
+            height: 100.0,
+            width: 50.0,
+            color: Color.fromARGB(118, 2, 193, 123),
+            baseColor: Color.fromARGB(118, 0, 100, 63)),
         data: (userData) {
           return Column(
             mainAxisSize: MainAxisSize.max,

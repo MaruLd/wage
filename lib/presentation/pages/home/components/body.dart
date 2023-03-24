@@ -7,7 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/home/components/point_card.dart';
+import 'package:wage/presentation/widgets/point_card.dart';
+import 'package:wage/presentation/pages/salaryCycle/salary_cycle_page.dart';
 import 'package:wage/presentation/widgets/loading_shimmer.dart';
 import 'package:wage/presentation/widgets/xp_card.dart';
 import 'package:wage/presentation/pages/profile/profile_page.dart';
@@ -33,7 +34,12 @@ void _NotificationsPageNavigation(BuildContext context) {
   );
 }
 
-void _ProjectsPageNavigation(BuildContext context) {}
+void _SalaryCyclePageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SalaryCyclePage()),
+  );
+}
 
 void _WalletPageNavigation(BuildContext context) {
   Navigator.push(
@@ -173,289 +179,288 @@ class MenuBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-      child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1,
-          decoration: BoxDecoration(
-            color: global.background,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 4,
-                color: Color(0x34000000),
-                offset: Offset(0, -2),
-              )
-            ],
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(0),
-              bottomRight: Radius.circular(0),
-              topLeft: Radius.circular(40.r),
-              topRight: Radius.circular(40.r),
-            ),
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 1,
+        decoration: BoxDecoration(
+          color: global.background,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 4,
+              color: Color(0x34000000),
+              offset: Offset(0, -2),
+            )
+          ],
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(0),
+            topLeft: Radius.circular(40.r),
+            topRight: Radius.circular(40.r),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const PointCard(),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30.w, 25.h, 30.w, 40.h),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 250, 103, 152),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VoucherPage()),
-                          );
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FaIcon(
-                              FontAwesomeIcons.handHoldingDollar,
-                              color: global.background,
-                              size: 25,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: Text(
-                                'Voucher',
-                                style: global.boldSmallTextStyle,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            const PointCard(),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(30, 25, 30, 40),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 90,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 250, 103, 152),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
-                    Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 153, 104, 237),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          _ProjectsPageNavigation(context);
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.folder_copy,
-                              color: global.background,
-                              size: 25,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: Text(
-                                'Các dự án',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: global.background,
-                                  fontFamily: global.headerFont,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                        color: global.primary2,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.r,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          _WalletPageNavigation(context);
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.account_balance_wallet,
-                              color: global.background,
-                              size: 25,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: Text(
-                                'Ví của tôi',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: global.background,
-                                  fontFamily: global.headerFont,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // 2 menu
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 155,
-                      height: 62,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(254, 243, 231, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      child: Row(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => VoucherPage()),
+                        );
+                      },
+                      child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(15, 15, 0, 15),
-                            child: FaIcon(
-                              FontAwesomeIcons.fileInvoiceDollar,
-                              color: Colors.grey,
-                              size: 22,
-                            ),
+                          FaIcon(
+                            FontAwesomeIcons.handHoldingDollar,
+                            color: global.background,
+                            size: 25,
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Phiếu lương',
-                                    style: GoogleFonts.montserrat(
-                                      color: Colors.brown,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            child: Text(
+                              'Voucher',
+                              style: global.boldSmallTextStyle,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      width: 155,
-                      height: 62,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(254, 243, 231, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      child: Row(
+                  ),
+                  Container(
+                    height: 90,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 153, 104, 237),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        _SalaryCyclePageNavigation(context);
+                      },
+                      child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
-                            child: Icon(
-                              Icons.receipt_long_sharp,
-                              color: Colors.grey,
-                              size: 24,
-                            ),
+                          Icon(
+                            Icons.folder_copy,
+                            color: global.background,
+                            size: 25,
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Báo cáo',
-                                    style: GoogleFonts.montserrat(
-                                      color: Colors.brown,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            child: Text(
+                              'Kỳ lương',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: global.background,
+                                fontFamily: global.headerFont,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    height: 90,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      color: global.primary2,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4.r,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        _WalletPageNavigation(context);
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.account_balance_wallet,
+                            color: global.background,
+                            size: 25,
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            child: Text(
+                              'Ví của tôi',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: global.background,
+                                fontFamily: global.headerFont,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              // xp card
-              XpCard(),
-            ],
-          ).offset(offset: Offset(0, -85))),
-    );
+            ),
+            // 2 menu
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 155,
+                    height: 62,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(254, 243, 231, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(15, 15, 0, 15),
+                          child: FaIcon(
+                            FontAwesomeIcons.fileInvoiceDollar,
+                            color: Colors.grey,
+                            size: 22,
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Phiếu lương',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.brown,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 155,
+                    height: 62,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(254, 243, 231, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x33000000),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                          child: Icon(
+                            Icons.receipt_long_sharp,
+                            color: Colors.grey,
+                            size: 24,
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Báo cáo',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.brown,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // xp card
+            XpCard(),
+          ],
+        ).offset(offset: Offset(0, -85)));
   }
 }

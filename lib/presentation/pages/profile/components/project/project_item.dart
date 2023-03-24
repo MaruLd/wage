@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/pages/profile/components/project/project_detail.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;

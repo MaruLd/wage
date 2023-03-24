@@ -5,6 +5,7 @@ import 'package:wage/presentation/pages/history/history_page.dart';
 import 'package:wage/presentation/pages/payslip/payslip_page.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
+import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 import '../../../application/providers/api_provider.dart';
@@ -47,16 +48,28 @@ class _NavigationState extends ConsumerState<Navigation> {
 
   @override
   Widget build(BuildContext context) {
-    final token = ref.watch(apiTokenProvider);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      var serverAvailable =
-          ref.watch(serverAvailableProvider).whenOrNull(data: (data) => data);
-      final authState = ref.watch(authProvider);
-      if ((serverAvailable == false || serverAvailable == null) &&
-          authState.valueOrNull == null) {
-        Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-          builder: (_) => ErrorPage(),
-        ));
+    final token = ref.read(apiTokenCheck);
+    var serverAvailable = ref.watch(serverAvailableProvider);
+    final authState = ref.watch(authProvider);
+    Future.delayed(Duration(seconds: 2), () {
+      try {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (serverAvailable.valueOrNull == null &&
+              !serverAvailable.isLoading) {
+            print('ERROR: Server is down');
+            Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+              builder: (_) => ErrorPage(),
+            ));
+          } else if (authState.valueOrNull == null && !authState.isLoading) {
+            print('ERROR: Token not found');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WelcomePage()),
+            );
+          }
+        });
+      } catch (ex) {
+        print(Exception(ex));
       }
     });
     return token.when(

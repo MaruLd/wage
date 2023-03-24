@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 
-import '../api_services/authService.dart';
+import 'authService.dart';
 
 class GoogleSignInService extends ChangeNotifier {
   static final GoogleSignIn _googleSignIn =
@@ -16,6 +16,7 @@ class GoogleSignInService extends ChangeNotifier {
 
   Future googleLogin() async {
     final googleUser = await _googleSignIn.signIn();
+    AuthDAO apiToken = AuthDAO();
     if (googleUser == null) return;
     _user = googleUser;
 
@@ -25,7 +26,8 @@ class GoogleSignInService extends ChangeNotifier {
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
     await FirebaseAuth.instance.signInWithCredential(credential);
-    await AuthDAO().getAuthInformation();
+
+    await apiToken.getAuthInformation();
     notifyListeners();
   }
 

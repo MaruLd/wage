@@ -19,6 +19,8 @@ var normalText = Color.fromRGBO(58, 58, 58, 1);
 var smallText = Color.fromRGBO(116, 112, 112, 1);
 var headerText = Color.fromRGBO(81, 107, 158, 1);
 var circle = Color.fromRGBO(244, 241, 222, 1);
+var danger = Color.fromARGB(255, 255, 93, 158);
+var medium = Color.fromARGB(255, 92, 72, 204);
 
 // font styles
 var headerFont = 'Open Sans';

@@ -40,7 +40,7 @@ class HomePage extends ConsumerWidget {
                   ),
                   HomePageHeader(),
                   const SizedBox(
-                    height: 60,
+                    height: 70,
                   ),
                   MenuBody(),
                 ],

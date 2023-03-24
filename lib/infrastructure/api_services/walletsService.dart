@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
-import 'package:wage/infrastructure/api_services/authService.dart';
+import 'package:wage/infrastructure/authentication_service/authService.dart';
 import 'package:wage/infrastructure/network_services/dioAdapter.dart';
 
 import '../../presentation/settings/global_settings.dart' as global;

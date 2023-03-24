@@ -19,16 +19,15 @@ class ErrorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      var serverAvailable =
-          ref.watch(serverAvailableProvider).whenOrNull(data: (data) => data);
-      if (serverAvailable == true) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Navigation()),
-        );
-      }
-    });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        var haveToken = ref.watch(apiTokenProvider);
+        if (haveToken.valueOrNull == null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Navigation()),
+          );
+        }
+      });
     return Scaffold(
         body: SafeArea(
             child: Stack(children: [

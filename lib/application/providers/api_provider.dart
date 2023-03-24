@@ -8,7 +8,7 @@ import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
 
 import '../../domain/Auth/auth_model.dart';
 import '../../infrastructure/api_services/ServerService.dart';
-import '../../infrastructure/api_services/authService.dart';
+import '../../infrastructure/authentication_service/authService.dart';
 import '../../infrastructure/api_services/levelService.dart';
 import '../../infrastructure/api_services/memberService.dart';
 import '../../infrastructure/api_services/projectService.dart';
@@ -27,15 +27,19 @@ final serverProvider = Provider((ref) => ServerService());
 
 final levelProvider = Provider((ref) => LevelService());
 
-final serverAvailableProvider = FutureProvider<bool>(
+final serverAvailableProvider = FutureProvider.autoDispose<bool>(
   (ref) {
-    return ref.watch(serverProvider).checkServerStatus();
+    final server = ref.watch(serverProvider).checkServerStatus();
+    ref.keepAlive();
+    return server;
   },
 );
 
-final apiTokenProvider = FutureProvider<AuthDTO>(
+final apiTokenProvider = FutureProvider.autoDispose<AuthDTO?>(
   (ref) {
-    return ref.watch(tokenProvider).getAuthInformation();
+    final token = ref.watch(tokenProvider).getAuthInformation();
+    ref.keepAlive();
+    return token;
   },
 );
 

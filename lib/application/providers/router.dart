@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wage/presentation/pages/navbar/navbar.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
@@ -11,7 +12,6 @@ final _key = GlobalKey<NavigatorState>();
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProvider);
-  final tokenState = ref.watch(apiTokenProvider);
 
   return GoRouter(
     navigatorKey: _key,
@@ -39,12 +39,11 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       // This has to do with how the FirebaseAuth SDK handles the "log-in" state
       // Returning `null` means "we are not authorized"
-      final isAuth =
-          authState.valueOrNull != null && tokenState.valueOrNull != null;
-
+      final isAuth = authState.valueOrNull != null;
       final isLoggingIn = state.location == WelcomePage.routeLocation;
 
-      if (isLoggingIn) return isAuth ? Navigation.routeLocation : null;
+      if (isLoggingIn)
+        return isAuth ? Navigation.routeLocation : WelcomePage.routeLocation;
 
       return isAuth ? Navigation.routeLocation : WelcomePage.routeLocation;
     },
