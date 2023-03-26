@@ -35,7 +35,7 @@ final serverAvailableProvider = FutureProvider.autoDispose<bool>(
   },
 );
 
-final apiTokenProvider = FutureProvider.autoDispose<AuthDTO?>(
+final apiTokenProvider = FutureProvider.autoDispose<AuthInfo?>(
   (ref) {
     final token = ref.watch(tokenProvider).getAuthInformation();
     ref.keepAlive();

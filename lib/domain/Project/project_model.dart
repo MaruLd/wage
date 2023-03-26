@@ -11,17 +11,54 @@ class Project with _$Project {
     required String projectName,
     required String projectShortName,
     String? projectShortDescription,
-    required String projectStatus,
-    String? projectType,
-    String? projectVisibility,
+    required ProjectStatusEnum projectStatus,
+    ProjectTypeEnum? projectType,
+    ProjectVisibilityEnum? projectVisibility,
     DateTime? createdAt,
     DateTime? startedAt,
     DateTime? endedAt,
     DateTime? updatedAt,
-    String? role,
+    ProjectMemberRoleEnum? role,
   }) = _Project;
   factory Project.fromJson(Map<String, dynamic> json) =>
       _$ProjectFromJson(json);
   factory Project.empty() => Project(
-      projectId: "", projectName: "", projectStatus: "",projectShortName: "");
+      projectId: "",
+      projectName: "",
+      projectStatus: ProjectStatusEnum.started,
+      projectShortName: "");
+}
+
+enum ProjectStatusEnum {
+  @JsonValue("created")
+  created,
+  @JsonValue("started")
+  started,
+  @JsonValue("ended")
+  ended,
+  @JsonValue("cancelled")
+  cancelled,
+}
+
+enum ProjectTypeEnum {
+  @JsonValue("application")
+  application,
+  @JsonValue("service")
+  service,
+  @JsonValue("other ")
+  other,
+}
+
+enum ProjectVisibilityEnum {
+  @JsonValue("public")
+  public,
+  @JsonValue("private ")
+  private,
+}
+
+enum ProjectMemberRoleEnum {
+  @JsonValue("manager")
+  manager,
+  @JsonValue("member  ")
+  member,
 }

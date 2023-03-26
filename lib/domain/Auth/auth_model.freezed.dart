@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AuthDTO _$AuthDTOFromJson(Map<String, dynamic> json) {
-  return _AuthDTO.fromJson(json);
+AuthInfo _$AuthInfoFromJson(Map<String, dynamic> json) {
+  return _AuthInfo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AuthDTO {
+mixin _$AuthInfo {
   User? get user => throw _privateConstructorUsedError;
   SubMember? get member => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
@@ -27,13 +27,14 @@ mixin _$AuthDTO {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthDTOCopyWith<AuthDTO> get copyWith => throw _privateConstructorUsedError;
+  $AuthInfoCopyWith<AuthInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthDTOCopyWith<$Res> {
-  factory $AuthDTOCopyWith(AuthDTO value, $Res Function(AuthDTO) then) =
-      _$AuthDTOCopyWithImpl<$Res, AuthDTO>;
+abstract class $AuthInfoCopyWith<$Res> {
+  factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
+      _$AuthInfoCopyWithImpl<$Res, AuthInfo>;
   @useResult
   $Res call({User? user, SubMember? member, String? token, bool? isNewUser});
 
@@ -42,9 +43,9 @@ abstract class $AuthDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthDTOCopyWithImpl<$Res, $Val extends AuthDTO>
-    implements $AuthDTOCopyWith<$Res> {
-  _$AuthDTOCopyWithImpl(this._value, this._then);
+class _$AuthInfoCopyWithImpl<$Res, $Val extends AuthInfo>
+    implements $AuthInfoCopyWith<$Res> {
+  _$AuthInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -105,10 +106,10 @@ class _$AuthDTOCopyWithImpl<$Res, $Val extends AuthDTO>
 }
 
 /// @nodoc
-abstract class _$$_AuthDTOCopyWith<$Res> implements $AuthDTOCopyWith<$Res> {
-  factory _$$_AuthDTOCopyWith(
-          _$_AuthDTO value, $Res Function(_$_AuthDTO) then) =
-      __$$_AuthDTOCopyWithImpl<$Res>;
+abstract class _$$_AuthInfoCopyWith<$Res> implements $AuthInfoCopyWith<$Res> {
+  factory _$$_AuthInfoCopyWith(
+          _$_AuthInfo value, $Res Function(_$_AuthInfo) then) =
+      __$$_AuthInfoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({User? user, SubMember? member, String? token, bool? isNewUser});
@@ -120,10 +121,11 @@ abstract class _$$_AuthDTOCopyWith<$Res> implements $AuthDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthDTOCopyWithImpl<$Res>
-    extends _$AuthDTOCopyWithImpl<$Res, _$_AuthDTO>
-    implements _$$_AuthDTOCopyWith<$Res> {
-  __$$_AuthDTOCopyWithImpl(_$_AuthDTO _value, $Res Function(_$_AuthDTO) _then)
+class __$$_AuthInfoCopyWithImpl<$Res>
+    extends _$AuthInfoCopyWithImpl<$Res, _$_AuthInfo>
+    implements _$$_AuthInfoCopyWith<$Res> {
+  __$$_AuthInfoCopyWithImpl(
+      _$_AuthInfo _value, $Res Function(_$_AuthInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,7 +136,7 @@ class __$$_AuthDTOCopyWithImpl<$Res>
     Object? token = freezed,
     Object? isNewUser = freezed,
   }) {
-    return _then(_$_AuthDTO(
+    return _then(_$_AuthInfo(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -157,11 +159,11 @@ class __$$_AuthDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AuthDTO implements _AuthDTO {
-  _$_AuthDTO({this.user, this.member, this.token, this.isNewUser});
+class _$_AuthInfo implements _AuthInfo {
+  _$_AuthInfo({this.user, this.member, this.token, this.isNewUser});
 
-  factory _$_AuthDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_AuthDTOFromJson(json);
+  factory _$_AuthInfo.fromJson(Map<String, dynamic> json) =>
+      _$$_AuthInfoFromJson(json);
 
   @override
   final User? user;
@@ -174,14 +176,14 @@ class _$_AuthDTO implements _AuthDTO {
 
   @override
   String toString() {
-    return 'AuthDTO(user: $user, member: $member, token: $token, isNewUser: $isNewUser)';
+    return 'AuthInfo(user: $user, member: $member, token: $token, isNewUser: $isNewUser)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AuthDTO &&
+            other is _$_AuthInfo &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.member, member) || other.member == member) &&
             (identical(other.token, token) || other.token == token) &&
@@ -196,25 +198,25 @@ class _$_AuthDTO implements _AuthDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthDTOCopyWith<_$_AuthDTO> get copyWith =>
-      __$$_AuthDTOCopyWithImpl<_$_AuthDTO>(this, _$identity);
+  _$$_AuthInfoCopyWith<_$_AuthInfo> get copyWith =>
+      __$$_AuthInfoCopyWithImpl<_$_AuthInfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AuthDTOToJson(
+    return _$$_AuthInfoToJson(
       this,
     );
   }
 }
 
-abstract class _AuthDTO implements AuthDTO {
-  factory _AuthDTO(
+abstract class _AuthInfo implements AuthInfo {
+  factory _AuthInfo(
       {final User? user,
       final SubMember? member,
       final String? token,
-      final bool? isNewUser}) = _$_AuthDTO;
+      final bool? isNewUser}) = _$_AuthInfo;
 
-  factory _AuthDTO.fromJson(Map<String, dynamic> json) = _$_AuthDTO.fromJson;
+  factory _AuthInfo.fromJson(Map<String, dynamic> json) = _$_AuthInfo.fromJson;
 
   @override
   User? get user;
@@ -226,7 +228,7 @@ abstract class _AuthDTO implements AuthDTO {
   bool? get isNewUser;
   @override
   @JsonKey(ignore: true)
-  _$$_AuthDTOCopyWith<_$_AuthDTO> get copyWith =>
+  _$$_AuthInfoCopyWith<_$_AuthInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

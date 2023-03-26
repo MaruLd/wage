@@ -6,7 +6,7 @@ part of 'auth_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AuthDTO _$$_AuthDTOFromJson(Map<String, dynamic> json) => _$_AuthDTO(
+_$_AuthInfo _$$_AuthInfoFromJson(Map<String, dynamic> json) => _$_AuthInfo(
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
@@ -17,7 +17,7 @@ _$_AuthDTO _$$_AuthDTOFromJson(Map<String, dynamic> json) => _$_AuthDTO(
       isNewUser: json['isNewUser'] as bool?,
     );
 
-Map<String, dynamic> _$$_AuthDTOToJson(_$_AuthDTO instance) =>
+Map<String, dynamic> _$$_AuthInfoToJson(_$_AuthInfo instance) =>
     <String, dynamic>{
       'user': instance.user,
       'member': instance.member,

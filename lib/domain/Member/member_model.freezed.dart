@@ -22,13 +22,13 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
 mixin _$Member {
   String get memberId => throw _privateConstructorUsedError;
   String get emailAddress => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get facebookUrl => throw _privateConstructorUsedError;
-  MemberLevels get memberLevels => throw _privateConstructorUsedError;
-  Role get role => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  MemberLevels? get memberLevels => throw _privateConstructorUsedError;
+  Role? get role => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,17 +44,17 @@ abstract class $MemberCopyWith<$Res> {
   $Res call(
       {String memberId,
       String emailAddress,
-      String fullName,
+      String? fullName,
       String? phoneNumber,
       String? imageUrl,
       String? facebookUrl,
-      MemberLevels memberLevels,
-      Role role,
-      DateTime createdAt,
+      MemberLevels? memberLevels,
+      Role? role,
+      DateTime? createdAt,
       DateTime? updatedAt});
 
-  $MemberLevelsCopyWith<$Res> get memberLevels;
-  $RoleCopyWith<$Res> get role;
+  $MemberLevelsCopyWith<$Res>? get memberLevels;
+  $RoleCopyWith<$Res>? get role;
 }
 
 /// @nodoc
@@ -72,13 +72,13 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
   $Res call({
     Object? memberId = null,
     Object? emailAddress = null,
-    Object? fullName = null,
+    Object? fullName = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
     Object? facebookUrl = freezed,
-    Object? memberLevels = null,
-    Object? role = null,
-    Object? createdAt = null,
+    Object? memberLevels = freezed,
+    Object? role = freezed,
+    Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,10 +90,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: null == fullName
+      fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -106,18 +106,18 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      memberLevels: null == memberLevels
+      memberLevels: freezed == memberLevels
           ? _value.memberLevels
           : memberLevels // ignore: cast_nullable_to_non_nullable
-              as MemberLevels,
-      role: null == role
+              as MemberLevels?,
+      role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-      createdAt: null == createdAt
+              as Role?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -127,16 +127,24 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
 
   @override
   @pragma('vm:prefer-inline')
-  $MemberLevelsCopyWith<$Res> get memberLevels {
-    return $MemberLevelsCopyWith<$Res>(_value.memberLevels, (value) {
+  $MemberLevelsCopyWith<$Res>? get memberLevels {
+    if (_value.memberLevels == null) {
+      return null;
+    }
+
+    return $MemberLevelsCopyWith<$Res>(_value.memberLevels!, (value) {
       return _then(_value.copyWith(memberLevels: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RoleCopyWith<$Res> get role {
-    return $RoleCopyWith<$Res>(_value.role, (value) {
+  $RoleCopyWith<$Res>? get role {
+    if (_value.role == null) {
+      return null;
+    }
+
+    return $RoleCopyWith<$Res>(_value.role!, (value) {
       return _then(_value.copyWith(role: value) as $Val);
     });
   }
@@ -151,19 +159,19 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   $Res call(
       {String memberId,
       String emailAddress,
-      String fullName,
+      String? fullName,
       String? phoneNumber,
       String? imageUrl,
       String? facebookUrl,
-      MemberLevels memberLevels,
-      Role role,
-      DateTime createdAt,
+      MemberLevels? memberLevels,
+      Role? role,
+      DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $MemberLevelsCopyWith<$Res> get memberLevels;
+  $MemberLevelsCopyWith<$Res>? get memberLevels;
   @override
-  $RoleCopyWith<$Res> get role;
+  $RoleCopyWith<$Res>? get role;
 }
 
 /// @nodoc
@@ -178,13 +186,13 @@ class __$$_MemberCopyWithImpl<$Res>
   $Res call({
     Object? memberId = null,
     Object? emailAddress = null,
-    Object? fullName = null,
+    Object? fullName = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
     Object? facebookUrl = freezed,
-    Object? memberLevels = null,
-    Object? role = null,
-    Object? createdAt = null,
+    Object? memberLevels = freezed,
+    Object? role = freezed,
+    Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$_Member(
@@ -196,10 +204,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: null == fullName
+      fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -212,18 +220,18 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.facebookUrl
           : facebookUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      memberLevels: null == memberLevels
+      memberLevels: freezed == memberLevels
           ? _value.memberLevels
           : memberLevels // ignore: cast_nullable_to_non_nullable
-              as MemberLevels,
-      role: null == role
+              as MemberLevels?,
+      role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-      createdAt: null == createdAt
+              as Role?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -238,13 +246,13 @@ class _$_Member extends _Member {
   _$_Member(
       {required this.memberId,
       required this.emailAddress,
-      required this.fullName,
+      this.fullName,
       this.phoneNumber,
       this.imageUrl,
       this.facebookUrl,
-      required this.memberLevels,
-      required this.role,
-      required this.createdAt,
+      this.memberLevels,
+      this.role,
+      this.createdAt,
       this.updatedAt})
       : super._();
 
@@ -256,7 +264,7 @@ class _$_Member extends _Member {
   @override
   final String emailAddress;
   @override
-  final String fullName;
+  final String? fullName;
   @override
   final String? phoneNumber;
   @override
@@ -264,11 +272,11 @@ class _$_Member extends _Member {
   @override
   final String? facebookUrl;
   @override
-  final MemberLevels memberLevels;
+  final MemberLevels? memberLevels;
   @override
-  final Role role;
+  final Role? role;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
@@ -336,13 +344,13 @@ abstract class _Member extends Member {
   factory _Member(
       {required final String memberId,
       required final String emailAddress,
-      required final String fullName,
+      final String? fullName,
       final String? phoneNumber,
       final String? imageUrl,
       final String? facebookUrl,
-      required final MemberLevels memberLevels,
-      required final Role role,
-      required final DateTime createdAt,
+      final MemberLevels? memberLevels,
+      final Role? role,
+      final DateTime? createdAt,
       final DateTime? updatedAt}) = _$_Member;
   _Member._() : super._();
 
@@ -353,7 +361,7 @@ abstract class _Member extends Member {
   @override
   String get emailAddress;
   @override
-  String get fullName;
+  String? get fullName;
   @override
   String? get phoneNumber;
   @override
@@ -361,11 +369,11 @@ abstract class _Member extends Member {
   @override
   String? get facebookUrl;
   @override
-  MemberLevels get memberLevels;
+  MemberLevels? get memberLevels;
   @override
-  Role get role;
+  Role? get role;
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
   @override

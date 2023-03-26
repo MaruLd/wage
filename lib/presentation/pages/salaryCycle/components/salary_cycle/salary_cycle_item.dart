@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
@@ -21,7 +20,7 @@ class SalaryCycleItem extends StatelessWidget {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(
-              project.projectName,
+              'Ky luong thang 4',
               style: TextStyle(
                 color: global.headerText,
                 fontFamily: global.headerFont,
@@ -30,7 +29,7 @@ class SalaryCycleItem extends StatelessWidget {
               ),
             ),
             Text(
-              '+200',
+              'Review',
               style: TextStyle(
                 color: global.headerText,
                 fontFamily: global.numberFont,
@@ -45,15 +44,7 @@ class SalaryCycleItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Hoàn thành - ',
-                style: TextStyle(
-                  color: global.primary,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp,
-                ),
-              ),
-              Text(
-                '18/12/2022',
+                '18/12/2022 - 18/1/2023',
                 style: TextStyle(
                   color: global.headerText,
                   fontWeight: FontWeight.w400,

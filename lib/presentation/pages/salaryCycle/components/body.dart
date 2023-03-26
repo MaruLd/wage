@@ -118,7 +118,7 @@ class Profile extends ConsumerWidget {
               Padding(
                 padding: EdgeInsetsDirectional.all(8.0),
                 child: Text(
-                  userData.fullName,
+                  userData.fullName ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: global.headerText,

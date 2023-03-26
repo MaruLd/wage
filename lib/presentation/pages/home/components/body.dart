@@ -79,7 +79,7 @@ class HomePageHeader extends ConsumerWidget {
                       // show previous data if there's an error
                       skipError: true,
                       data: (userData) => Text(
-                        userData.fullName,
+                        userData.fullName ?? '',
                         style: global.boldTextStyle,
                       ),
                       error: (error, stackTrace) {

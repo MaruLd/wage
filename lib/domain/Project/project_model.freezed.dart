@@ -24,14 +24,15 @@ mixin _$Project {
   String get projectName => throw _privateConstructorUsedError;
   String get projectShortName => throw _privateConstructorUsedError;
   String? get projectShortDescription => throw _privateConstructorUsedError;
-  String get projectStatus => throw _privateConstructorUsedError;
-  String? get projectType => throw _privateConstructorUsedError;
-  String? get projectVisibility => throw _privateConstructorUsedError;
+  ProjectStatusEnum get projectStatus => throw _privateConstructorUsedError;
+  ProjectTypeEnum? get projectType => throw _privateConstructorUsedError;
+  ProjectVisibilityEnum? get projectVisibility =>
+      throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get startedAt => throw _privateConstructorUsedError;
   DateTime? get endedAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
-  String? get role => throw _privateConstructorUsedError;
+  ProjectMemberRoleEnum? get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,14 +49,14 @@ abstract class $ProjectCopyWith<$Res> {
       String projectName,
       String projectShortName,
       String? projectShortDescription,
-      String projectStatus,
-      String? projectType,
-      String? projectVisibility,
+      ProjectStatusEnum projectStatus,
+      ProjectTypeEnum? projectType,
+      ProjectVisibilityEnum? projectVisibility,
       DateTime? createdAt,
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
-      String? role});
+      ProjectMemberRoleEnum? role});
 }
 
 /// @nodoc
@@ -104,15 +105,15 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
       projectStatus: null == projectStatus
           ? _value.projectStatus
           : projectStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ProjectStatusEnum,
       projectType: freezed == projectType
           ? _value.projectType
           : projectType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectTypeEnum?,
       projectVisibility: freezed == projectVisibility
           ? _value.projectVisibility
           : projectVisibility // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectVisibilityEnum?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -132,7 +133,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectMemberRoleEnum?,
     ) as $Val);
   }
 }
@@ -149,14 +150,14 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       String projectName,
       String projectShortName,
       String? projectShortDescription,
-      String projectStatus,
-      String? projectType,
-      String? projectVisibility,
+      ProjectStatusEnum projectStatus,
+      ProjectTypeEnum? projectType,
+      ProjectVisibilityEnum? projectVisibility,
       DateTime? createdAt,
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
-      String? role});
+      ProjectMemberRoleEnum? role});
 }
 
 /// @nodoc
@@ -202,15 +203,15 @@ class __$$_ProjectCopyWithImpl<$Res>
       projectStatus: null == projectStatus
           ? _value.projectStatus
           : projectStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ProjectStatusEnum,
       projectType: freezed == projectType
           ? _value.projectType
           : projectType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectTypeEnum?,
       projectVisibility: freezed == projectVisibility
           ? _value.projectVisibility
           : projectVisibility // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectVisibilityEnum?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -230,7 +231,7 @@ class __$$_ProjectCopyWithImpl<$Res>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProjectMemberRoleEnum?,
     ));
   }
 }
@@ -265,11 +266,11 @@ class _$_Project extends _Project {
   @override
   final String? projectShortDescription;
   @override
-  final String projectStatus;
+  final ProjectStatusEnum projectStatus;
   @override
-  final String? projectType;
+  final ProjectTypeEnum? projectType;
   @override
-  final String? projectVisibility;
+  final ProjectVisibilityEnum? projectVisibility;
   @override
   final DateTime? createdAt;
   @override
@@ -279,7 +280,7 @@ class _$_Project extends _Project {
   @override
   final DateTime? updatedAt;
   @override
-  final String? role;
+  final ProjectMemberRoleEnum? role;
 
   @override
   String toString() {
@@ -353,14 +354,14 @@ abstract class _Project extends Project {
       required final String projectName,
       required final String projectShortName,
       final String? projectShortDescription,
-      required final String projectStatus,
-      final String? projectType,
-      final String? projectVisibility,
+      required final ProjectStatusEnum projectStatus,
+      final ProjectTypeEnum? projectType,
+      final ProjectVisibilityEnum? projectVisibility,
       final DateTime? createdAt,
       final DateTime? startedAt,
       final DateTime? endedAt,
       final DateTime? updatedAt,
-      final String? role}) = _$_Project;
+      final ProjectMemberRoleEnum? role}) = _$_Project;
   _Project._() : super._();
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
@@ -374,11 +375,11 @@ abstract class _Project extends Project {
   @override
   String? get projectShortDescription;
   @override
-  String get projectStatus;
+  ProjectStatusEnum get projectStatus;
   @override
-  String? get projectType;
+  ProjectTypeEnum? get projectType;
   @override
-  String? get projectVisibility;
+  ProjectVisibilityEnum? get projectVisibility;
   @override
   DateTime? get createdAt;
   @override
@@ -388,7 +389,7 @@ abstract class _Project extends Project {
   @override
   DateTime? get updatedAt;
   @override
-  String? get role;
+  ProjectMemberRoleEnum? get role;
   @override
   @JsonKey(ignore: true)
   _$$_ProjectCopyWith<_$_Project> get copyWith =>

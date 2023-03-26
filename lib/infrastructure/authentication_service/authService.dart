@@ -7,7 +7,7 @@ import '../../domain/Auth/auth_model.dart';
 import '../network_services/dioAdapter.dart';
 
 class AuthDAO {
-  Future<AuthDTO?> getAuthInformation() async {
+  Future<AuthInfo?> getAuthInformation() async {
     final storage = new FlutterSecureStorage();
     try {
       String? token = await FirebaseAuth.instance.currentUser?.getIdToken();
@@ -18,7 +18,7 @@ class AuthDAO {
             HttpHeaders.contentTypeHeader: "application/json",
           }));
       if (response.statusCode == 200) {
-        final auth = AuthDTO.fromJson(response.data["message"]);
+        final auth = AuthInfo.fromJson(response.data["message"]);
         await storage.write(key: 'jwt', value: auth.token);
         String? jwtToken = await storage.read(key: 'jwt');
         print('jwt in storage: $jwtToken');

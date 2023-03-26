@@ -9,14 +9,19 @@ part of 'member_model.dart';
 _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       memberId: json['memberId'] as String,
       emailAddress: json['emailAddress'] as String,
-      fullName: json['fullName'] as String,
+      fullName: json['fullName'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       imageUrl: json['imageUrl'] as String?,
       facebookUrl: json['facebookUrl'] as String?,
-      memberLevels:
-          MemberLevels.fromJson(json['memberLevels'] as Map<String, dynamic>),
-      role: Role.fromJson(json['role'] as Map<String, dynamic>),
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      memberLevels: json['memberLevels'] == null
+          ? null
+          : MemberLevels.fromJson(json['memberLevels'] as Map<String, dynamic>),
+      role: json['role'] == null
+          ? null
+          : Role.fromJson(json['role'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
@@ -31,7 +36,7 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'facebookUrl': instance.facebookUrl,
       'memberLevels': instance.memberLevels,
       'role': instance.role,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 

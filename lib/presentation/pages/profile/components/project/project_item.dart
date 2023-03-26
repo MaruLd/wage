@@ -13,14 +13,14 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color percentIndicatorColor = Colors.grey;
-    double switchPercent(String percent) {
-      switch (percent) {
-        case 'created':
+    double switchPercent(ProjectStatusEnum status) {
+      switch (status) {
+        case ProjectStatusEnum.created:
           return 0.25;
-        case 'started':
+        case ProjectStatusEnum.started:
           percentIndicatorColor = Color.fromARGB(255, 244, 248, 140);
           return 0.50;
-        case 'ended':
+        case ProjectStatusEnum.ended:
           percentIndicatorColor = Color.fromARGB(255, 133, 255, 155);
           return 1.0;
         default:
@@ -28,26 +28,26 @@ class ProjectItem extends StatelessWidget {
       }
     }
 
-    Color switchPercentColor(String percent) {
-      switch (percent) {
-        case 'created':
+    Color switchPercentColor(ProjectStatusEnum status) {
+      switch (status) {
+        case ProjectStatusEnum.created:
           return Color.fromARGB(255, 255, 93, 158);
-        case 'started':
+        case ProjectStatusEnum.started:
           return Color.fromARGB(255, 92, 72, 204);
-        case 'ended':
+        case ProjectStatusEnum.ended:
           return Color.fromARGB(255, 42, 143, 59);
         default:
           return Colors.grey;
       }
     }
 
-    String translateStatus(String percent) {
-      switch (percent) {
-        case 'created':
+    String translateStatus(ProjectStatusEnum status) {
+      switch (status) {
+        case ProjectStatusEnum.created:
           return 'Khởi tạo';
-        case 'started':
+        case ProjectStatusEnum.started:
           return 'Hiện thực';
-        case 'ended':
+        case ProjectStatusEnum.ended:
           return 'Hoàn thành';
         default:
           return '';

@@ -27,7 +27,7 @@ class XpCard extends ConsumerWidget {
     final walletData = ref.watch(walletsDataProvider);
 
     String? levelColor =
-        userData.whenOrNull(data: (data) => data.memberLevels.level.levelColor);
+        userData.whenOrNull(data: (data) => data.memberLevels!.level.levelColor);
     return Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
         child: Row(
@@ -70,7 +70,7 @@ class XpCard extends ConsumerWidget {
                         padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 0),
                         child: userData.when(
                           data: (data) => Text(
-                              data.memberLevels.level.levelName,
+                              data.memberLevels!.level.levelName,
                               style: global.boldTextStyle),
                           error: (error, stackTrace) => LoadingShimmer(
                             height: 30.0,

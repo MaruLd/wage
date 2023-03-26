@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/level/components/projectxp/project_xp_item.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/pages/salaryCycle/components/salary_cycle/salary_cycle_item.dart';
 import 'package:wage/presentation/widgets/shimmer_list.dart';
 
 class SalaryCycleListView extends ConsumerWidget {
@@ -26,7 +24,7 @@ class SalaryCycleListView extends ConsumerWidget {
               itemBuilder: (context, int index) {
                 return Container(
                   width: 300,
-                  child: ProjectXPItem(
+                  child: SalaryCycleItem(
                     onTap: () {},
                     project: projectData[index],
                   ),

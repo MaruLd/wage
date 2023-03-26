@@ -10,13 +10,13 @@ class Member with _$Member {
   factory Member({
     required String memberId,
     required String emailAddress,
-    required String fullName,
+    String? fullName,
     String? phoneNumber,
     String? imageUrl,
     String? facebookUrl,
-    required MemberLevels memberLevels,
-    required Role role,
-    required DateTime createdAt,
+    MemberLevels? memberLevels,
+    Role? role,
+    DateTime? createdAt,
     DateTime? updatedAt,
   }) = _Member;
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
