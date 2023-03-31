@@ -26,11 +26,13 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return ScreenUtilInit(
-      builder: (BuildContext context, child) => MaterialApp.router(
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-        routeInformationProvider: router.routeInformationProvider,
-        debugShowCheckedModeBanner: false,
+      builder: (BuildContext context, child) => SafeArea(
+        child: MaterialApp.router(
+          routeInformationParser: router.routeInformationParser,
+          routerDelegate: router.routerDelegate,
+          routeInformationProvider: router.routeInformationProvider,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
       designSize: const Size(377, 812),
     );

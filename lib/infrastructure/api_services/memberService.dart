@@ -9,7 +9,7 @@ import '../../presentation/settings/global_settings.dart' as global;
 import '../network_services/dioAdapter.dart';
 
 class MemberDAO {
-  Future<Member> getMember([data]) async {
+  Future<Member> getSelfInfo([data]) async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -19,14 +19,15 @@ class MemberDAO {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
+        print('API DATA /v1/members/me: ');
+        print(member);
         return member;
       } else if (response.statusCode == 401) {
         AuthDAO auth = AuthDAO();
         await auth.getAuthInformation();
-        getMember(data);
+        getSelfInfo(data);
         throw ('');
       } else {
         throw Exception(response.statusMessage);
@@ -36,7 +37,7 @@ class MemberDAO {
     }
   }
 
-  Future<int> getAchievement() async {
+  Future<int> getSelfAchievement() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');

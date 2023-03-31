@@ -11,18 +11,19 @@ import 'package:wage/infrastructure/network_services/dioAdapter.dart';
 import '../../presentation/settings/global_settings.dart' as global;
 
 class WalletsDAO {
-  Future<Wallets> getWallets() async {
+  Future<Wallets> getSelfWallets() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response =
-          await dio.get('/v1/members/me/wallets',
-              options: Options(headers: {
-                HttpHeaders.contentTypeHeader: "application/json",
-                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
-              }));
+      final response = await dio.get('/v1/members/me/wallets',
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
       if (response.statusCode == 200) {
         final wallets = Wallets.fromJson(response.data["message"]);
+        print('API DATA /v1/members/me/wallets: ');
+        print(wallets);
         return wallets;
       } else {
         throw Exception(response.statusMessage);

@@ -8,11 +8,11 @@ import 'package:wage/presentation/pages/transfer/transfer_page.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
-import '../../../application/providers/api_provider.dart';
-import '../../../application/providers/auth_datas_provider.dart';
-import '../error/error_page.dart';
-import '../home/home_page.dart';
-import '../level/level_page.dart';
+import '../../application/providers/api_provider.dart';
+import '../../application/providers/auth_datas_provider.dart';
+import '../pages/error/error_page.dart';
+import '../pages/home/home_page.dart';
+import '../pages/level/level_page.dart';
 
 class Navigation extends ConsumerStatefulWidget {
   const Navigation({super.key});

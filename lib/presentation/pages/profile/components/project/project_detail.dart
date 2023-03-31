@@ -74,7 +74,7 @@ class ProjectDetail extends StatelessWidget {
                                   ? DateFormat("MM/dd/yyyy hh:mm a")
                                       .format(project.startedAt as DateTime)
                                       .toString()
-                                  : 'Not started yet',
+                                  : 'Chưa bắt đầu',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(

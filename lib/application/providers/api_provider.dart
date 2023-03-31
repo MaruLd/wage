@@ -7,7 +7,9 @@ import 'package:wage/infrastructure/api_services/walletsService.dart';
 import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
 
 import '../../domain/Auth/auth_model.dart';
+import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../infrastructure/api_services/ServerService.dart';
+import '../../infrastructure/api_services/salaryCycleService.dart';
 import '../../infrastructure/authentication_service/authService.dart';
 import '../../infrastructure/api_services/levelService.dart';
 import '../../infrastructure/api_services/memberService.dart';
@@ -27,10 +29,11 @@ final serverProvider = Provider((ref) => ServerService());
 
 final levelProvider = Provider((ref) => LevelService());
 
-final serverAvailableProvider = FutureProvider.autoDispose<bool>(
+final salaryCycleProvider = Provider((ref) => SalaryCycleService());
+
+final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
     final server = ref.watch(serverProvider).checkServerStatus();
-    ref.keepAlive();
     return server;
   },
 );
@@ -45,20 +48,26 @@ final apiTokenProvider = FutureProvider.autoDispose<AuthInfo?>(
 
 final userDataProvider = FutureProvider<Member>(
   (ref) {
-    return ref.watch(userProvider).getMember();
+    return ref.watch(userProvider).getSelfInfo();
+  },
+);
+
+final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
+  (ref) {
+    return ref.watch(salaryCycleProvider).getAllSalaryCycle();
   },
 );
 
 final memberWorkHoursProvider = FutureProvider<int>(
   (ref) {
-    var respone = ref.watch(userProvider).getAchievement();
+    var respone = ref.watch(userProvider).getSelfAchievement();
     return respone;
   },
 );
 
 final walletsDataProvider = FutureProvider<Wallets>(
   (ref) {
-    return ref.watch(walletsProvider).getWallets();
+    return ref.watch(walletsProvider).getSelfWallets();
   },
 );
 

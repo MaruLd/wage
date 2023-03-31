@@ -24,15 +24,27 @@ Map<String, dynamic> _$$_WalletsToJson(_$_Wallets instance) =>
 _$_Wallet _$$_WalletFromJson(Map<String, dynamic> json) => _$_Wallet(
       walletId: json['walletId'] as String,
       amount: json['amount'] as int,
-      walletToken: json['walletToken'] as String,
-      walletType: json['walletType'] as String,
+      walletToken: $enumDecode(_$WalletTokenEnumEnumMap, json['walletToken']),
+      walletType: $enumDecode(_$WalletTypeEnumEnumMap, json['walletType']),
+      walletTag: json['walletTag'] as String?,
       expiredDate: DateTime.parse(json['expiredDate'] as String),
     );
 
 Map<String, dynamic> _$$_WalletToJson(_$_Wallet instance) => <String, dynamic>{
       'walletId': instance.walletId,
       'amount': instance.amount,
-      'walletToken': instance.walletToken,
-      'walletType': instance.walletType,
+      'walletToken': _$WalletTokenEnumEnumMap[instance.walletToken]!,
+      'walletType': _$WalletTypeEnumEnumMap[instance.walletType]!,
+      'walletTag': instance.walletTag,
       'expiredDate': instance.expiredDate.toIso8601String(),
     };
+
+const _$WalletTokenEnumEnumMap = {
+  WalletTokenEnum.point: 'point',
+  WalletTokenEnum.xp: 'xp',
+};
+
+const _$WalletTypeEnumEnumMap = {
+  WalletTypeEnum.hot: 'hot',
+  WalletTypeEnum.cold: 'cold',
+};

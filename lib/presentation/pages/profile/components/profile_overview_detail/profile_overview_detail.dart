@@ -8,9 +8,7 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/presentation/widgets/xp_card.dart';
 
 class ProfileOverviewDetail extends StatefulWidget {
-  const ProfileOverviewDetail({Key? key, required this.viewProjects})
-      : super(key: key);
-  final Function viewProjects;
+  const ProfileOverviewDetail({Key? key}) : super(key: key);
 
   @override
   State<ProfileOverviewDetail> createState() => _ProfileOverviewDetailState();
@@ -28,7 +26,7 @@ class _ProfileOverviewDetailState extends State<ProfileOverviewDetail> {
             style: global.boldTextDarkStyle,
           ),
           TextButton(
-            onPressed: () => widget.viewProjects(),
+            onPressed: () => {},
             child: Text(
               'Xem tất cả',
               style: TextStyle(

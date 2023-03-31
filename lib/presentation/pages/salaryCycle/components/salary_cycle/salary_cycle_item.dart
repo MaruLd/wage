@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
+import '../../../../../domain/SalaryCycle/salary_cycle_model.dart';
+
 class SalaryCycleItem extends StatelessWidget {
-  SalaryCycleItem({Key? key, required this.project, this.onTap})
+  SalaryCycleItem({Key? key, required this.salaryCycle, this.onTap})
       : super(key: key);
-  Project project;
+  SalaryCycle salaryCycle;
   final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
+      switch (status) {
+        case SalaryCycleStatusEnum.created:
+          return 'Khởi Tạo';
+        case SalaryCycleStatusEnum.taskEditingPhase:
+          return 'Giai Đoạn Thêm Task';
+        case SalaryCycleStatusEnum.projectBonusPhase:
+          return 'Giai Đoạn Thưởng';
+        case SalaryCycleStatusEnum.review:
+          return 'Nhận xét';
+        case SalaryCycleStatusEnum.paid:
+          return 'Đã Trả';
+        case SalaryCycleStatusEnum.cancelled:
+          return 'Đã Hủy';
+        default:
+          return '';
+      }
+    }
+
     return GestureDetector(
       onTap: () {},
       child: Column(
@@ -20,7 +42,7 @@ class SalaryCycleItem extends StatelessWidget {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(
-              'Ky luong thang 4',
+              'Kỳ lương tháng ${DateFormat('MM').format(salaryCycle.createdAt)}',
               style: TextStyle(
                 color: global.headerText,
                 fontFamily: global.headerFont,
@@ -29,7 +51,7 @@ class SalaryCycleItem extends StatelessWidget {
               ),
             ),
             Text(
-              'Review',
+              '${salaryCycle.payslips}',
               style: TextStyle(
                 color: global.headerText,
                 fontFamily: global.numberFont,
@@ -44,7 +66,19 @@ class SalaryCycleItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                '18/12/2022 - 18/1/2023',
+                salaryCycleStatusTransform(salaryCycle.status) + ': ',
+                style: TextStyle(
+                  color: global.headerText,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14.sp,
+                ),
+              ),
+              Text(
+                salaryCycle.endedAt != null
+                    ? DateFormat('dd-MM-yyyy')
+                        .format(salaryCycle.endedAt!)
+                        .toString()
+                    : '',
                 style: TextStyle(
                   color: global.headerText,
                   fontWeight: FontWeight.w400,

@@ -41,7 +41,7 @@ class _LevelPageState extends State<LevelPage> {
                       LevelsDetail(),
                     ]).offset(offset: Offset(0, -120))))
           ],
-        ).safeArea(),
+        ),
       ),
     );
   }

@@ -10,7 +10,8 @@ class Wallets with _$Wallets {
     required int totalPoint,
     required List<Wallet> wallets,
   }) = _Wallets;
-  factory Wallets.fromJson(Map<String, dynamic> json) => _$WalletsFromJson(json);
+  factory Wallets.fromJson(Map<String, dynamic> json) =>
+      _$WalletsFromJson(json);
 }
 
 @freezed
@@ -19,10 +20,24 @@ class Wallet with _$Wallet {
   factory Wallet({
     required String walletId,
     required int amount,
-    required String walletToken,
-    required String walletType,
+    required WalletTokenEnum walletToken,
+    required WalletTypeEnum walletType,
+    String? walletTag,
     required DateTime expiredDate,
   }) = _Wallet;
-  factory Wallet.fromJson(Map<String, dynamic> json) =>
-      _$WalletFromJson(json);
+  factory Wallet.fromJson(Map<String, dynamic> json) => _$WalletFromJson(json);
+}
+
+enum WalletTokenEnum {
+  @JsonValue("point")
+  point,
+  @JsonValue("xp")
+  xp,
+}
+
+enum WalletTypeEnum {
+  @JsonValue("hot")
+  hot,
+  @JsonValue("cold")
+  cold,
 }

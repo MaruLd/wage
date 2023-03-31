@@ -10,23 +10,23 @@ class SalaryCycleListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListDatasProvider);
+    final salaryCycleList = ref.watch(salaryCycleFutureProvider);
 
-    return projectList.when(
-        data: (projectData) {
+    return salaryCycleList.when(
+        data: (data) {
           return Container(
             width: 340,
             child: ListView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
-              itemCount: projectData.length,
+              itemCount: data.length,
               itemBuilder: (context, int index) {
                 return Container(
                   width: 300,
                   child: SalaryCycleItem(
                     onTap: () {},
-                    project: projectData[index],
+                    salaryCycle: data[index],
                   ),
                 );
               },

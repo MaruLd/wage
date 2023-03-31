@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/widgets/main_body.dart';
 
 import 'components/body.dart';
 import 'components/profile_overview/profile_overview.dart';
@@ -34,17 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   backFunctions(BuildContext context) {
-    if (overview) {
-      Navigator.pop(context);
-    }
-    if (overviewDetail) {
-      print('overviewDetail' + overviewDetail.toString());
-      viewOverviewDetail();
-    }
-    if (projectsDetail) {
-      print('viewProjectsDetail' + projectsDetail.toString());
-      viewProjects();
-    }
+    Navigator.pop(context);
   }
 
   @override
@@ -67,42 +58,16 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    decoration: BoxDecoration(
-                      color: global.background,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x34000000),
-                          offset: Offset(0, -2),
-                        )
-                      ],
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(0),
-                        topLeft: Radius.circular(40.r),
-                        topRight: Radius.circular(40.r),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Profile(),
-                        Visibility(
-                            visible: overviewDetail,
-                            child: ProfileOverviewDetail(
-                              viewProjects: viewProjects,
-                            )),
-                        Visibility(
-                            visible: overview,
-                            child: ProfileOverview(
-                              viewOverviewDetail: viewOverviewDetail,
-                            )),
-                      ],
-                    ).offset(offset: Offset(0, -50))))
+                child: MainBody(
+                  children: Column(
+                    children: [
+                      Profile(),
+                      ProfileOverviewDetail(),
+                    ],
+                  ).offset(offset: Offset(0, -50)),
+                ))
           ],
-        ).safeArea(),
+        ),
       ),
     );
   }

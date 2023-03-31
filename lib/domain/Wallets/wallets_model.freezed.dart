@@ -201,8 +201,9 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) {
 mixin _$Wallet {
   String get walletId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  String get walletToken => throw _privateConstructorUsedError;
-  String get walletType => throw _privateConstructorUsedError;
+  WalletTokenEnum get walletToken => throw _privateConstructorUsedError;
+  WalletTypeEnum get walletType => throw _privateConstructorUsedError;
+  String? get walletTag => throw _privateConstructorUsedError;
   DateTime get expiredDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -218,8 +219,9 @@ abstract class $WalletCopyWith<$Res> {
   $Res call(
       {String walletId,
       int amount,
-      String walletToken,
-      String walletType,
+      WalletTokenEnum walletToken,
+      WalletTypeEnum walletType,
+      String? walletTag,
       DateTime expiredDate});
 }
 
@@ -240,6 +242,7 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
     Object? amount = null,
     Object? walletToken = null,
     Object? walletType = null,
+    Object? walletTag = freezed,
     Object? expiredDate = null,
   }) {
     return _then(_value.copyWith(
@@ -254,11 +257,15 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
       walletToken: null == walletToken
           ? _value.walletToken
           : walletToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletTokenEnum,
       walletType: null == walletType
           ? _value.walletType
           : walletType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletTypeEnum,
+      walletTag: freezed == walletTag
+          ? _value.walletTag
+          : walletTag // ignore: cast_nullable_to_non_nullable
+              as String?,
       expiredDate: null == expiredDate
           ? _value.expiredDate
           : expiredDate // ignore: cast_nullable_to_non_nullable
@@ -276,8 +283,9 @@ abstract class _$$_WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
   $Res call(
       {String walletId,
       int amount,
-      String walletToken,
-      String walletType,
+      WalletTokenEnum walletToken,
+      WalletTypeEnum walletType,
+      String? walletTag,
       DateTime expiredDate});
 }
 
@@ -295,6 +303,7 @@ class __$$_WalletCopyWithImpl<$Res>
     Object? amount = null,
     Object? walletToken = null,
     Object? walletType = null,
+    Object? walletTag = freezed,
     Object? expiredDate = null,
   }) {
     return _then(_$_Wallet(
@@ -309,11 +318,15 @@ class __$$_WalletCopyWithImpl<$Res>
       walletToken: null == walletToken
           ? _value.walletToken
           : walletToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletTokenEnum,
       walletType: null == walletType
           ? _value.walletType
           : walletType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletTypeEnum,
+      walletTag: freezed == walletTag
+          ? _value.walletTag
+          : walletTag // ignore: cast_nullable_to_non_nullable
+              as String?,
       expiredDate: null == expiredDate
           ? _value.expiredDate
           : expiredDate // ignore: cast_nullable_to_non_nullable
@@ -330,6 +343,7 @@ class _$_Wallet extends _Wallet {
       required this.amount,
       required this.walletToken,
       required this.walletType,
+      this.walletTag,
       required this.expiredDate})
       : super._();
 
@@ -341,15 +355,17 @@ class _$_Wallet extends _Wallet {
   @override
   final int amount;
   @override
-  final String walletToken;
+  final WalletTokenEnum walletToken;
   @override
-  final String walletType;
+  final WalletTypeEnum walletType;
+  @override
+  final String? walletTag;
   @override
   final DateTime expiredDate;
 
   @override
   String toString() {
-    return 'Wallet(walletId: $walletId, amount: $amount, walletToken: $walletToken, walletType: $walletType, expiredDate: $expiredDate)';
+    return 'Wallet(walletId: $walletId, amount: $amount, walletToken: $walletToken, walletType: $walletType, walletTag: $walletTag, expiredDate: $expiredDate)';
   }
 
   @override
@@ -364,14 +380,16 @@ class _$_Wallet extends _Wallet {
                 other.walletToken == walletToken) &&
             (identical(other.walletType, walletType) ||
                 other.walletType == walletType) &&
+            (identical(other.walletTag, walletTag) ||
+                other.walletTag == walletTag) &&
             (identical(other.expiredDate, expiredDate) ||
                 other.expiredDate == expiredDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, walletId, amount, walletToken, walletType, expiredDate);
+  int get hashCode => Object.hash(runtimeType, walletId, amount, walletToken,
+      walletType, walletTag, expiredDate);
 
   @JsonKey(ignore: true)
   @override
@@ -391,8 +409,9 @@ abstract class _Wallet extends Wallet {
   factory _Wallet(
       {required final String walletId,
       required final int amount,
-      required final String walletToken,
-      required final String walletType,
+      required final WalletTokenEnum walletToken,
+      required final WalletTypeEnum walletType,
+      final String? walletTag,
       required final DateTime expiredDate}) = _$_Wallet;
   _Wallet._() : super._();
 
@@ -403,9 +422,11 @@ abstract class _Wallet extends Wallet {
   @override
   int get amount;
   @override
-  String get walletToken;
+  WalletTokenEnum get walletToken;
   @override
-  String get walletType;
+  WalletTypeEnum get walletType;
+  @override
+  String? get walletTag;
   @override
   DateTime get expiredDate;
   @override
