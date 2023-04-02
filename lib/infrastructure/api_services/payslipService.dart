@@ -16,8 +16,7 @@ class PayslipService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API DATA /v1/members/me/payslips: ');
-      print(response.data["message"]);
+      print('API /v1/members/me/payslipsstatus: ${response.statusCode}');
       if (response.statusCode == 200) {
         final payslip = Payslip.fromJson(response.data["message"][0]);
         return payslip;

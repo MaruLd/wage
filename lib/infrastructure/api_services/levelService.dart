@@ -16,10 +16,9 @@ class LevelService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
+      print('API /v1/levels status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final level = Level.fromJson(response.data["message"][0]);
-        print('API DATA /v1/levels: ');
-        print(level);
         return level;
       } else {
         throw Exception(response.statusMessage);

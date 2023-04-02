@@ -1,6 +1,9 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/infrastructure/api_services/fcmService.dart';
 import 'package:wage/presentation/pages/history/history_page.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
@@ -11,7 +14,6 @@ import '../../../application/providers/api_provider.dart';
 import '../../../application/providers/auth_datas_provider.dart';
 import '../error/error_page.dart';
 import '../home/home_page.dart';
-import '../payslips/payslip_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
 
 class Navigation extends ConsumerStatefulWidget {
@@ -27,15 +29,45 @@ class Navigation extends ConsumerStatefulWidget {
     });
   }
 
-  static void navigatorPop(BuildContext context, int index) {
-    Navigator.pop(context);
-  }
-
   @override
   _NavigationState createState() => _NavigationState();
 }
 
 class _NavigationState extends ConsumerState<Navigation> {
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
+  init() async {
+    FCMService fcmService = FCMService();
+    fcmService.sendFCMToken();
+    // listen for user to click on notification
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage remoteMessage) {
+      String? title = remoteMessage.notification!.title;
+      String? description = remoteMessage.notification!.body;
+
+      //im gonna have an alertdialog when clicking from push notification
+      Alert(
+        context: context,
+        type: AlertType.error,
+        title: title, // title from push notification data
+        desc: description, // description from push notifcation data
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+            width: 120,
+          )
+        ],
+      ).show();
+    });
+  }
+
   Map<int, GlobalKey<NavigatorState>> navigatorKeys = {
     0: GlobalKey<NavigatorState>(),
     1: GlobalKey<NavigatorState>(),

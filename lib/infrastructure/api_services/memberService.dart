@@ -19,10 +19,9 @@ class MemberDAO {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
+      print('API /v1/members/me status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
-        print('API DATA /v1/members/me: ');
-        print(member);
         return member;
       } else if (response.statusCode == 401) {
         AuthDAO auth = AuthDAO();

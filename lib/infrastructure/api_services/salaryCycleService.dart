@@ -16,11 +16,11 @@ class SalaryCycleService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
+      print('API /v1/members/me/salarycycle status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<SalaryCycle> salaryCycles =
             data.map((e) => SalaryCycle.fromJson(e)).toList();
-        print(salaryCycles);
         return salaryCycles;
       } else {
         throw Exception(response.statusMessage);

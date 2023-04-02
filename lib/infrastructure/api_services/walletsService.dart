@@ -20,10 +20,9 @@ class WalletsDAO {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
+      print('API/v1/members/me/wallets status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final wallets = Wallets.fromJson(response.data["message"]);
-        print('API DATA /v1/members/me/wallets: ');
-        print(wallets);
         return wallets;
       } else {
         throw Exception(response.statusMessage);

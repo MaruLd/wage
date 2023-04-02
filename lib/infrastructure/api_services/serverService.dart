@@ -8,8 +8,7 @@ class ServerService {
   Future<bool> checkServerStatus() async {
     try {
       final response = await dio.get('/v1/system/test');
-      print('API DATA /v1/system/test');
-      print(response.data);
+      print('API /v1/system/test status: ${response.statusCode}');
       if (response.statusCode == 200) {
         return true;
       } else {

@@ -13,12 +13,12 @@ class ProjectDAO {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response =
-          await dio.get('/v1/members/me/projects',
-              options: Options(headers: {
-                HttpHeaders.contentTypeHeader: "application/json",
-                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
-              }));
+      final response = await dio.get('/v1/members/me/projects',
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
+      print('API /v1/members/me/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
@@ -35,12 +35,11 @@ class ProjectDAO {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response =
-          await dio.get('/v1/members/me/projects/count',
-              options: Options(headers: {
-                HttpHeaders.contentTypeHeader: "application/json",
-                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
-              }));
+      final response = await dio.get('/v1/members/me/projects/count',
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
       if (response.statusCode == 200) {
         int count = response.data["message"]["total"];
         return count;
