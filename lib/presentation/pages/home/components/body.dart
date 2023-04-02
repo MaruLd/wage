@@ -1,172 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/widgets/point_card.dart';
-import 'package:wage/presentation/pages/salaryCycle/salary_cycle_page.dart';
-import 'package:wage/presentation/widgets/loading_shimmer.dart';
 import 'package:wage/presentation/widgets/xp_card.dart';
-import 'package:wage/presentation/pages/profile/profile_page.dart';
-import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
-import '../../error/error_page.dart';
+import '../../../../application/utils/navigation.dart';
 import '../../voucher/voucher_page.dart';
-import '../../level/level_page.dart';
-
-void _ProfilePageNavigation(BuildContext context) {
-  Navigator.of(context, rootNavigator: true).push(
-    MaterialPageRoute(
-      builder: (_) => ProfilePage(),
-    ),
-  );
-}
-
-void _NotificationsPageNavigation(BuildContext context) {
-  Navigator.of(context, rootNavigator: true).push(
-    MaterialPageRoute(
-      builder: (_) => ProfilePage(),
-    ),
-  );
-}
-
-void _SalaryCyclePageNavigation(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => SalaryCyclePage()),
-  );
-}
-
-void _WalletPageNavigation(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ErrorPage()),
-  );
-}
-
-class HomePageHeader extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final userData = ref.watch(userDataProvider);
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Xin chào,',
-                      style: global.textStyle,
-                    ),
-                    userData.when(
-                      // show previous data/error on loading
-                      skipLoadingOnReload: true,
-                      // show previous data if there's an error
-                      skipError: true,
-                      data: (userData) => Text(
-                        userData.fullName ?? '',
-                        style: global.boldTextStyle,
-                      ),
-                      error: (error, stackTrace) {
-                        print(error.toString());
-                        return LoadingShimmer(
-                          height: 25.0,
-                          width: 190.0,
-                          color: Color.fromARGB(118, 2, 193, 123),
-                          baseColor: Color.fromARGB(118, 0, 100, 63),
-                        );
-                      },
-                      loading: () => LoadingShimmer(
-                        height: 25.0,
-                        width: 190.0,
-                        color: Color.fromARGB(118, 2, 193, 123),
-                        baseColor: Color.fromARGB(118, 0, 100, 63),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ).flexible(),
-          const SizedBox(
-            width: 20,
-          ),
-          IconButton(
-            onPressed: () {
-              _NotificationsPageNavigation(context);
-            },
-            icon: Icon(
-              CupertinoIcons.bell_solid,
-              color: global.background,
-              size: 30.0,
-            ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              TextButton(
-                onPressed: () {
-                  _ProfilePageNavigation(context);
-                },
-                child: Card(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: global.darkGreen,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: userData.when(
-                        data: (userData) => userData.imageUrl != null
-                            ? Image.network(userData.imageUrl!)
-                            : Image.asset('assets/images/ANYAA.png'),
-                        error: (error, stackTrace) {
-                          print(error.toString());
-                          return LoadingShimmer(
-                            height: 25.0,
-                            width: 190.0,
-                            color: Color.fromARGB(118, 2, 193, 123),
-                          );
-                        },
-                        loading: () => LoadingShimmer(
-                          height: 25.0,
-                          width: 190.0,
-                          color: Color.fromARGB(118, 2, 193, 123),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class MenuBody extends StatelessWidget {
   const MenuBody({
@@ -178,9 +18,6 @@ class MenuBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
-          height: 20,
-        ),
         const PointCard(),
         const SizedBox(
           height: 15,
@@ -248,7 +85,7 @@ class MenuBody extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    _SalaryCyclePageNavigation(context);
+                    salaryCyclePageNavigation(context);
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -292,7 +129,7 @@ class MenuBody extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    _WalletPageNavigation(context);
+                    walletPageNavigation(context);
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,

@@ -5,6 +5,7 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/presentation/widgets/refresher.dart';
 import '../../../application/providers/api_provider.dart';
 import '../../widgets/main_body.dart';
+import '../../widgets/main_header.dart';
 import '../error/error_page.dart';
 import 'components/body.dart';
 
@@ -19,14 +20,12 @@ class HomePage extends ConsumerWidget {
       backgroundColor: global.primary2,
       body: Refresher(
           children: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          HomePageHeader(),
+          MainHeader(),
           const SizedBox(
-            height: 70,
+            height: 80,
           ),
-          MainBody(children: MenuBody().offset(offset: Offset(0, -80))),
+          MainBody(children: MenuBody()),
         ],
       )),
     );

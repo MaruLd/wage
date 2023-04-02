@@ -10,7 +10,7 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/application/providers/auth_datas_provider.dart';
 
 import '../../../application/providers/api_provider.dart';
-import '../../widgets/navigation_bar.dart';
+import '../navigation/navigation_bar.dart';
 
 class ErrorPage extends ConsumerWidget {
   const ErrorPage({super.key});

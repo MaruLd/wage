@@ -21,14 +21,14 @@ class SettingPage extends ConsumerWidget {
         const SizedBox(
           height: 12,
         ),
-        Profile(),
+        ProfileHeader(),
         SettingsGroup(title: 'Tổng quan', children: <Widget>[
           const SizedBox(
             height: 8,
           ),
+          Profile(),
           Notifications(),
           Logout(),
-          
         ])
       ],
     ));

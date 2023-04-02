@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/settings/global_settings.dart' as global;
 
 class MainBody extends StatelessWidget {
@@ -9,7 +10,7 @@ class MainBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.8,
+        height: MediaQuery.of(context).size.height * 0.9,
         decoration: BoxDecoration(
           color: global.background,
           boxShadow: [
@@ -26,6 +27,6 @@ class MainBody extends StatelessWidget {
             topRight: Radius.circular(40),
           ),
         ),
-        child: children);
+        child: children.offset(offset: Offset(0, -60)));
   }
 }

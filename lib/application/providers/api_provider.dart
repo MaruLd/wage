@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/Level/level_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
+import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/walletsService.dart';
@@ -9,6 +10,7 @@ import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
 import '../../domain/Auth/auth_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../infrastructure/api_services/ServerService.dart';
+import '../../infrastructure/api_services/payslipService.dart';
 import '../../infrastructure/api_services/salaryCycleService.dart';
 import '../../infrastructure/authentication_service/authService.dart';
 import '../../infrastructure/api_services/levelService.dart';
@@ -31,6 +33,8 @@ final levelProvider = Provider((ref) => LevelService());
 
 final salaryCycleProvider = Provider((ref) => SalaryCycleService());
 
+final payslipProvider = Provider((ref) => PayslipService());
+
 final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
     final server = ref.watch(serverProvider).checkServerStatus();
@@ -49,6 +53,12 @@ final apiTokenProvider = FutureProvider.autoDispose<AuthInfo?>(
 final userDataProvider = FutureProvider<Member>(
   (ref) {
     return ref.watch(userProvider).getSelfInfo();
+  },
+);
+
+final payslipDataProvider  = FutureProvider.family<Payslip, String>(
+  (ref, salaryCycleId) {
+    return ref.watch(payslipProvider).getSelfPayslip(salaryCycleId);
   },
 );
 

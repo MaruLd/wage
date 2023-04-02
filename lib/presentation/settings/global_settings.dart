@@ -21,6 +21,8 @@ var headerText = Color.fromRGBO(81, 107, 158, 1);
 var circle = Color.fromRGBO(244, 241, 222, 1);
 var danger = Color.fromARGB(255, 255, 93, 158);
 var medium = Color.fromARGB(255, 92, 72, 204);
+var yellow = Color.fromARGB(255, 246, 181, 69);
+var cyan = Color.fromARGB(255, 46, 205, 202);
 
 // font styles
 var headerFont = 'Open Sans';

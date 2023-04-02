@@ -6,7 +6,7 @@ import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/pages/home/home_page.dart';
 
 import '../../../application/providers/auth_datas_provider.dart';
-import '../../widgets/navigation_bar.dart';
+import '../navigation/navigation_bar.dart';
 import 'components/body.dart';
 
 class WelcomePage extends ConsumerWidget {

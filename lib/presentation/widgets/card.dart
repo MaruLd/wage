@@ -15,13 +15,13 @@ class MainCard extends StatelessWidget {
       children: [
         Container(
           height: 130,
-          width: 330,
+          width: 340,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 blurRadius: 6,
-                color: Colors.black,
-                offset: Offset(0, 2),
+                color: Color.fromARGB(94, 0, 0, 0),
+                offset: Offset(0, 5),
               )
             ],
             gradient: LinearGradient(
@@ -39,7 +39,7 @@ class MainCard extends StatelessWidget {
               children,
               Image.asset(
                 'assets/images/PointCardBackground.png',
-              ).offset(offset: Offset(8, 4)),
+              ).offset(offset: Offset(8, 2)),
             ],
           ),
         ),

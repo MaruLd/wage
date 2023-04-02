@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../Payslips/payslip_model.dart';
+import '../Payslip/payslip_model.dart';
 
 part 'salary_cycle_model.freezed.dart';
 part 'salary_cycle_model.g.dart';

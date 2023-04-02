@@ -11,7 +11,7 @@ class SalaryCycleService {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/salarycycle',
+      final response = await dio.get('/v1/members/me/salarycycle',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
@@ -22,27 +22,6 @@ class SalaryCycleService {
             data.map((e) => SalaryCycle.fromJson(e)).toList();
         print(salaryCycles);
         return salaryCycles;
-      } else {
-        throw Exception(response.statusMessage);
-      }
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  Future<SalaryCycle> getSalaryCycle(String salaryCycleId) async {
-    final storage = new FlutterSecureStorage();
-    try {
-      String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/salarycycle/',
-          data: {"scId": salaryCycleId},
-          options: Options(headers: {
-            HttpHeaders.contentTypeHeader: "application/json",
-            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
-          }));
-      if (response.statusCode == 200) {
-        final salaryCycle = SalaryCycle.fromJson(response.data["message"]);
-        return salaryCycle;
       } else {
         throw Exception(response.statusMessage);
       }

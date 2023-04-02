@@ -11,16 +11,10 @@ import 'package:wage/presentation/settings/global_settings.dart' as global;
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/widgets/loading_shimmer.dart';
 
-import '../../profile/profile_page.dart';
+import '../../../../application/utils/navigation.dart';
+import '../../profile_overview/profile_page.dart';
 
-void _ProfilePageNavigation(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ProfilePage()),
-  );
-}
-
-class Profile extends ConsumerWidget {
+class ProfileHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userData = ref.watch(userDataProvider);
@@ -47,7 +41,7 @@ class Profile extends ConsumerWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  _ProfilePageNavigation(context);
+                  profilePageNavigation(context);
                 },
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -108,9 +102,9 @@ class Logout extends ConsumerWidget {
   }
 }
 
-class Notifications extends ConsumerWidget {
+class Notifications extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SimpleSettingsTile(
         title: 'Thông báo',
         leading: Icon(
@@ -119,5 +113,19 @@ class Notifications extends ConsumerWidget {
           size: 30.0,
         ),
         onTap: () {});
+  }
+}
+
+class Profile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SimpleSettingsTile(
+        title: 'Cá Nhân',
+        leading: Icon(
+          CupertinoIcons.person_fill,
+          color: global.primary,
+          size: 30.0,
+        ),
+        onTap: () => profilePageNavigation(context));
   }
 }

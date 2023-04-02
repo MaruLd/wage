@@ -2,12 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../domain/Level/level_model.dart';
-import '../../domain/SalaryCycle/salary_cycle_model.dart';
+import 'package:wage/domain/Payslip/payslip_model.dart';
 import '../network_services/dioAdapter.dart';
 
-class SalaryCycleService {
-  Future<SalaryCycle> getSelfPayslip(String salaryCycleId) async {
+class PayslipService {
+  Future<Payslip> getSelfPayslip(String salaryCycleId) async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -17,9 +16,11 @@ class SalaryCycleService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
+      print('API DATA /v1/members/me/payslips: ');
+      print(response.data["message"]);
       if (response.statusCode == 200) {
-        final salaryCycle = SalaryCycle.fromJson(response.data["message"]);
-        return salaryCycle;
+        final payslip = Payslip.fromJson(response.data["message"][0]);
+        return payslip;
       } else {
         throw Exception(response.statusMessage);
       }
