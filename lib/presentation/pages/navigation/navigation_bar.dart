@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/infrastructure/api_services/fcmService.dart';
+import 'package:wage/infrastructure/api_services/fcm_service.dart';
 import 'package:wage/presentation/pages/history/history_page.dart';
-import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../application/providers/api_provider.dart';
 import '../../../application/providers/auth_datas_provider.dart';
 import '../error/error_page.dart';
 import '../home/home_page.dart';
+import '../profile_overview/profile_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
 
 class Navigation extends ConsumerStatefulWidget {
@@ -38,17 +38,17 @@ class _NavigationState extends ConsumerState<Navigation> {
   void initState() {
     init();
     super.initState();
+    Future.delayed(Duration.zero, () {
+      ref.read(fcmTokenProvider);
+    });
   }
 
   init() async {
-    FCMService fcmService = FCMService();
-    fcmService.sendFCMToken();
     // listen for user to click on notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage remoteMessage) {
       String? title = remoteMessage.notification!.title;
       String? description = remoteMessage.notification!.body;
 
-      //im gonna have an alertdialog when clicking from push notification
       Alert(
         context: context,
         type: AlertType.error,
@@ -56,12 +56,12 @@ class _NavigationState extends ConsumerState<Navigation> {
         desc: description, // description from push notifcation data
         buttons: [
           DialogButton(
-            child: Text(
+            onPressed: () => Navigator.pop(context),
+            width: 120,
+            child: const Text(
               "OK",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
-            onPressed: () => Navigator.pop(context),
-            width: 120,
           )
         ],
       ).show();
@@ -74,13 +74,14 @@ class _NavigationState extends ConsumerState<Navigation> {
     2: GlobalKey<NavigatorState>(),
     3: GlobalKey<NavigatorState>(),
     4: GlobalKey<NavigatorState>(),
+    5: GlobalKey<NavigatorState>(),
   };
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const HistoryPage(),
     const TransferPage(),
     const SalaryCyclePage(),
-    const SettingPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -172,7 +173,7 @@ class _NavigationState extends ConsumerState<Navigation> {
                   color: global.primary,
                 ),
                 icon: Icon(Icons.topic_outlined),
-                label: 'Phiếu Lương',
+                label: 'Kỳ Lương',
               ),
               BottomNavigationBarItem(
                 activeIcon: Icon(

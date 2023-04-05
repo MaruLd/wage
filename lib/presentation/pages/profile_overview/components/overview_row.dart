@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class OverviewRow extends ConsumerWidget {
   const OverviewRow({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class OverviewRow extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  totalWorkHours != null ? '$totalWorkHours' : '-',
+                  totalWorkHours != null ? '$totalWorkHours' : '0',
                   style: TextStyle(
                     color: global.normalText,
                     fontFamily: global.numberFont,
@@ -53,7 +53,7 @@ class OverviewRow extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  projectsCount != null ? '$projectsCount' : '-',
+                  projectsCount != null ? '$projectsCount' : '0',
                   style: TextStyle(
                     color: global.normalText,
                     fontFamily: global.numberFont,
@@ -79,7 +79,7 @@ class OverviewRow extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '-',
+                  '0',
                   style: TextStyle(
                     color: global.normalText,
                     fontFamily: global.numberFont,

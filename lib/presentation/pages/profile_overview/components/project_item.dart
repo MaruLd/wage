@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
-
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class ProjectItem extends StatelessWidget {
-  ProjectItem({Key? key, required this.project, this.onTap}) : super(key: key);
-  Project project;
+  const ProjectItem({Key? key, required this.project, this.onTap})
+      : super(key: key);
+  final Project project;
   final GestureTapCallback? onTap;
 
   @override

@@ -13,14 +13,5 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M66.1703 80.7095C69.2403 80.7095 71.5526 83.503 70.9789 86.519L64.9728 118.096C64.5991 120.06 63.0565 121.553 61.148 121.908V121.988L60.617 121.976C60.5022 121.984 60.3863 121.988 60.2697 121.988C60.0745 121.988 59.8825 121.977 59.6941 121.954L54.5249 121.834L55.4839 117.039C55.4923 116.808 55.5175 116.574 55.5607 116.338L61.3556 84.7219C61.7816 82.3976 63.8073 80.7095 66.1703 80.7095Z" fill="#3C2B11"/>
 <path d="M61.2682 80.7095H68.4731C71.7868 80.7095 73.9435 83.3431 73.2902 86.5918L73.2255 86.9136C72.5722 90.1622 69.3563 92.7958 66.0426 92.7958H58.8378L61.2682 80.7095Z" fill="#8B6939"/>
 <defs>
-<filter id="filter0_i_72_4060" x="46.4362" y="39.2971" width="8.86816" height="55.9804" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dx="13"/>
-<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.384314 0 0 0 0 0.290196 0 0 0 0 0.141176 0 0 0 1 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_72_4060"/>
-</filter>
 </defs>
 </svg>

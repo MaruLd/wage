@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/widgets/point_card.dart';
 import 'package:wage/presentation/widgets/xp_card.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../../application/utils/navigation.dart';
 import '../../voucher/voucher_page.dart';
 
@@ -181,90 +181,100 @@ class MenuBody extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.circular(16.r),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 15),
-                      child: FaIcon(
-                        FontAwesomeIcons.fileInvoiceDollar,
-                        color: Colors.grey,
-                        size: 22,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Phiếu lương',
-                              style: GoogleFonts.montserrat(
-                                color: Colors.brown,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+                child: TextButton(
+                  onPressed: () {
+                    salaryCyclePageNavigation(context);
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 15),
+                        child: FaIcon(
+                          FontAwesomeIcons.fileInvoiceDollar,
+                          color: Colors.grey,
+                          size: 22,
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Kỳ lương',
+                                style: GoogleFonts.montserrat(
+                                  color: Colors.brown,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
-                width: 155,
-                height: 62,
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(254, 243, 231, 1),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4,
-                      color: Color(0x33000000),
-                      offset: Offset(0, 2),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(16.r),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
-                      child: Icon(
-                        Icons.receipt_long_sharp,
-                        color: Colors.grey,
-                        size: 24,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Báo cáo',
-                              style: GoogleFonts.montserrat(
-                                color: Colors.brown,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+                  width: 155,
+                  height: 62,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(254, 243, 231, 1),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x33000000),
+                        offset: Offset(0, 2),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      reportPageNavigation(context);
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                          child: Icon(
+                            Icons.receipt_long_sharp,
+                            color: Colors.grey,
+                            size: 24,
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Báo cáo',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.brown,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  )),
             ],
           ),
         ),

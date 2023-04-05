@@ -2,22 +2,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/xp_card.dart';
 
-import '../../profile_detail/profile_page.dart';
 import 'overview_row.dart';
 
-void _ProfileDetailPageNavigation(BuildContext context) {
-  Navigator.of(context, rootNavigator: true).push(
-    MaterialPageRoute(
-      builder: (_) => ProfileDetailPage(),
-    ),
-  );
-}
+// void _ProfileDetailPageNavigation(BuildContext context) {
+//   Navigator.of(context, rootNavigator: true).push(
+//     MaterialPageRoute(
+//       builder: (_) => ProfileDetailPage(),
+//     ),
+//   );
+// }
 
 class ProfileOverview extends StatelessWidget {
+  const ProfileOverview({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -26,23 +28,26 @@ class ProfileOverview extends StatelessWidget {
         children: [
           Text(
             'Tổng quan',
-            style: global.boldTextDarkStyle,
-          ),
-          TextButton(
-            onPressed: () => _ProfileDetailPageNavigation(context),
-            child: Text(
-              'Chi tiết',
-              style: TextStyle(
-                color: global.forgetButton,
-                fontWeight: FontWeight.w500,
-                fontSize: 16.sp,
-              ),
+            style: GoogleFonts.montserrat(
+              color: global.headerText,
+              fontWeight: FontWeight.w700,
+              fontSize: 24,
             ),
           ),
+          // TextButton(
+          //   onPressed: () => _ProfileDetailPageNavigation(context),
+          //   child: Text(
+          //     'Chi tiết',
+          //     style: TextStyle(
+          //       color: global.forgetButton,
+          //       fontWeight: FontWeight.w500,
+          //       fontSize: 16.sp,
+          //     ),
+          //   ),
+          // ),
         ],
       ).px20(),
       OverviewRow(),
-      XpCard(),
     ]);
   }
 }

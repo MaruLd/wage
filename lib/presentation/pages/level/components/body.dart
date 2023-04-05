@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../widgets/loading_shimmer.dart';
 import 'level_detail/level_circle_progress.dart';

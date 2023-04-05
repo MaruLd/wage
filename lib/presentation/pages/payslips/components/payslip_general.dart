@@ -5,17 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/application/utils/number_formatter.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/application/utils/formatter.dart';
+import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../widgets/card.dart';
+import '../../../widgets/loading_shimmer.dart';
 
 class PayslipGeneral extends ConsumerWidget {
-  const PayslipGeneral({Key? key}) : super(key: key);
+  const PayslipGeneral({Key? key, required this.salaryCycle}) : super(key: key);
+  final SalaryCycle salaryCycle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final walletsData = ref.watch(walletsDataProvider);
+    final payslip = ref.watch(payslipDataProvider(salaryCycle.salaryCycleId));
     return Column(children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,20 +37,20 @@ class PayslipGeneral extends ConsumerWidget {
               children: [
                 Text(
                   'Từ ngày',
-                  style: GoogleFonts.openSans(
+                  style: GoogleFonts.montserrat(
                     color: global.headerText,
                     fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                    fontSize: 16,
                   ),
                 ),
                 const SizedBox(
                   height: 3,
                 ),
                 Text(
-                  '10/10/2022',
+                  DateFormat('dd/MM/yyyy').format(salaryCycle.createdAt),
                   style: GoogleFonts.montserrat(
                     color: global.headerText,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ),
@@ -73,20 +75,22 @@ class PayslipGeneral extends ConsumerWidget {
               children: [
                 Text(
                   'Đến ngày',
-                  style: GoogleFonts.openSans(
+                  style: GoogleFonts.montserrat(
                     color: global.headerText,
                     fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                    fontSize: 16,
                   ),
                 ),
                 const SizedBox(
                   height: 3,
                 ),
                 Text(
-                  '10/10/2022',
+                  salaryCycle.endedAt != null
+                      ? DateFormat('dd/MM/yyyy').format(salaryCycle.endedAt!)
+                      : '',
                   style: GoogleFonts.montserrat(
                     color: global.headerText,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ),
@@ -116,13 +120,28 @@ class PayslipGeneral extends ConsumerWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'Point: 1000',
-                  style: GoogleFonts.montserrat(
-                    color: global.yellow,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
+                payslip.when(
+                  data: (data) {
+                    return Text(
+                        'Point: ${multiplePointFormat(data.totalP1, data.totalP2, data.totalP3)}',
+                        style: GoogleFonts.montserrat(
+                          color: global.yellow,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ));
+                  },
+                  error: (error, stackTrace) {
+                    print(error.toString());
+                    return LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206),
+                    );
+                  },
+                  loading: () => LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206)),
                 ),
               ],
             ),
@@ -145,13 +164,27 @@ class PayslipGeneral extends ConsumerWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'XP: 1000',
-                  style: GoogleFonts.montserrat(
-                    color: global.darkGreen,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
+                payslip.when(
+                  data: (data) {
+                    return Text('XP: ${pointFormat(data.totalXP!)}',
+                        style: GoogleFonts.montserrat(
+                          color: global.darkGreen,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ));
+                  },
+                  error: (error, stackTrace) {
+                    print(error.toString());
+                    return LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206),
+                    );
+                  },
+                  loading: () => LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206)),
                 ),
               ],
             ),
@@ -186,22 +219,22 @@ class PayslipGeneral extends ConsumerWidget {
                         color: global.background, size: 23)
                     .centered(),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Tổng point P1',
-                    style: GoogleFonts.openSans(
+                    style: GoogleFonts.montserrat(
                       color: global.normalText,
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
                     ),
                   ),
                   Text(
-                    'Vị trí làm việc',
-                    style: GoogleFonts.openSans(
+                    'Vị trí việc làm',
+                    style: GoogleFonts.montserrat(
                       color: Colors.grey.withOpacity(0.9),
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -210,18 +243,34 @@ class PayslipGeneral extends ConsumerWidget {
                 ],
               ),
               const SizedBox(
-                width: 10,
+                width: 35,
               ),
               Container(
                 width: 65,
                 alignment: AlignmentDirectional.center,
-                child: Text(
-                  pointFormat(400, 0, 0),
-                  style: GoogleFonts.montserrat(
-                    color: global.headerText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+                child: payslip.when(
+                  data: (data) {
+                    return Text(
+                      pointFormat(data.totalP1!),
+                      style: GoogleFonts.montserrat(
+                        color: global.headerText,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    );
+                  },
+                  error: (error, stackTrace) {
+                    print(error.toString());
+                    return LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206),
+                    );
+                  },
+                  loading: () => LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206)),
                 ),
               ),
             ]),
@@ -257,14 +306,14 @@ class PayslipGeneral extends ConsumerWidget {
                         color: global.background, size: 23)
                     .centered(),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Tổng point P2',
-                    style: GoogleFonts.openSans(
+                    style: GoogleFonts.montserrat(
                       color: global.normalText,
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -272,7 +321,7 @@ class PayslipGeneral extends ConsumerWidget {
                   ),
                   Text(
                     'Năng lực',
-                    style: GoogleFonts.openSans(
+                    style: GoogleFonts.montserrat(
                       color: Colors.grey.withOpacity(0.9),
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -281,18 +330,34 @@ class PayslipGeneral extends ConsumerWidget {
                 ],
               ),
               const SizedBox(
-                width: 10,
+                width: 32,
               ),
               Container(
                 width: 65,
                 alignment: AlignmentDirectional.center,
-                child: Text(
-                  pointFormat(40000, 0, 0),
-                  style: GoogleFonts.montserrat(
-                    color: global.headerText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+                child: payslip.when(
+                  data: (data) {
+                    return Text(
+                      pointFormat(data.totalP2!),
+                      style: GoogleFonts.montserrat(
+                        color: global.headerText,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    );
+                  },
+                  error: (error, stackTrace) {
+                    print(error.toString());
+                    return LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206),
+                    );
+                  },
+                  loading: () => LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206)),
                 ),
               ),
             ]),
@@ -328,14 +393,14 @@ class PayslipGeneral extends ConsumerWidget {
                         color: global.background, size: 23)
                     .centered(),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Tổng point P3',
-                    style: GoogleFonts.openSans(
+                    style: GoogleFonts.montserrat(
                       color: global.normalText,
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -343,7 +408,7 @@ class PayslipGeneral extends ConsumerWidget {
                   ),
                   Text(
                     'Hiệu suất làm việc',
-                    style: GoogleFonts.openSans(
+                    style: GoogleFonts.montserrat(
                       color: Colors.grey.withOpacity(0.9),
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -352,18 +417,34 @@ class PayslipGeneral extends ConsumerWidget {
                 ],
               ),
               const SizedBox(
-                width: 10,
+                width: 30,
               ),
               Container(
                 width: 65,
                 alignment: AlignmentDirectional.center,
-                child: Text(
-                  pointFormat(400000, 0, 0),
-                  style: GoogleFonts.montserrat(
-                    color: global.headerText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+                child: payslip.when(
+                  data: (data) {
+                    return Text(
+                      pointFormat(data.totalP3!),
+                      style: GoogleFonts.montserrat(
+                        color: global.headerText,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    );
+                  },
+                  error: (error, stackTrace) {
+                    print(error.toString());
+                    return LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206),
+                    );
+                  },
+                  loading: () => LoadingShimmer(
+                      height: 20.0,
+                      width: 70.0,
+                      color: Color.fromARGB(146, 31, 255, 206)),
                 ),
               ),
             ]),

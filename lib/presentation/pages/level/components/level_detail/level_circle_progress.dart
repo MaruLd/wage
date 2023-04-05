@@ -7,7 +7,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/level/components/projectxp/project_xp_item.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../widgets/loading_shimmer.dart';
 

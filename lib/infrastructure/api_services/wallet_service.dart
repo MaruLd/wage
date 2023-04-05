@@ -2,15 +2,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:wage/domain/Auth/auth_model.dart';
-import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
-import 'package:wage/infrastructure/authentication_service/authService.dart';
 import 'package:wage/infrastructure/network_services/dioAdapter.dart';
 
-import '../../presentation/settings/global_settings.dart' as global;
-
-class WalletsDAO {
+class WalletsService {
   Future<Wallets> getSelfWallets() async {
     final storage = new FlutterSecureStorage();
     try {

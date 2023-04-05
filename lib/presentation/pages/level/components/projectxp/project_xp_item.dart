@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class ProjectXPItem extends StatelessWidget {
   ProjectXPItem({Key? key, required this.project, this.onTap})

@@ -16,17 +16,18 @@ class SalaryCycleListView extends ConsumerWidget {
         data: (data) {
           return Container(
             width: 340,
+            height: 320,
             child: ListView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
-              itemCount: data.length,
+              itemCount: 10,
               itemBuilder: (context, int index) {
                 return Container(
-                  width: 300,
+                  width: 320,
                   child: SalaryCycleItem(
                     onTap: () {},
-                    salaryCycle: data[index],
+                    salaryCycle: data[1],
                   ),
                 );
               },
@@ -35,12 +36,12 @@ class SalaryCycleListView extends ConsumerWidget {
         },
         error: (error, stackTrace) => ShimmerList(
             height: 30.0,
-            width: 320.0,
+            width: 340.0,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
         loading: () => ShimmerList(
             height: 30.0,
-            width: 320.0,
+            width: 340.0,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

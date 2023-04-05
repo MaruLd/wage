@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
-import 'package:wage/presentation/widgets/sub_page_avatar.dart';
 
-import '../../widgets/sub_header.dart';
-import 'components/profile_detail/profile_detail.dart';
+import '../../widgets/sub_page_avatar.dart';
+import 'components/logout_button.dart';
 
-class ProfileDetailPage extends StatefulWidget {
-  static String get routeName => 'profile_detail';
-  static String get routeLocation => '/profile_detail';
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
+  static String get routeName => 'profile';
+  static String get routeLocation => '/profile';
 
   @override
-  State<ProfileDetailPage> createState() => _ProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfileDetailPage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,15 @@ class _ProfilePageState extends State<ProfileDetailPage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SubHeader('THÀNH TÍCH'),
+            const SizedBox(
+              height: 32,
+            ),
+            Center(
+              child: Text(
+                'HỒ SƠ',
+                style: global.boldTextStyle,
+              ),
+            ),
             const SizedBox(
               height: 40,
             ),
@@ -38,7 +46,6 @@ class _ProfilePageState extends State<ProfileDetailPage> {
                         height: 10,
                       ),
                       Avatar(),
-                      ProfileOverviewDetail(),
                     ],
                   ),
                 ))

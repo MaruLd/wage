@@ -3,31 +3,26 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
-import 'package:wage/domain/Member/member_model.dart';
+import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/authentication_service/authService.dart';
-import '../../presentation/settings/global_settings.dart' as global;
-import '../network_services/dioAdapter.dart';
+import 'package:wage/infrastructure/network_services/dioAdapter.dart';
+import '../../presentation/theme/global_theme.dart' as global;
 
-class MemberDAO {
-  Future<Member> getSelfInfo([data]) async {
+class ProjectService {
+  Future<List<Project>> getProjects() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-
-      final response = await dio.get('/v1/members/me',
+      final response = await dio.get('/v1/members/me/projects?OrderBy=dateDesc',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me status: ${response.statusCode}');
+      print('API /v1/members/me/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
-        final member = Member.fromJson(response.data["message"]);
-        return member;
-      } else if (response.statusCode == 401) {
-        AuthDAO auth = AuthDAO();
-        await auth.getAuthInformation();
-        getSelfInfo(data);
-        throw ('');
+        List data = response.data["message"];
+        List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
+        return projects;
       } else {
         throw Exception(response.statusMessage);
       }
@@ -36,18 +31,18 @@ class MemberDAO {
     }
   }
 
-  Future<int> getSelfAchievement() async {
+  Future<int> getProjectsCount() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/members/me/achievements',
+      final response = await dio.get('/v1/members/me/projects/count',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
       if (response.statusCode == 200) {
-        final hour = response.data["message"]["totalWorkHours"];
-        return hour;
+        int count = response.data["message"]["total"];
+        return count;
       } else {
         throw Exception(response.statusMessage);
       }

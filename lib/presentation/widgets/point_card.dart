@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/application/utils/formatter.dart';
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import 'card.dart';
 import 'loading_shimmer.dart';
@@ -38,12 +39,8 @@ class PointCard extends ConsumerWidget {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(25, 10, 20, 0),
             child: walletsData.when(
-              // show previous data/error on loading
-              skipLoadingOnReload: true,
-              // show previous data if there's an error
-              skipError: true,
               data: (wallet) {
-                return Text(wallet.totalPoint.toString(),
+                return Text(pointFormatForCard(wallet.totalPoint),
                     style: GoogleFonts.montserrat(
                       color: global.background,
                       fontWeight: FontWeight.w700,

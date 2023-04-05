@@ -11,6 +11,7 @@ class FCMService {
   void sendFCMToken() async {
     final storage = new FlutterSecureStorage();
     var token = await getDeviceToken();
+    print(token);
     if (token == "") {
       throw Exception("FCM Token not found");
     }
@@ -24,7 +25,7 @@ class FCMService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/users/fcm-tokenstatus: ${response.statusCode}');
+      print('API /v1/users/fcm-token status: ${response.statusCode}');
     } catch (e) {
       throw Exception(e);
     }

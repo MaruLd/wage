@@ -23,6 +23,7 @@ var danger = Color.fromARGB(255, 255, 93, 158);
 var medium = Color.fromARGB(255, 92, 72, 204);
 var yellow = Color.fromARGB(255, 246, 181, 69);
 var cyan = Color.fromARGB(255, 46, 205, 202);
+var primary3 = Color.fromARGB(255, 48, 188, 151);
 
 // font styles
 var headerFont = 'Open Sans';

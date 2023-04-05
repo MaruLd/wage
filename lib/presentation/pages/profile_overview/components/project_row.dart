@@ -1,20 +1,17 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
-import 'package:wage/presentation/widgets/xp_card.dart';
+import 'package:wage/presentation/pages/profile_overview/components/project_list_view.dart';
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../project_list_view/project_list_view.dart';
-
-class ProfileOverviewDetail extends StatefulWidget {
-  const ProfileOverviewDetail({Key? key}) : super(key: key);
+class ProjectProgress extends StatefulWidget {
+  const ProjectProgress({Key? key}) : super(key: key);
 
   @override
-  State<ProfileOverviewDetail> createState() => _ProfileOverviewDetailState();
+  State<ProjectProgress> createState() => _ProjectProgressState();
 }
 
-class _ProfileOverviewDetailState extends State<ProfileOverviewDetail> {
+class _ProjectProgressState extends State<ProjectProgress> {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -22,8 +19,12 @@ class _ProfileOverviewDetailState extends State<ProfileOverviewDetail> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Dự án tham gia',
-            style: global.boldTextDarkStyle,
+            'Tiến trình các dự án',
+            style: GoogleFonts.montserrat(
+              color: global.headerText,
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+            ),
           ),
           TextButton(
             onPressed: () => {},
@@ -38,8 +39,7 @@ class _ProfileOverviewDetailState extends State<ProfileOverviewDetail> {
           ),
         ],
       ).px20(),
-      ProjectListView(),
-      XpCard()
+      const ProjectListView(),
     ]);
   }
 }

@@ -1,52 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:intl/intl.dart';
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../application/utils/formatter.dart';
+import '../../../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../../widgets/card.dart';
 
-class SalaryCycleCard extends ConsumerWidget {
-  const SalaryCycleCard({Key? key}) : super(key: key);
+class SalaryCycleCard extends StatelessWidget {
+  const SalaryCycleCard({Key? key, required this.salaryCycle})
+      : super(key: key);
+  final SalaryCycle salaryCycle;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final walletsData = ref.watch(walletsDataProvider);
+  Widget build(BuildContext context) {
     return MainCard(
         children: Padding(
       padding: const EdgeInsets.only(left: 25.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 27,
+          const SizedBox(
+            height: 14,
           ),
           Text(
             'Kỳ lương',
             style: GoogleFonts.montserrat(
-              color: global.background,
-              fontWeight: FontWeight.w400,
-              fontSize: 15,
+              color: global.secondary2,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
             ),
           ),
-          SizedBox(
-            height: 15,
+          const SizedBox(
+            height: 8,
           ),
           Row(
             children: [
               Text(
-                '10/2022',
+                '${DateFormat('MM/yyyy').format(salaryCycle.createdAt)}',
                 style: GoogleFonts.montserrat(
                   color: global.background,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
                 ),
               ),
-              SizedBox(
-                width: 5,
+              const SizedBox(
+                width: 8,
               ),
-              Icon(Icons.calendar_month, color: global.background, size: 25),
+              Icon(Icons.calendar_month_outlined,
+                  color: global.background, size: 26),
             ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            'Trạng thái',
+            style: GoogleFonts.montserrat(
+              color: global.secondary2,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            '${salaryCycleStatusTransform(salaryCycle.status)}',
+            style: GoogleFonts.montserrat(
+              color: salaryCycleStatusColor(salaryCycle.status),
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
           ),
         ],
       ),

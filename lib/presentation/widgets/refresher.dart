@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../application/providers/api_provider.dart';
 
 class Refresher extends ConsumerWidget {
@@ -25,16 +26,14 @@ class Refresher extends ConsumerWidget {
       });
     }
 
-    return Scaffold(
-        backgroundColor: global.primary2,
-        body: RefreshIndicator(
-          color: global.primary,
-          triggerMode: RefreshIndicatorTriggerMode.anywhere,
-          onRefresh: _refreshData,
-          child: Stack(children: <Widget>[
-            ListView(),
-            SingleChildScrollView(child: children)
-          ]),
-        ));
+    return RefreshIndicator(
+      color: global.primary,
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
+      onRefresh: _refreshData,
+      child: Stack(children: <Widget>[
+        ListView(),
+        SingleChildScrollView(child: children.safeArea())
+      ]),
+    );
   }
 }

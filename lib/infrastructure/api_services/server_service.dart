@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:wage/infrastructure/network_services/dioAdapter.dart';
-import '../../presentation/settings/global_settings.dart' as global;
 
 class ServerService {
   Future<bool> checkServerStatus() async {

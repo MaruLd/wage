@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/settings/global_settings.dart' as global;
+import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/sub_page_avatar.dart';
 

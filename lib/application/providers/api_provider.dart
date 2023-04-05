@@ -4,29 +4,29 @@ import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/infrastructure/api_services/walletsService.dart';
+import 'package:wage/infrastructure/api_services/wallet_service.dart';
 import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
 
 import '../../domain/Auth/auth_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
-import '../../infrastructure/api_services/ServerService.dart';
-import '../../infrastructure/api_services/fcmService.dart';
-import '../../infrastructure/api_services/payslipService.dart';
-import '../../infrastructure/api_services/salaryCycleService.dart';
+import '../../infrastructure/api_services/fcm_service.dart';
+import '../../infrastructure/api_services/payslip_service.dart';
+import '../../infrastructure/api_services/salary_cycle_service.dart';
+import '../../infrastructure/api_services/server_service.dart';
 import '../../infrastructure/authentication_service/authService.dart';
-import '../../infrastructure/api_services/levelService.dart';
-import '../../infrastructure/api_services/memberService.dart';
-import '../../infrastructure/api_services/projectService.dart';
+import '../../infrastructure/api_services/level_service.dart';
+import '../../infrastructure/api_services/member_service.dart';
+import '../../infrastructure/api_services/project_service.dart';
 
 final googleProvider = Provider((ref) => GoogleSignInService());
 
 final tokenProvider = Provider((ref) => AuthDAO());
 
-final userProvider = Provider((ref) => MemberDAO());
+final userProvider = Provider((ref) => MemberService());
 
-final walletsProvider = Provider((ref) => WalletsDAO());
+final walletsProvider = Provider((ref) => WalletsService());
 
-final projectProvider = Provider((ref) => ProjectDAO());
+final projectProvider = Provider((ref) => ProjectService());
 
 final serverProvider = Provider((ref) => ServerService());
 
@@ -36,10 +36,19 @@ final salaryCycleProvider = Provider((ref) => SalaryCycleService());
 
 final payslipProvider = Provider((ref) => PayslipService());
 
+final fcmProvider = Provider((ref) => FCMService());
+
 final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
     final server = ref.watch(serverProvider).checkServerStatus();
     return server;
+  },
+);
+
+final fcmTokenProvider = FutureProvider<void>(
+  (ref) {
+    final fcm = ref.watch(fcmProvider).sendFCMToken();
+    return fcm;
   },
 );
 
@@ -57,7 +66,7 @@ final userDataProvider = FutureProvider<Member>(
   },
 );
 
-final payslipDataProvider  = FutureProvider.family<Payslip, String>(
+final payslipDataProvider = FutureProvider.family<Payslip, String>(
   (ref, salaryCycleId) {
     return ref.watch(payslipProvider).getSelfPayslip(salaryCycleId);
   },
