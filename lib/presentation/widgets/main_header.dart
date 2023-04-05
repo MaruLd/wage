@@ -16,7 +16,7 @@ class MainHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userData = ref.watch(userDataProvider);
+    final userData = ref.watch(userFutureProvider);
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
       child: Row(

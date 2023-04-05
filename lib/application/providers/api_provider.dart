@@ -60,13 +60,13 @@ final apiTokenProvider = FutureProvider.autoDispose<AuthInfo?>(
   },
 );
 
-final userDataProvider = FutureProvider<Member>(
+final userFutureProvider = FutureProvider<Member>(
   (ref) {
     return ref.watch(userProvider).getSelfInfo();
   },
 );
 
-final payslipDataProvider = FutureProvider.family<Payslip, String>(
+final payslipFutureProvider = FutureProvider.family<Payslip, String>(
   (ref, salaryCycleId) {
     return ref.watch(payslipProvider).getSelfPayslip(salaryCycleId);
   },
@@ -78,28 +78,29 @@ final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
   },
 );
 
-final memberWorkHoursProvider = FutureProvider<int>(
+final workHoursFutureProvider = FutureProvider<int>(
   (ref) {
     var respone = ref.watch(userProvider).getSelfAchievement();
     return respone;
   },
 );
 
-final walletsDataProvider = FutureProvider<Wallets>(
+final walletsFutureProvider = FutureProvider<Wallets>(
   (ref) {
     return ref.watch(walletsProvider).getSelfWallets();
   },
 );
 
-final nextLevelDataProvider = FutureProvider<Level>(
+final nextLevelFutureProvider = FutureProvider<Level>(
   (ref) {
-    final xpNeeded =
-        ref.watch(walletsDataProvider).whenOrNull(data: (data) => data.totalXP);
+    final xpNeeded = ref
+        .watch(walletsFutureProvider)
+        .whenOrNull(data: (data) => data.totalXP);
     return ref.watch(levelProvider).getNextLevel(xpNeeded);
   },
 );
 
-final projectListDatasProvider = FutureProvider<List<Project>>((ref) {
+final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
   return ref.read(projectProvider).getProjects();
 });
 

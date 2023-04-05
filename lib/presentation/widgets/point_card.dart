@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:wage/presentation/widgets/search_card.dart';
 
 import 'card.dart';
 import 'loading_shimmer.dart';
@@ -13,8 +14,8 @@ class PointCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final walletsData = ref.watch(walletsDataProvider);
-    return MainCard(
+    final walletsData = ref.watch(walletsFutureProvider);
+    return SearchCard(
       children: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,

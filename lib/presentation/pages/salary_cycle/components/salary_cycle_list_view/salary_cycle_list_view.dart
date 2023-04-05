@@ -16,18 +16,18 @@ class SalaryCycleListView extends ConsumerWidget {
         data: (data) {
           return Container(
             width: 340,
-            height: 320,
+            height: 300,
             child: ListView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
-              itemCount: 10,
+              itemCount: data.length,
               itemBuilder: (context, int index) {
                 return Container(
                   width: 320,
                   child: SalaryCycleItem(
                     onTap: () {},
-                    salaryCycle: data[1],
+                    salaryCycle: data[index],
                   ),
                 );
               },

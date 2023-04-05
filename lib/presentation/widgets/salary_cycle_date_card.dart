@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../application/utils/formatter.dart';
-import '../../../../domain/SalaryCycle/salary_cycle_model.dart';
-import '../../../widgets/card.dart';
+import '../../application/utils/formatter.dart';
+import '../../domain/SalaryCycle/salary_cycle_model.dart';
+import 'card.dart';
 
 class SalaryCycleCard extends StatelessWidget {
   const SalaryCycleCard({Key? key, required this.salaryCycle})

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/infrastructure/api_services/fcm_service.dart';
 import 'package:wage/presentation/pages/history/history_page.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
 import 'package:wage/presentation/pages/welcome/sign_in_page.dart';

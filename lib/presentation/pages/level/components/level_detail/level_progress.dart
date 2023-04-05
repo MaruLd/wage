@@ -14,8 +14,8 @@ class LevelProgress extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nextLevel = ref.watch(nextLevelDataProvider);
-    final walletData = ref.watch(walletsDataProvider);
+    final nextLevel = ref.watch(nextLevelFutureProvider);
+    final walletData = ref.watch(walletsFutureProvider);
 
     return SizedBox(
       width: 390,

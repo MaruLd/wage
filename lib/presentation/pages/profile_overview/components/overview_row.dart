@@ -11,11 +11,11 @@ class OverviewRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListDatasProvider);
+    final projectList = ref.watch(projectListFutureProvider);
     final projectsCount =
         ref.watch(projectsCountProvider).whenOrNull(data: (data) => data);
     final totalWorkHours =
-        ref.watch(memberWorkHoursProvider).whenOrNull(data: (data) => data);
+        ref.watch(workHoursFutureProvider).whenOrNull(data: (data) => data);
 
     return SizedBox(
         width: 360.w,

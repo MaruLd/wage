@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wage/presentation/pages/profile_general/components/logout_button.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
@@ -21,49 +22,47 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: global.primary2,
-      body: Refresher(
-        children: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(
-                height: 32,
+    return Refresher(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            Center(
+              child: Text(
+                'HỒ SƠ',
+                style: global.boldTextStyle,
               ),
-              Center(
-                child: Text(
-                  'HỒ SƠ',
-                  style: global.boldTextStyle,
-                ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                  child: MainBody(
-                    children: Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Avatar(),
-                        EditProfile(),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const ProfileOverview(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const ProjectProgress(),
-                      ],
-                    ),
-                  ))
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                child: MainBody(
+                  children: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Avatar(),
+                      EditProfile(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const ProfileOverview(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const ProjectProgress(),
+                      Logout()
+                    ],
+                  ),
+                ))
+          ],
         ),
       ),
     );

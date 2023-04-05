@@ -7,33 +7,33 @@ import '../../../application/providers/api_provider.dart';
 class Refresher extends ConsumerWidget {
   const Refresher({
     Key? key,
-    required this.children,
+    required this.child,
   }) : super(key: key);
-  final Widget children;
+  final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future<Null> _refreshData() async {
       Future.delayed(const Duration(milliseconds: 500), () {
-        ref.refresh(memberWorkHoursProvider);
+        ref.refresh(workHoursFutureProvider);
         ref.refresh(projectsCountProvider);
-        ref.refresh(projectListDatasProvider);
-        ref.refresh(nextLevelDataProvider);
-        ref.refresh(userDataProvider);
-        ref.refresh(walletsDataProvider);
+        ref.refresh(projectListFutureProvider);
+        ref.refresh(nextLevelFutureProvider);
+        ref.refresh(userFutureProvider);
+        ref.refresh(walletsFutureProvider);
         ref.refresh(serverAvailableProvider);
         print('refreshing data...');
       });
     }
 
-    return RefreshIndicator(
-      color: global.primary,
-      triggerMode: RefreshIndicatorTriggerMode.anywhere,
-      onRefresh: _refreshData,
-      child: Stack(children: <Widget>[
-        ListView(),
-        SingleChildScrollView(child: children.safeArea())
-      ]),
-    );
+    return Scaffold(
+        backgroundColor: global.background,
+        body: RefreshIndicator(
+          color: global.primary2,
+          triggerMode: RefreshIndicatorTriggerMode.anywhere,
+          onRefresh: _refreshData,
+          child: ListView(
+              children: [Container(color: global.primary2, child: child)]),
+        ));
   }
 }

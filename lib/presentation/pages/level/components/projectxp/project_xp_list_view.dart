@@ -12,7 +12,7 @@ class ProjectXPListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListDatasProvider);
+    final projectList = ref.watch(projectListFutureProvider);
 
     return projectList.when(
         data: (projectData) {

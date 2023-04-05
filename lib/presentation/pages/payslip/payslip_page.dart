@@ -11,7 +11,7 @@ import 'package:wage/presentation/widgets/refresher.dart';
 import '../../widgets/card.dart';
 import '../../widgets/sub_header.dart';
 import 'components/payslip_general.dart';
-import 'components/salary_cycle_date_card.dart';
+import '../../widgets/salary_cycle_date_card.dart';
 
 class PayslipPage extends StatelessWidget {
   const PayslipPage({super.key, required this.salaryCycle});
@@ -21,7 +21,7 @@ class PayslipPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: global.primary2,
       body: Refresher(
-        children: Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/pages/profile_overview/components/project_item.dart';
+import 'package:wage/presentation/pages/profile_overview/components/project_list_view/project_item.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-
 
 class ProjectListView extends ConsumerWidget {
   const ProjectListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListDatasProvider);
+    final projectList = ref.watch(projectListFutureProvider);
 
     return projectList.when(
         data: (projectData) {

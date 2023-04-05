@@ -13,18 +13,15 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      backgroundColor: global.primary2,
-      body: Refresher(
-          children: Column(
-        children: [
-          MainHeader(),
-          const SizedBox(
-            height: 80,
-          ),
-          MainBody(children: MenuBody()),
-        ],
-      )),
-    );
+    return Refresher(
+        child: Column(
+      children: [
+        MainHeader(),
+        const SizedBox(
+          height: 80,
+        ),
+        MainBody(children: MenuBody()),
+      ],
+    ));
   }
 }

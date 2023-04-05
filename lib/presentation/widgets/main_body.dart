@@ -10,16 +10,8 @@ class MainBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.9,
         decoration: BoxDecoration(
           color: global.background,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 4,
-              color: Color(0x34000000),
-              offset: Offset(0, -2),
-            )
-          ],
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(0),

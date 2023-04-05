@@ -6,12 +6,11 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-
 class Avatar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userData = ref.watch(userDataProvider);
-    final walletsData = ref.watch(walletsDataProvider);
+    final userData = ref.watch(userFutureProvider);
+    final walletsData = ref.watch(walletsFutureProvider);
     return userData.when(
         error: (error, stackTrace) => Text(
               'Sorry, server currently down!',

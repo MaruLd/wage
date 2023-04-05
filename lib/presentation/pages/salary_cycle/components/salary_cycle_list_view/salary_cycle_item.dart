@@ -20,7 +20,7 @@ class SalaryCycleItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalPoint = ref
-        .watch(payslipDataProvider(salaryCycle.salaryCycleId))
+        .watch(payslipFutureProvider(salaryCycle.salaryCycleId))
         .whenOrNull(
             data: (data) =>
                 multiplePointFormat(data.totalP1, data.totalP2, data.totalP3));
@@ -75,8 +75,8 @@ class SalaryCycleItem extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      salaryCycleStatusTransform(salaryCycle.status) + ': ',
-                      style: GoogleFonts.montserrat(
+                      salaryCycleStatusTransform(salaryCycle.status) + ' ',
+                      style: GoogleFonts.openSans(
                         color: salaryCycleStatusColor(salaryCycle.status),
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp,
@@ -91,7 +91,7 @@ class SalaryCycleItem extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                       ),
                     ),
                   ],

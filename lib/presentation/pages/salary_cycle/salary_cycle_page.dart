@@ -19,23 +19,20 @@ class SalaryCyclePage extends StatefulWidget {
 class _SalaryCyclePageState extends State<SalaryCyclePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: global.primary2,
-      body: Refresher(
-        children: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const MainHeader(),
-            const SizedBox(
-              height: 80,
-            ),
-            MainBody(
-                children: Column(
-              children: [SalaryCycleOverview()],
-            ))
-          ],
-        ),
+    return Refresher(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const MainHeader(),
+          const SizedBox(
+            height: 80,
+          ),
+          MainBody(
+              children: Column(
+            children: [SalaryCycleOverview()],
+          ))
+        ],
       ),
     );
   }

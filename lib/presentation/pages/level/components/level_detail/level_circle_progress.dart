@@ -16,8 +16,8 @@ class LevelCircleProgress extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nextLevel = ref.watch(nextLevelDataProvider);
-    final walletData = ref.watch(walletsDataProvider);
+    final nextLevel = ref.watch(nextLevelFutureProvider);
+    final walletData = ref.watch(walletsFutureProvider);
 
     return Container(
       decoration: BoxDecoration(shape: BoxShape.circle, color: global.primary2),
