@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/widgets/point_card.dart';
-import 'package:wage/presentation/widgets/xp_card.dart';
+import 'package:wage/presentation/widgets/level_card.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../../application/utils/navigation.dart';
 import '../../voucher/voucher_page.dart';
@@ -249,7 +249,7 @@ class MenuBody extends StatelessWidget {
           height: 35,
         ),
         // xp card
-        XpCard(),
+        LevelCard(),
       ],
     );
   }

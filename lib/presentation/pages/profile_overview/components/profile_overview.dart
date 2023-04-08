@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-import 'package:wage/presentation/widgets/xp_card.dart';
+import 'package:wage/presentation/widgets/level_card.dart';
 
 import 'overview_row.dart';
 

@@ -7,29 +7,29 @@ import 'package:google_fonts/google_fonts.dart';
 const apiUrl = "https://api.uniinc-cnb.com";
 
 // colors
-var background = Colors.white;
-var primary = Color.fromRGBO(0, 178, 113, 1);
-var primary2 = Color.fromRGBO(48, 188, 151, 1);
-var darkGreen = Color.fromRGBO(14, 95, 76, 1);
-var secondary2 = Color.fromRGBO(185, 185, 185, 1);
-var navicon = Color.fromRGBO(27, 224, 205, 1);
-var forgetButton = Color.fromRGBO(143, 113, 255, 1);
-var militaryGreen = Color.fromARGB(255, 85, 160, 111);
-var normalText = Color.fromRGBO(58, 58, 58, 1);
-var smallText = Color.fromRGBO(116, 112, 112, 1);
-var headerText = Color.fromRGBO(81, 107, 158, 1);
-var circle = Color.fromRGBO(244, 241, 222, 1);
-var danger = Color.fromARGB(255, 255, 93, 158);
-var medium = Color.fromARGB(255, 92, 72, 204);
-var yellow = Color.fromARGB(255, 246, 181, 69);
-var cyan = Color.fromARGB(255, 46, 205, 202);
-var primary3 = Color.fromARGB(255, 48, 188, 151);
+const background = Colors.white;
+const primary = Color.fromRGBO(0, 178, 113, 1);
+const primary2 = Color.fromRGBO(48, 188, 151, 1);
+const darkGreen = Color.fromRGBO(14, 95, 76, 1);
+const secondary2 = Color.fromRGBO(185, 185, 185, 1);
+const navicon = Color.fromRGBO(27, 224, 205, 1);
+const forgetButton = Color.fromRGBO(143, 113, 255, 1);
+const militaryGreen = Color.fromARGB(255, 85, 160, 111);
+const normalText = Color.fromRGBO(58, 58, 58, 1);
+const smallText = Color.fromRGBO(116, 112, 112, 1);
+const headerText = Color.fromRGBO(81, 107, 158, 1);
+const circle = Color.fromRGBO(244, 241, 222, 1);
+const danger = Color.fromARGB(255, 255, 93, 158);
+const medium = Color.fromARGB(255, 92, 72, 204);
+const yellow = Color.fromARGB(255, 246, 181, 69);
+const cyan = Color.fromARGB(255, 46, 205, 202);
+const primary3 = Color.fromARGB(255, 48, 188, 151);
 
 // font styles
-var headerFont = 'Open Sans';
-var mainFont = 'Roboto';
-var smoothFont = 'Epilogue';
-var numberFont = 'Montserrat';
+const headerFont = 'Open Sans';
+const mainFont = 'Roboto';
+const smoothFont = 'Epilogue';
+const numberFont = 'Montserrat';
 
 TextStyle boldTextStyle = GoogleFonts.montserrat(
   color: background,

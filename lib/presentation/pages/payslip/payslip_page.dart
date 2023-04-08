@@ -18,30 +18,27 @@ class PayslipPage extends StatelessWidget {
   final SalaryCycle salaryCycle;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: global.primary2,
-      body: Refresher(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SubHeader('PHIẾU LƯƠNG'),
-            const SizedBox(
-              height: 80,
-            ),
-            MainBody(
-                children: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SalaryCycleCard(salaryCycle: salaryCycle),
-                const SizedBox(
-                  height: 20,
-                ),
-                PayslipGeneral(salaryCycle: salaryCycle)
-              ],
-            ))
-          ],
-        ),
+    return Refresher(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SubHeader('PHIẾU LƯƠNG'),
+          const SizedBox(
+            height: 80,
+          ),
+          MainBody(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SalaryCycleCard(salaryCycle: salaryCycle),
+              const SizedBox(
+                height: 20,
+              ),
+              PayslipGeneral(salaryCycle: salaryCycle)
+            ],
+          ))
+        ],
       ),
     );
   }

@@ -40,9 +40,9 @@ String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
     case SalaryCycleStatusEnum.created:
       return 'Khởi Tạo';
     case SalaryCycleStatusEnum.taskEditingPhase:
-      return 'Báo cáo Task';
+      return 'Giai đoạn báo cáo Task';
     case SalaryCycleStatusEnum.projectBonusPhase:
-      return 'Lương thưởng';
+      return 'Giai đoạn lương thưởng';
     case SalaryCycleStatusEnum.review:
       return 'Xem lại';
     case SalaryCycleStatusEnum.paid:

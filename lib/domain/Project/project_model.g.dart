@@ -6,46 +6,6 @@ part of 'project_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-
-Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
-      'projectId': instance.projectId,
-      'projectName': instance.projectName,
-      'projectShortName': instance.projectShortName,
-      'projectShortDescription': instance.projectShortDescription,
-      'projectStatus': _$ProjectStatusEnumEnumMap[instance.projectStatus]!,
-      'projectType': _$ProjectTypeEnumEnumMap[instance.projectType],
-      'projectVisibility':
-          _$ProjectVisibilityEnumEnumMap[instance.projectVisibility],
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'startedAt': instance.startedAt?.toIso8601String(),
-      'endedAt': instance.endedAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'role': _$ProjectMemberRoleEnumEnumMap[instance.role],
-    };
-
-const _$ProjectStatusEnumEnumMap = {
-  ProjectStatusEnum.created: 'created',
-  ProjectStatusEnum.started: 'started',
-  ProjectStatusEnum.ended: 'ended',
-  ProjectStatusEnum.cancelled: 'cancelled',
-};
-
-const _$ProjectTypeEnumEnumMap = {
-  ProjectTypeEnum.application: 'application',
-  ProjectTypeEnum.service: 'service',
-  ProjectTypeEnum.other: 'other ',
-};
-
-const _$ProjectVisibilityEnumEnumMap = {
-  ProjectVisibilityEnum.public: 'public',
-  ProjectVisibilityEnum.private: 'private ',
-};
-
-const _$ProjectMemberRoleEnumEnumMap = {
-  ProjectMemberRoleEnum.manager: 'manager',
-  ProjectMemberRoleEnum.member: 'member  ',
-};
-
 _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       projectId: json['projectId'] as String,
       projectName: json['projectName'] as String,
@@ -88,3 +48,26 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'role': _$ProjectMemberRoleEnumEnumMap[instance.role],
     };
+
+const _$ProjectStatusEnumEnumMap = {
+  ProjectStatusEnum.created: 'created',
+  ProjectStatusEnum.started: 'started',
+  ProjectStatusEnum.ended: 'ended',
+  ProjectStatusEnum.cancelled: 'cancelled',
+};
+
+const _$ProjectTypeEnumEnumMap = {
+  ProjectTypeEnum.application: 'application',
+  ProjectTypeEnum.service: 'service',
+  ProjectTypeEnum.other: 'other ',
+};
+
+const _$ProjectVisibilityEnumEnumMap = {
+  ProjectVisibilityEnum.public: 'public',
+  ProjectVisibilityEnum.private: 'private ',
+};
+
+const _$ProjectMemberRoleEnumEnumMap = {
+  ProjectMemberRoleEnum.manager: 'manager',
+  ProjectMemberRoleEnum.member: 'member  ',
+};

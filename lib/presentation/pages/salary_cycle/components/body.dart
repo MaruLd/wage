@@ -1,25 +1,15 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../application/providers/api_provider.dart';
-import '../../../../widgets/point_card.dart';
-import '../salary_cycle_list_view/salary_cycle_list_view.dart';
+import '../../../widgets/point_card.dart';
+import 'salary_cycle_list_view/salary_cycle_list_view.dart';
 
-class SalaryCycleOverview extends ConsumerStatefulWidget {
+class SalaryCycleOverview extends StatelessWidget {
   const SalaryCycleOverview({Key? key}) : super(key: key);
 
-  @override
-  ConsumerState<SalaryCycleOverview> createState() =>
-      _SalaryCycleOverviewState();
-}
-
-class _SalaryCycleOverviewState extends ConsumerState<SalaryCycleOverview> {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [

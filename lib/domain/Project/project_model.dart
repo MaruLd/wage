@@ -3,7 +3,7 @@ part 'project_model.freezed.dart';
 part 'project_model.g.dart';
 
 @freezed
-@JsonSerializable()
+// @JsonSerializable()
 class Project with _$Project {
   const Project._();
   factory Project({

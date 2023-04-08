@@ -154,10 +154,10 @@ class PayslipGeneral extends ConsumerWidget {
             width: 10,
           ),
           Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(15, 48, 188, 151),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(15, 48, 188, 151),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
             height: 65,
             width: 160,
             child: Row(

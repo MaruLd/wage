@@ -72,7 +72,9 @@ class _LevelHeaderState extends State<LevelHeader> {
   }
 }
 
-class Profile extends ConsumerWidget {
+class LevelBody extends ConsumerWidget {
+  const LevelBody({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(

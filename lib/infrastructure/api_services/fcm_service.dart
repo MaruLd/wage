@@ -11,7 +11,7 @@ class FCMService {
   void sendFCMToken() async {
     final storage = new FlutterSecureStorage();
     var token = await getDeviceToken();
-    print(token);
+    print('fcm token: ' + token);
     if (token == "") {
       throw Exception("FCM Token not found");
     }

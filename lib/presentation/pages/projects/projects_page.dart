@@ -48,7 +48,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: MainBody(
-                  children: Column(
+                  child: Column(
                     children: [
                       Avatar(),
                     ],

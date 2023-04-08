@@ -15,6 +15,10 @@ import '../home/home_page.dart';
 import '../profile_overview/profile_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
 
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Background message: ${message.data}");
+}
+
 class Navigation extends ConsumerStatefulWidget {
   const Navigation({super.key});
   static String get routeName => 'nav';
@@ -43,27 +47,14 @@ class _NavigationState extends ConsumerState<Navigation> {
   }
 
   init() async {
-    // listen for user to click on notification
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage remoteMessage) {
-      String? title = remoteMessage.notification!.title;
-      String? description = remoteMessage.notification!.body;
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
 
-      Alert(
-        context: context,
-        type: AlertType.error,
-        title: title, // title from push notification data
-        desc: description, // description from push notifcation data
-        buttons: [
-          DialogButton(
-            onPressed: () => Navigator.pop(context),
-            width: 120,
-            child: const Text(
-              "OK",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          )
-        ],
-      ).show();
+      if (message.notification != null) {
+        print('Message also contained a notification: ${message.notification}');
+      }
     });
   }
 
@@ -122,6 +113,7 @@ class _NavigationState extends ConsumerState<Navigation> {
       data: (data) => Scaffold(
         backgroundColor: global.background,
         extendBody: true,
+        resizeToAvoidBottomInset: false,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: global.primary,

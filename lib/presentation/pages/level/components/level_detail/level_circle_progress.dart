@@ -16,27 +16,37 @@ class LevelCircleProgress extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nextLevel = ref.watch(nextLevelFutureProvider);
-    final walletData = ref.watch(walletsFutureProvider);
-
+    final nextLevelXp = ref
+            .watch(nextLevelFutureProvider)
+            .whenOrNull(data: (data) => data.xpNeeded) ??
+        1;
+    final currentXp = ref
+            .watch(walletsFutureProvider)
+            .whenOrNull(data: (data) => data.totalXP) ??
+        1;
+    final userData = ref.watch(userFutureProvider);
     return Container(
+      width: 250,
+      height: 250,
       decoration: BoxDecoration(shape: BoxShape.circle, color: global.primary2),
       child: CircularPercentIndicator(
-        percent: 0.5,
-        radius: 100,
-        lineWidth: 35,
-        reverse: true,
-        animationDuration: 800,
-        animation: true,
-        progressColor: global.background,
-        backgroundColor: Color.fromARGB(66, 255, 255, 255),
-        circularStrokeCap: CircularStrokeCap.round,
-        center: Container(
+          percent: (currentXp != null || nextLevelXp != null)
+              ? (currentXp / nextLevelXp)
+              : 0,
+          radius: 100,
+          lineWidth: 35,
+          reverse: true,
+          animationDuration: 800,
+          animation: true,
+          progressColor: global.background,
+          backgroundColor: Color.fromARGB(66, 255, 255, 255),
+          circularStrokeCap: CircularStrokeCap.round,
+          center: Container(
             decoration: BoxDecoration(
                 shape: BoxShape.circle, color: global.militaryGreen),
             width: 130,
             height: 130,
-            child: walletData.when(
+            child: userData.when(
               data: (data) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -46,7 +56,7 @@ class LevelCircleProgress extends ConsumerWidget {
                       height: 80,
                       fit: BoxFit.fitHeight,
                     ),
-                    Text('Leader',
+                    Text(data.memberLevels!.level.levelName,
                         style: TextStyle(
                           color: global.background,
                           fontWeight: FontWeight.w500,
@@ -67,8 +77,8 @@ class LevelCircleProgress extends ConsumerWidget {
                   color: Color.fromARGB(118, 2, 193, 123),
                 ),
               ),
-            )),
-      ).p24(),
+            ),
+          )),
     );
   }
 }

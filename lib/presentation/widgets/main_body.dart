@@ -3,8 +3,8 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class MainBody extends StatelessWidget {
-  const MainBody({Key? key, required this.children}) : super(key: key);
-  final Widget children;
+  const MainBody({Key? key, required this.child}) : super(key: key);
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,6 @@ class MainBody extends StatelessWidget {
             topRight: Radius.circular(40),
           ),
         ),
-        child: children.offset(offset: Offset(0, -60)));
+        child: child.offset(offset: Offset(0, -60)));
   }
 }

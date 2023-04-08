@@ -4,7 +4,7 @@ import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/main_header.dart';
-import 'components/salary_cycle_overview/salary_cycle_overview.dart';
+import 'components/body.dart';
 
 class SalaryCyclePage extends StatefulWidget {
   const SalaryCyclePage({super.key});
@@ -29,7 +29,7 @@ class _SalaryCyclePageState extends State<SalaryCyclePage> {
             height: 80,
           ),
           MainBody(
-              children: Column(
+              child: Column(
             children: [SalaryCycleOverview()],
           ))
         ],

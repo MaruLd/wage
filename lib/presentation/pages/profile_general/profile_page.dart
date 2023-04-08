@@ -39,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: MainBody(
-                children: Column(
+                child: Column(
                   children: [
                     const SizedBox(
                       height: 10,

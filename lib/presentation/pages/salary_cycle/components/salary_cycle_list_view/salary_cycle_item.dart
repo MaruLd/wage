@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
@@ -29,7 +30,19 @@ class SalaryCycleItem extends ConsumerWidget {
       onTap: () => salaryCycle.status == SalaryCycleStatusEnum.review ||
               salaryCycle.status == SalaryCycleStatusEnum.paid
           ? payslipPageNavigation(context, salaryCycle)
-          : {},
+          : showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Phiếu lương chưa có'),
+                    content:
+                        const Text('Giai đoạn hiện tại chưa có phiếu lương'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Ok'),
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  )),
       child: Container(
         decoration: BoxDecoration(
             color: global.background,

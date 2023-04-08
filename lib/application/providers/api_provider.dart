@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/Level/level_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
+import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/wallet_service.dart';
@@ -13,6 +14,7 @@ import '../../infrastructure/api_services/fcm_service.dart';
 import '../../infrastructure/api_services/payslip_service.dart';
 import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
+import '../../infrastructure/api_services/voucher_service.dart';
 import '../../infrastructure/authentication_service/authService.dart';
 import '../../infrastructure/api_services/level_service.dart';
 import '../../infrastructure/api_services/member_service.dart';
@@ -37,6 +39,8 @@ final salaryCycleProvider = Provider((ref) => SalaryCycleService());
 final payslipProvider = Provider((ref) => PayslipService());
 
 final fcmProvider = Provider((ref) => FCMService());
+
+final voucherProvider = Provider((ref) => VoucherService());
 
 final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
@@ -78,6 +82,26 @@ final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
   },
 );
 
+final voucherFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
+  (ref) {
+    return ref.watch(voucherProvider).getVouchers();
+  },
+);
+
+final buyVoucherFutureProvider = FutureProvider.family<int?, String>(
+  (ref, voucherId) {
+    print('buyVoucher');
+    return ref.watch(voucherProvider).buyVoucher(voucherId);
+  },
+);
+
+final memberVoucherFutureProvider =
+    FutureProvider.autoDispose<List<MemberVoucher>>(
+  (ref) {
+    return ref.watch(voucherProvider).getSelfVouchers();
+  },
+);
+
 final workHoursFutureProvider = FutureProvider<int>(
   (ref) {
     var respone = ref.watch(userProvider).getSelfAchievement();
@@ -101,11 +125,11 @@ final nextLevelFutureProvider = FutureProvider<Level>(
 );
 
 final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
-  return ref.read(projectProvider).getProjects();
+  return ref.watch(projectProvider).getProjects();
 });
 
 final projectsCountProvider = FutureProvider<int>((ref) {
-  return ref.read(projectProvider).getProjectsCount();
+  return ref.watch(projectProvider).getProjectsCount();
 });
 
 // final loginStateProvider = Provider((ref) => LoginController(ref));

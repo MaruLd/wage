@@ -35,7 +35,7 @@ class PayslipDetailPage extends StatelessWidget {
               height: 80,
             ),
             MainBody(
-                children: Column(
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SalaryCycleCard(salaryCycle: salaryCycle),

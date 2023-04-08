@@ -20,7 +20,7 @@ class HomePage extends ConsumerWidget {
         const SizedBox(
           height: 80,
         ),
-        MainBody(children: MenuBody()),
+        MainBody(child: MenuBody()),
       ],
     ));
   }

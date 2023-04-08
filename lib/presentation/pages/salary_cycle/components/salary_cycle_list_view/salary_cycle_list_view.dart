@@ -16,10 +16,12 @@ class SalaryCycleListView extends ConsumerWidget {
         data: (data) {
           return Container(
             width: 340,
-            height: 300,
+            constraints: new BoxConstraints(
+              minHeight: 300,
+            ),
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              padding: const EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
               itemCount: data.length,
               itemBuilder: (context, int index) {

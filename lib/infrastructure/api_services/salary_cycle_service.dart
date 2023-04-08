@@ -21,6 +21,7 @@ class SalaryCycleService {
         List data = response.data["message"];
         List<SalaryCycle> salaryCycles =
             data.map((e) => SalaryCycle.fromJson(e)).toList();
+        print(salaryCycles);
         return salaryCycles;
       } else {
         throw Exception(response.statusMessage);
