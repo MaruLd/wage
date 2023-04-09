@@ -11,6 +11,7 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       projectName: json['projectName'] as String,
       projectShortName: json['projectShortName'] as String,
       projectShortDescription: json['projectShortDescription'] as String?,
+      projectLongDescription: json['projectLongDescription'] as String?,
       projectStatus:
           $enumDecode(_$ProjectStatusEnumEnumMap, json['projectStatus']),
       projectType:
@@ -38,6 +39,7 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'projectName': instance.projectName,
       'projectShortName': instance.projectShortName,
       'projectShortDescription': instance.projectShortDescription,
+      'projectLongDescription': instance.projectLongDescription,
       'projectStatus': _$ProjectStatusEnumEnumMap[instance.projectStatus]!,
       'projectType': _$ProjectTypeEnumEnumMap[instance.projectType],
       'projectVisibility':

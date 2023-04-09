@@ -82,7 +82,7 @@ class MenuBody extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  salaryCyclePageNavigation(context);
+                  projectPageNavigation(context);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

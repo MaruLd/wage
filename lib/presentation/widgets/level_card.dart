@@ -19,6 +19,10 @@ class LevelCard extends ConsumerWidget {
     final nextLevel = ref.watch(nextLevelFutureProvider);
     final walletData = ref.watch(walletsFutureProvider);
 
+    int? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
+    int? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
+    int xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
+
     String? levelColor = userData.whenOrNull(
         data: (data) => data.memberLevels!.level.levelColor);
     return MaterialButton(
@@ -58,11 +62,14 @@ class LevelCard extends ConsumerWidget {
                 userData.when(
                   data: (data) => Text(data.memberLevels!.level.levelName,
                       style: global.boldTextStyle),
-                  error: (error, stackTrace) => LoadingShimmer(
-                    height: 30.0,
-                    width: 100.0,
-                    color: Color.fromARGB(118, 2, 193, 123),
-                  ),
+                  error: (error, stackTrace) {
+                    print('error: ' + error.toString());
+                    return LoadingShimmer(
+                      height: 30.0,
+                      width: 100.0,
+                      color: Color.fromARGB(118, 2, 193, 123),
+                    );
+                  },
                   loading: () => LoadingShimmer(
                     height: 30.0,
                     width: 100.0,
@@ -71,31 +78,12 @@ class LevelCard extends ConsumerWidget {
                 ),
                 Container(
                   width: 150.w,
-                  child: nextLevel.when(
-                    data: (data) {
-                      int? userXp =
-                          walletData.whenOrNull(data: (data) => data.totalXP);
-                      int xpNeededToLevelUp =
-                          data.xpNeeded - (userXp != null ? userXp : 0);
-                      return Text(
-                        'Còn $xpNeededToLevelUp xp nữa bạn sẽ thăng hạng',
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          color: global.background,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
-                        ),
-                      );
-                    },
-                    error: (error, stackTrace) => LoadingShimmer(
-                      height: 35.0,
-                      width: 240.0,
-                      color: Color.fromARGB(118, 2, 193, 123),
-                    ),
-                    loading: () => LoadingShimmer(
-                      height: 35.0,
-                      width: 240.0,
-                      color: Color.fromARGB(118, 2, 193, 123),
+                  child: Text(
+                    'Còn $xpNeededToLevelUp xp nữa bạn sẽ thăng hạng',
+                    style: TextStyle(
+                      color: global.background,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),
@@ -129,8 +117,8 @@ class LevelCard extends ConsumerWidget {
               children: [
                 SvgPicture.asset(
                   'assets/images/Level 4.svg',
-                  width: 102.w,
-                  height: 122.h,
+                  width: 102,
+                  height: 122,
                   fit: BoxFit.fill,
                 ),
               ],

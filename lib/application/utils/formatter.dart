@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../domain/Project/project_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
@@ -32,6 +33,45 @@ String pointFormatForCard(int point) {
     return NumberFormat.compact(locale: "en_US").format(point);
   } else {
     return NumberFormat.decimalPattern().format(point);
+  }
+}
+
+Color projectStatusColor(ProjectStatusEnum status) {
+  switch (status) {
+    case ProjectStatusEnum.created:
+      return Color.fromARGB(255, 255, 93, 158);
+    case ProjectStatusEnum.started:
+      return Color.fromARGB(255, 92, 72, 204);
+    case ProjectStatusEnum.ended:
+      return Color.fromARGB(255, 42, 143, 59);
+    default:
+      return Colors.grey;
+  }
+}
+
+String projectStatusTransform(ProjectStatusEnum status) {
+  switch (status) {
+    case ProjectStatusEnum.created:
+      return 'Khởi tạo';
+    case ProjectStatusEnum.started:
+      return 'Hiện thực';
+    case ProjectStatusEnum.ended:
+      return 'Hoàn thành';
+    default:
+      return '';
+  }
+}
+
+double projectStatusPercentTransform(ProjectStatusEnum status) {
+  switch (status) {
+    case ProjectStatusEnum.created:
+      return 0.25;
+    case ProjectStatusEnum.started:
+      return 0.50;
+    case ProjectStatusEnum.ended:
+      return 1.0;
+    default:
+      return 0;
   }
 }
 

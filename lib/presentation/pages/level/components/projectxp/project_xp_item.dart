@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+
+import '../../../../../application/utils/formatter.dart';
 
 class ProjectXPItem extends StatelessWidget {
   ProjectXPItem({Key? key, required this.project, this.onTap})
@@ -30,9 +33,9 @@ class ProjectXPItem extends StatelessWidget {
               ),
             ),
             Text(
-              '',
+              '+ 0 XP',
               style: TextStyle(
-                color: global.headerText,
+                color: global.medium,
                 fontFamily: global.numberFont,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
@@ -45,15 +48,17 @@ class ProjectXPItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Hoàn thành - ',
+                '${projectStatusTransform(project.projectStatus)} - ',
                 style: TextStyle(
-                  color: global.primary,
+                  color: projectStatusColor(project.projectStatus),
                   fontWeight: FontWeight.w500,
                   fontSize: 14.sp,
                 ),
               ),
               Text(
-                '18/12/2022',
+                project.endedAt != null
+                    ? DateFormat('dd/MM/yyyy').format(project.endedAt!)
+                    : '',
                 style: TextStyle(
                   color: global.headerText,
                   fontWeight: FontWeight.w400,

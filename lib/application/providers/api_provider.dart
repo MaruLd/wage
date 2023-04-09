@@ -116,7 +116,7 @@ final walletsFutureProvider = FutureProvider<Wallets>(
 
 final nextLevelFutureProvider = FutureProvider<Level>(
   (ref) {
-    final xpNeeded = ref
+    int? xpNeeded = ref
         .watch(walletsFutureProvider)
         .whenOrNull(data: (data) => data.totalXP);
     return ref.watch(levelProvider).getNextLevel(xpNeeded);

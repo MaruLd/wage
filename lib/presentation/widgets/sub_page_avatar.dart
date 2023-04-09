@@ -13,7 +13,7 @@ class Avatar extends ConsumerWidget {
     final walletsData = ref.watch(walletsFutureProvider);
     return userData.when(
         error: (error, stackTrace) => Text(
-              'Sorry, server currently down!',
+              'Please check your internet connection!',
               style: global.boldTextStyle,
             ),
         loading: () => CircularProgressIndicator().centered(),

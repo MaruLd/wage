@@ -11,6 +11,7 @@ class Project with _$Project {
     required String projectName,
     required String projectShortName,
     String? projectShortDescription,
+    String? projectLongDescription,
     required ProjectStatusEnum projectStatus,
     ProjectTypeEnum? projectType,
     ProjectVisibilityEnum? projectVisibility,

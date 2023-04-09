@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/pages/profile/components/project_list_view/project_item.dart';
+import 'package:wage/presentation/pages/profile/components/sub_project_list_view/sub_project_item.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../widgets/loading_shimmer.dart';
 
-class ProjectListView extends ConsumerWidget {
-  const ProjectListView({Key? key}) : super(key: key);
+class SubProjectListView extends ConsumerWidget {
+  const SubProjectListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,8 +26,9 @@ class ProjectListView extends ConsumerWidget {
                 return Container(
                   width: 130,
                   alignment: Alignment.center,
-                  child: ProjectItem(onTap: () {}, project: projectData[index])
-                      .px20(),
+                  child:
+                      SubProjectItem(onTap: () {}, project: projectData[index])
+                          .px20(),
                 );
               },
             ),

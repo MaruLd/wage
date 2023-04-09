@@ -22,23 +22,22 @@ class ShimmerList extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 20),
-        ListView.builder(
-            itemCount: row,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  Center(
-                    child: LoadingShimmer(
-                      height: height,
-                      width: width,
-                      color: color,
-                      baseColor: baseColor,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                ],
-              );
-            })
+        Column(
+            children: List.generate(row, (index) {
+          return Column(
+            children: [
+              Center(
+                child: LoadingShimmer(
+                  height: height,
+                  width: width,
+                  color: color,
+                  baseColor: baseColor,
+                ),
+              ),
+              const SizedBox(height: 15),
+            ],
+          );
+        }))
       ],
     );
   }

@@ -16,7 +16,7 @@ class SalaryCycleOverview extends StatefulWidget {
 }
 
 class _SalaryCycleOverviewState extends State<SalaryCycleOverview> {
-  String dateRange = '';
+  String dateRange = '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
   @override
   Widget build(BuildContext context) {
     void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
@@ -44,7 +44,7 @@ class _SalaryCycleOverviewState extends State<SalaryCycleOverview> {
               onSelectionChanged: _onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.range,
               initialSelectedRange: PickerDateRange(
-                  DateTime.now(), DateTime.now().add(const Duration(days: 31))),
+                  DateTime.now(), DateTime.now().add(const Duration(days: 2))),
             ),
             TextButton(
                 onPressed: () {

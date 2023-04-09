@@ -24,7 +24,7 @@ class _LevelPageState extends State<LevelPage> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SubHeader('Level'),
+          const SubHeader('CẤP CỦA TÔI'),
           const SizedBox(
             height: 120,
           ),

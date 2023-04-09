@@ -24,6 +24,7 @@ mixin _$Project {
   String get projectName => throw _privateConstructorUsedError;
   String get projectShortName => throw _privateConstructorUsedError;
   String? get projectShortDescription => throw _privateConstructorUsedError;
+  String? get projectLongDescription => throw _privateConstructorUsedError;
   ProjectStatusEnum get projectStatus => throw _privateConstructorUsedError;
   ProjectTypeEnum? get projectType => throw _privateConstructorUsedError;
   ProjectVisibilityEnum? get projectVisibility =>
@@ -49,6 +50,7 @@ abstract class $ProjectCopyWith<$Res> {
       String projectName,
       String projectShortName,
       String? projectShortDescription,
+      String? projectLongDescription,
       ProjectStatusEnum projectStatus,
       ProjectTypeEnum? projectType,
       ProjectVisibilityEnum? projectVisibility,
@@ -76,6 +78,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? projectName = null,
     Object? projectShortName = null,
     Object? projectShortDescription = freezed,
+    Object? projectLongDescription = freezed,
     Object? projectStatus = null,
     Object? projectType = freezed,
     Object? projectVisibility = freezed,
@@ -101,6 +104,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
       projectShortDescription: freezed == projectShortDescription
           ? _value.projectShortDescription
           : projectShortDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectLongDescription: freezed == projectLongDescription
+          ? _value.projectLongDescription
+          : projectLongDescription // ignore: cast_nullable_to_non_nullable
               as String?,
       projectStatus: null == projectStatus
           ? _value.projectStatus
@@ -150,6 +157,7 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       String projectName,
       String projectShortName,
       String? projectShortDescription,
+      String? projectLongDescription,
       ProjectStatusEnum projectStatus,
       ProjectTypeEnum? projectType,
       ProjectVisibilityEnum? projectVisibility,
@@ -174,6 +182,7 @@ class __$$_ProjectCopyWithImpl<$Res>
     Object? projectName = null,
     Object? projectShortName = null,
     Object? projectShortDescription = freezed,
+    Object? projectLongDescription = freezed,
     Object? projectStatus = null,
     Object? projectType = freezed,
     Object? projectVisibility = freezed,
@@ -199,6 +208,10 @@ class __$$_ProjectCopyWithImpl<$Res>
       projectShortDescription: freezed == projectShortDescription
           ? _value.projectShortDescription
           : projectShortDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectLongDescription: freezed == projectLongDescription
+          ? _value.projectLongDescription
+          : projectLongDescription // ignore: cast_nullable_to_non_nullable
               as String?,
       projectStatus: null == projectStatus
           ? _value.projectStatus
@@ -244,6 +257,7 @@ class _$_Project extends _Project {
       required this.projectName,
       required this.projectShortName,
       this.projectShortDescription,
+      this.projectLongDescription,
       required this.projectStatus,
       this.projectType,
       this.projectVisibility,
@@ -266,6 +280,8 @@ class _$_Project extends _Project {
   @override
   final String? projectShortDescription;
   @override
+  final String? projectLongDescription;
+  @override
   final ProjectStatusEnum projectStatus;
   @override
   final ProjectTypeEnum? projectType;
@@ -284,7 +300,7 @@ class _$_Project extends _Project {
 
   @override
   String toString() {
-    return 'Project(projectId: $projectId, projectName: $projectName, projectShortName: $projectShortName, projectShortDescription: $projectShortDescription, projectStatus: $projectStatus, projectType: $projectType, projectVisibility: $projectVisibility, createdAt: $createdAt, startedAt: $startedAt, endedAt: $endedAt, updatedAt: $updatedAt, role: $role)';
+    return 'Project(projectId: $projectId, projectName: $projectName, projectShortName: $projectShortName, projectShortDescription: $projectShortDescription, projectLongDescription: $projectLongDescription, projectStatus: $projectStatus, projectType: $projectType, projectVisibility: $projectVisibility, createdAt: $createdAt, startedAt: $startedAt, endedAt: $endedAt, updatedAt: $updatedAt, role: $role)';
   }
 
   @override
@@ -301,6 +317,8 @@ class _$_Project extends _Project {
             (identical(
                     other.projectShortDescription, projectShortDescription) ||
                 other.projectShortDescription == projectShortDescription) &&
+            (identical(other.projectLongDescription, projectLongDescription) ||
+                other.projectLongDescription == projectLongDescription) &&
             (identical(other.projectStatus, projectStatus) ||
                 other.projectStatus == projectStatus) &&
             (identical(other.projectType, projectType) ||
@@ -325,6 +343,7 @@ class _$_Project extends _Project {
       projectName,
       projectShortName,
       projectShortDescription,
+      projectLongDescription,
       projectStatus,
       projectType,
       projectVisibility,
@@ -354,6 +373,7 @@ abstract class _Project extends Project {
       required final String projectName,
       required final String projectShortName,
       final String? projectShortDescription,
+      final String? projectLongDescription,
       required final ProjectStatusEnum projectStatus,
       final ProjectTypeEnum? projectType,
       final ProjectVisibilityEnum? projectVisibility,
@@ -374,6 +394,8 @@ abstract class _Project extends Project {
   String get projectShortName;
   @override
   String? get projectShortDescription;
+  @override
+  String? get projectLongDescription;
   @override
   ProjectStatusEnum get projectStatus;
   @override

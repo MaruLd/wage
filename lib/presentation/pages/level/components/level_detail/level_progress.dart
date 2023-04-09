@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/level/components/projectxp/project_xp_item.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
@@ -16,6 +13,10 @@ class LevelProgress extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final nextLevel = ref.watch(nextLevelFutureProvider);
     final walletData = ref.watch(walletsFutureProvider);
+
+    int? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
+    int? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
+    int xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
 
     return SizedBox(
       width: 390,
@@ -33,29 +34,14 @@ class LevelProgress extends ConsumerWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(38, 16, 27, 16),
-                child: nextLevel.when(
-                  data: (data) {
-                    int? userXp =
-                        walletData.whenOrNull(data: (data) => data.totalXP);
-                    int xpNeededToLevelUp = data.xpNeeded - (userXp ?? 0);
-                    return Text('Level kế: $xpNeededToLevelUp exp',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: global.primary,
-                          fontFamily: global.headerFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ));
-                  },
-                  error: (error, stackTrace) => const LoadingShimmer(
-                    height: 20.0,
-                    width: 120.0,
-                    color: Color.fromARGB(118, 2, 193, 123),
-                  ),
-                  loading: () => const LoadingShimmer(
-                    height: 20.0,
-                    width: 120.0,
-                    color: Color.fromARGB(118, 2, 193, 123),
+                child: Text(
+                  'Level kế: $xpNeededToLevelUp exp',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: global.primary,
+                    fontFamily: global.headerFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
                   ),
                 ),
               ),

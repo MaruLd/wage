@@ -18,14 +18,17 @@ class ProfileOverview extends StatelessWidget {
         children: [
           Text(
             'Tổng quan',
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.openSans(
               color: global.headerText,
               fontWeight: FontWeight.w700,
-              fontSize: 24,
+              fontSize: 20,
             ),
           ),
         ],
       ).px20(),
+      const SizedBox(
+        height: 10,
+      ),
       OverviewRow(),
     ]);
   }

@@ -13,7 +13,8 @@ class ProjectService {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/members/me/projects?OrderBy=dateDesc',
+      final response = await dio.get(
+          '/v1/members/me/projects?OrderBy=dateDesc&page-size=100',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"

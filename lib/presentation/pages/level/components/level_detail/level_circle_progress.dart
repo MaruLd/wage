@@ -56,6 +56,9 @@ class LevelCircleProgress extends ConsumerWidget {
                       height: 80,
                       fit: BoxFit.fitHeight,
                     ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Text(data.memberLevels!.level.levelName,
                         style: TextStyle(
                           color: global.background,
