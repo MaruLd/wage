@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:wage/presentation/widgets/main_body.dart';
+import 'package:wage/presentation/widgets/point_card.dart';
+import 'package:wage/presentation/widgets/refresher.dart';
 
-import 'components/body.dart';
+import '../../widgets/main_header.dart';
 
 class TransferPage extends StatelessWidget {
   const TransferPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: global.primary2,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              'Transfer Page',
-              style: global.boldTextStyle,
-            ).centered()
-          ],
-        ),
+    return Refresher(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const MainHeader('CHUYỂN POINT'),
+          const SizedBox(
+            height: 80,
+          ),
+          MainBody(
+              child: Column(
+            children: [PointCard()],
+          ))
+        ],
       ).safeArea(),
     );
   }

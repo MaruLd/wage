@@ -15,28 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchState {
+mixin _$SearchMemberVoucherState {
   List<MemberVoucher> get memberVoucherList =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SearchStateCopyWith<SearchMemberVoucherState> get copyWith =>
+  $SearchMemberVoucherStateCopyWith<SearchMemberVoucherState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchStateCopyWith<$Res> {
-  factory $SearchStateCopyWith(SearchMemberVoucherState value,
+abstract class $SearchMemberVoucherStateCopyWith<$Res> {
+  factory $SearchMemberVoucherStateCopyWith(SearchMemberVoucherState value,
           $Res Function(SearchMemberVoucherState) then) =
-      _$SearchStateCopyWithImpl<$Res, SearchMemberVoucherState>;
+      _$SearchMemberVoucherStateCopyWithImpl<$Res, SearchMemberVoucherState>;
   @useResult
   $Res call({List<MemberVoucher> memberVoucherList});
 }
 
 /// @nodoc
-class _$SearchStateCopyWithImpl<$Res, $Val extends SearchMemberVoucherState>
-    implements $SearchStateCopyWith<$Res> {
-  _$SearchStateCopyWithImpl(this._value, this._then);
+class _$SearchMemberVoucherStateCopyWithImpl<$Res,
+        $Val extends SearchMemberVoucherState>
+    implements $SearchMemberVoucherStateCopyWith<$Res> {
+  _$SearchMemberVoucherStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -59,7 +60,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchMemberVoucherState>
 
 /// @nodoc
 abstract class _$$_SearchStateCopyWith<$Res>
-    implements $SearchStateCopyWith<$Res> {
+    implements $SearchMemberVoucherStateCopyWith<$Res> {
   factory _$$_SearchStateCopyWith(
           _$_SearchState value, $Res Function(_$_SearchState) then) =
       __$$_SearchStateCopyWithImpl<$Res>;
@@ -70,7 +71,7 @@ abstract class _$$_SearchStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_SearchStateCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$_SearchState>
+    extends _$SearchMemberVoucherStateCopyWithImpl<$Res, _$_SearchState>
     implements _$$_SearchStateCopyWith<$Res> {
   __$$_SearchStateCopyWithImpl(
       _$_SearchState _value, $Res Function(_$_SearchState) _then)
@@ -108,7 +109,7 @@ class _$_SearchState extends _SearchState {
 
   @override
   String toString() {
-    return 'SearchState(memberVoucherList: $memberVoucherList)';
+    return 'SearchMemberVoucherState(memberVoucherList: $memberVoucherList)';
   }
 
   @override

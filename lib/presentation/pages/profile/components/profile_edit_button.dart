@@ -14,14 +14,14 @@ class EditProfile extends StatelessWidget {
         color: Color.fromARGB(44, 38, 167, 132),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
-      height: 45,
-      width: 160,
+      height: 40,
+      width: 170,
       child: TextButton(
-          child: Text('Hồ sơ của tôi',
+          child: Text('Chỉnh sửa hồ sơ',
               style: GoogleFonts.montserrat(
                 color: global.primary3,
                 fontWeight: FontWeight.w600,
-                fontSize: 18,
+                fontSize: 16,
               )),
           onPressed: () {}),
     );

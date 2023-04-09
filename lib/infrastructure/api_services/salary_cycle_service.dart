@@ -2,12 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../domain/Level/level_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../network_services/dioAdapter.dart';
 
 class SalaryCycleService {
-  Future<List<SalaryCycle>> getAllSalaryCycle() async {
+  Future<List<SalaryCycle>> getSelfAllSalaryCycle() async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-import 'package:wage/presentation/widgets/search_voucher_bar.dart';
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({Key? key, required this.searchBar}) : super(key: key);
+  const SearchCard(
+      {Key? key, required this.searchBar, required this.totalVoucher})
+      : super(key: key);
   final Widget searchBar;
+  final int totalVoucher;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class SearchCard extends StatelessWidget {
                   const SizedBox(
                     width: 30,
                   ),
-                  Text('30',
+                  Text('$totalVoucher',
                       style: GoogleFonts.montserrat(
                         color: global.background,
                         fontWeight: FontWeight.w700,

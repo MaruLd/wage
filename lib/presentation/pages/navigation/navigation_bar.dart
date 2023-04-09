@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/history/history_page.dart';
@@ -12,8 +13,9 @@ import '../../../application/providers/api_provider.dart';
 import '../../../application/providers/auth_datas_provider.dart';
 import '../error/error_page.dart';
 import '../home/home_page.dart';
-import '../profile_overview/profile_page.dart';
+import '../profile/profile_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
+import '../setting/setting_page.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Background message: ${message.data}");
@@ -71,7 +73,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     const HistoryPage(),
     const TransferPage(),
     const SalaryCyclePage(),
-    const ProfilePage(),
+    const SettingPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -137,21 +139,15 @@ class _NavigationState extends ConsumerState<Navigation> {
             onTap: _onItemTapped,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                activeIcon: Icon(
-                  Icons.home,
-                  color: global.primary,
-                ),
-                icon: Icon(
-                  Icons.home_outlined,
-                ),
+                activeIcon: FaIcon(FontAwesomeIcons.house, size: 23).py4(),
+                icon: FaIcon(FontAwesomeIcons.house, size: 20).py4(),
                 label: 'Trang Chủ',
               ),
               BottomNavigationBarItem(
-                activeIcon: Icon(
-                  Icons.history,
-                  color: global.primary,
-                ),
-                icon: Icon(Icons.history),
+                activeIcon:
+                    FaIcon(FontAwesomeIcons.moneyBillTransfer, size: 23).py4(),
+                icon:
+                    FaIcon(FontAwesomeIcons.moneyBillTransfer, size: 20).py4(),
                 label: 'Lịch Sử',
               ),
               BottomNavigationBarItem(
@@ -159,19 +155,15 @@ class _NavigationState extends ConsumerState<Navigation> {
                 label: "",
               ),
               BottomNavigationBarItem(
-                activeIcon: Icon(
-                  Icons.topic,
-                  color: global.primary,
-                ),
-                icon: Icon(Icons.topic_outlined),
+                activeIcon:
+                    FaIcon(FontAwesomeIcons.fileInvoiceDollar, size: 23).py4(),
+                icon:
+                    FaIcon(FontAwesomeIcons.fileInvoiceDollar, size: 20).py4(),
                 label: 'Kỳ Lương',
               ),
               BottomNavigationBarItem(
-                activeIcon: Icon(
-                  Icons.person,
-                  color: global.primary,
-                ),
-                icon: Icon(Icons.person),
+                activeIcon: FaIcon(FontAwesomeIcons.solidUser, size: 23).py4(),
+                icon: FaIcon(FontAwesomeIcons.solidUser, size: 20).py4(),
                 label: 'Cá Nhân',
               ),
             ],

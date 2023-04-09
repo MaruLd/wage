@@ -23,7 +23,7 @@ class MemberVoucherListView extends ConsumerWidget {
         data: (data) {
           return Container(
             width: 340,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 300,
             ),
             child: data.isNotEmpty
@@ -41,21 +41,23 @@ class MemberVoucherListView extends ConsumerWidget {
                 : Text(
                     'Bạn chưa có voucher nào',
                     style: GoogleFonts.openSans(
-                      color: Color.fromARGB(255, 47, 47, 47),
+                      color: const Color.fromARGB(255, 47, 47, 47),
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                     ),
                   ).centered(),
           );
         },
-        error: (error, stackTrace) => ShimmerList(
+        error: (error, stackTrace) => const ShimmerList(
             height: 126.0,
             width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
-        loading: () => ShimmerList(
+        loading: () => const ShimmerList(
             height: 126.0,
             width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

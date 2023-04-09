@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchEvent {
+mixin _$SearchVoucherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedVoucherTextChanged,
@@ -61,16 +61,16 @@ mixin _$SearchEvent {
 }
 
 /// @nodoc
-abstract class $SearchEventCopyWith<$Res> {
-  factory $SearchEventCopyWith(
+abstract class $SearchVoucherEventCopyWith<$Res> {
+  factory $SearchVoucherEventCopyWith(
           SearchVoucherEvent value, $Res Function(SearchVoucherEvent) then) =
-      _$SearchEventCopyWithImpl<$Res, SearchVoucherEvent>;
+      _$SearchVoucherEventCopyWithImpl<$Res, SearchVoucherEvent>;
 }
 
 /// @nodoc
-class _$SearchEventCopyWithImpl<$Res, $Val extends SearchVoucherEvent>
-    implements $SearchEventCopyWith<$Res> {
-  _$SearchEventCopyWithImpl(this._value, this._then);
+class _$SearchVoucherEventCopyWithImpl<$Res, $Val extends SearchVoucherEvent>
+    implements $SearchVoucherEventCopyWith<$Res> {
+  _$SearchVoucherEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +90,7 @@ abstract class _$$SearchedVoucherTextChangedCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchedVoucherTextChangedCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$SearchedVoucherTextChanged>
+    extends _$SearchVoucherEventCopyWithImpl<$Res, _$SearchedVoucherTextChanged>
     implements _$$SearchedVoucherTextChangedCopyWith<$Res> {
   __$$SearchedVoucherTextChangedCopyWithImpl(
       _$SearchedVoucherTextChanged _value,
@@ -121,7 +121,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
 
   @override
   String toString() {
-    return 'SearchEvent.searchedVoucherTextChanged(text: $text)';
+    return 'SearchVoucherEvent.searchedVoucherTextChanged(text: $text)';
   }
 
   @override
@@ -230,7 +230,7 @@ abstract class _$$UpdateVoucherListItemsCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdateVoucherListItemsCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$UpdateVoucherListItems>
+    extends _$SearchVoucherEventCopyWithImpl<$Res, _$UpdateVoucherListItems>
     implements _$$UpdateVoucherListItemsCopyWith<$Res> {
   __$$UpdateVoucherListItemsCopyWithImpl(_$UpdateVoucherListItems _value,
       $Res Function(_$UpdateVoucherListItems) _then)
@@ -266,7 +266,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
 
   @override
   String toString() {
-    return 'SearchEvent.updateVoucherListItems(voucherList: $voucherList)';
+    return 'SearchVoucherEvent.updateVoucherListItems(voucherList: $voucherList)';
   }
 
   @override

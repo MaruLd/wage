@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'loading_shimmer.dart';
 
 class ShimmerList extends StatelessWidget {
   const ShimmerList(
-      {Key? key, this.height, this.width, required this.color, this.baseColor})
+      {Key? key,
+      this.height,
+      this.width,
+      required this.color,
+      this.baseColor,
+      required this.row})
       : super(key: key);
   final height;
   final width;
+  final int row;
   final Color color;
   final Color? baseColor;
 
@@ -17,24 +22,23 @@ class ShimmerList extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 20),
-        LoadingShimmer(
-          height: height,
-          width: width,
-          color: color,
-          baseColor: baseColor,
-        ),
-        const SizedBox(height: 15),
-        LoadingShimmer(
-            height: height, width: width, color: color, baseColor: baseColor),
-        const SizedBox(height: 15),
-        LoadingShimmer(
-            height: height, width: width, color: color, baseColor: baseColor),
-        const SizedBox(height: 15),
-        LoadingShimmer(
-            height: height, width: width, color: color, baseColor: baseColor),
-        const SizedBox(height: 15),
-        LoadingShimmer(
-            height: height, width: width, color: color, baseColor: baseColor),
+        ListView.builder(
+            itemCount: row,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                children: [
+                  Center(
+                    child: LoadingShimmer(
+                      height: height,
+                      width: width,
+                      color: color,
+                      baseColor: baseColor,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                ],
+              );
+            })
       ],
     );
   }

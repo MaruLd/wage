@@ -30,7 +30,7 @@ class ProjectXPItem extends StatelessWidget {
               ),
             ),
             Text(
-              '+200',
+              '',
               style: TextStyle(
                 color: global.headerText,
                 fontFamily: global.numberFont,

@@ -21,7 +21,7 @@ class VoucherListView extends ConsumerWidget {
         data: (data) {
           return Container(
             width: 340,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 300,
             ),
             child: ListView.builder(
@@ -37,14 +37,16 @@ class VoucherListView extends ConsumerWidget {
             ),
           );
         },
-        error: (error, stackTrace) => ShimmerList(
+        error: (error, stackTrace) => const ShimmerList(
             height: 126.0,
             width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
-        loading: () => ShimmerList(
+        loading: () => const ShimmerList(
             height: 126.0,
             width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

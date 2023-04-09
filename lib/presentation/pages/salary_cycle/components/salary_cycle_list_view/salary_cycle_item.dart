@@ -3,14 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/providers/api_provider.dart';
 import '../../../../../application/utils/navigation.dart';
 import '../../../../../domain/SalaryCycle/salary_cycle_model.dart';
-import '../../../../widgets/loading_shimmer.dart';
 
 class SalaryCycleItem extends ConsumerWidget {
   SalaryCycleItem({Key? key, required this.salaryCycle, this.onTap})

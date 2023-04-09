@@ -3,7 +3,7 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
-import '../../widgets/main_header.dart';
+import '../../widgets/home_header.dart';
 import 'components/body.dart';
 
 class SalaryCyclePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SalaryCyclePageState extends State<SalaryCyclePage> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const MainHeader(),
+          const HomeHeader(),
           const SizedBox(
             height: 80,
           ),

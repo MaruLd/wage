@@ -74,7 +74,6 @@ class VoucherService {
           'API /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
       return response.statusCode;
     } catch (e) {
-      print('not working');
       throw Exception(e);
     }
   }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/refresher.dart';
 import '../../widgets/main_body.dart';
-import '../../widgets/main_header.dart';
+import '../../widgets/home_header.dart';
 import 'components/body.dart';
 
 class HomePage extends ConsumerWidget {
@@ -16,7 +15,7 @@ class HomePage extends ConsumerWidget {
     return Refresher(
         child: Column(
       children: [
-        MainHeader(),
+        const HomeHeader(),
         const SizedBox(
           height: 80,
         ),

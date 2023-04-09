@@ -3,7 +3,7 @@ import 'package:wage/domain/Voucher/voucher_model.dart';
 part 'search_event.freezed.dart';
 
 @freezed
-class SearchMemberVoucherEvent with _$SearchEvent {
+class SearchMemberVoucherEvent with _$SearchMemberVoucherEvent {
   const factory SearchMemberVoucherEvent.searchedMemberVoucherTextChanged(
       {required String text}) = SearchedMemberVoucherTextChanged;
   const factory SearchMemberVoucherEvent.updateMemberVoucherListItems(

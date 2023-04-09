@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/pages/profile_overview/components/project_list_view/project_item.dart';
+import 'package:wage/presentation/pages/profile/components/project_list_view/project_item.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../widgets/loading_shimmer.dart';
@@ -38,7 +38,10 @@ class ProjectListView extends ConsumerWidget {
             width: 380.0,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
-        loading: () =>
-            CircularProgressIndicator(color: global.primary).centered());
+        loading: () => LoadingShimmer(
+            height: 80.0,
+            width: 380.0,
+            color: Color.fromARGB(118, 2, 193, 123),
+            baseColor: Color.fromARGB(118, 0, 100, 63)));
   }
 }

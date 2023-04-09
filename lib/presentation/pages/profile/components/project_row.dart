@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/profile_overview/components/project_list_view/project_list_view.dart';
+import 'package:wage/presentation/pages/profile/components/project_list_view/project_list_view.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class ProjectProgress extends StatefulWidget {

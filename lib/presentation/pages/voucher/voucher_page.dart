@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../application/providers/api_provider.dart';
 import '../../widgets/main_body.dart';
 import '../../widgets/refresher.dart';
-import '../../widgets/search_card.dart';
-import '../../widgets/search_voucher_bar.dart';
+import 'components/search_voucher_card.dart';
 import '../../widgets/sub_header.dart';
 import 'components/member_voucher_list_view/member_voucher_list_view.dart';
+import 'components/search_voucher_bar.dart';
 import 'components/voucher_list_view/voucher_list_view.dart';
 import 'components/voucher_tabs.dart';
 
@@ -34,6 +35,13 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
       );
     }
 
+    final totalVoucher = ref
+        .watch(voucherFutureProvider)
+        .whenOrNull(data: (data) => data.length);
+    final totalMyVoucher = ref
+        .watch(memberVoucherFutureProvider)
+        .whenOrNull(data: (data) => data.length);
+
     return Refresher(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -49,6 +57,9 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
                   children: [
                 SearchCard(
                   searchBar: SearchVoucherBar(),
+                  totalVoucher: tabBuyVoucher
+                      ? (totalVoucher ?? 0)
+                      : (totalMyVoucher ?? 0),
                 ),
                 const SizedBox(height: 10),
                 VoucherTabs(

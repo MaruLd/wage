@@ -3,7 +3,7 @@ import 'package:wage/domain/Voucher/voucher_model.dart';
 part 'search_state.freezed.dart';
 
 @freezed
-class SearchVoucherState with _$SearchState {
+class SearchVoucherState with _$SearchVoucherState {
   factory SearchVoucherState({
     required List<Voucher> voucherList,
   }) = _SearchState;

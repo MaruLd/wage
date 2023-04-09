@@ -28,7 +28,7 @@ mixin _$Member {
   String? get facebookUrl => throw _privateConstructorUsedError;
   MemberLevels? get memberLevels => throw _privateConstructorUsedError;
   Role? get role => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $MemberCopyWith<$Res> {
       String? facebookUrl,
       MemberLevels? memberLevels,
       Role? role,
-      DateTime? createdAt,
+      DateTime createdAt,
       DateTime? updatedAt});
 
   $MemberLevelsCopyWith<$Res>? get memberLevels;
@@ -78,7 +78,7 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
     Object? facebookUrl = freezed,
     Object? memberLevels = freezed,
     Object? role = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -114,10 +114,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -165,7 +165,7 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       String? facebookUrl,
       MemberLevels? memberLevels,
       Role? role,
-      DateTime? createdAt,
+      DateTime createdAt,
       DateTime? updatedAt});
 
   @override
@@ -192,7 +192,7 @@ class __$$_MemberCopyWithImpl<$Res>
     Object? facebookUrl = freezed,
     Object? memberLevels = freezed,
     Object? role = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
     Object? updatedAt = freezed,
   }) {
     return _then(_$_Member(
@@ -228,10 +228,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ class _$_Member extends _Member {
       this.facebookUrl,
       this.memberLevels,
       this.role,
-      this.createdAt,
+      required this.createdAt,
       this.updatedAt})
       : super._();
 
@@ -276,7 +276,7 @@ class _$_Member extends _Member {
   @override
   final Role? role;
   @override
-  final DateTime? createdAt;
+  final DateTime createdAt;
   @override
   final DateTime? updatedAt;
 
@@ -350,7 +350,7 @@ abstract class _Member extends Member {
       final String? facebookUrl,
       final MemberLevels? memberLevels,
       final Role? role,
-      final DateTime? createdAt,
+      required final DateTime createdAt,
       final DateTime? updatedAt}) = _$_Member;
   _Member._() : super._();
 
@@ -373,7 +373,7 @@ abstract class _Member extends Member {
   @override
   Role? get role;
   @override
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @override
   DateTime? get updatedAt;
   @override

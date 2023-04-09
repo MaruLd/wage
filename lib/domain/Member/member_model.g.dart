@@ -19,9 +19,7 @@ _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       role: json['role'] == null
           ? null
           : Role.fromJson(json['role'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
@@ -36,7 +34,7 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'facebookUrl': instance.facebookUrl,
       'memberLevels': instance.memberLevels,
       'role': instance.role,
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 

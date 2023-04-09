@@ -38,11 +38,13 @@ class ProjectXPListView extends ConsumerWidget {
         error: (error, stackTrace) => ShimmerList(
             height: 30.0,
             width: 320.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
         loading: () => ShimmerList(
             height: 30.0,
             width: 320.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

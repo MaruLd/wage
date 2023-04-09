@@ -6,7 +6,7 @@ import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
 import '../../presentation/pages/payslip/payslip_page.dart';
 import '../../presentation/pages/payslip_detail/payslip_detail_page.dart';
-import '../../presentation/pages/profile_overview/profile_page.dart';
+import '../../presentation/pages/profile/profile_page.dart';
 
 void salaryCyclePageNavigation(BuildContext context) {
   Navigation.setPageIndex(context, 3);

@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchEvent {
+mixin _$SearchMemberVoucherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedMemberVoucherTextChanged,
@@ -66,16 +66,17 @@ mixin _$SearchEvent {
 }
 
 /// @nodoc
-abstract class $SearchEventCopyWith<$Res> {
-  factory $SearchEventCopyWith(SearchMemberVoucherEvent value,
+abstract class $SearchMemberVoucherEventCopyWith<$Res> {
+  factory $SearchMemberVoucherEventCopyWith(SearchMemberVoucherEvent value,
           $Res Function(SearchMemberVoucherEvent) then) =
-      _$SearchEventCopyWithImpl<$Res, SearchMemberVoucherEvent>;
+      _$SearchMemberVoucherEventCopyWithImpl<$Res, SearchMemberVoucherEvent>;
 }
 
 /// @nodoc
-class _$SearchEventCopyWithImpl<$Res, $Val extends SearchMemberVoucherEvent>
-    implements $SearchEventCopyWith<$Res> {
-  _$SearchEventCopyWithImpl(this._value, this._then);
+class _$SearchMemberVoucherEventCopyWithImpl<$Res,
+        $Val extends SearchMemberVoucherEvent>
+    implements $SearchMemberVoucherEventCopyWith<$Res> {
+  _$SearchMemberVoucherEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +96,8 @@ abstract class _$$SearchedMemberVoucherTextChangedCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchedMemberVoucherTextChangedCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$SearchedMemberVoucherTextChanged>
+    extends _$SearchMemberVoucherEventCopyWithImpl<$Res,
+        _$SearchedMemberVoucherTextChanged>
     implements _$$SearchedMemberVoucherTextChangedCopyWith<$Res> {
   __$$SearchedMemberVoucherTextChangedCopyWithImpl(
       _$SearchedMemberVoucherTextChanged _value,
@@ -127,7 +129,7 @@ class _$SearchedMemberVoucherTextChanged
 
   @override
   String toString() {
-    return 'SearchEvent.searchedMemberVoucherTextChanged(text: $text)';
+    return 'SearchMemberVoucherEvent.searchedMemberVoucherTextChanged(text: $text)';
   }
 
   @override
@@ -245,7 +247,8 @@ abstract class _$$UpdateMemberVoucherListItemsCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdateMemberVoucherListItemsCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$UpdateMemberVoucherListItems>
+    extends _$SearchMemberVoucherEventCopyWithImpl<$Res,
+        _$UpdateMemberVoucherListItems>
     implements _$$UpdateMemberVoucherListItemsCopyWith<$Res> {
   __$$UpdateMemberVoucherListItemsCopyWithImpl(
       _$UpdateMemberVoucherListItems _value,
@@ -284,7 +287,7 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
 
   @override
   String toString() {
-    return 'SearchEvent.updateMemberVoucherListItems(memberVoucherList: $memberVoucherList)';
+    return 'SearchMemberVoucherEvent.updateMemberVoucherListItems(memberVoucherList: $memberVoucherList)';
   }
 
   @override

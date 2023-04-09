@@ -78,7 +78,7 @@ final payslipFutureProvider = FutureProvider.family<Payslip, String>(
 
 final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
   (ref) {
-    return ref.watch(salaryCycleProvider).getAllSalaryCycle();
+    return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle();
   },
 );
 
@@ -90,7 +90,6 @@ final voucherFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
 
 final buyVoucherFutureProvider = FutureProvider.family<int?, String>(
   (ref, voucherId) {
-    print('buyVoucher');
     return ref.watch(voucherProvider).buyVoucher(voucherId);
   },
 );
