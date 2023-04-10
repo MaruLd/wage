@@ -46,7 +46,7 @@ class ProjectItem extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 240,
+                      width: 230,
                       child: Text(
                         project.projectName,
                         overflow: TextOverflow.ellipsis,

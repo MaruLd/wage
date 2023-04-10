@@ -25,6 +25,7 @@ class Refresher extends ConsumerWidget {
         ref.refresh(voucherFutureProvider);
         ref.refresh(memberVoucherFutureProvider);
         ref.refresh(serverAvailableProvider);
+        ref.refresh(transactionListFutureProvider);
         print('refreshing data...');
       });
     }

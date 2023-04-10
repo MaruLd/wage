@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/voucher/components/voucher_list_view/voucher_item.dart';
 import 'package:wage/presentation/widgets/shimmer_list.dart';
 
@@ -24,17 +26,26 @@ class VoucherListView extends ConsumerWidget {
             constraints: const BoxConstraints(
               minHeight: 300,
             ),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: voucherList.length,
-              itemBuilder: (context, int index) {
-                return VoucherItem(
-                  voucher: voucherList[index],
-                );
-              },
-            ),
+            child: data.isNotEmpty
+                ? ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: voucherList.length,
+                    itemBuilder: (context, int index) {
+                      return VoucherItem(
+                        voucher: voucherList[index],
+                      );
+                    },
+                  )
+                : Text(
+                    'Hệ thống chưa có voucher nào',
+                    style: GoogleFonts.openSans(
+                      color: const Color.fromARGB(255, 47, 47, 47),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                    ),
+                  ).centered(),
           );
         },
         error: (error, stackTrace) => const ShimmerList(

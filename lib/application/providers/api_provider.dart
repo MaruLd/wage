@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/Level/level_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
+import 'package:wage/domain/Transaction/transaction_model.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
@@ -14,6 +15,7 @@ import '../../infrastructure/api_services/fcm_service.dart';
 import '../../infrastructure/api_services/payslip_service.dart';
 import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
+import '../../infrastructure/api_services/transaction_service.dart';
 import '../../infrastructure/api_services/voucher_service.dart';
 import '../../infrastructure/authentication_service/authService.dart';
 import '../../infrastructure/api_services/level_service.dart';
@@ -41,6 +43,8 @@ final payslipProvider = Provider((ref) => PayslipService());
 final fcmProvider = Provider((ref) => FCMService());
 
 final voucherProvider = Provider((ref) => VoucherService());
+
+final transactionProvider = Provider((ref) => TransactionService());
 
 final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
@@ -125,6 +129,10 @@ final nextLevelFutureProvider = FutureProvider<Level>(
 
 final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
   return ref.watch(projectProvider).getProjects();
+});
+
+final transactionListFutureProvider = FutureProvider<List<Transaction>>((ref) {
+  return ref.watch(transactionProvider).getTransactions();
 });
 
 final projectsCountProvider = FutureProvider<int>((ref) {

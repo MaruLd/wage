@@ -23,7 +23,6 @@ class _SalaryCycleOverviewState extends State<SalaryCycleOverview> {
       setState(() {
         dateRange = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -' +
             ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
-        print(dateRange);
       });
     }
 

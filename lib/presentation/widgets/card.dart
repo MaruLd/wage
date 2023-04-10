@@ -19,7 +19,7 @@ class MainCard extends StatelessWidget {
           )
         ],
         gradient: LinearGradient(
-          colors: [Color(0xFF014131), Color(0xD2026E5A)],
+          colors: [Color(0xFF014131), Color.fromARGB(255, 2, 130, 106)],
           stops: [0, 1],
           begin: AlignmentDirectional(0, -1),
           end: AlignmentDirectional(0, 1),

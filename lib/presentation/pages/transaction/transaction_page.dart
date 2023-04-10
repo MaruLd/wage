@@ -5,9 +5,11 @@ import 'package:wage/presentation/widgets/point_card.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/main_header.dart';
+import 'components/transaction_list_view/transaction_item.dart';
+import 'components/transaction_list_view/transaction_list_view.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
+class TransactionPage extends StatelessWidget {
+  const TransactionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,10 @@ class HistoryPage extends StatelessWidget {
           ),
           MainBody(
               child: Column(
-            children: [PointCard()],
+            children: [
+              PointCard(),
+              TransactionListView(),
+            ],
           ))
         ],
       ).safeArea(),

@@ -3,22 +3,22 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/pages/salary_cycle/components/salary_cycle_list_view/salary_cycle_item.dart';
+import 'package:wage/presentation/pages/transaction/components/transaction_list_view/transaction_item.dart';
 import 'package:wage/presentation/widgets/shimmer_list.dart';
 
-class SalaryCycleListView extends ConsumerWidget {
-  const SalaryCycleListView({Key? key}) : super(key: key);
+import '../../../../../application/providers/api_provider.dart';
+
+class TransactionListView extends ConsumerWidget {
+  const TransactionListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final salaryCycleList = ref.watch(salaryCycleFutureProvider);
-
-    return salaryCycleList.when(
+    final transactionList = ref.watch(transactionListFutureProvider);
+    return transactionList.when(
         data: (data) {
           return Container(
             width: 340,
-            constraints: new BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 300,
             ),
             child: data.isNotEmpty
@@ -28,17 +28,13 @@ class SalaryCycleListView extends ConsumerWidget {
                     scrollDirection: Axis.vertical,
                     itemCount: data.length,
                     itemBuilder: (context, int index) {
-                      return Container(
-                        width: 320,
-                        child: SalaryCycleItem(
-                          onTap: () {},
-                          salaryCycle: data[index],
-                        ),
+                      return TransactionItem(
+                        transaction: data[index],
                       );
                     },
                   )
                 : Text(
-                    'Bạn chưa có trong kỳ lương nào',
+                    'Bạn chưa có giao dịch nào',
                     style: GoogleFonts.openSans(
                       color: const Color.fromARGB(255, 47, 47, 47),
                       fontWeight: FontWeight.w600,
@@ -48,15 +44,15 @@ class SalaryCycleListView extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) => const ShimmerList(
-            height: 50.0,
-            width: 340.0,
-            row: 5,
+            height: 126.0,
+            width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
         loading: () => const ShimmerList(
-            height: 50.0,
-            width: 340.0,
-            row: 5,
+            height: 126.0,
+            width: 325.0,
+            row: 3,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

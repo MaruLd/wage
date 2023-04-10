@@ -5,6 +5,9 @@ import '../../domain/Project/project_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../domain/Transaction/transaction_model.dart';
+import '../../domain/Wallets/wallets_model.dart';
+
 String pointFormat(
   int point,
 ) {
@@ -110,5 +113,33 @@ Color salaryCycleStatusColor(SalaryCycleStatusEnum status) {
       return Colors.redAccent;
     default:
       return Colors.grey;
+  }
+}
+
+String transactionTypeTransform(TransactionTypeEnum status) {
+  switch (status) {
+    case TransactionTypeEnum.buyVoucher:
+      return 'Mua Voucher';
+    case TransactionTypeEnum.newAccount:
+      return 'Tài khoản mới';
+    case TransactionTypeEnum.projectBonus:
+      return 'Thưởng Project';
+    case TransactionTypeEnum.systemSalary:
+      return 'Hệ thống trả lương';
+    case TransactionTypeEnum.walletExpire:
+      return 'Ví hết hạn';
+    default:
+      return '';
+  }
+}
+
+String wallletTokenTransform(WalletTokenEnum status) {
+  switch (status) {
+    case WalletTokenEnum.point:
+      return 'point';
+    case WalletTokenEnum.xp:
+      return 'XP';
+    default:
+      return '';
   }
 }

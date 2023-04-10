@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/pages/profile/components/sub_project_list_view/sub_project_item.dart';
@@ -19,19 +20,28 @@ class SubProjectListView extends ConsumerWidget {
           return SizedBox(
             width: 380,
             height: 170,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: projectData.length,
-              itemBuilder: (context, int index) {
-                return Container(
-                  width: 130,
-                  alignment: Alignment.center,
-                  child:
-                      SubProjectItem(onTap: () {}, project: projectData[index])
-                          .px20(),
-                );
-              },
-            ),
+            child: projectData.isNotEmpty
+                ? ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: projectData.length,
+                    itemBuilder: (context, int index) {
+                      return Container(
+                        width: 130,
+                        alignment: Alignment.center,
+                        child: SubProjectItem(
+                                onTap: () {}, project: projectData[index])
+                            .px20(),
+                      );
+                    },
+                  )
+                : Text(
+                    'Bạn chưa tham gia dự án nào',
+                    style: GoogleFonts.openSans(
+                      color: const Color.fromARGB(255, 47, 47, 47),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
+                  ).centered(),
           );
         },
         error: (error, stackTrace) => LoadingShimmer(
