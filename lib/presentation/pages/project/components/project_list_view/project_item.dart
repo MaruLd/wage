@@ -15,6 +15,7 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(project);
     return Container(
       height: 210,
       width: 325,
@@ -52,7 +53,7 @@ class ProjectItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.openSans(
                           color: global.normalText,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           fontSize: 18,
                         ),
                       ),

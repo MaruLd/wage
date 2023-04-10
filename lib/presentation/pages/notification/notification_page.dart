@@ -4,6 +4,7 @@ import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/main_header.dart';
 import '../../widgets/sub_body.dart';
+import '../../widgets/sub_header.dart';
 import 'components/notification_list_view/notification_list_view.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class NotificationPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          MainHeader('THÔNG BÁO'),
+          SubHeader('THÔNG BÁO'),
           const SizedBox(
             height: 30,
           ),

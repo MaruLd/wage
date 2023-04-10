@@ -10,7 +10,8 @@ class TransactionService {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/members/me/transactions',
+      final response = await dio.get(
+          '/v1/members/me/transactions?OrderBy=createdAtDesc&page-size=50',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"

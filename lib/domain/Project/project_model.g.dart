@@ -66,10 +66,10 @@ const _$ProjectTypeEnumEnumMap = {
 
 const _$ProjectVisibilityEnumEnumMap = {
   ProjectVisibilityEnum.public: 'public',
-  ProjectVisibilityEnum.private: 'private ',
+  ProjectVisibilityEnum.private: 'private',
 };
 
 const _$ProjectMemberRoleEnumEnumMap = {
   ProjectMemberRoleEnum.manager: 'manager',
-  ProjectMemberRoleEnum.member: 'member  ',
+  ProjectMemberRoleEnum.member: 'member',
 };

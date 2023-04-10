@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
-import '../../widgets/card.dart';
 import '../../widgets/sub_header.dart';
 import 'components/payslip_general.dart';
 import '../../widgets/salary_cycle_date_card.dart';

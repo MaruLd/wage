@@ -121,11 +121,11 @@ String transactionTypeTransform(TransactionTypeEnum status) {
     case TransactionTypeEnum.buyVoucher:
       return 'Mua Voucher';
     case TransactionTypeEnum.projectSalary:
-      return 'Lương từ Project';
+      return 'Từ dự án';
     case TransactionTypeEnum.projectBonus:
       return 'Thưởng Project';
     case TransactionTypeEnum.systemSalary:
-      return 'Hệ thống trả lương';
+      return 'Từ hệ thống';
     case TransactionTypeEnum.walletExpire:
       return 'Ví hết hạn';
     default:
@@ -136,7 +136,7 @@ String transactionTypeTransform(TransactionTypeEnum status) {
 String wallletTokenTransform(WalletTokenEnum status) {
   switch (status) {
     case WalletTokenEnum.point:
-      return 'point';
+      return 'Point';
     case WalletTokenEnum.xp:
       return 'XP';
     default:

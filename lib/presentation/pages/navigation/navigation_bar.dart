@@ -78,6 +78,7 @@ class _NavigationState extends ConsumerState<Navigation> {
         ).show();
         ref.refresh(voucherFutureProvider);
         ref.refresh(memberVoucherFutureProvider);
+        ref.refresh(walletsFutureProvider);
       }
     });
   }

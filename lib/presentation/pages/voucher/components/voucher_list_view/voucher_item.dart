@@ -77,7 +77,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 128,
+      height: 134,
       width: 325,
       decoration: BoxDecoration(
         color: Color.fromARGB(35, 246, 181, 69),
@@ -118,7 +118,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
               Container(
                 width: 290,
                 constraints: new BoxConstraints(
-                  maxHeight: 32,
+                  maxHeight: 36,
                 ),
                 child: Text(
                   'Mô tả: ${widget.voucher.voucherDescription}',
@@ -133,9 +133,6 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
               ),
               const SizedBox(
                 height: 2,
-              ),
-              const SizedBox(
-                width: 20,
               ),
               Row(
                 children: [

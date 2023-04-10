@@ -154,10 +154,10 @@ class PayslipGeneral extends ConsumerWidget {
             width: 10,
           ),
           Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(15, 48, 188, 151),
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(15, 48, 188, 151),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
             height: 65,
             width: 160,
             child: Row(
@@ -210,82 +210,155 @@ class PayslipGeneral extends ConsumerWidget {
           ),
           height: 75,
           width: 330,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const SizedBox(width: 10),
+            Container(
+              decoration: BoxDecoration(
+                color: global.cyan,
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              height: 50,
+              width: 50,
+              child: FaIcon(FontAwesomeIcons.businessTime,
+                      color: global.background, size: 23)
+                  .centered(),
+            ),
+            const SizedBox(width: 15),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Tổng point P1',
+                  style: GoogleFonts.montserrat(
+                    color: global.normalText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+                Text(
+                  'Vị trí việc làm',
+                  style: GoogleFonts.montserrat(
+                    color: Colors.grey.withOpacity(0.9),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 35,
+            ),
+            Container(
+              width: 65,
+              alignment: AlignmentDirectional.center,
+              child: payslip.when(
+                data: (data) {
+                  return Text(
+                    pointFormat(data.totalP1!),
+                    style: GoogleFonts.montserrat(
+                      color: global.headerText,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
+                  );
+                },
+                error: (error, stackTrace) {
+                  print(error.toString());
+                  return LoadingShimmer(
+                    height: 20.0,
+                    width: 70.0,
+                    color: Color.fromARGB(146, 31, 255, 206),
+                  );
+                },
+                loading: () => LoadingShimmer(
+                    height: 20.0,
+                    width: 70.0,
+                    color: Color.fromARGB(146, 31, 255, 206)),
+              ),
+            ),
+          ]),
+        ),
+      ),
+      const SizedBox(
+        height: 15,
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: global.background,
+          border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1.0),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+        height: 75,
+        width: 330,
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          const SizedBox(width: 10),
+          Container(
+            decoration: BoxDecoration(
+              color: global.yellow,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            height: 50,
+            width: 50,
+            child: FaIcon(FontAwesomeIcons.fileCircleCheck,
+                    color: global.background, size: 23)
+                .centered(),
+          ),
+          const SizedBox(width: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                const SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: global.cyan,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                  height: 50,
-                  width: 50,
-                  child: FaIcon(FontAwesomeIcons.businessTime,
-                          color: global.background, size: 23)
-                      .centered(),
+              Text(
+                'Tổng point P2',
+                style: GoogleFonts.montserrat(
+                  color: global.normalText,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
                 ),
-                const SizedBox(width: 15),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Tổng point P1',
-                      style: GoogleFonts.montserrat(
-                        color: global.normalText,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      'Vị trí việc làm',
-                      style: GoogleFonts.montserrat(
-                        color: Colors.grey.withOpacity(0.9),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
+              ),
+              Text(
+                'Năng lực',
+                style: GoogleFonts.montserrat(
+                  color: Colors.grey.withOpacity(0.9),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                 ),
-                const SizedBox(
-                  width: 35,
-                ),
-                Container(
-                  width: 65,
-                  alignment: AlignmentDirectional.center,
-                  child: payslip.when(
-                    data: (data) {
-                      return Text(
-                        pointFormat(data.totalP1!),
-                        style: GoogleFonts.montserrat(
-                          color: global.headerText,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
-                      );
-                    },
-                    error: (error, stackTrace) {
-                      print(error.toString());
-                      return LoadingShimmer(
-                        height: 20.0,
-                        width: 70.0,
-                        color: Color.fromARGB(146, 31, 255, 206),
-                      );
-                    },
-                    loading: () => LoadingShimmer(
-                        height: 20.0,
-                        width: 70.0,
-                        color: Color.fromARGB(146, 31, 255, 206)),
-                  ),
-                ),
-              ]),
-              Icon(Icons.keyboard_arrow_right,
-                  color: Colors.grey.withOpacity(0.5), size: 25),
+              ),
             ],
           ),
-        ),
+          const SizedBox(
+            width: 32,
+          ),
+          Container(
+            width: 65,
+            alignment: AlignmentDirectional.center,
+            child: payslip.when(
+              data: (data) {
+                return Text(
+                  pointFormat(data.totalP2!),
+                  style: GoogleFonts.montserrat(
+                    color: global.headerText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                );
+              },
+              error: (error, stackTrace) {
+                print(error.toString());
+                return LoadingShimmer(
+                  height: 20.0,
+                  width: 70.0,
+                  color: Color.fromARGB(146, 31, 255, 206),
+                );
+              },
+              loading: () => LoadingShimmer(
+                  height: 20.0,
+                  width: 70.0,
+                  color: Color.fromARGB(146, 31, 255, 206)),
+            ),
+          ),
+        ]),
       ),
       const SizedBox(
         height: 15,
@@ -298,168 +371,74 @@ class PayslipGeneral extends ConsumerWidget {
         ),
         height: 75,
         width: 330,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                  color: global.yellow,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                height: 50,
-                width: 50,
-                child: FaIcon(FontAwesomeIcons.fileCircleCheck,
-                        color: global.background, size: 23)
-                    .centered(),
-              ),
-              const SizedBox(width: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Tổng point P2',
-                    style: GoogleFonts.montserrat(
-                      color: global.normalText,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    'Năng lực',
-                    style: GoogleFonts.montserrat(
-                      color: Colors.grey.withOpacity(0.9),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 32,
-              ),
-              Container(
-                width: 65,
-                alignment: AlignmentDirectional.center,
-                child: payslip.when(
-                  data: (data) {
-                    return Text(
-                      pointFormat(data.totalP2!),
-                      style: GoogleFonts.montserrat(
-                        color: global.headerText,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    );
-                  },
-                  error: (error, stackTrace) {
-                    print(error.toString());
-                    return LoadingShimmer(
-                      height: 20.0,
-                      width: 70.0,
-                      color: Color.fromARGB(146, 31, 255, 206),
-                    );
-                  },
-                  loading: () => LoadingShimmer(
-                      height: 20.0,
-                      width: 70.0,
-                      color: Color.fromARGB(146, 31, 255, 206)),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          const SizedBox(width: 10),
+          Container(
+            decoration: BoxDecoration(
+              color: global.primary2,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            height: 50,
+            width: 50,
+            child: FaIcon(FontAwesomeIcons.userClock,
+                    color: global.background, size: 23)
+                .centered(),
+          ),
+          const SizedBox(width: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Tổng point P3',
+                style: GoogleFonts.montserrat(
+                  color: global.normalText,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
                 ),
               ),
-            ]),
-            Icon(Icons.keyboard_arrow_right,
-                color: Colors.grey.withOpacity(0.5), size: 25),
-          ],
-        ),
-      ),
-      const SizedBox(
-        height: 15,
-      ),
-      Container(
-        decoration: BoxDecoration(
-          color: global.background,
-          border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1.0),
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        height: 75,
-        width: 330,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                  color: global.primary2,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                height: 50,
-                width: 50,
-                child: FaIcon(FontAwesomeIcons.userClock,
-                        color: global.background, size: 23)
-                    .centered(),
-              ),
-              const SizedBox(width: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Tổng point P3',
-                    style: GoogleFonts.montserrat(
-                      color: global.normalText,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    'Hiệu suất làm việc',
-                    style: GoogleFonts.montserrat(
-                      color: Colors.grey.withOpacity(0.9),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Container(
-                width: 65,
-                alignment: AlignmentDirectional.center,
-                child: payslip.when(
-                  data: (data) {
-                    return Text(
-                      pointFormat(data.totalP3!),
-                      style: GoogleFonts.montserrat(
-                        color: global.headerText,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    );
-                  },
-                  error: (error, stackTrace) {
-                    print(error.toString());
-                    return LoadingShimmer(
-                      height: 20.0,
-                      width: 70.0,
-                      color: Color.fromARGB(146, 31, 255, 206),
-                    );
-                  },
-                  loading: () => LoadingShimmer(
-                      height: 20.0,
-                      width: 70.0,
-                      color: Color.fromARGB(146, 31, 255, 206)),
+              Text(
+                'Hiệu suất làm việc',
+                style: GoogleFonts.montserrat(
+                  color: Colors.grey.withOpacity(0.9),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                 ),
               ),
-            ]),
-            Icon(Icons.keyboard_arrow_right,
-                color: Colors.grey.withOpacity(0.5), size: 25),
-          ],
-        ),
+            ],
+          ),
+          const SizedBox(
+            width: 30,
+          ),
+          Container(
+            width: 65,
+            alignment: AlignmentDirectional.center,
+            child: payslip.when(
+              data: (data) {
+                return Text(
+                  pointFormat(data.totalP3!),
+                  style: GoogleFonts.montserrat(
+                    color: global.headerText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                );
+              },
+              error: (error, stackTrace) {
+                print(error.toString());
+                return LoadingShimmer(
+                  height: 20.0,
+                  width: 70.0,
+                  color: Color.fromARGB(146, 31, 255, 206),
+                );
+              },
+              loading: () => LoadingShimmer(
+                  height: 20.0,
+                  width: 70.0,
+                  color: Color.fromARGB(146, 31, 255, 206)),
+            ),
+          ),
+        ]),
       ),
     ]);
   }

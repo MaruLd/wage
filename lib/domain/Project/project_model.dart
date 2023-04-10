@@ -53,13 +53,13 @@ enum ProjectTypeEnum {
 enum ProjectVisibilityEnum {
   @JsonValue("public")
   public,
-  @JsonValue("private ")
+  @JsonValue("private")
   private,
 }
 
 enum ProjectMemberRoleEnum {
   @JsonValue("manager")
   manager,
-  @JsonValue("member  ")
+  @JsonValue("member")
   member,
 }
