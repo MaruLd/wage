@@ -77,6 +77,9 @@ class MemberVoucherItem extends ConsumerWidget {
                       fontSize: 16,
                     ),
                   ),
+                  const SizedBox(
+                    height: 4,
+                  ),
                 ],
               ),
             ],

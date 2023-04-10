@@ -3,18 +3,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/transaction/components/transaction_list_view/transaction_item.dart';
 import 'package:wage/presentation/widgets/shimmer_list.dart';
 
 import '../../../../../application/providers/api_provider.dart';
+import 'notification_item.dart';
 
-class TransactionListView extends ConsumerWidget {
-  const TransactionListView({Key? key}) : super(key: key);
+class NotificationListView extends ConsumerWidget {
+  const NotificationListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactionList = ref.watch(transactionListFutureProvider);
-    return transactionList.when(
+    final notificationList = ref.watch(notificationFutureProvider);
+    return notificationList.when(
         data: (data) {
           return Container(
             width: 340,
@@ -28,13 +28,13 @@ class TransactionListView extends ConsumerWidget {
                     scrollDirection: Axis.vertical,
                     itemCount: data.length,
                     itemBuilder: (context, int index) {
-                      return TransactionItem(
-                        transaction: data[index],
+                      return NotificationItem(
+                        notification: data[index],
                       );
                     },
                   )
                 : Text(
-                    'Bạn chưa có giao dịch nào',
+                    'Bạn chưa có thông báo',
                     style: GoogleFonts.openSans(
                       color: const Color.fromARGB(255, 47, 47, 47),
                       fontWeight: FontWeight.w600,

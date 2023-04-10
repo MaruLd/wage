@@ -72,7 +72,7 @@ class HomeHeader extends ConsumerWidget {
             width: 20,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => notificationPageNavigation(context),
             icon: Icon(
               CupertinoIcons.bell_solid,
               color: global.background,

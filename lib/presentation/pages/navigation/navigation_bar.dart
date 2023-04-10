@@ -11,9 +11,9 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../application/providers/api_provider.dart';
 import '../../../application/providers/auth_datas_provider.dart';
+import '../../../domain/FCMNotification/fcm_notification_model.dart';
 import '../error/error_page.dart';
 import '../home/home_page.dart';
-import '../profile/profile_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
 import '../setting/setting_page.dart';
 
@@ -53,9 +53,31 @@ class _NavigationState extends ConsumerState<Navigation> {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
-
       if (message.notification != null) {
         print('Message also contained a notification: ${message.notification}');
+      }
+      final notification = FCMNotificationModel.fromJson(message.data);
+
+      if (notification.Type == 'VOUCHER_BOUGHT') {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Đổi Voucher thành công",
+          desc: "Bạn đã đổi Voucher thành công!",
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
+        ref.refresh(voucherFutureProvider);
+        ref.refresh(memberVoucherFutureProvider);
       }
     });
   }

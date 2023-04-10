@@ -4,6 +4,7 @@ import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 import '../../domain/Payslip/payslip_model.dart';
 import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
+import '../../presentation/pages/notification/notification_page.dart';
 import '../../presentation/pages/payslip/payslip_page.dart';
 import '../../presentation/pages/payslip_detail/payslip_detail_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
@@ -79,6 +80,15 @@ void projectPageNavigation(BuildContext context) {
     context,
     MaterialPageRoute(
       builder: (context) => ProjectPage(),
+    ),
+  );
+}
+
+void notificationPageNavigation(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => NotificationPage(),
     ),
   );
 }

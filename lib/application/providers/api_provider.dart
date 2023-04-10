@@ -10,8 +10,10 @@ import 'package:wage/infrastructure/api_services/wallet_service.dart';
 import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
 
 import '../../domain/Auth/auth_model.dart';
+import '../../domain/Notification/notification_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../infrastructure/api_services/fcm_service.dart';
+import '../../infrastructure/api_services/notification_service.dart';
 import '../../infrastructure/api_services/payslip_service.dart';
 import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
@@ -45,6 +47,8 @@ final fcmProvider = Provider((ref) => FCMService());
 final voucherProvider = Provider((ref) => VoucherService());
 
 final transactionProvider = Provider((ref) => TransactionService());
+
+final notificationProvider = Provider((ref) => NotificationService());
 
 final serverAvailableProvider = FutureProvider<bool>(
   (ref) {
@@ -83,6 +87,12 @@ final payslipFutureProvider = FutureProvider.family<Payslip, String>(
 final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
   (ref) {
     return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle();
+  },
+);
+
+final notificationFutureProvider = FutureProvider<List<NotificationModel>>(
+  (ref) {
+    return ref.watch(notificationProvider).getNotifications();
   },
 );
 

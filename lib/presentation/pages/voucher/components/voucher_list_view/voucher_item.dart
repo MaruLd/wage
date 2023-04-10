@@ -31,82 +31,44 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
       useRootNavigator: false,
       buttons: [
         DialogButton(
-            width: 150,
-            color: global.primary2,
-            child: Text(
-              "Đổi Voucher",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ).centered(),
-            onPressed: () async {
-              Navigator.pop(context);
-              VoucherService voucherService = VoucherService();
-              var buySuccess =
-                  await voucherService.buyVoucher(widget.voucher.voucherId);
+          width: 150,
+          color: global.primary2,
+          child: Text(
+            "Đổi Voucher",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ).centered(),
+          onPressed: () async {
+            Navigator.pop(context);
+            VoucherService voucherService = VoucherService();
+            var buySuccess =
+                await voucherService.buyVoucher(widget.voucher.voucherId);
 
-              ref
-                  .read(buyVoucherFutureProvider(widget.voucher.voucherId))
-                  .whenOrNull(
-                data: (statusCode) {
-                  if (statusCode == 200) {
-                    ref.refresh(voucherFutureProvider);
-                    Alert(
-                      context: context,
-                      type: AlertType.success,
-                      title: "Đổi Voucher thành công",
-                      desc:
-                          "Bạn đã đổi Voucher ${widget.voucher.voucherName} thành công!",
-                      useRootNavigator: false,
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "Ok",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120,
-                        )
-                      ],
-                    ).show();
-                  } else if (statusCode == 400) {
-                    Alert(
-                      context: context,
-                      type: AlertType.error,
-                      title: "Đổi Voucher thất bại",
-                      desc: "Số Point của bạn không đủ",
-                      useRootNavigator: false,
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "Ok",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120,
-                        )
-                      ],
-                    ).show();
-                  } else {
-                    Alert(
-                      context: context,
-                      type: AlertType.error,
-                      title: "Đổi Voucher thất bại",
-                      desc: "Kiểm tra lại kết nối mạng của bạn",
-                      useRootNavigator: false,
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "Ok",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120,
-                        )
-                      ],
-                    ).show();
-                  }
-                },
-              );
-            })
+            // await ref
+            //     .watch(buyVoucherFutureProvider(widget.voucher.voucherId))
+            //     .whenOrNull(
+            //   data: (statusCode) {
+            if (buySuccess == 400) {
+              Alert(
+                context: context,
+                type: AlertType.error,
+                title: "Đổi Voucher thất bại",
+                desc: "Số Point của bạn không đủ",
+                useRootNavigator: false,
+                buttons: [
+                  DialogButton(
+                    child: Text(
+                      "Ok",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                    width: 120,
+                  )
+                ],
+              ).show();
+            }
+          },
+        )
+        //       })
       ],
     ).show();
     ;

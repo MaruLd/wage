@@ -120,8 +120,8 @@ String transactionTypeTransform(TransactionTypeEnum status) {
   switch (status) {
     case TransactionTypeEnum.buyVoucher:
       return 'Mua Voucher';
-    case TransactionTypeEnum.newAccount:
-      return 'Tài khoản mới';
+    case TransactionTypeEnum.projectSalary:
+      return 'Lương từ Project';
     case TransactionTypeEnum.projectBonus:
       return 'Thưởng Project';
     case TransactionTypeEnum.systemSalary:
@@ -139,6 +139,19 @@ String wallletTokenTransform(WalletTokenEnum status) {
       return 'point';
     case WalletTokenEnum.xp:
       return 'XP';
+    default:
+      return '';
+  }
+}
+
+String notificationTypeTransform(String string) {
+  switch (string) {
+    case 'VOUCHER_BOUGHT':
+      return 'Mua Voucher Thành Công!';
+    case 'PROJECT_CREATED':
+      return 'Dự án đã được tạo thành công';
+    case 'PROJECT_UPDATED':
+      return 'Dự án đã được bắt đầu';
     default:
       return '';
   }

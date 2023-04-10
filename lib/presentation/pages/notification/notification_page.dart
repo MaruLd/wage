@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/widgets/main_body.dart';
-import 'package:wage/presentation/widgets/point_card.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/main_header.dart';
 import '../../widgets/sub_body.dart';
-import 'components/transaction_list_view/transaction_item.dart';
-import 'components/transaction_list_view/transaction_list_view.dart';
+import 'components/notification_list_view/notification_list_view.dart';
 
-class TransactionPage extends StatelessWidget {
-  const TransactionPage({super.key});
+class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class TransactionPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          MainHeader('LỊCH SỬ GIAO DỊCH'),
+          MainHeader('THÔNG BÁO'),
           const SizedBox(
             height: 30,
           ),
@@ -29,7 +26,7 @@ class TransactionPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TransactionListView(),
+              NotificationListView(),
               const SizedBox(
                 height: 40,
               ),

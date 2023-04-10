@@ -21,7 +21,8 @@ class LevelCard extends ConsumerWidget {
 
     int? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
     int? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
-    int xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
+    int xpNeededToLevelUp =
+        nextLevelXp != null ? nextLevelXp - (userXp ?? 0) : 0;
 
     String? levelColor = userData.whenOrNull(
         data: (data) => data.memberLevels!.level.levelColor);
