@@ -20,7 +20,6 @@ class VoucherItem extends ConsumerStatefulWidget {
 }
 
 class _VoucherItemState extends ConsumerState<VoucherItem> {
-
   confirmBuyVoucher() {
     Alert(
       context: context,
@@ -71,7 +70,6 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 134,
       width: 325,
       decoration: BoxDecoration(
         color: Color.fromARGB(35, 246, 181, 69),
@@ -94,13 +92,16 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
               const SizedBox(
                 width: 20,
               ),
-              Text(
-                widget.voucher.voucherName!,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.montserrat(
-                  color: global.headerText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
+              Container(
+                width: 320,
+                child: Text(
+                  widget.voucher.voucherName!,
+                  overflow: TextOverflow.clip,
+                  style: GoogleFonts.montserrat(
+                    color: global.headerText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
                 ),
               ),
               const SizedBox(

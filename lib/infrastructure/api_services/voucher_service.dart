@@ -11,8 +11,7 @@ class VoucherService {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/vouchers',
-          // queryParameters: {'Name': voucherName},
+      final response = await dio.get('/v1/vouchers?page-size=100',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
@@ -36,7 +35,6 @@ class VoucherService {
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/vouchers?page-size=100',
-          // queryParameters: {'Name': voucherName},
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
