@@ -7,8 +7,8 @@ part of 'wallets_model.dart';
 // **************************************************************************
 
 _$_Wallets _$$_WalletsFromJson(Map<String, dynamic> json) => _$_Wallets(
-      totalXP: json['totalXP'] as int,
-      totalPoint: json['totalPoint'] as int,
+      totalXP: (json['totalXP'] as num).toDouble(),
+      totalPoint: (json['totalPoint'] as num).toDouble(),
       wallets: (json['wallets'] as List<dynamic>)
           .map((e) => Wallet.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_WalletsToJson(_$_Wallets instance) =>
 
 _$_Wallet _$$_WalletFromJson(Map<String, dynamic> json) => _$_Wallet(
       walletId: json['walletId'] as String,
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toDouble(),
       walletToken: $enumDecode(_$WalletTokenEnumEnumMap, json['walletToken']),
       walletType: $enumDecode(_$WalletTypeEnumEnumMap, json['walletType']),
       walletTag: json['walletTag'] as String?,

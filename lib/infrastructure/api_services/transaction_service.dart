@@ -26,6 +26,7 @@ class TransactionService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me/transactions status: ');
       throw Exception(e);
     }
   }

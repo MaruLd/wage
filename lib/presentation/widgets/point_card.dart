@@ -39,8 +39,8 @@ class PointCard extends ConsumerWidget {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(25, 10, 20, 0),
             child: walletsData.when(
-              data: (wallet) {
-                return Text(pointFormatForCard(wallet.totalPoint),
+              data: (data) {
+                return Text(pointFormatForCard(data.totalPoint),
                     style: GoogleFonts.montserrat(
                       color: global.background,
                       fontWeight: FontWeight.w700,

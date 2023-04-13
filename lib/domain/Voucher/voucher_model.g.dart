@@ -10,7 +10,7 @@ _$_Voucher _$$_VoucherFromJson(Map<String, dynamic> json) => _$_Voucher(
       voucherId: json['voucherId'] as String,
       voucherName: json['voucherName'] as String?,
       voucherDescription: json['voucherDescription'] as String?,
-      voucherCost: json['voucherCost'] as int,
+      voucherCost: (json['voucherCost'] as num).toDouble(),
       voucherAmount: json['voucherAmount'] as int,
       imageUrl: json['imageUrl'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),

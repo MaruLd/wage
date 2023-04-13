@@ -7,13 +7,30 @@ class NotificationModel with _$NotificationModel {
   const NotificationModel._();
   factory NotificationModel({
     required String notificationId,
-    required String type,
+    required NotificationTypeEnum type,
     required String content,
     required String title,
     String? target,
-    bool? isRead,
-    DateTime? createdAt,
+    required bool isRead,
+    required DateTime createdAt,
   }) = _NotificationModel;
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       _$NotificationModelFromJson(json);
+}
+
+enum NotificationTypeEnum {
+  @JsonValue("salaryCycleUpdateSuccess")
+  salaryCycleUpdateSuccess,
+  @JsonValue("salaryCycleUpdateFail")
+  salaryCycleUpdateFail,
+  @JsonValue("salaryCyclePaid")
+  salaryCyclePaid,
+  @JsonValue("projectCreate")
+  projectCreate,
+  @JsonValue("projectUpdate")
+  projectUpdate,
+  @JsonValue("voucherReedemSuccess")
+  voucherReedemSuccess,
+  @JsonValue("voucherRedeemFailed")
+  voucherRedeemFailed,
 }

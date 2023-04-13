@@ -27,6 +27,7 @@ class FCMService {
           }));
       print('API /v1/users/fcm-token status: ${response.statusCode}');
     } catch (e) {
+      print('API /v1/users/fcm-token status: ');
       throw Exception(e);
     }
   }

@@ -26,6 +26,7 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/vouchers status: ');
       throw Exception(e);
     }
   }
@@ -50,6 +51,7 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/vouchers status: ');
       throw Exception(e);
     }
   }

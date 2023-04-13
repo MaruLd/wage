@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -8,8 +7,8 @@ import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../application/utils/navigation.dart';
-import '../pages/profile/profile_page.dart';
 import 'loading_shimmer.dart';
+import 'notification_bell.dart';
 
 class HomeHeader extends ConsumerWidget {
   const HomeHeader({super.key});
@@ -39,10 +38,6 @@ class HomeHeader extends ConsumerWidget {
                       style: global.textStyle,
                     ),
                     userData.when(
-                      // show previous data/error on loading
-                      skipLoadingOnReload: true,
-                      // show previous data if there's an error
-                      skipError: true,
                       data: (userData) => Text(
                         userData.fullName ?? '',
                         style: global.boldTextStyle,
@@ -71,14 +66,7 @@ class HomeHeader extends ConsumerWidget {
           const SizedBox(
             width: 20,
           ),
-          IconButton(
-            onPressed: () => notificationPageNavigation(context),
-            icon: Icon(
-              CupertinoIcons.bell_solid,
-              color: global.background,
-              size: 30.0,
-            ),
-          ),
+          NotificationBell(),
           Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -86,38 +74,31 @@ class HomeHeader extends ConsumerWidget {
                 onPressed: () {
                   settingPageNavigation(context);
                 },
-                child: Card(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: global.darkGreen,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: userData.when(
-                        data: (userData) => userData.imageUrl != null
-                            ? Image.network(userData.imageUrl!)
-                            : Image.asset('assets/images/ANYAA.png'),
-                        error: (error, stackTrace) {
-                          print(error.toString());
-                          return LoadingShimmer(
-                            height: 25.0,
-                            width: 190.0,
-                            color: Color.fromARGB(118, 2, 193, 123),
-                          );
-                        },
-                        loading: () => LoadingShimmer(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: userData.when(
+                      data: (userData) => userData.imageUrl != null
+                          ? Image.network(userData.imageUrl!)
+                          : Image.asset('assets/images/ANYAA.png'),
+                      error: (error, stackTrace) {
+                        print(error.toString());
+                        return LoadingShimmer(
                           height: 25.0,
                           width: 190.0,
                           color: Color.fromARGB(118, 2, 193, 123),
-                        ),
+                        );
+                      },
+                      loading: () => LoadingShimmer(
+                        height: 25.0,
+                        width: 190.0,
+                        color: Color.fromARGB(118, 2, 193, 123),
                       ),
                     ),
                   ),

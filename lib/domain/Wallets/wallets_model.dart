@@ -6,8 +6,8 @@ part 'wallets_model.g.dart';
 class Wallets with _$Wallets {
   const Wallets._();
   factory Wallets({
-    required int totalXP,
-    required int totalPoint,
+    required double totalXP,
+    required double totalPoint,
     required List<Wallet> wallets,
   }) = _Wallets;
   factory Wallets.fromJson(Map<String, dynamic> json) =>
@@ -19,7 +19,7 @@ class Wallet with _$Wallet {
   const Wallet._();
   factory Wallet({
     required String walletId,
-    required int amount,
+    required double amount,
     required WalletTokenEnum walletToken,
     required WalletTypeEnum walletType,
     String? walletTag,

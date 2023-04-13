@@ -58,12 +58,12 @@ class _NavigationState extends ConsumerState<Navigation> {
       }
       final notification = FCMNotificationModel.fromJson(message.data);
 
-      if (notification.Type == 'VOUCHER_BOUGHT') {
+      if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
         Alert(
           context: context,
           type: AlertType.success,
-          title: "Đổi Voucher thành công",
-          desc: "Bạn đã đổi Voucher thành công!",
+          title: notification.Title,
+          desc: notification.Content,
           useRootNavigator: false,
           buttons: [
             DialogButton(
@@ -79,6 +79,25 @@ class _NavigationState extends ConsumerState<Navigation> {
         ref.refresh(voucherFutureProvider);
         ref.refresh(memberVoucherFutureProvider);
         ref.refresh(walletsFutureProvider);
+      } else if (notification.Type ==
+          FCMNotificationTypeEnum.voucherRedeemFailed) {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
       }
     });
   }

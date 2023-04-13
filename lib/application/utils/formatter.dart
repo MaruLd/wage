@@ -8,8 +8,20 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../domain/Transaction/transaction_model.dart';
 import '../../domain/Wallets/wallets_model.dart';
 
+RegExp regexRemoveDecimal = RegExp(r'([.]*0)(?!.*\d)');
+
+String numberFormat(
+  int number,
+) {
+  if (number / 9999 > 1) {
+    return NumberFormat.compact(locale: "en_US").format(number);
+  } else {
+    return NumberFormat.decimalPattern().format(number);
+  }
+}
+
 String pointFormat(
-  int point,
+  double point,
 ) {
   if (point / 9999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(point);
@@ -19,11 +31,11 @@ String pointFormat(
 }
 
 String multiplePointFormat(
-  int? point,
-  int? point2,
-  int? point3,
+  double? point,
+  double? point2,
+  double? point3,
 ) {
-  var temp = point! + point2! + point3!;
+  double temp = point! + point2! + point3!;
   if (point / 9999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(temp);
   } else {
@@ -31,7 +43,7 @@ String multiplePointFormat(
   }
 }
 
-String pointFormatForCard(int point) {
+String pointFormatForCard(double point) {
   if (point / 9999999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(point);
   } else {
@@ -146,6 +158,8 @@ String wallletTokenTransform(WalletTokenEnum status) {
 
 String notificationTypeTransform(String string) {
   switch (string) {
+    case 'VOUCHER_BOUGHT':
+      return 'Mua Voucher Thành Công!';
     case 'VOUCHER_BOUGHT':
       return 'Mua Voucher Thành Công!';
     case 'PROJECT_CREATED':

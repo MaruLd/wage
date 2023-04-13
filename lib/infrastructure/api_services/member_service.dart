@@ -30,6 +30,7 @@ class MemberService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me status: ');
       throw Exception(e);
     }
   }

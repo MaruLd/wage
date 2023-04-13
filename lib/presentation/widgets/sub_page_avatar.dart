@@ -58,7 +58,7 @@ class Avatar extends ConsumerWidget {
                 ),
               ),
               Text(
-                userData.emailAddress,
+                userData.emailAddress ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: global.headerText,

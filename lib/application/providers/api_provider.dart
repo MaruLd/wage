@@ -96,6 +96,12 @@ final notificationFutureProvider = FutureProvider<List<NotificationModel>>(
   },
 );
 
+final isReadnotificationFutureProvider = FutureProvider.family<int?, String>(
+  (ref, notificationId) {
+    return ref.watch(notificationProvider).isReadNotification(notificationId);
+  },
+);
+
 final voucherFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
   (ref) {
     return ref.watch(voucherProvider).getVouchers();
@@ -130,7 +136,7 @@ final walletsFutureProvider = FutureProvider<Wallets>(
 
 final nextLevelFutureProvider = FutureProvider<Level>(
   (ref) {
-    int? xpNeeded = ref
+    double? xpNeeded = ref
         .watch(walletsFutureProvider)
         .whenOrNull(data: (data) => data.totalXP);
     return ref.watch(levelProvider).getNextLevel(xpNeeded);

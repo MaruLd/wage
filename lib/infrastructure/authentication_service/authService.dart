@@ -17,6 +17,7 @@ class AuthDAO {
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
           }));
+      print('/v1/users/login-google ${response.statusCode}');
       if (response.statusCode == 200) {
         final auth = AuthInfo.fromJson(response.data["message"]);
         await storage.write(key: 'jwt', value: auth.token);
@@ -27,6 +28,7 @@ class AuthDAO {
         throw Exception(response.statusMessage);
       }
     } catch (ex) {
+      print('/v1/users/login-google ');
       print(Exception(ex.toString()));
     }
   }

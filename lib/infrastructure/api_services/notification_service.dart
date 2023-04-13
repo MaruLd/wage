@@ -26,6 +26,31 @@ class NotificationService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me/notifications status: ');
+      throw Exception(e);
+    }
+  }
+
+  Future<int?> isReadNotification(String NotificationId) async {
+    final storage = new FlutterSecureStorage();
+    try {
+      String? jwtToken = await storage.read(key: 'jwt');
+      final response = await dio.post('/v1/notification/${NotificationId}/read',
+          options: Options(
+              followRedirects: false,
+              validateStatus: (status) {
+                return status! < 500;
+              },
+              headers: {
+                HttpHeaders.contentTypeHeader: "application/json",
+                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+              }));
+      print(
+          'API /v1/notification/${NotificationId}/read status: ${response.statusCode}');
+      return response.statusCode;
+    } catch (e) {
+      print(
+          'API /v1/notification/${NotificationId}/read status:');
       throw Exception(e);
     }
   }

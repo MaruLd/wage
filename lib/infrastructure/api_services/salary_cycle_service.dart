@@ -25,6 +25,7 @@ class SalaryCycleService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me/salarycycle status: ');
       throw Exception(e);
     }
   }

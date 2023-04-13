@@ -21,12 +21,12 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NotificationModel {
   String get notificationId => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  NotificationTypeEnum get type => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get target => throw _privateConstructorUsedError;
-  bool? get isRead => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  bool get isRead => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,12 +42,12 @@ abstract class $NotificationModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String notificationId,
-      String type,
+      NotificationTypeEnum type,
       String content,
       String title,
       String? target,
-      bool? isRead,
-      DateTime? createdAt});
+      bool isRead,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -68,8 +68,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     Object? content = null,
     Object? title = null,
     Object? target = freezed,
-    Object? isRead = freezed,
-    Object? createdAt = freezed,
+    Object? isRead = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       notificationId: null == notificationId
@@ -79,7 +79,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as NotificationTypeEnum,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -92,14 +92,14 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
               as String?,
-      isRead: freezed == isRead
+      isRead: null == isRead
           ? _value.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
+              as bool,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
     ) as $Val);
   }
 }
@@ -114,12 +114,12 @@ abstract class _$$_NotificationModelCopyWith<$Res>
   @useResult
   $Res call(
       {String notificationId,
-      String type,
+      NotificationTypeEnum type,
       String content,
       String title,
       String? target,
-      bool? isRead,
-      DateTime? createdAt});
+      bool isRead,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -138,8 +138,8 @@ class __$$_NotificationModelCopyWithImpl<$Res>
     Object? content = null,
     Object? title = null,
     Object? target = freezed,
-    Object? isRead = freezed,
-    Object? createdAt = freezed,
+    Object? isRead = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_NotificationModel(
       notificationId: null == notificationId
@@ -149,7 +149,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as NotificationTypeEnum,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -162,14 +162,14 @@ class __$$_NotificationModelCopyWithImpl<$Res>
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
               as String?,
-      isRead: freezed == isRead
+      isRead: null == isRead
           ? _value.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
+              as bool,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
     ));
   }
 }
@@ -183,8 +183,8 @@ class _$_NotificationModel extends _NotificationModel {
       required this.content,
       required this.title,
       this.target,
-      this.isRead,
-      this.createdAt})
+      required this.isRead,
+      required this.createdAt})
       : super._();
 
   factory _$_NotificationModel.fromJson(Map<String, dynamic> json) =>
@@ -193,7 +193,7 @@ class _$_NotificationModel extends _NotificationModel {
   @override
   final String notificationId;
   @override
-  final String type;
+  final NotificationTypeEnum type;
   @override
   final String content;
   @override
@@ -201,9 +201,9 @@ class _$_NotificationModel extends _NotificationModel {
   @override
   final String? target;
   @override
-  final bool? isRead;
+  final bool isRead;
   @override
-  final DateTime? createdAt;
+  final DateTime createdAt;
 
   @override
   String toString() {
@@ -249,12 +249,12 @@ class _$_NotificationModel extends _NotificationModel {
 abstract class _NotificationModel extends NotificationModel {
   factory _NotificationModel(
       {required final String notificationId,
-      required final String type,
+      required final NotificationTypeEnum type,
       required final String content,
       required final String title,
       final String? target,
-      final bool? isRead,
-      final DateTime? createdAt}) = _$_NotificationModel;
+      required final bool isRead,
+      required final DateTime createdAt}) = _$_NotificationModel;
   _NotificationModel._() : super._();
 
   factory _NotificationModel.fromJson(Map<String, dynamic> json) =
@@ -263,7 +263,7 @@ abstract class _NotificationModel extends NotificationModel {
   @override
   String get notificationId;
   @override
-  String get type;
+  NotificationTypeEnum get type;
   @override
   String get content;
   @override
@@ -271,9 +271,9 @@ abstract class _NotificationModel extends NotificationModel {
   @override
   String? get target;
   @override
-  bool? get isRead;
+  bool get isRead;
   @override
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationModelCopyWith<_$_NotificationModel> get copyWith =>

@@ -26,7 +26,7 @@ mixin _$Transaction {
   TransactionTypeEnum get transactionType => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
   WalletTokenEnum get token => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $TransactionCopyWith<$Res> {
       TransactionTypeEnum transactionType,
       String? note,
       WalletTokenEnum token,
-      int amount,
+      double amount,
       DateTime createdAt});
 }
 
@@ -102,7 +102,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$$_TransactionCopyWith<$Res>
       TransactionTypeEnum transactionType,
       String? note,
       WalletTokenEnum token,
-      int amount,
+      double amount,
       DateTime createdAt});
 }
 
@@ -178,7 +178,7 @@ class __$$_TransactionCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ class _$_Transaction extends _Transaction {
   @override
   final WalletTokenEnum token;
   @override
-  final int amount;
+  final double amount;
   @override
   final DateTime createdAt;
 
@@ -273,7 +273,7 @@ abstract class _Transaction extends Transaction {
       required final TransactionTypeEnum transactionType,
       final String? note,
       required final WalletTokenEnum token,
-      required final int amount,
+      required final double amount,
       required final DateTime createdAt}) = _$_Transaction;
   _Transaction._() : super._();
 
@@ -293,7 +293,7 @@ abstract class _Transaction extends Transaction {
   @override
   WalletTokenEnum get token;
   @override
-  int get amount;
+  double get amount;
   @override
   DateTime get createdAt;
   @override

@@ -46,7 +46,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '$buyVoucherTransaction ${transaction.amount} ${wallletTokenTransform(transaction.token)}',
+                '$buyVoucherTransaction ${pointFormat(transaction.amount)} ${wallletTokenTransform(transaction.token)}',
                 style: GoogleFonts.montserrat(
                   color: transaction.transactionType ==
                           TransactionTypeEnum.buyVoucher

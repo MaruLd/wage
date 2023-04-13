@@ -14,9 +14,9 @@ class LevelProgress extends ConsumerWidget {
     final nextLevel = ref.watch(nextLevelFutureProvider);
     final walletData = ref.watch(walletsFutureProvider);
 
-    int? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
-    int? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
-    int xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
+    double? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
+    double? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
+    double xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
 
     return SizedBox(
       width: 390,

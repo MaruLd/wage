@@ -43,12 +43,15 @@ class TransactionListView extends ConsumerWidget {
                   ).centered(),
           );
         },
-        error: (error, stackTrace) => const ShimmerList(
-            height: 50.0,
-            width: 325.0,
-            row: 3,
-            color: Color.fromARGB(118, 2, 193, 123),
-            baseColor: Color.fromARGB(118, 0, 100, 63)),
+        error: (error, stackTrace) {
+          print(error);
+          return const ShimmerList(
+              height: 50.0,
+              width: 325.0,
+              row: 3,
+              color: Color.fromARGB(118, 2, 193, 123),
+              baseColor: Color.fromARGB(118, 0, 100, 63));
+        },
         loading: () => const ShimmerList(
             height: 50.0,
             width: 325.0,

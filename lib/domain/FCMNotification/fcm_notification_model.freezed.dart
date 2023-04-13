@@ -20,7 +20,7 @@ FCMNotificationModel _$FCMNotificationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FCMNotificationModel {
-  String get Type => throw _privateConstructorUsedError;
+  FCMNotificationTypeEnum get Type => throw _privateConstructorUsedError;
   String get Content => throw _privateConstructorUsedError;
   String get Title => throw _privateConstructorUsedError;
   String? get Target => throw _privateConstructorUsedError;
@@ -37,7 +37,11 @@ abstract class $FCMNotificationModelCopyWith<$Res> {
           $Res Function(FCMNotificationModel) then) =
       _$FCMNotificationModelCopyWithImpl<$Res, FCMNotificationModel>;
   @useResult
-  $Res call({String Type, String Content, String Title, String? Target});
+  $Res call(
+      {FCMNotificationTypeEnum Type,
+      String Content,
+      String Title,
+      String? Target});
 }
 
 /// @nodoc
@@ -63,7 +67,7 @@ class _$FCMNotificationModelCopyWithImpl<$Res,
       Type: null == Type
           ? _value.Type
           : Type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as FCMNotificationTypeEnum,
       Content: null == Content
           ? _value.Content
           : Content // ignore: cast_nullable_to_non_nullable
@@ -88,7 +92,11 @@ abstract class _$$_FCMNotificationModelCopyWith<$Res>
       __$$_FCMNotificationModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String Type, String Content, String Title, String? Target});
+  $Res call(
+      {FCMNotificationTypeEnum Type,
+      String Content,
+      String Title,
+      String? Target});
 }
 
 /// @nodoc
@@ -111,7 +119,7 @@ class __$$_FCMNotificationModelCopyWithImpl<$Res>
       Type: null == Type
           ? _value.Type
           : Type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as FCMNotificationTypeEnum,
       Content: null == Content
           ? _value.Content
           : Content // ignore: cast_nullable_to_non_nullable
@@ -142,7 +150,7 @@ class _$_FCMNotificationModel extends _FCMNotificationModel {
       _$$_FCMNotificationModelFromJson(json);
 
   @override
-  final String Type;
+  final FCMNotificationTypeEnum Type;
   @override
   final String Content;
   @override
@@ -187,7 +195,7 @@ class _$_FCMNotificationModel extends _FCMNotificationModel {
 
 abstract class _FCMNotificationModel extends FCMNotificationModel {
   factory _FCMNotificationModel(
-      {required final String Type,
+      {required final FCMNotificationTypeEnum Type,
       required final String Content,
       required final String Title,
       final String? Target}) = _$_FCMNotificationModel;
@@ -197,7 +205,7 @@ abstract class _FCMNotificationModel extends FCMNotificationModel {
       _$_FCMNotificationModel.fromJson;
 
   @override
-  String get Type;
+  FCMNotificationTypeEnum get Type;
   @override
   String get Content;
   @override

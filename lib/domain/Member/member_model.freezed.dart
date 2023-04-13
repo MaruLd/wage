@@ -21,7 +21,7 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Member {
   String get memberId => throw _privateConstructorUsedError;
-  String get emailAddress => throw _privateConstructorUsedError;
+  String? get emailAddress => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $MemberCopyWith<$Res> {
   @useResult
   $Res call(
       {String memberId,
-      String emailAddress,
+      String? emailAddress,
       String? fullName,
       String? phoneNumber,
       String? imageUrl,
@@ -71,7 +71,7 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
   @override
   $Res call({
     Object? memberId = null,
-    Object? emailAddress = null,
+    Object? emailAddress = freezed,
     Object? fullName = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
@@ -86,10 +86,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
               as String,
-      emailAddress: null == emailAddress
+      emailAddress: freezed == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   @useResult
   $Res call(
       {String memberId,
-      String emailAddress,
+      String? emailAddress,
       String? fullName,
       String? phoneNumber,
       String? imageUrl,
@@ -185,7 +185,7 @@ class __$$_MemberCopyWithImpl<$Res>
   @override
   $Res call({
     Object? memberId = null,
-    Object? emailAddress = null,
+    Object? emailAddress = freezed,
     Object? fullName = freezed,
     Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
@@ -200,10 +200,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
               as String,
-      emailAddress: null == emailAddress
+      emailAddress: freezed == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -245,7 +245,7 @@ class __$$_MemberCopyWithImpl<$Res>
 class _$_Member extends _Member {
   _$_Member(
       {required this.memberId,
-      required this.emailAddress,
+      this.emailAddress,
       this.fullName,
       this.phoneNumber,
       this.imageUrl,
@@ -262,7 +262,7 @@ class _$_Member extends _Member {
   @override
   final String memberId;
   @override
-  final String emailAddress;
+  final String? emailAddress;
   @override
   final String? fullName;
   @override
@@ -343,7 +343,7 @@ class _$_Member extends _Member {
 abstract class _Member extends Member {
   factory _Member(
       {required final String memberId,
-      required final String emailAddress,
+      final String? emailAddress,
       final String? fullName,
       final String? phoneNumber,
       final String? imageUrl,
@@ -359,7 +359,7 @@ abstract class _Member extends Member {
   @override
   String get memberId;
   @override
-  String get emailAddress;
+  String? get emailAddress;
   @override
   String? get fullName;
   @override

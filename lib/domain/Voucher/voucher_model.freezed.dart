@@ -23,7 +23,7 @@ mixin _$Voucher {
   String get voucherId => throw _privateConstructorUsedError;
   String? get voucherName => throw _privateConstructorUsedError;
   String? get voucherDescription => throw _privateConstructorUsedError;
-  int get voucherCost => throw _privateConstructorUsedError;
+  double get voucherCost => throw _privateConstructorUsedError;
   int get voucherAmount => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $VoucherCopyWith<$Res> {
       {String voucherId,
       String? voucherName,
       String? voucherDescription,
-      int voucherCost,
+      double voucherCost,
       int voucherAmount,
       String? imageUrl,
       DateTime createdAt});
@@ -85,7 +85,7 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
       voucherCost: null == voucherCost
           ? _value.voucherCost
           : voucherCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       voucherAmount: null == voucherAmount
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ abstract class _$$_VoucherCopyWith<$Res> implements $VoucherCopyWith<$Res> {
       {String voucherId,
       String? voucherName,
       String? voucherDescription,
-      int voucherCost,
+      double voucherCost,
       int voucherAmount,
       String? imageUrl,
       DateTime createdAt});
@@ -153,7 +153,7 @@ class __$$_VoucherCopyWithImpl<$Res>
       voucherCost: null == voucherCost
           ? _value.voucherCost
           : voucherCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       voucherAmount: null == voucherAmount
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
@@ -193,7 +193,7 @@ class _$_Voucher extends _Voucher {
   @override
   final String? voucherDescription;
   @override
-  final int voucherCost;
+  final double voucherCost;
   @override
   final int voucherAmount;
   @override
@@ -251,7 +251,7 @@ abstract class _Voucher extends Voucher {
       {required final String voucherId,
       final String? voucherName,
       final String? voucherDescription,
-      required final int voucherCost,
+      required final double voucherCost,
       required final int voucherAmount,
       final String? imageUrl,
       required final DateTime createdAt}) = _$_Voucher;
@@ -266,7 +266,7 @@ abstract class _Voucher extends Voucher {
   @override
   String? get voucherDescription;
   @override
-  int get voucherCost;
+  double get voucherCost;
   @override
   int get voucherAmount;
   @override

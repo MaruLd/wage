@@ -20,7 +20,6 @@ class VoucherItem extends ConsumerStatefulWidget {
 }
 
 class _VoucherItemState extends ConsumerState<VoucherItem> {
-  bool isLoading = false;
 
   confirmBuyVoucher() {
     Alert(
@@ -43,10 +42,6 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
             var buySuccess =
                 await voucherService.buyVoucher(widget.voucher.voucherId);
 
-            // await ref
-            //     .watch(buyVoucherFutureProvider(widget.voucher.voucherId))
-            //     .whenOrNull(
-            //   data: (statusCode) {
             if (buySuccess == 400) {
               Alert(
                 context: context,
@@ -68,7 +63,6 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
             }
           },
         )
-        //       })
       ],
     ).show();
     ;
@@ -145,7 +139,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                     ),
                   ),
                   Text(
-                    '${pointFormat(widget.voucher.voucherAmount)} Voucher',
+                    '${numberFormat(widget.voucher.voucherAmount)} Voucher',
                     style: GoogleFonts.montserrat(
                       color: global.primary3,
                       fontWeight: FontWeight.w600,

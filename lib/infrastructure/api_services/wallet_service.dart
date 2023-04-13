@@ -23,6 +23,7 @@ class WalletsService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API/v1/members/me/wallets status: ');
       throw Exception(e);
     }
   }

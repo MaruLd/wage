@@ -19,8 +19,12 @@ class ProjectXPListView extends ConsumerWidget {
         data: (projectData) {
           return Container(
             width: 340,
+            constraints: new BoxConstraints(
+              minHeight: 300,
+            ),
             child: projectData.isNotEmpty
                 ? ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8),
                     scrollDirection: Axis.vertical,

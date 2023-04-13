@@ -23,10 +23,8 @@ class SalaryCycleItem extends ConsumerWidget {
         .whenOrNull(
             data: (data) =>
                 multiplePointFormat(data.totalP1, data.totalP2, data.totalP3));
-
     return GestureDetector(
-      onTap: () => salaryCycle.status == SalaryCycleStatusEnum.review ||
-              salaryCycle.status == SalaryCycleStatusEnum.paid
+      onTap: () => salaryCycle.payslips != null
           ? payslipPageNavigation(context, salaryCycle)
           : showDialog<String>(
               context: context,

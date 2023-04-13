@@ -15,7 +15,6 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(project);
     return Container(
       height: 210,
       width: 325,

@@ -12,10 +12,10 @@ _$_Payslip _$$_PayslipFromJson(Map<String, dynamic> json) => _$_Payslip(
       member: json['member'] == null
           ? null
           : Member.fromJson(json['member'] as Map<String, dynamic>),
-      totalP1: json['totalP1'] as int?,
-      totalP2: json['totalP2'] as int?,
-      totalP3: json['totalP3'] as int?,
-      totalXP: json['totalXP'] as int?,
+      totalP1: (json['totalP1'] as num?)?.toDouble(),
+      totalP2: (json['totalP2'] as num?)?.toDouble(),
+      totalP3: (json['totalP3'] as num?)?.toDouble(),
+      totalXP: (json['totalXP'] as num?)?.toDouble(),
       items: (json['items'] as List<dynamic>?)
           ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),

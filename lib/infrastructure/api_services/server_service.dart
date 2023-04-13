@@ -11,6 +11,7 @@ class ServerService {
         return false;
       }
     } catch (e) {
+      print('API /v1/system/test status: ');
       throw Exception(e);
     }
   }

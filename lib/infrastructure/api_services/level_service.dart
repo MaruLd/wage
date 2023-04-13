@@ -6,7 +6,7 @@ import '../../domain/Level/level_model.dart';
 import '../network_services/dioAdapter.dart';
 
 class LevelService {
-  Future<Level> getNextLevel(int? MinXPNeeded) async {
+  Future<Level> getNextLevel(double? MinXPNeeded) async {
     final storage = new FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -24,6 +24,7 @@ class LevelService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('/v1/levels status: ');
       throw Exception(e);
     }
   }

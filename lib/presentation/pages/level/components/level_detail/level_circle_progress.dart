@@ -17,20 +17,21 @@ class LevelCircleProgress extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nextLevelXp = ref
-            .watch(nextLevelFutureProvider)
-            .whenOrNull(data: (data) => data.xpNeeded) ??
-        1;
+        .watch(nextLevelFutureProvider)
+        .whenOrNull(data: (data) => data.xpNeeded);
+    final level =
+        ref.watch(nextLevelFutureProvider).whenOrNull(data: (data) => data);
     final currentXp = ref
-            .watch(walletsFutureProvider)
-            .whenOrNull(data: (data) => data.totalXP) ??
-        1;
+        .watch(walletsFutureProvider)
+        .whenOrNull(data: (data) => data.totalXP);
+
     final userData = ref.watch(userFutureProvider);
     return Container(
       width: 250,
       height: 250,
       decoration: BoxDecoration(shape: BoxShape.circle, color: global.primary2),
       child: CircularPercentIndicator(
-          percent: (currentXp != null || nextLevelXp != null)
+          percent: (currentXp != null && nextLevelXp != null)
               ? (currentXp / nextLevelXp)
               : 0,
           radius: 100,

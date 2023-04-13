@@ -14,7 +14,7 @@ class Transaction with _$Transaction {
     required TransactionTypeEnum transactionType,
     String? note,
     required WalletTokenEnum token,
-    required int amount,
+    required double amount,
     required DateTime createdAt,
   }) = _Transaction;
   factory Transaction.fromJson(Map<String, dynamic> json) =>

@@ -15,7 +15,7 @@ _$_Transaction _$$_TransactionFromJson(Map<String, dynamic> json) =>
           $enumDecode(_$TransactionTypeEnumEnumMap, json['transactionType']),
       note: json['note'] as String?,
       token: $enumDecode(_$WalletTokenEnumEnumMap, json['token']),
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toDouble(),
       createdAt: DateTime.parse(json['createdAt'] as String),
     );
 

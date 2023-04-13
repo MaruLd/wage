@@ -9,7 +9,7 @@ class Voucher with _$Voucher {
     required String voucherId,
     String? voucherName,
     String? voucherDescription,
-    required int voucherCost,
+    required double voucherCost,
     required int voucherAmount,
     String? imageUrl,
     required DateTime createdAt,

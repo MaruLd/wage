@@ -19,9 +19,9 @@ class LevelCard extends ConsumerWidget {
     final nextLevel = ref.watch(nextLevelFutureProvider);
     final walletData = ref.watch(walletsFutureProvider);
 
-    int? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
-    int? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
-    int xpNeededToLevelUp =
+    double? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
+    double? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
+    double xpNeededToLevelUp =
         nextLevelXp != null ? nextLevelXp - (userXp ?? 0) : 0;
 
     String? levelColor = userData.whenOrNull(
@@ -64,7 +64,7 @@ class LevelCard extends ConsumerWidget {
                   data: (data) => Text(data.memberLevels!.level.levelName,
                       style: global.boldTextStyle),
                   error: (error, stackTrace) {
-                    print('error: ' + error.toString());
+                    print(error.toString());
                     return LoadingShimmer(
                       height: 30.0,
                       width: 100.0,

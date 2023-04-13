@@ -24,6 +24,7 @@ class PayslipService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me/payslipsstatus: ');
       throw Exception(e);
     }
   }

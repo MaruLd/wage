@@ -8,7 +8,7 @@ part of 'member_model.dart';
 
 _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       memberId: json['memberId'] as String,
-      emailAddress: json['emailAddress'] as String,
+      emailAddress: json['emailAddress'] as String?,
       fullName: json['fullName'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       imageUrl: json['imageUrl'] as String?,

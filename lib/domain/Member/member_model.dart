@@ -9,7 +9,7 @@ class Member with _$Member {
   const Member._();
   factory Member({
     required String memberId,
-    required String emailAddress,
+    String? emailAddress,
     String? fullName,
     String? phoneNumber,
     String? imageUrl,

@@ -20,8 +20,8 @@ Wallets _$WalletsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Wallets {
-  int get totalXP => throw _privateConstructorUsedError;
-  int get totalPoint => throw _privateConstructorUsedError;
+  double get totalXP => throw _privateConstructorUsedError;
+  double get totalPoint => throw _privateConstructorUsedError;
   List<Wallet> get wallets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $WalletsCopyWith<$Res> {
   factory $WalletsCopyWith(Wallets value, $Res Function(Wallets) then) =
       _$WalletsCopyWithImpl<$Res, Wallets>;
   @useResult
-  $Res call({int totalXP, int totalPoint, List<Wallet> wallets});
+  $Res call({double totalXP, double totalPoint, List<Wallet> wallets});
 }
 
 /// @nodoc
@@ -58,11 +58,11 @@ class _$WalletsCopyWithImpl<$Res, $Val extends Wallets>
       totalXP: null == totalXP
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       totalPoint: null == totalPoint
           ? _value.totalPoint
           : totalPoint // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       wallets: null == wallets
           ? _value.wallets
           : wallets // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$_WalletsCopyWith<$Res> implements $WalletsCopyWith<$Res> {
       __$$_WalletsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int totalXP, int totalPoint, List<Wallet> wallets});
+  $Res call({double totalXP, double totalPoint, List<Wallet> wallets});
 }
 
 /// @nodoc
@@ -99,11 +99,11 @@ class __$$_WalletsCopyWithImpl<$Res>
       totalXP: null == totalXP
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       totalPoint: null == totalPoint
           ? _value.totalPoint
           : totalPoint // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       wallets: null == wallets
           ? _value._wallets
           : wallets // ignore: cast_nullable_to_non_nullable
@@ -126,9 +126,9 @@ class _$_Wallets extends _Wallets {
       _$$_WalletsFromJson(json);
 
   @override
-  final int totalXP;
+  final double totalXP;
   @override
-  final int totalPoint;
+  final double totalPoint;
   final List<Wallet> _wallets;
   @override
   List<Wallet> get wallets {
@@ -174,17 +174,17 @@ class _$_Wallets extends _Wallets {
 
 abstract class _Wallets extends Wallets {
   factory _Wallets(
-      {required final int totalXP,
-      required final int totalPoint,
+      {required final double totalXP,
+      required final double totalPoint,
       required final List<Wallet> wallets}) = _$_Wallets;
   _Wallets._() : super._();
 
   factory _Wallets.fromJson(Map<String, dynamic> json) = _$_Wallets.fromJson;
 
   @override
-  int get totalXP;
+  double get totalXP;
   @override
-  int get totalPoint;
+  double get totalPoint;
   @override
   List<Wallet> get wallets;
   @override
@@ -200,7 +200,7 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Wallet {
   String get walletId => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   WalletTokenEnum get walletToken => throw _privateConstructorUsedError;
   WalletTypeEnum get walletType => throw _privateConstructorUsedError;
   String? get walletTag => throw _privateConstructorUsedError;
@@ -218,7 +218,7 @@ abstract class $WalletCopyWith<$Res> {
   @useResult
   $Res call(
       {String walletId,
-      int amount,
+      double amount,
       WalletTokenEnum walletToken,
       WalletTypeEnum walletType,
       String? walletTag,
@@ -253,7 +253,7 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       walletToken: null == walletToken
           ? _value.walletToken
           : walletToken // ignore: cast_nullable_to_non_nullable
@@ -282,7 +282,7 @@ abstract class _$$_WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
   @useResult
   $Res call(
       {String walletId,
-      int amount,
+      double amount,
       WalletTokenEnum walletToken,
       WalletTypeEnum walletType,
       String? walletTag,
@@ -314,7 +314,7 @@ class __$$_WalletCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       walletToken: null == walletToken
           ? _value.walletToken
           : walletToken // ignore: cast_nullable_to_non_nullable
@@ -353,7 +353,7 @@ class _$_Wallet extends _Wallet {
   @override
   final String walletId;
   @override
-  final int amount;
+  final double amount;
   @override
   final WalletTokenEnum walletToken;
   @override
@@ -408,7 +408,7 @@ class _$_Wallet extends _Wallet {
 abstract class _Wallet extends Wallet {
   factory _Wallet(
       {required final String walletId,
-      required final int amount,
+      required final double amount,
       required final WalletTokenEnum walletToken,
       required final WalletTypeEnum walletType,
       final String? walletTag,
@@ -420,7 +420,7 @@ abstract class _Wallet extends Wallet {
   @override
   String get walletId;
   @override
-  int get amount;
+  double get amount;
   @override
   WalletTokenEnum get walletToken;
   @override

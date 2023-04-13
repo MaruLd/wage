@@ -23,10 +23,10 @@ mixin _$Payslip {
   String get payslipId => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
   Member? get member => throw _privateConstructorUsedError;
-  int? get totalP1 => throw _privateConstructorUsedError;
-  int? get totalP2 => throw _privateConstructorUsedError;
-  int? get totalP3 => throw _privateConstructorUsedError;
-  int? get totalXP => throw _privateConstructorUsedError;
+  double? get totalP1 => throw _privateConstructorUsedError;
+  double? get totalP2 => throw _privateConstructorUsedError;
+  double? get totalP3 => throw _privateConstructorUsedError;
+  double? get totalXP => throw _privateConstructorUsedError;
   List<Item>? get items => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -44,10 +44,10 @@ abstract class $PayslipCopyWith<$Res> {
       {String payslipId,
       String? note,
       Member? member,
-      int? totalP1,
-      int? totalP2,
-      int? totalP3,
-      int? totalXP,
+      double? totalP1,
+      double? totalP2,
+      double? totalP3,
+      double? totalXP,
       List<Item>? items,
       DateTime? createdAt});
 
@@ -93,19 +93,19 @@ class _$PayslipCopyWithImpl<$Res, $Val extends Payslip>
       totalP1: freezed == totalP1
           ? _value.totalP1
           : totalP1 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalP2: freezed == totalP2
           ? _value.totalP2
           : totalP2 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalP3: freezed == totalP3
           ? _value.totalP3
           : totalP3 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalXP: freezed == totalXP
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -141,10 +141,10 @@ abstract class _$$_PayslipCopyWith<$Res> implements $PayslipCopyWith<$Res> {
       {String payslipId,
       String? note,
       Member? member,
-      int? totalP1,
-      int? totalP2,
-      int? totalP3,
-      int? totalXP,
+      double? totalP1,
+      double? totalP2,
+      double? totalP3,
+      double? totalXP,
       List<Item>? items,
       DateTime? createdAt});
 
@@ -188,19 +188,19 @@ class __$$_PayslipCopyWithImpl<$Res>
       totalP1: freezed == totalP1
           ? _value.totalP1
           : totalP1 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalP2: freezed == totalP2
           ? _value.totalP2
           : totalP2 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalP3: freezed == totalP3
           ? _value.totalP3
           : totalP3 // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalXP: freezed == totalXP
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -239,13 +239,13 @@ class _$_Payslip extends _Payslip {
   @override
   final Member? member;
   @override
-  final int? totalP1;
+  final double? totalP1;
   @override
-  final int? totalP2;
+  final double? totalP2;
   @override
-  final int? totalP3;
+  final double? totalP3;
   @override
-  final int? totalXP;
+  final double? totalXP;
   final List<Item>? _items;
   @override
   List<Item>? get items {
@@ -315,10 +315,10 @@ abstract class _Payslip extends Payslip {
       {required final String payslipId,
       final String? note,
       final Member? member,
-      final int? totalP1,
-      final int? totalP2,
-      final int? totalP3,
-      final int? totalXP,
+      final double? totalP1,
+      final double? totalP2,
+      final double? totalP3,
+      final double? totalXP,
       final List<Item>? items,
       final DateTime? createdAt}) = _$_Payslip;
   _Payslip._() : super._();
@@ -332,13 +332,13 @@ abstract class _Payslip extends Payslip {
   @override
   Member? get member;
   @override
-  int? get totalP1;
+  double? get totalP1;
   @override
-  int? get totalP2;
+  double? get totalP2;
   @override
-  int? get totalP3;
+  double? get totalP3;
   @override
-  int? get totalXP;
+  double? get totalXP;
   @override
   List<Item>? get items;
   @override

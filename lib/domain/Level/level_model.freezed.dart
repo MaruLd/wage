@@ -20,13 +20,13 @@ Level _$LevelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Level {
-  String get levelId => throw _privateConstructorUsedError;
+  int get levelId => throw _privateConstructorUsedError;
   String get levelName => throw _privateConstructorUsedError;
-  int get basePoint => throw _privateConstructorUsedError;
-  int get basePointPerHour => throw _privateConstructorUsedError;
-  int get loyal => throw _privateConstructorUsedError;
+  double get basePoint => throw _privateConstructorUsedError;
+  double get basePointPerHour => throw _privateConstructorUsedError;
+  double get loyal => throw _privateConstructorUsedError;
   String get levelColor => throw _privateConstructorUsedError;
-  int get xpNeeded => throw _privateConstructorUsedError;
+  double get xpNeeded => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,13 +39,13 @@ abstract class $LevelCopyWith<$Res> {
       _$LevelCopyWithImpl<$Res, Level>;
   @useResult
   $Res call(
-      {String levelId,
+      {int levelId,
       String levelName,
-      int basePoint,
-      int basePointPerHour,
-      int loyal,
+      double basePoint,
+      double basePointPerHour,
+      double loyal,
       String levelColor,
-      int xpNeeded});
+      double xpNeeded});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
       levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       levelName: null == levelName
           ? _value.levelName
           : levelName // ignore: cast_nullable_to_non_nullable
@@ -81,15 +81,15 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
       basePoint: null == basePoint
           ? _value.basePoint
           : basePoint // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       basePointPerHour: null == basePointPerHour
           ? _value.basePointPerHour
           : basePointPerHour // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       loyal: null == loyal
           ? _value.loyal
           : loyal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       levelColor: null == levelColor
           ? _value.levelColor
           : levelColor // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
       xpNeeded: null == xpNeeded
           ? _value.xpNeeded
           : xpNeeded // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -109,13 +109,13 @@ abstract class _$$_LevelCopyWith<$Res> implements $LevelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String levelId,
+      {int levelId,
       String levelName,
-      int basePoint,
-      int basePointPerHour,
-      int loyal,
+      double basePoint,
+      double basePointPerHour,
+      double loyal,
       String levelColor,
-      int xpNeeded});
+      double xpNeeded});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_LevelCopyWithImpl<$Res> extends _$LevelCopyWithImpl<$Res, _$_Level>
       levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       levelName: null == levelName
           ? _value.levelName
           : levelName // ignore: cast_nullable_to_non_nullable
@@ -147,15 +147,15 @@ class __$$_LevelCopyWithImpl<$Res> extends _$LevelCopyWithImpl<$Res, _$_Level>
       basePoint: null == basePoint
           ? _value.basePoint
           : basePoint // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       basePointPerHour: null == basePointPerHour
           ? _value.basePointPerHour
           : basePointPerHour // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       loyal: null == loyal
           ? _value.loyal
           : loyal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       levelColor: null == levelColor
           ? _value.levelColor
           : levelColor // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class __$$_LevelCopyWithImpl<$Res> extends _$LevelCopyWithImpl<$Res, _$_Level>
       xpNeeded: null == xpNeeded
           ? _value.xpNeeded
           : xpNeeded // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -185,19 +185,19 @@ class _$_Level extends _Level {
       _$$_LevelFromJson(json);
 
   @override
-  final String levelId;
+  final int levelId;
   @override
   final String levelName;
   @override
-  final int basePoint;
+  final double basePoint;
   @override
-  final int basePointPerHour;
+  final double basePointPerHour;
   @override
-  final int loyal;
+  final double loyal;
   @override
   final String levelColor;
   @override
-  final int xpNeeded;
+  final double xpNeeded;
 
   @override
   String toString() {
@@ -244,31 +244,31 @@ class _$_Level extends _Level {
 
 abstract class _Level extends Level {
   factory _Level(
-      {required final String levelId,
+      {required final int levelId,
       required final String levelName,
-      required final int basePoint,
-      required final int basePointPerHour,
-      required final int loyal,
+      required final double basePoint,
+      required final double basePointPerHour,
+      required final double loyal,
       required final String levelColor,
-      required final int xpNeeded}) = _$_Level;
+      required final double xpNeeded}) = _$_Level;
   _Level._() : super._();
 
   factory _Level.fromJson(Map<String, dynamic> json) = _$_Level.fromJson;
 
   @override
-  String get levelId;
+  int get levelId;
   @override
   String get levelName;
   @override
-  int get basePoint;
+  double get basePoint;
   @override
-  int get basePointPerHour;
+  double get basePointPerHour;
   @override
-  int get loyal;
+  double get loyal;
   @override
   String get levelColor;
   @override
-  int get xpNeeded;
+  double get xpNeeded;
   @override
   @JsonKey(ignore: true)
   _$$_LevelCopyWith<_$_Level> get copyWith =>

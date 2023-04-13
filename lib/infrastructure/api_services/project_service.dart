@@ -27,6 +27,7 @@ class ProjectService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
+      print('API /v1/members/me/projects status: ');
       throw Exception(e);
     }
   }

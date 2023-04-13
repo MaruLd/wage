@@ -5,7 +5,6 @@ import 'package:wage/presentation/widgets/point_card.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/main_header.dart';
-import '../../widgets/sub_body.dart';
 import 'components/transaction_list_view/transaction_item.dart';
 import 'components/transaction_list_view/transaction_list_view.dart';
 
@@ -21,11 +20,12 @@ class TransactionPage extends StatelessWidget {
         children: [
           MainHeader('LỊCH SỬ GIAO DỊCH'),
           const SizedBox(
-            height: 30,
+            height: 80,
           ),
-          SubBody(
+          MainBody(
               child: Column(
             children: [
+              PointCard(),
               const SizedBox(
                 height: 10,
               ),
