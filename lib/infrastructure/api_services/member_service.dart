@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Member/member_model.dart';
-import 'package:wage/infrastructure/authentication_service/authService.dart';
-import '../network_services/dioAdapter.dart';
+import 'package:wage/infrastructure/authentication_service/auth_service.dart';
+import '../network_services/dio_adapter.dart';
 
 class MemberService {
   Future<Member> getSelfInfo([data]) async {
@@ -21,11 +21,6 @@ class MemberService {
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
         return member;
-      } else if (response.statusCode == 401) {
-        AuthDAO auth = AuthDAO();
-        await auth.getAuthInformation();
-        getSelfInfo(data);
-        throw ('');
       } else {
         throw Exception(response.statusMessage);
       }

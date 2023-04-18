@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/infrastructure/param/filter_params.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../application/providers/api_provider.dart';
 
@@ -21,12 +22,19 @@ class Refresher extends ConsumerWidget {
         ref.refresh(nextLevelFutureProvider);
         ref.refresh(userFutureProvider);
         ref.refresh(walletsFutureProvider);
-        ref.refresh(salaryCycleFutureProvider);
-        ref.refresh(voucherFutureProvider);
-        ref.refresh(memberVoucherFutureProvider);
+        ref.refresh(salaryCycleFutureProvider(FilterParameters(parameterList: [
+          DateTime.now().subtract(const Duration(days: 30)),
+          DateTime.now(),
+        ])));
+        ref.refresh(voucherListFutureProvider);
+        ref.refresh(memberVoucherListFutureProvider);
         ref.refresh(serverAvailableProvider);
-        ref.refresh(transactionListFutureProvider);
-        ref.refresh(notificationFutureProvider);
+        ref.refresh(
+            transactionListFutureProvider(FilterParameters(parameterList: [
+          DateTime.now().subtract(const Duration(days: 30)),
+          DateTime.now(),
+        ])));
+        ref.refresh(notificationFutureProvider(10));
         print('refreshing data...');
       });
     }

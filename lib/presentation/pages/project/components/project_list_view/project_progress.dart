@@ -13,13 +13,13 @@ class ProjectProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     Color percentIndicatorColor = Colors.grey;
     String percentToIndicator =
-        "${(projectStatusPercentTransform(project.projectStatus) * 100).toInt()}%";
+        "${(projectDateToPercent(project.createdAt) * 100).toInt()}%";
 
     return CircularPercentIndicator(
       circularStrokeCap: CircularStrokeCap.round,
       radius: 42.0,
       lineWidth: 12.0,
-      percent: projectStatusPercentTransform(project.projectStatus),
+      percent: projectDateToPercent(project.createdAt),
       animationDuration: 500,
       reverse: true,
       animation: true,
@@ -32,7 +32,8 @@ class ProjectProgress extends StatelessWidget {
           fontSize: 20,
         ),
       ),
-      progressColor: projectStatusColor(project.projectStatus),
+      progressColor:
+          projectStatusColor(projectDateToPercent(project.createdAt)),
     );
   }
 }

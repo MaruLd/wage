@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/presentation/pages/signin/components/body.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../application/providers/api_provider.dart';
@@ -14,10 +13,6 @@ class WelcomeBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final googleSignInProvider = ref.watch(googleProvider);
-    void _navigateToSignInBody(BuildContext context) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => SignInBody()));
-    }
 
     return Scaffold(
         backgroundColor: global.background,

@@ -15,7 +15,7 @@ class VoucherListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final voucherProvider = ref.watch(voucherFutureProvider);
+    final voucherProvider = ref.watch(voucherListFutureProvider);
     final List<Voucher> voucherList =
         ref.watch(searchVoucherProvider).voucherList;
 

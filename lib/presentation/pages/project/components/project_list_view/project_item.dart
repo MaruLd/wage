@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Project/project_model.dart';
@@ -16,7 +17,6 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 210,
       width: 325,
       decoration: BoxDecoration(
         color: Color.fromARGB(35, 246, 181, 69),
@@ -62,6 +62,17 @@ class ProjectItem extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
+                Text(
+                  DateFormat('dd/MM/yyyy').format(project.createdAt),
+                  style: GoogleFonts.montserrat(
+                    color: global.smallText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -84,8 +95,8 @@ class ProjectItem extends StatelessWidget {
                               projectStatusTransform(project.projectStatus),
                               textAlign: TextAlign.center,
                               style: GoogleFonts.openSans(
-                                color:
-                                    projectStatusColor(project.projectStatus),
+                                color: projectStatusColor(
+                                    projectDateToPercent(project.createdAt)),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                               ),
@@ -141,6 +152,9 @@ class ProjectItem extends StatelessWidget {
                       width: 12,
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 15,
                 ),
               ],
             ),

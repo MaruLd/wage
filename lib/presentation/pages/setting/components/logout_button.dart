@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/application/providers/api_provider.dart';
 
+import '../../../../application/utils/navigation.dart';
+
 class Logout extends ConsumerWidget {
   const Logout({super.key});
 

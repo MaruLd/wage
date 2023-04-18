@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../application/notifier/project_search/search_event.dart';
 import '../../../../application/notifier/voucher_search/search_event.dart';
 import '../../../../application/providers/search_provider.dart';
 
@@ -36,11 +37,11 @@ class ProjectSearchBar extends StatelessWidget {
                 return IconButton(
                   onPressed: () {
                     if (textfieldController.text.isEmpty) {
-                      ref.refresh(searchVoucherProvider);
+                      ref.refresh(searchProjectProvider);
                     } else {
-                      ref.refresh(searchVoucherProvider);
-                      ref.read(searchVoucherProvider.notifier).mapEventsToState(
-                            SearchedVoucherTextChanged(
+                      ref.refresh(searchProjectProvider);
+                      ref.read(searchProjectProvider.notifier).mapEventsToState(
+                            SearchedProjectTextChanged(
                               text: textfieldController.text,
                             ),
                           );

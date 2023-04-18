@@ -8,6 +8,7 @@ import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/api_services/wallet_service.dart';
 import 'package:wage/infrastructure/authentication_service/google_sign_in.dart';
+import 'package:wage/infrastructure/param/filter_params.dart';
 
 import '../../domain/Auth/auth_model.dart';
 import '../../domain/Notification/notification_model.dart';
@@ -19,7 +20,7 @@ import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
 import '../../infrastructure/api_services/transaction_service.dart';
 import '../../infrastructure/api_services/voucher_service.dart';
-import '../../infrastructure/authentication_service/authService.dart';
+import '../../infrastructure/authentication_service/auth_service.dart';
 import '../../infrastructure/api_services/level_service.dart';
 import '../../infrastructure/api_services/member_service.dart';
 import '../../infrastructure/api_services/project_service.dart';
@@ -28,7 +29,10 @@ final googleProvider = Provider((ref) => GoogleSignInService());
 
 final tokenProvider = Provider((ref) => AuthDAO());
 
-final userProvider = Provider((ref) => MemberService());
+final userProvider = Provider((ref) {
+  ref.watch(apiTokenProvider);
+  return MemberService();
+});
 
 final walletsProvider = Provider((ref) => WalletsService());
 
@@ -64,10 +68,9 @@ final fcmTokenProvider = FutureProvider<void>(
   },
 );
 
-final apiTokenProvider = FutureProvider.autoDispose<AuthInfo?>(
+final apiTokenProvider = FutureProvider<AuthInfo?>(
   (ref) {
     final token = ref.watch(tokenProvider).getAuthInformation();
-    ref.keepAlive();
     return token;
   },
 );
@@ -84,15 +87,25 @@ final payslipFutureProvider = FutureProvider.family<Payslip, String>(
   },
 );
 
-final salaryCycleFutureProvider = FutureProvider<List<SalaryCycle>>(
-  (ref) {
-    return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle();
+final payslipItemFutureProvider =
+    FutureProvider.autoDispose.family<Payslip, String>(
+  (ref, projectId) {
+    return ref.watch(payslipProvider).getSelfPayslipItem(projectId);
   },
 );
 
-final notificationFutureProvider = FutureProvider<List<NotificationModel>>(
-  (ref) {
-    return ref.watch(notificationProvider).getNotifications();
+final salaryCycleFutureProvider =
+    FutureProvider.family<List<SalaryCycle>, FilterParameters>(
+  (ref, param) {
+    return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle(
+        param.parameterList[0], param.parameterList[1], param.parameterList[2]);
+  },
+);
+
+final notificationFutureProvider =
+    FutureProvider.family<List<NotificationModel>, int>(
+  (ref, currentPage) {
+    return ref.watch(notificationProvider).getNotifications(currentPage);
   },
 );
 
@@ -102,7 +115,7 @@ final isReadnotificationFutureProvider = FutureProvider.family<int?, String>(
   },
 );
 
-final voucherFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
+final voucherListFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
   (ref) {
     return ref.watch(voucherProvider).getVouchers();
   },
@@ -114,7 +127,7 @@ final buyVoucherFutureProvider = FutureProvider.family<int?, String>(
   },
 );
 
-final memberVoucherFutureProvider =
+final memberVoucherListFutureProvider =
     FutureProvider.autoDispose<List<MemberVoucher>>(
   (ref) {
     return ref.watch(voucherProvider).getSelfVouchers();
@@ -147,18 +160,17 @@ final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
   return ref.watch(projectProvider).getProjects();
 });
 
-final transactionListFutureProvider = FutureProvider<List<Transaction>>((ref) {
-  return ref.watch(transactionProvider).getTransactions();
+final projectFutureProvider =
+    FutureProvider.family<Project, String>((ref, param) {
+  return ref.watch(projectProvider).getProject(param);
+});
+
+final transactionListFutureProvider =
+    FutureProvider.family<List<Transaction>, FilterParameters>((ref, param) {
+  return ref.watch(transactionProvider).getTransactions(
+      param.parameterList[0], param.parameterList[1], param.parameterList[2]);
 });
 
 final projectsCountProvider = FutureProvider<int>((ref) {
   return ref.watch(projectProvider).getProjectsCount();
 });
-
-// final loginStateProvider = Provider((ref) => LoginController(ref));
-
-// final loginStatesProvider = FutureProvider<String?>(
-//   (ref) {
-//     return ref.watch(loginStateProvider).checkStorageForJWT();
-//   },
-// );

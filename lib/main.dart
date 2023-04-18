@@ -5,8 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wage/application/providers/router.dart';
 import 'firebase_options.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -18,9 +18,7 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
           $enumDecodeNullable(_$ProjectTypeEnumEnumMap, json['projectType']),
       projectVisibility: $enumDecodeNullable(
           _$ProjectVisibilityEnumEnumMap, json['projectVisibility']),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.parse(json['createdAt'] as String),
       startedAt: json['startedAt'] == null
           ? null
           : DateTime.parse(json['startedAt'] as String),
@@ -44,7 +42,7 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'projectType': _$ProjectTypeEnumEnumMap[instance.projectType],
       'projectVisibility':
           _$ProjectVisibilityEnumEnumMap[instance.projectVisibility],
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
       'startedAt': instance.startedAt?.toIso8601String(),
       'endedAt': instance.endedAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),

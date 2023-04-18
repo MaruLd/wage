@@ -29,7 +29,7 @@ mixin _$Project {
   ProjectTypeEnum? get projectType => throw _privateConstructorUsedError;
   ProjectVisibilityEnum? get projectVisibility =>
       throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get startedAt => throw _privateConstructorUsedError;
   DateTime? get endedAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $ProjectCopyWith<$Res> {
       ProjectStatusEnum projectStatus,
       ProjectTypeEnum? projectType,
       ProjectVisibilityEnum? projectVisibility,
-      DateTime? createdAt,
+      DateTime createdAt,
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
@@ -82,7 +82,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? projectStatus = null,
     Object? projectType = freezed,
     Object? projectVisibility = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
     Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? updatedAt = freezed,
@@ -121,10 +121,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.projectVisibility
           : projectVisibility // ignore: cast_nullable_to_non_nullable
               as ProjectVisibilityEnum?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       startedAt: freezed == startedAt
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       ProjectStatusEnum projectStatus,
       ProjectTypeEnum? projectType,
       ProjectVisibilityEnum? projectVisibility,
-      DateTime? createdAt,
+      DateTime createdAt,
       DateTime? startedAt,
       DateTime? endedAt,
       DateTime? updatedAt,
@@ -186,7 +186,7 @@ class __$$_ProjectCopyWithImpl<$Res>
     Object? projectStatus = null,
     Object? projectType = freezed,
     Object? projectVisibility = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
     Object? startedAt = freezed,
     Object? endedAt = freezed,
     Object? updatedAt = freezed,
@@ -225,10 +225,10 @@ class __$$_ProjectCopyWithImpl<$Res>
           ? _value.projectVisibility
           : projectVisibility // ignore: cast_nullable_to_non_nullable
               as ProjectVisibilityEnum?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       startedAt: freezed == startedAt
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
@@ -261,7 +261,7 @@ class _$_Project extends _Project {
       required this.projectStatus,
       this.projectType,
       this.projectVisibility,
-      this.createdAt,
+      required this.createdAt,
       this.startedAt,
       this.endedAt,
       this.updatedAt,
@@ -288,7 +288,7 @@ class _$_Project extends _Project {
   @override
   final ProjectVisibilityEnum? projectVisibility;
   @override
-  final DateTime? createdAt;
+  final DateTime createdAt;
   @override
   final DateTime? startedAt;
   @override
@@ -377,7 +377,7 @@ abstract class _Project extends Project {
       required final ProjectStatusEnum projectStatus,
       final ProjectTypeEnum? projectType,
       final ProjectVisibilityEnum? projectVisibility,
-      final DateTime? createdAt,
+      required final DateTime createdAt,
       final DateTime? startedAt,
       final DateTime? endedAt,
       final DateTime? updatedAt,
@@ -403,7 +403,7 @@ abstract class _Project extends Project {
   @override
   ProjectVisibilityEnum? get projectVisibility;
   @override
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @override
   DateTime? get startedAt;
   @override

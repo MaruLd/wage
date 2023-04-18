@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
-import 'package:wage/infrastructure/network_services/dioAdapter.dart';
+import 'package:wage/infrastructure/network_services/dio_adapter.dart';
 
 class WalletsService {
   Future<Wallets> getSelfWallets() async {

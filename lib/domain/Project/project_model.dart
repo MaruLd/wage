@@ -15,7 +15,7 @@ class Project with _$Project {
     required ProjectStatusEnum projectStatus,
     ProjectTypeEnum? projectType,
     ProjectVisibilityEnum? projectVisibility,
-    DateTime? createdAt,
+    required DateTime createdAt,
     DateTime? startedAt,
     DateTime? endedAt,
     DateTime? updatedAt,
@@ -27,7 +27,8 @@ class Project with _$Project {
       projectId: "",
       projectName: "",
       projectStatus: ProjectStatusEnum.started,
-      projectShortName: "");
+      projectShortName: "",
+      createdAt: DateTime.now());
 }
 
 enum ProjectStatusEnum {

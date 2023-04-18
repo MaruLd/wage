@@ -6,7 +6,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/transaction/transaction_page.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
-import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
+import 'package:wage/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../application/providers/api_provider.dart';
@@ -76,8 +76,8 @@ class _NavigationState extends ConsumerState<Navigation> {
             )
           ],
         ).show();
-        ref.refresh(voucherFutureProvider);
-        ref.refresh(memberVoucherFutureProvider);
+        ref.refresh(voucherListFutureProvider);
+        ref.refresh(memberVoucherListFutureProvider);
         ref.refresh(walletsFutureProvider);
       } else if (notification.Type ==
           FCMNotificationTypeEnum.voucherRedeemFailed) {
@@ -126,7 +126,7 @@ class _NavigationState extends ConsumerState<Navigation> {
 
   @override
   Widget build(BuildContext context) {
-    final token = ref.read(apiTokenCheck);
+    final token = ref.watch(apiTokenCheck);
     var serverAvailable = ref.watch(serverAvailableProvider);
     final authState = ref.watch(authProvider);
     Future.delayed(Duration(seconds: 2), () {
@@ -142,7 +142,7 @@ class _NavigationState extends ConsumerState<Navigation> {
             print('ERROR: Token not found');
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => WelcomePage()),
+              MaterialPageRoute(builder: (context) => SignInPage()),
             );
           }
         });

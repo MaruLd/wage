@@ -15,7 +15,7 @@ class SubProjectItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color percentIndicatorColor = Colors.grey;
     String percentToIndicator =
-        "${(projectStatusPercentTransform(project.projectStatus) * 100).toInt()}%";
+        "${(projectDateToPercent(project.createdAt) * 100).toInt()}%";
 
     return GestureDetector(
       onTap: () {},
@@ -26,7 +26,7 @@ class SubProjectItem extends StatelessWidget {
         CircularPercentIndicator(
           radius: 40.0,
           lineWidth: 7.0,
-          percent: projectStatusPercentTransform(project.projectStatus),
+          percent: projectDateToPercent(project.createdAt),
           animationDuration: 500,
           animation: true,
           reverse: true,
@@ -39,7 +39,7 @@ class SubProjectItem extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          progressColor: projectStatusColor(project.projectStatus),
+          progressColor: projectStatusColor(projectDateToPercent(project.createdAt)),
         ),
         const SizedBox(
           height: 12,
@@ -59,7 +59,7 @@ class SubProjectItem extends StatelessWidget {
           projectStatusTransform(project.projectStatus),
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: projectStatusColor(project.projectStatus),
+            color: projectStatusColor(projectDateToPercent(project.createdAt)),
             fontFamily: global.headerFont,
             fontWeight: FontWeight.w500,
             fontSize: 16,

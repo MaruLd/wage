@@ -5,8 +5,8 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../../domain/Payslip/payslip_model.dart';
 
 class PayslipPointRow extends StatelessWidget {
-  const PayslipPointRow({Key? key, required this.payslip}) : super(key: key);
-  final Payslip payslip;
+  const PayslipPointRow({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

@@ -13,24 +13,24 @@ class ReadAllButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future<void> readAllNotification() async {
-      final notificationList = ref.watch(notificationFutureProvider).whenOrNull(
+      final notificationList = ref.watch(notificationFutureProvider(100)).whenOrNull(
             data: (data) => data,
           );
       if (notificationList != null) {
         NotificationService notificationService = NotificationService();
         for (NotificationModel notification in notificationList) {
           if (!notification.isRead) {
-            var isRead = notificationService
+            var isRead = await notificationService
                 .isReadNotification(notification.notificationId);
           }
         }
-        ref.refresh(notificationFutureProvider);
+        ref.refresh(notificationFutureProvider(100));
       }
     }
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: global.primary2, width: 1.0),
+        border: Border.all(color: global.cyan, width: 1.0),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       height: 40,

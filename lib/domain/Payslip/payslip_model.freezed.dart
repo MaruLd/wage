@@ -27,8 +27,9 @@ mixin _$Payslip {
   double? get totalP2 => throw _privateConstructorUsedError;
   double? get totalP3 => throw _privateConstructorUsedError;
   double? get totalXP => throw _privateConstructorUsedError;
+  double? get totalBonus => throw _privateConstructorUsedError;
   List<Item>? get items => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,8 +49,9 @@ abstract class $PayslipCopyWith<$Res> {
       double? totalP2,
       double? totalP3,
       double? totalXP,
+      double? totalBonus,
       List<Item>? items,
-      DateTime? createdAt});
+      DateTime createdAt});
 
   $MemberCopyWith<$Res>? get member;
 }
@@ -74,8 +76,9 @@ class _$PayslipCopyWithImpl<$Res, $Val extends Payslip>
     Object? totalP2 = freezed,
     Object? totalP3 = freezed,
     Object? totalXP = freezed,
+    Object? totalBonus = freezed,
     Object? items = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       payslipId: null == payslipId
@@ -106,14 +109,18 @@ class _$PayslipCopyWithImpl<$Res, $Val extends Payslip>
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
               as double?,
+      totalBonus: freezed == totalBonus
+          ? _value.totalBonus
+          : totalBonus // ignore: cast_nullable_to_non_nullable
+              as double?,
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
     ) as $Val);
   }
 
@@ -145,8 +152,9 @@ abstract class _$$_PayslipCopyWith<$Res> implements $PayslipCopyWith<$Res> {
       double? totalP2,
       double? totalP3,
       double? totalXP,
+      double? totalBonus,
       List<Item>? items,
-      DateTime? createdAt});
+      DateTime createdAt});
 
   @override
   $MemberCopyWith<$Res>? get member;
@@ -169,8 +177,9 @@ class __$$_PayslipCopyWithImpl<$Res>
     Object? totalP2 = freezed,
     Object? totalP3 = freezed,
     Object? totalXP = freezed,
+    Object? totalBonus = freezed,
     Object? items = freezed,
-    Object? createdAt = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_$_Payslip(
       payslipId: null == payslipId
@@ -201,14 +210,18 @@ class __$$_PayslipCopyWithImpl<$Res>
           ? _value.totalXP
           : totalXP // ignore: cast_nullable_to_non_nullable
               as double?,
+      totalBonus: freezed == totalBonus
+          ? _value.totalBonus
+          : totalBonus // ignore: cast_nullable_to_non_nullable
+              as double?,
       items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>?,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
     ));
   }
 }
@@ -224,8 +237,9 @@ class _$_Payslip extends _Payslip {
       this.totalP2,
       this.totalP3,
       this.totalXP,
+      this.totalBonus,
       final List<Item>? items,
-      this.createdAt})
+      required this.createdAt})
       : _items = items,
         super._();
 
@@ -246,6 +260,8 @@ class _$_Payslip extends _Payslip {
   final double? totalP3;
   @override
   final double? totalXP;
+  @override
+  final double? totalBonus;
   final List<Item>? _items;
   @override
   List<Item>? get items {
@@ -257,11 +273,11 @@ class _$_Payslip extends _Payslip {
   }
 
   @override
-  final DateTime? createdAt;
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Payslip(payslipId: $payslipId, note: $note, member: $member, totalP1: $totalP1, totalP2: $totalP2, totalP3: $totalP3, totalXP: $totalXP, items: $items, createdAt: $createdAt)';
+    return 'Payslip(payslipId: $payslipId, note: $note, member: $member, totalP1: $totalP1, totalP2: $totalP2, totalP3: $totalP3, totalXP: $totalXP, totalBonus: $totalBonus, items: $items, createdAt: $createdAt)';
   }
 
   @override
@@ -277,6 +293,8 @@ class _$_Payslip extends _Payslip {
             (identical(other.totalP2, totalP2) || other.totalP2 == totalP2) &&
             (identical(other.totalP3, totalP3) || other.totalP3 == totalP3) &&
             (identical(other.totalXP, totalXP) || other.totalXP == totalXP) &&
+            (identical(other.totalBonus, totalBonus) ||
+                other.totalBonus == totalBonus) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -293,6 +311,7 @@ class _$_Payslip extends _Payslip {
       totalP2,
       totalP3,
       totalXP,
+      totalBonus,
       const DeepCollectionEquality().hash(_items),
       createdAt);
 
@@ -319,8 +338,9 @@ abstract class _Payslip extends Payslip {
       final double? totalP2,
       final double? totalP3,
       final double? totalXP,
+      final double? totalBonus,
       final List<Item>? items,
-      final DateTime? createdAt}) = _$_Payslip;
+      required final DateTime createdAt}) = _$_Payslip;
   _Payslip._() : super._();
 
   factory _Payslip.fromJson(Map<String, dynamic> json) = _$_Payslip.fromJson;
@@ -340,9 +360,11 @@ abstract class _Payslip extends Payslip {
   @override
   double? get totalXP;
   @override
+  double? get totalBonus;
+  @override
   List<Item>? get items;
   @override
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PayslipCopyWith<_$_Payslip> get copyWith =>
@@ -356,9 +378,10 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Item {
   String get payslipItemId => throw _privateConstructorUsedError;
-  WalletTokenEnum? get token => throw _privateConstructorUsedError;
-  int? get amount => throw _privateConstructorUsedError;
+  WalletTokenEnum get token => throw _privateConstructorUsedError;
+  double? get amount => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  String? get projectId => throw _privateConstructorUsedError;
   PayslipItemTypeEnum? get type => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -374,9 +397,10 @@ abstract class $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String payslipItemId,
-      WalletTokenEnum? token,
-      int? amount,
+      WalletTokenEnum token,
+      double? amount,
       String? note,
+      String? projectId,
       PayslipItemTypeEnum? type,
       DateTime? createdAt});
 }
@@ -395,9 +419,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   @override
   $Res call({
     Object? payslipItemId = null,
-    Object? token = freezed,
+    Object? token = null,
     Object? amount = freezed,
     Object? note = freezed,
+    Object? projectId = freezed,
     Object? type = freezed,
     Object? createdAt = freezed,
   }) {
@@ -406,17 +431,21 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.payslipItemId
           : payslipItemId // ignore: cast_nullable_to_non_nullable
               as String,
-      token: freezed == token
+      token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as WalletTokenEnum?,
+              as WalletTokenEnum,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as String?,
       type: freezed == type
           ? _value.type
@@ -438,9 +467,10 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String payslipItemId,
-      WalletTokenEnum? token,
-      int? amount,
+      WalletTokenEnum token,
+      double? amount,
       String? note,
+      String? projectId,
       PayslipItemTypeEnum? type,
       DateTime? createdAt});
 }
@@ -455,9 +485,10 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
   @override
   $Res call({
     Object? payslipItemId = null,
-    Object? token = freezed,
+    Object? token = null,
     Object? amount = freezed,
     Object? note = freezed,
+    Object? projectId = freezed,
     Object? type = freezed,
     Object? createdAt = freezed,
   }) {
@@ -466,17 +497,21 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.payslipItemId
           : payslipItemId // ignore: cast_nullable_to_non_nullable
               as String,
-      token: freezed == token
+      token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as WalletTokenEnum?,
+              as WalletTokenEnum,
       amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as String?,
       type: freezed == type
           ? _value.type
@@ -495,9 +530,10 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 class _$_Item extends _Item {
   _$_Item(
       {required this.payslipItemId,
-      this.token,
+      required this.token,
       this.amount,
       this.note,
+      this.projectId,
       this.type,
       this.createdAt})
       : super._();
@@ -507,11 +543,13 @@ class _$_Item extends _Item {
   @override
   final String payslipItemId;
   @override
-  final WalletTokenEnum? token;
+  final WalletTokenEnum token;
   @override
-  final int? amount;
+  final double? amount;
   @override
   final String? note;
+  @override
+  final String? projectId;
   @override
   final PayslipItemTypeEnum? type;
   @override
@@ -519,7 +557,7 @@ class _$_Item extends _Item {
 
   @override
   String toString() {
-    return 'Item(payslipItemId: $payslipItemId, token: $token, amount: $amount, note: $note, type: $type, createdAt: $createdAt)';
+    return 'Item(payslipItemId: $payslipItemId, token: $token, amount: $amount, note: $note, projectId: $projectId, type: $type, createdAt: $createdAt)';
   }
 
   @override
@@ -532,6 +570,8 @@ class _$_Item extends _Item {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.note, note) || other.note == note) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -539,8 +579,8 @@ class _$_Item extends _Item {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, payslipItemId, token, amount, note, type, createdAt);
+  int get hashCode => Object.hash(runtimeType, payslipItemId, token, amount,
+      note, projectId, type, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -559,9 +599,10 @@ class _$_Item extends _Item {
 abstract class _Item extends Item {
   factory _Item(
       {required final String payslipItemId,
-      final WalletTokenEnum? token,
-      final int? amount,
+      required final WalletTokenEnum token,
+      final double? amount,
       final String? note,
+      final String? projectId,
       final PayslipItemTypeEnum? type,
       final DateTime? createdAt}) = _$_Item;
   _Item._() : super._();
@@ -571,11 +612,13 @@ abstract class _Item extends Item {
   @override
   String get payslipItemId;
   @override
-  WalletTokenEnum? get token;
+  WalletTokenEnum get token;
   @override
-  int? get amount;
+  double? get amount;
   @override
   String? get note;
+  @override
+  String? get projectId;
   @override
   PayslipItemTypeEnum? get type;
   @override

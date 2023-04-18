@@ -21,9 +21,10 @@ SalaryCycle _$SalaryCycleFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SalaryCycle {
   String get salaryCycleId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get startedAt => throw _privateConstructorUsedError;
   DateTime? get endedAt => throw _privateConstructorUsedError;
-  List<Payslip>? get payslips => throw _privateConstructorUsedError;
   SalaryCycleStatusEnum get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,9 +41,10 @@ abstract class $SalaryCycleCopyWith<$Res> {
   @useResult
   $Res call(
       {String salaryCycleId,
+      String name,
       DateTime createdAt,
+      DateTime startedAt,
       DateTime? endedAt,
-      List<Payslip>? payslips,
       SalaryCycleStatusEnum status});
 }
 
@@ -60,9 +62,10 @@ class _$SalaryCycleCopyWithImpl<$Res, $Val extends SalaryCycle>
   @override
   $Res call({
     Object? salaryCycleId = null,
+    Object? name = null,
     Object? createdAt = null,
+    Object? startedAt = null,
     Object? endedAt = freezed,
-    Object? payslips = freezed,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -70,18 +73,22 @@ class _$SalaryCycleCopyWithImpl<$Res, $Val extends SalaryCycle>
           ? _value.salaryCycleId
           : salaryCycleId // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startedAt: null == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       endedAt: freezed == endedAt
           ? _value.endedAt
           : endedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      payslips: freezed == payslips
-          ? _value.payslips
-          : payslips // ignore: cast_nullable_to_non_nullable
-              as List<Payslip>?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -100,9 +107,10 @@ abstract class _$$_SalaryCycleCopyWith<$Res>
   @useResult
   $Res call(
       {String salaryCycleId,
+      String name,
       DateTime createdAt,
+      DateTime startedAt,
       DateTime? endedAt,
-      List<Payslip>? payslips,
       SalaryCycleStatusEnum status});
 }
 
@@ -118,9 +126,10 @@ class __$$_SalaryCycleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? salaryCycleId = null,
+    Object? name = null,
     Object? createdAt = null,
+    Object? startedAt = null,
     Object? endedAt = freezed,
-    Object? payslips = freezed,
     Object? status = null,
   }) {
     return _then(_$_SalaryCycle(
@@ -128,18 +137,22 @@ class __$$_SalaryCycleCopyWithImpl<$Res>
           ? _value.salaryCycleId
           : salaryCycleId // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startedAt: null == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       endedAt: freezed == endedAt
           ? _value.endedAt
           : endedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      payslips: freezed == payslips
-          ? _value._payslips
-          : payslips // ignore: cast_nullable_to_non_nullable
-              as List<Payslip>?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -153,12 +166,12 @@ class __$$_SalaryCycleCopyWithImpl<$Res>
 class _$_SalaryCycle extends _SalaryCycle {
   _$_SalaryCycle(
       {required this.salaryCycleId,
+      required this.name,
       required this.createdAt,
+      required this.startedAt,
       this.endedAt,
-      final List<Payslip>? payslips,
       required this.status})
-      : _payslips = payslips,
-        super._();
+      : super._();
 
   factory _$_SalaryCycle.fromJson(Map<String, dynamic> json) =>
       _$$_SalaryCycleFromJson(json);
@@ -166,25 +179,19 @@ class _$_SalaryCycle extends _SalaryCycle {
   @override
   final String salaryCycleId;
   @override
+  final String name;
+  @override
   final DateTime createdAt;
   @override
-  final DateTime? endedAt;
-  final List<Payslip>? _payslips;
+  final DateTime startedAt;
   @override
-  List<Payslip>? get payslips {
-    final value = _payslips;
-    if (value == null) return null;
-    if (_payslips is EqualUnmodifiableListView) return _payslips;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final DateTime? endedAt;
   @override
   final SalaryCycleStatusEnum status;
 
   @override
   String toString() {
-    return 'SalaryCycle(salaryCycleId: $salaryCycleId, createdAt: $createdAt, endedAt: $endedAt, payslips: $payslips, status: $status)';
+    return 'SalaryCycle(salaryCycleId: $salaryCycleId, name: $name, createdAt: $createdAt, startedAt: $startedAt, endedAt: $endedAt, status: $status)';
   }
 
   @override
@@ -194,17 +201,19 @@ class _$_SalaryCycle extends _SalaryCycle {
             other is _$_SalaryCycle &&
             (identical(other.salaryCycleId, salaryCycleId) ||
                 other.salaryCycleId == salaryCycleId) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.startedAt, startedAt) ||
+                other.startedAt == startedAt) &&
             (identical(other.endedAt, endedAt) || other.endedAt == endedAt) &&
-            const DeepCollectionEquality().equals(other._payslips, _payslips) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, salaryCycleId, createdAt,
-      endedAt, const DeepCollectionEquality().hash(_payslips), status);
+  int get hashCode => Object.hash(
+      runtimeType, salaryCycleId, name, createdAt, startedAt, endedAt, status);
 
   @JsonKey(ignore: true)
   @override
@@ -223,9 +232,10 @@ class _$_SalaryCycle extends _SalaryCycle {
 abstract class _SalaryCycle extends SalaryCycle {
   factory _SalaryCycle(
       {required final String salaryCycleId,
+      required final String name,
       required final DateTime createdAt,
+      required final DateTime startedAt,
       final DateTime? endedAt,
-      final List<Payslip>? payslips,
       required final SalaryCycleStatusEnum status}) = _$_SalaryCycle;
   _SalaryCycle._() : super._();
 
@@ -235,11 +245,13 @@ abstract class _SalaryCycle extends SalaryCycle {
   @override
   String get salaryCycleId;
   @override
+  String get name;
+  @override
   DateTime get createdAt;
   @override
-  DateTime? get endedAt;
+  DateTime get startedAt;
   @override
-  List<Payslip>? get payslips;
+  DateTime? get endedAt;
   @override
   SalaryCycleStatusEnum get status;
   @override

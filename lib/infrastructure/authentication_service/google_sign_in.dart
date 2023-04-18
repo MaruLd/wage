@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 
-import 'authService.dart';
+import 'auth_service.dart';
 
 class GoogleSignInService extends ChangeNotifier {
   static final GoogleSignIn _googleSignIn =

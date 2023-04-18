@@ -4,11 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Auth/auth_model.dart';
-import '../network_services/dioAdapter.dart';
+import '../network_services/dio_adapter.dart';
 
 class AuthDAO {
   Future<AuthInfo?> getAuthInformation() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
+    // final dio = Dio();
     try {
       String? token = await FirebaseAuth.instance.currentUser?.getIdToken();
       var formData = {"token": token};
@@ -27,9 +28,8 @@ class AuthDAO {
       } else {
         throw Exception(response.statusMessage);
       }
-    } catch (ex) {
-      print('/v1/users/login-google ');
-      print(Exception(ex.toString()));
+    } catch (e) {
+      print('/v1/users/login-google $e');
     }
   }
 }

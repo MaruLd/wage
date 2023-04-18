@@ -6,6 +6,7 @@ part 'payslip_model.freezed.dart';
 part 'payslip_model.g.dart';
 
 @freezed
+@JsonSerializable()
 class Payslip with _$Payslip {
   const Payslip._();
   factory Payslip({
@@ -16,8 +17,9 @@ class Payslip with _$Payslip {
     double? totalP2,
     double? totalP3,
     double? totalXP,
+    double? totalBonus,
     List<Item>? items,
-    DateTime? createdAt,
+    required DateTime createdAt,
   }) = _Payslip;
   factory Payslip.fromJson(Map<String, dynamic> json) =>
       _$PayslipFromJson(json);
@@ -28,9 +30,10 @@ class Item with _$Item {
   const Item._();
   factory Item({
     required String payslipItemId,
-    WalletTokenEnum? token,
-    int? amount,
+    required WalletTokenEnum token,
+    double? amount,
     String? note,
+    String? projectId,
     PayslipItemTypeEnum? type,
     DateTime? createdAt,
   }) = _Item;
@@ -47,7 +50,5 @@ enum PayslipItemTypeEnum {
   @JsonValue("xp")
   xp,
   @JsonValue("bonus")
-  bonus,
-  @JsonValue("other")
-  other,
+  bonus
 }

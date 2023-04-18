@@ -3,15 +3,17 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Level/level_model.dart';
-import '../network_services/dioAdapter.dart';
+import '../network_services/dio_adapter.dart';
 
 class LevelService {
   Future<Level> getNextLevel(double? MinXPNeeded) async {
     final storage = new FlutterSecureStorage();
+    var param = {'MinXPNeeded': MinXPNeeded == 0 ? 1 : MinXPNeeded!.round()};
+
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/levels',
-          queryParameters: {'MinXPNeeded': MinXPNeeded == 0 ? 1 : MinXPNeeded},
+          queryParameters: param,
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"

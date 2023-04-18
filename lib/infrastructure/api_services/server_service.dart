@@ -1,4 +1,4 @@
-import 'package:wage/infrastructure/network_services/dioAdapter.dart';
+import 'package:wage/infrastructure/network_services/dio_adapter.dart';
 
 class ServerService {
   Future<bool> checkServerStatus() async {

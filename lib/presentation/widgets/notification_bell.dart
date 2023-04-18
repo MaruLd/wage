@@ -16,7 +16,7 @@ class NotificationBell extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final unreadNotificationCount =
-        ref.watch(notificationFutureProvider).whenOrNull(
+        ref.watch(notificationFutureProvider(100)).whenOrNull(
       data: (datas) {
         int temp = 0;
         for (var data in datas) {
@@ -39,7 +39,7 @@ class NotificationBell extends ConsumerWidget {
               color: global.background,
               size: 35.0,
             ).centered(),
-            if (unreadNotificationCount != 0)
+            if (unreadNotificationCount != 0 && unreadNotificationCount != null)
               Container(
                 width: 40,
                 height: 40,
@@ -58,11 +58,11 @@ class NotificationBell extends ConsumerWidget {
                     padding: const EdgeInsets.all(0.0),
                     child: Center(
                       child: Text(
-                        '${unreadNotificationCount}',
+                        '${(unreadNotificationCount) < 100 ? unreadNotificationCount : '99+'}',
                         style: GoogleFonts.montserrat(
                           color: global.background,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 9,
                         ),
                       ),
                     ),

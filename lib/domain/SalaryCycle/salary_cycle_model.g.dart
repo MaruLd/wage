@@ -9,30 +9,28 @@ part of 'salary_cycle_model.dart';
 _$_SalaryCycle _$$_SalaryCycleFromJson(Map<String, dynamic> json) =>
     _$_SalaryCycle(
       salaryCycleId: json['salaryCycleId'] as String,
+      name: json['name'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      startedAt: DateTime.parse(json['startedAt'] as String),
       endedAt: json['endedAt'] == null
           ? null
           : DateTime.parse(json['endedAt'] as String),
-      payslips: (json['payslips'] as List<dynamic>?)
-          ?.map((e) => Payslip.fromJson(e as Map<String, dynamic>))
-          .toList(),
       status: $enumDecode(_$SalaryCycleStatusEnumEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$_SalaryCycleToJson(_$_SalaryCycle instance) =>
     <String, dynamic>{
       'salaryCycleId': instance.salaryCycleId,
+      'name': instance.name,
       'createdAt': instance.createdAt.toIso8601String(),
+      'startedAt': instance.startedAt.toIso8601String(),
       'endedAt': instance.endedAt?.toIso8601String(),
-      'payslips': instance.payslips,
       'status': _$SalaryCycleStatusEnumEnumMap[instance.status]!,
     };
 
 const _$SalaryCycleStatusEnumEnumMap = {
-  SalaryCycleStatusEnum.created: 'created',
-  SalaryCycleStatusEnum.taskEditingPhase: 'taskEditingPhase',
-  SalaryCycleStatusEnum.projectBonusPhase: 'projectBonusPhase',
-  SalaryCycleStatusEnum.review: 'review',
+  SalaryCycleStatusEnum.ongoing: 'ongoing',
+  SalaryCycleStatusEnum.locked: 'locked',
   SalaryCycleStatusEnum.paid: 'paid',
   SalaryCycleStatusEnum.cancelled: 'cancelled',
 };

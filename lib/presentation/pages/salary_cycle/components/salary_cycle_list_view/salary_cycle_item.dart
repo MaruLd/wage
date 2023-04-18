@@ -13,32 +13,19 @@ import '../../../../../domain/SalaryCycle/salary_cycle_model.dart';
 class SalaryCycleItem extends ConsumerWidget {
   SalaryCycleItem({Key? key, required this.salaryCycle, this.onTap})
       : super(key: key);
-  SalaryCycle salaryCycle;
+  final SalaryCycle salaryCycle;
   final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalPoint = ref
         .watch(payslipFutureProvider(salaryCycle.salaryCycleId))
-        .whenOrNull(
-            data: (data) =>
-                multiplePointFormat(data.totalP1, data.totalP2, data.totalP3));
+        .whenOrNull(data: (data) {
+      return pointFormat(
+          data.totalP1! + data.totalP2! + data.totalP3! + data.totalBonus!);
+    });
     return GestureDetector(
-      onTap: () => salaryCycle.payslips != null
-          ? payslipPageNavigation(context, salaryCycle)
-          : showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Phiếu lương chưa có'),
-                    content:
-                        const Text('Giai đoạn hiện tại chưa có phiếu lương'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Ok'),
-                        child: const Text('Ok'),
-                      ),
-                    ],
-                  )),
+      onTap: () => payslipPageNavigation(context, salaryCycle),
       child: Container(
         decoration: BoxDecoration(
             color: global.background,
@@ -60,7 +47,7 @@ class SalaryCycleItem extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Kỳ lương tháng ${DateFormat('MM').format(salaryCycle.createdAt)}',
+                          '${salaryCycle.name}',
                           style: GoogleFonts.montserrat(
                             color: global.headerText,
                             fontWeight: FontWeight.w700,
@@ -80,11 +67,19 @@ class SalaryCycleItem extends ConsumerWidget {
                 const SizedBox(
                   height: 5,
                 ),
+                Text(
+                  DateFormat('dd/MM/yyyy').format(salaryCycle.createdAt),
+                  style: GoogleFonts.montserrat(
+                    color: global.smallText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      salaryCycleStatusTransform(salaryCycle.status) + ' ',
+                      '${salaryCycleStatusTransform(salaryCycle.status)}',
                       style: GoogleFonts.openSans(
                         color: salaryCycleStatusColor(salaryCycle.status),
                         fontWeight: FontWeight.w600,
@@ -93,9 +88,7 @@ class SalaryCycleItem extends ConsumerWidget {
                     ),
                     Text(
                       salaryCycle.endedAt != null
-                          ? DateFormat('dd-MM-yyyy')
-                              .format(salaryCycle.endedAt!)
-                              .toString()
+                          ? ' - ${DateFormat('dd/MM/yyyy').format(salaryCycle.endedAt!).toString()}'
                           : '',
                       style: GoogleFonts.montserrat(
                         color: Colors.grey,

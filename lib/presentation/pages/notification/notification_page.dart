@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
@@ -17,25 +16,22 @@ class NotificationPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SubHeader('THÔNG BÁO'),
+          const SubHeader('THÔNG BÁO'),
           const SizedBox(
             height: 15,
           ),
           Container(
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
               ),
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  ReadAllButton(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  NotificationListView(),
+                  const ReadAllButton(),
+                  const NotificationListView(),
                   const SizedBox(
                     height: 40,
                   ),

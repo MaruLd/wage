@@ -10,9 +10,10 @@ class SalaryCycle with _$SalaryCycle {
   const SalaryCycle._();
   factory SalaryCycle({
     required String salaryCycleId,
+    required String name,
     required DateTime createdAt,
+    required DateTime startedAt,
     DateTime? endedAt,
-     List<Payslip>? payslips,
     required SalaryCycleStatusEnum status,
   }) = _SalaryCycle;
   factory SalaryCycle.fromJson(Map<String, dynamic> json) =>
@@ -20,18 +21,12 @@ class SalaryCycle with _$SalaryCycle {
 }
 
 enum SalaryCycleStatusEnum {
-  @JsonValue("created")
-  created,
-  @JsonValue("taskEditingPhase")
-  taskEditingPhase,
-  @JsonValue("projectBonusPhase")
-  projectBonusPhase,
-  @JsonValue("review")
-  review,
+  @JsonValue("ongoing")
+  ongoing,
+  @JsonValue("locked")
+  locked,
   @JsonValue("paid")
   paid,
   @JsonValue("cancelled")
   cancelled,
 }
-
-

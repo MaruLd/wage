@@ -36,10 +36,10 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
     }
 
     final totalVoucher = ref
-        .watch(voucherFutureProvider)
+        .watch(voucherListFutureProvider)
         .whenOrNull(data: (data) => data.length);
     final totalMyVoucher = ref
-        .watch(memberVoucherFutureProvider)
+        .watch(memberVoucherListFutureProvider)
         .whenOrNull(data: (data) => data.length);
 
     return Refresher(

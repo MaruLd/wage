@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
-import '../network_services/dioAdapter.dart';
+import '../network_services/dio_adapter.dart';
 
 class VoucherService {
   Future<List<Voucher>> getVouchers() async {

@@ -9,8 +9,8 @@ import '../../../application/providers/auth_datas_provider.dart';
 import '../navigation/navigation_bar.dart';
 import 'components/body.dart';
 
-class WelcomePage extends ConsumerWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+class SignInPage extends ConsumerWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   static String get routeName => 'login';
   static String get routeLocation => '/$routeName';
@@ -22,7 +22,6 @@ class WelcomePage extends ConsumerWidget {
     final authState = ref.watch(authProvider);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (tokenState.valueOrNull != null && authState.valueOrNull != null) {
-        print(tokenState);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Navigation()),

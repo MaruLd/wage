@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/infrastructure/authentication_service/authService.dart';
-import 'package:wage/infrastructure/network_services/dioAdapter.dart';
+import 'package:wage/infrastructure/authentication_service/auth_service.dart';
+import 'package:wage/infrastructure/network_services/dio_adapter.dart';
 import '../../presentation/theme/global_theme.dart' as global;
 
 class ProjectService {
@@ -28,6 +28,28 @@ class ProjectService {
       }
     } catch (e) {
       print('API /v1/members/me/projects status: ');
+      throw Exception(e);
+    }
+  }
+
+  Future<Project> getProject(String projectId) async {
+    final storage = new FlutterSecureStorage();
+    try {
+      String? jwtToken = await storage.read(key: 'jwt');
+      final response = await dio.get('/v1/projects/${projectId}',
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+            HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+          }));
+      print('API /v1/projects status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        final project = Project.fromJson(response.data['message']);
+        return project;
+      } else {
+        throw Exception(response.statusMessage);
+      }
+    } catch (e) {
+      print('API /v1/projects error: $e');
       throw Exception(e);
     }
   }

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http2_adapter/dio_http2_adapter.dart';
-import 'package:wage/domain/Auth/auth_model.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../authentication_service/authService.dart';
+import '../authentication_service/auth_service.dart';
 
 const apiUrl = "https://api.uniinc-cnb.com";
 
@@ -19,8 +19,12 @@ final dio = Dio()
       .add(InterceptorsWrapper(onError: (error, errorInterceptorHandler) async {
     if (error.response?.statusCode == 403 ||
         error.response?.statusCode == 401) {
-      AuthDAO auth = AuthDAO();
-      await auth.getAuthInformation();
+      const storage = FlutterSecureStorage();
+      String? jwtToken = await storage.read(key: 'jwt');
+      if (jwtToken == null || jwtToken == '') {
+        AuthDAO auth = AuthDAO();
+        await auth.getAuthInformation();
+      }
       _retry(error.requestOptions);
     }
   }));

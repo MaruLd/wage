@@ -15,6 +15,7 @@ class Transaction with _$Transaction {
     String? note,
     required WalletTokenEnum token,
     required double amount,
+    required bool isReceived,
     required DateTime createdAt,
   }) = _Transaction;
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -40,6 +41,8 @@ enum TransactionTypeEnum {
   projectReturnToSystem,
   @JsonValue("buyVoucher")
   buyVoucher,
+  @JsonValue("memberToMember")
+  memberToMember,
   @JsonValue("newAccount")
   newAccount,
 }

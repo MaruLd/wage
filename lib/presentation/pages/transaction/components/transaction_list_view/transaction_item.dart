@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/utils/formatter.dart';
 import '../../../../../domain/Transaction/transaction_model.dart';
+import '../../../../widgets/note_parser.dart';
 
 class TransactionItem extends StatelessWidget {
   TransactionItem({
@@ -17,11 +16,9 @@ class TransactionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String buyVoucherTransaction =
-        transaction.transactionType == TransactionTypeEnum.buyVoucher
-            ? '-'
-            : '+';
+    String isReceived = transaction.isReceived ? '+' : '-';
     return Container(
+      width: 330,
       decoration: BoxDecoration(
           color: global.background,
           border: BorderDirectional(
@@ -46,7 +43,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '$buyVoucherTransaction ${pointFormat(transaction.amount)} ${wallletTokenTransform(transaction.token)}',
+                '$isReceived ${pointFormat(transaction.amount)} ${wallletTokenTransform(transaction.token)}',
                 style: GoogleFonts.montserrat(
                   color: transaction.transactionType ==
                           TransactionTypeEnum.buyVoucher
@@ -81,14 +78,7 @@ class TransactionItem extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Text(
-            'Ghi chú: ${transaction.note ?? ''}',
-            style: GoogleFonts.montserrat(
-              color: global.normalText,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-            ),
-          ),
+          ParseNote(note: transaction.note ?? ''),
         ],
       ),
     );

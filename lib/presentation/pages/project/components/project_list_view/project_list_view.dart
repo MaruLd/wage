@@ -6,14 +6,18 @@ import 'package:wage/presentation/pages/voucher/components/voucher_list_view/vou
 import 'package:wage/presentation/widgets/shimmer_list.dart';
 
 import '../../../../../application/providers/api_provider.dart';
+import '../../../../../application/providers/search_provider.dart';
+import '../../../../../domain/Project/project_model.dart';
 
 class ProjectListView extends ConsumerWidget {
   const ProjectListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectList = ref.watch(projectListFutureProvider);
-    return projectList.when(
+    final projectProvider = ref.watch(projectListFutureProvider);
+    final List<Project> projectList =
+        ref.watch(searchProjectProvider).projectList;
+    return projectProvider.when(
         data: (data) {
           return Container(
             width: 340,
@@ -24,10 +28,10 @@ class ProjectListView extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: data.length,
+              itemCount: projectList.length,
               itemBuilder: (context, int index) {
                 return ProjectItem(
-                  project: data[index],
+                  project: projectList[index],
                 );
               },
             ),

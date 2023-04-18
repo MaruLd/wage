@@ -3,15 +3,22 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Transaction/transaction_model.dart';
-import '../network_services/dioAdapter.dart';
+import '../network_services/dio_adapter.dart';
 
 class TransactionService {
-  Future<List<Transaction>> getTransactions() async {
-    final storage = new FlutterSecureStorage();
+  Future<List<Transaction>> getTransactions(
+      DateTime? startDate, DateTime? endDate, int? currentPage) async {
+    const storage = FlutterSecureStorage();
+    var param = {
+      "FromDate": startDate,
+      "ToDate": endDate,
+      "OrderBy": "createdAtDesc",
+      "page-size": 10 * (currentPage ?? 1)
+    };
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get(
-          '/v1/members/me/transactions?OrderBy=createdAtDesc&page-size=50',
+      final response = await dio.get('/v1/members/me/transactions',
+          queryParameters: param,
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"

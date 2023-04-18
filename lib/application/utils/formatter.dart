@@ -30,19 +30,6 @@ String pointFormat(
   }
 }
 
-String multiplePointFormat(
-  double? point,
-  double? point2,
-  double? point3,
-) {
-  double temp = point! + point2! + point3!;
-  if (point / 9999 > 1) {
-    return NumberFormat.compact(locale: "en_US").format(temp);
-  } else {
-    return NumberFormat.decimalPattern().format(temp);
-  }
-}
-
 String pointFormatForCard(double point) {
   if (point / 9999999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(point);
@@ -51,16 +38,20 @@ String pointFormatForCard(double point) {
   }
 }
 
-Color projectStatusColor(ProjectStatusEnum status) {
-  switch (status) {
-    case ProjectStatusEnum.created:
-      return Color.fromARGB(255, 255, 93, 158);
-    case ProjectStatusEnum.started:
-      return Color.fromARGB(255, 92, 72, 204);
-    case ProjectStatusEnum.ended:
-      return Color.fromARGB(255, 42, 143, 59);
-    default:
-      return Colors.grey;
+Color projectStatusColor(double percent) {
+  if (percent < 0.25) {
+    return global.danger;
+  }
+  if (percent < 0.5) {
+    return global.medium;
+  }
+  if (percent < 0.75) {
+    return global.cyan;
+  }
+  if (percent >= 0.75) {
+    return global.primary;
+  } else {
+    return Colors.grey;
   }
 }
 
@@ -77,29 +68,26 @@ String projectStatusTransform(ProjectStatusEnum status) {
   }
 }
 
-double projectStatusPercentTransform(ProjectStatusEnum status) {
-  switch (status) {
-    case ProjectStatusEnum.created:
-      return 0.25;
-    case ProjectStatusEnum.started:
-      return 0.50;
-    case ProjectStatusEnum.ended:
-      return 1.0;
-    default:
-      return 0;
-  }
+int daysBetween(DateTime from, DateTime to) {
+  from = DateTime(from.year, from.month, from.day);
+  to = DateTime(to.year, to.month, to.day);
+  return (to.difference(from).inHours / 24).round();
+}
+
+double projectDateToPercent(DateTime date) {
+  var projectEndDate = DateTime(date.year, date.month + 6, date.day);
+  var projectMaxDays = daysBetween(date, projectEndDate);
+  var projectCurrentDays = daysBetween(date, DateTime.now());
+  var percent = projectCurrentDays / projectMaxDays;
+  return percent;
 }
 
 String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
   switch (status) {
-    case SalaryCycleStatusEnum.created:
+    case SalaryCycleStatusEnum.ongoing:
       return 'Khởi Tạo';
-    case SalaryCycleStatusEnum.taskEditingPhase:
+    case SalaryCycleStatusEnum.locked:
       return 'Giai đoạn báo cáo Task';
-    case SalaryCycleStatusEnum.projectBonusPhase:
-      return 'Giai đoạn lương thưởng';
-    case SalaryCycleStatusEnum.review:
-      return 'Xem lại';
     case SalaryCycleStatusEnum.paid:
       return 'Đã Trả';
     case SalaryCycleStatusEnum.cancelled:
@@ -111,13 +99,9 @@ String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
 
 Color salaryCycleStatusColor(SalaryCycleStatusEnum status) {
   switch (status) {
-    case SalaryCycleStatusEnum.created:
-      return Colors.grey;
-    case SalaryCycleStatusEnum.taskEditingPhase:
+    case SalaryCycleStatusEnum.ongoing:
       return global.medium;
-    case SalaryCycleStatusEnum.projectBonusPhase:
-      return global.yellow;
-    case SalaryCycleStatusEnum.review:
+    case SalaryCycleStatusEnum.locked:
       return global.danger;
     case SalaryCycleStatusEnum.paid:
       return global.primary;
@@ -140,6 +124,8 @@ String transactionTypeTransform(TransactionTypeEnum status) {
       return 'Từ hệ thống';
     case TransactionTypeEnum.walletExpire:
       return 'Ví hết hạn';
+    case TransactionTypeEnum.memberToMember:
+      return 'Giao dịch';
     default:
       return '';
   }
@@ -170,3 +156,6 @@ String notificationTypeTransform(String string) {
       return '';
   }
 }
+
+String regex = r"(<@([A-Za-z]+):([a-z0-9\-]+)>)";
+RegExp exp = RegExp(regex);

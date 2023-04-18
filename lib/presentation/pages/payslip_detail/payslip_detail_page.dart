@@ -1,24 +1,29 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
+import '../../../application/providers/api_provider.dart';
 import '../../widgets/salary_cycle_date_card.dart';
 import '../../widgets/sub_header.dart';
 import 'components/payslip_body_p1.dart';
 import 'components/payslip_header_p1.dart';
 import 'components/payslip_point_row.dart';
 
-class PayslipDetailPage extends StatelessWidget {
-  const PayslipDetailPage(
-      {super.key, required this.salaryCycle, required this.payslip});
-  final Payslip payslip;
+class PayslipDetailPage extends ConsumerWidget {
+  const PayslipDetailPage({super.key, required this.salaryCycle});
   final SalaryCycle salaryCycle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final payslipDetail = ref
+            .watch(payslipFutureProvider(salaryCycle.salaryCycleId))
+            .whenOrNull(data: (data) => data) ??
+        Payslip(createdAt: DateTime.now(), payslipId: '');
     return Scaffold(
       backgroundColor: global.primary2,
       body: Refresher(
@@ -38,7 +43,7 @@ class PayslipDetailPage extends StatelessWidget {
                 const SizedBox(
                   height: 35,
                 ),
-                PayslipPointRow(payslip: payslip),
+                PayslipPointRow(),
                 const SizedBox(
                   height: 25,
                 ),
@@ -51,8 +56,8 @@ class PayslipDetailPage extends StatelessWidget {
                             bottom: BorderSide(
                                 color: Colors.grey.withOpacity(0.3),
                                 width: 2))),
-                    child: PayslipHeaderP1(payslip: payslip)),
-                PayslipBodyP1(payslip: payslip),
+                    child: PayslipHeaderP1(payslip: payslipDetail)),
+                PayslipBodyP1(payslip: payslipDetail),
               ],
             ))
           ],

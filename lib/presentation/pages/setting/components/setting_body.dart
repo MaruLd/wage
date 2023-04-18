@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/utils/navigation.dart';
 import 'package:wage/presentation/pages/setting/components/setting_row.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
@@ -31,7 +29,7 @@ class SettingBody extends StatelessWidget {
           SettingRow(
             icon: FaIcon(FontAwesomeIcons.solidBell, color: global.primary2),
             name: 'Thông báo',
-            navigate: () => profilePageNavigation(context),
+            navigate: () => notificationPageNavigation(context),
           ),
           const SizedBox(
             height: 30,

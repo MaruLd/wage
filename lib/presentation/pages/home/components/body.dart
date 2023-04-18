@@ -220,7 +220,7 @@ class MenuBody extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    reportPageNavigation(context);
+                    transactionPageNavigation(context);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

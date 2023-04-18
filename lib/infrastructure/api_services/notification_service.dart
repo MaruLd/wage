@@ -1,22 +1,27 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Notification/notification_model.dart';
-import '../../domain/Transaction/transaction_model.dart';
-import '../network_services/dioAdapter.dart';
+import '../network_services/dio_adapter.dart';
 
 class NotificationService {
-  Future<List<NotificationModel>> getNotifications() async {
-    final storage = new FlutterSecureStorage();
+  Future<List<NotificationModel>> getNotifications(int? currentPage) async {
+    const storage = FlutterSecureStorage();
+    var param = {"OrderBy": "dateDesc", "page-size": 10 * (currentPage ?? 1)};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/notifications',
+          queryParameters: param,
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me/notifications status: ${response.statusCode}');
+      if (kDebugMode) {
+        print(
+            'API /v1/members/me/notifications status: ${response.statusCode}');
+      }
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<NotificationModel> notifications =
@@ -31,11 +36,11 @@ class NotificationService {
     }
   }
 
-  Future<int?> isReadNotification(String NotificationId) async {
-    final storage = new FlutterSecureStorage();
+  Future<int?> isReadNotification(String notificationId) async {
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.post('/v1/notification/${NotificationId}/read',
+      final response = await dio.post('/v1/notification/$notificationId/read',
           options: Options(
               followRedirects: false,
               validateStatus: (status) {
@@ -46,11 +51,10 @@ class NotificationService {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       print(
-          'API /v1/notification/${NotificationId}/read status: ${response.statusCode}');
+          'API /v1/notification/$notificationId/read status: ${response.statusCode}');
       return response.statusCode;
     } catch (e) {
-      print(
-          'API /v1/notification/${NotificationId}/read status:');
+      print('API /v1/notification/$notificationId/read status:');
       throw Exception(e);
     }
   }

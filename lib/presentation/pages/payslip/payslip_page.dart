@@ -4,7 +4,7 @@ import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/sub_header.dart';
-import 'components/payslip_general.dart';
+import 'components/payslip_overview.dart';
 import '../../widgets/salary_cycle_date_card.dart';
 
 class PayslipPage extends StatelessWidget {
@@ -29,7 +29,7 @@ class PayslipPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              PayslipGeneral(salaryCycle: salaryCycle)
+              PayslipOverview(salaryCycle: salaryCycle)
             ],
           ))
         ],

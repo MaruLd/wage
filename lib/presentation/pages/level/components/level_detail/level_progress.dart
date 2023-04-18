@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../../application/utils/formatter.dart';
 import '../../../../widgets/loading_shimmer.dart';
 
 class LevelProgress extends ConsumerWidget {
@@ -16,7 +17,8 @@ class LevelProgress extends ConsumerWidget {
 
     double? userXp = walletData.whenOrNull(data: (data) => data.totalXP);
     double? nextLevelXp = nextLevel.whenOrNull(data: (data) => data.xpNeeded);
-    double xpNeededToLevelUp = nextLevelXp ?? 0 - (userXp ?? 0);
+    double xpNeededToLevelUp =
+        (nextLevelXp != null && userXp != null) ? nextLevelXp - userXp : 0;
 
     return SizedBox(
       width: 390,
@@ -25,6 +27,7 @@ class LevelProgress extends ConsumerWidget {
           Positioned(
             left: 160.0,
             child: Container(
+              width: 190,
               margin: EdgeInsets.fromLTRB(18, 12, 12, 12),
               decoration: BoxDecoration(
                 color: Color.fromARGB(25, 0, 178, 113),
@@ -35,7 +38,7 @@ class LevelProgress extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(38, 16, 27, 16),
                 child: Text(
-                  'Level kế: $xpNeededToLevelUp exp',
+                  'Level kế: ${pointFormat(xpNeededToLevelUp)} exp',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: global.primary,
@@ -56,16 +59,17 @@ class LevelProgress extends ConsumerWidget {
                 borderRadius: new BorderRadius.all(Radius.elliptical(50, 50)),
               ),
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(27, 16, 27, 16),
+                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                   child: walletData.when(
-                    data: (data) => Text('Hiện có: ${data.totalXP} exp',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: global.background,
-                          fontFamily: global.headerFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
+                    data: (data) =>
+                        Text('Hiện có: ${pointFormat(data.totalXP)} exp',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: global.background,
+                              fontFamily: global.headerFont,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
                     error: (error, stackTrace) {
                       return LoadingShimmer(
                         height: 20.0,

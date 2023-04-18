@@ -6,6 +6,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../application/utils/formatter.dart';
 import '../../application/utils/navigation.dart';
 import '../pages/level/level_page.dart';
 import 'loading_shimmer.dart';
@@ -77,10 +78,13 @@ class LevelCard extends ConsumerWidget {
                     color: Color.fromARGB(118, 2, 193, 123),
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
                 Container(
                   width: 150.w,
                   child: Text(
-                    'Còn $xpNeededToLevelUp xp nữa bạn sẽ thăng hạng',
+                    'Còn ${pointFormat(xpNeededToLevelUp)} xp nữa bạn sẽ thăng hạng',
                     style: TextStyle(
                       color: global.background,
                       fontWeight: FontWeight.w400,

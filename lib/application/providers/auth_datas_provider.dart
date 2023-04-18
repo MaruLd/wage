@@ -12,6 +12,7 @@ final apiTokenCheck = FutureProvider(
   (ref) async {
     const storage = FlutterSecureStorage();
     String? jwtToken = await storage.read(key: 'jwt');
+    print('JWT Token: $jwtToken');
     return jwtToken;
   },
 );

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wage/presentation/pages/navigation/navigation_bar.dart';
-import 'package:wage/presentation/pages/welcome/sign_in_page.dart';
+import 'package:wage/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:wage/application/providers/auth_datas_provider.dart';
-
-import 'api_provider.dart';
 
 final _key = GlobalKey<NavigatorState>();
 
@@ -26,10 +23,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: WelcomePage.routeLocation,
-        name: WelcomePage.routeName,
+        path: SignInPage.routeLocation,
+        name: SignInPage.routeName,
         builder: (context, state) {
-          return const WelcomePage();
+          return const SignInPage();
         },
       ),
     ],
@@ -40,79 +37,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       // This has to do with how the FirebaseAuth SDK handles the "log-in" state
       // Returning `null` means "we are not authorized"
       final isAuth = authState.valueOrNull != null;
-      final isLoggingIn = state.location == WelcomePage.routeLocation;
+      final isLoggingIn = state.location == SignInPage.routeLocation;
 
       if (isLoggingIn)
-        return isAuth ? Navigation.routeLocation : WelcomePage.routeLocation;
+        return isAuth ? Navigation.routeLocation : SignInPage.routeLocation;
 
-      return isAuth ? Navigation.routeLocation : WelcomePage.routeLocation;
+      return isAuth ? Navigation.routeLocation : null;
     },
   );
 });
-
-// final routerProvider = Provider<GoRouter>((ref) {
-//   final router = RouterNotifier(ref);
-//   return GoRouter(
-//       navigatorKey: _key,
-//       debugLogDiagnostics: true,
-//       refreshListenable: router,
-//       redirect: router._redirectLogic,
-//       routes: router._routes);
-// });
-
-// class RouterNotifier extends ChangeNotifier {
-//   final Ref _ref;
-
-//   RouterNotifier(this._ref) {
-//     _ref.listen<LoginState>(
-//       loginControllerProvider,
-//       (_, __) => notifyListeners(),
-//     );
-//   }
-
-//   String? _redirectLogic(BuildContext context, GoRouterState state) {
-//     final loginState = _ref.watch(loginControllerProvider);
-//     final authState = _ref.watch(authProvider);
-
-//     final isAuth = loginState is LoginStateSuccess;
-//     final isWelcome = state.location == WelcomePage.routeLocation;
-//     final isLoggingIn = state.location == SignInPage.routeLocation;
-
-//     if (isWelcome) {
-//       return isAuth ? Navigation.routeLocation : SignInPage.routeLocation;
-//     }
-
-//     if (loginState is LoginStateInitial) {
-//       return isLoggingIn ? null : SignInPage.routeLocation;
-//     }
-
-//     if (isLoggingIn)
-//       return isAuth ? Navigation.routeLocation : SignInPage.routeLocation;
-
-//     return isAuth ? null : WelcomePage.routeLocation;
-//   }
-
-//   List<GoRoute> get _routes => [
-//         GoRoute(
-//           path: Navigation.routeLocation,
-//           name: Navigation.routeName,
-//           builder: (context, state) {
-//             return const Navigation();
-//           },
-//         ),
-//         GoRoute(
-//           path: SignInPage.routeLocation,
-//           name: SignInPage.routeName,
-//           builder: (context, state) {
-//             return const SignInPage();
-//           },
-//         ),
-//         GoRoute(
-//           path: VoucherPage.routeLocation,
-//           name: VoucherPage.routeName,
-//           builder: (context, state) {
-//             return VoucherPage();
-//           },
-//         ),
-//       ];
-// }

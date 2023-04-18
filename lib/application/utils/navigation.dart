@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 
-import '../../domain/Payslip/payslip_model.dart';
 import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
 import '../../presentation/pages/notification/notification_page.dart';
@@ -9,6 +8,7 @@ import '../../presentation/pages/payslip/payslip_page.dart';
 import '../../presentation/pages/payslip_detail/payslip_detail_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
+import '../../presentation/pages/sign_in/sign_in_page.dart';
 
 void salaryCyclePageNavigation(BuildContext context) {
   Navigation.setPageIndex(context, 3);
@@ -37,13 +37,12 @@ void payslipPageNavigation(BuildContext context, SalaryCycle salaryCycle) {
 }
 
 void payslipDetailPageNavigation(
-    BuildContext context, SalaryCycle salaryCycle, Payslip payslip) {
+    BuildContext context, SalaryCycle salaryCycle) {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => PayslipDetailPage(
         salaryCycle: salaryCycle,
-        payslip: payslip,
       ),
     ),
   );
@@ -58,6 +57,16 @@ void walletPageNavigation(BuildContext context) {
 
 void settingPageNavigation(BuildContext context) {
   Navigation.setPageIndex(context, 4);
+  // Navigator.push(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) => ProfilePage(),
+  //   ),
+  // );
+}
+
+void transactionPageNavigation(BuildContext context) {
+  Navigation.setPageIndex(context, 1);
   // Navigator.push(
   //   context,
   //   MaterialPageRoute(
@@ -100,4 +109,13 @@ void levelPageNavigation(context) {
       builder: (context) => LevelPage(),
     ),
   );
+}
+
+void signInPageNavigation(context) {
+  Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignInPage(),
+      ),
+      (route) => false);
 }
