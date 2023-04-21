@@ -31,7 +31,7 @@ class _SalaryCycleListViewState extends ConsumerState<SalaryCycleListView> {
       });
     }
 
-    FilterParameters filterParam = FilterParameters(
+    Parameters filterParam = Parameters(
         parameterList: [widget.startDate, widget.endDate, _currentPage]);
     final salaryCycleProvider =
         ref.watch(salaryCycleFutureProvider(filterParam));

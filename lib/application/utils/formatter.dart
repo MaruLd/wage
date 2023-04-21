@@ -156,6 +156,3 @@ String notificationTypeTransform(String string) {
       return '';
   }
 }
-
-String regex = r"(<@([A-Za-z]+):([a-z0-9\-]+)>)";
-RegExp exp = RegExp(regex);

@@ -1,4 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
@@ -31,7 +30,7 @@ class PayslipDetailPage extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SubHeader('PHIẾU LƯƠNG'),
+            const SubHeader(headerText:'PHIẾU LƯƠNG'),
             const SizedBox(
               height: 80,
             ),

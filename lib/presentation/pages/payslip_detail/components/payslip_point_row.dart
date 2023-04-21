@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../domain/Payslip/payslip_model.dart';
-
 class PayslipPointRow extends StatelessWidget {
   const PayslipPointRow({Key? key}) : super(key: key);
 

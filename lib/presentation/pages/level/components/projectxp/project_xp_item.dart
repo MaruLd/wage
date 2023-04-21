@@ -18,7 +18,7 @@ class ProjectXPItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     double projectXP =
         ref.watch(payslipItemFutureProvider(project.projectId)).whenOrNull(
-                  data: (data) => data.totalXP,
+                  data: (data) => data,
                 ) ??
             0;
     return GestureDetector(

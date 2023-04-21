@@ -17,7 +17,7 @@ class PayslipItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        FaIcon(FontAwesomeIcons.sackDollar, color: global.primary2, size: 12),
+        FaIcon(FontAwesomeIcons.moneyCheck, color: global.primary2, size: 18),
         const SizedBox(
           width: 12,
         ),

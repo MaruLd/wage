@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../domain/Level/level_model.dart';
 import '../network_services/dio_adapter.dart';
 
 class FCMService {
   void sendFCMToken() async {
     final storage = new FlutterSecureStorage();
     var token = await getDeviceToken();
-    print('fcm token: ' + token);
+    debugPrint('fcm token: ' + token);
     if (token == "") {
       throw Exception("FCM Token not found");
     }
@@ -25,9 +25,9 @@ class FCMService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/users/fcm-token status: ${response.statusCode}');
+      debugPrint('API /v1/users/fcm-token status: ${response.statusCode}');
     } catch (e) {
-      print('API /v1/users/fcm-token status: ');
+      debugPrint('API /v1/users/fcm-token status: ');
       throw Exception(e);
     }
   }

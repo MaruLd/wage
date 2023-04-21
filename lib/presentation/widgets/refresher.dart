@@ -22,20 +22,19 @@ class Refresher extends ConsumerWidget {
         ref.refresh(nextLevelFutureProvider);
         ref.refresh(userFutureProvider);
         ref.refresh(walletsFutureProvider);
-        ref.refresh(salaryCycleFutureProvider(FilterParameters(parameterList: [
+        ref.refresh(salaryCycleFutureProvider(Parameters(parameterList: [
           DateTime.now().subtract(const Duration(days: 30)),
           DateTime.now(),
         ])));
         ref.refresh(voucherListFutureProvider);
         ref.refresh(memberVoucherListFutureProvider);
         ref.refresh(serverAvailableProvider);
-        ref.refresh(
-            transactionListFutureProvider(FilterParameters(parameterList: [
+        ref.refresh(transactionListFutureProvider(Parameters(parameterList: [
           DateTime.now().subtract(const Duration(days: 30)),
           DateTime.now(),
         ])));
         ref.refresh(notificationFutureProvider(10));
-        print('refreshing data...');
+        debugPrint('refreshing data...');
       });
     }
 

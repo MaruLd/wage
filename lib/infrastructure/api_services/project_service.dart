@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:wage/domain/Auth/auth_model.dart';
 import 'package:wage/domain/Project/project_model.dart';
-import 'package:wage/infrastructure/authentication_service/auth_service.dart';
 import 'package:wage/infrastructure/network_services/dio_adapter.dart';
-import '../../presentation/theme/global_theme.dart' as global;
 
 class ProjectService {
   Future<List<Project>> getProjects() async {
@@ -18,7 +16,7 @@ class ProjectService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me/projects status: ${response.statusCode}');
+      debugPrint('API /v1/members/me/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
@@ -27,7 +25,7 @@ class ProjectService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/members/me/projects status: ');
+      debugPrint('API /v1/members/me/projects status: ');
       throw Exception(e);
     }
   }
@@ -41,7 +39,7 @@ class ProjectService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/projects status: ${response.statusCode}');
+      debugPrint('API /v1/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final project = Project.fromJson(response.data['message']);
         return project;
@@ -49,7 +47,7 @@ class ProjectService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/projects error: $e');
+      debugPrint('API /v1/projects error: $e');
       throw Exception(e);
     }
   }

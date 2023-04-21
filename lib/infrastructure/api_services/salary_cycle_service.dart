@@ -25,7 +25,8 @@ class SalaryCycleService {
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
       if (kDebugMode) {
-        print('API /v1/members/me/salarycycle status: ${response.statusCode}');
+        debugPrint(
+            'API /v1/members/me/salarycycle status: ${response.statusCode}');
       }
       if (response.statusCode == 200) {
         List data = response.data["message"];
@@ -36,7 +37,7 @@ class SalaryCycleService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/members/me/salarycycle status: ');
+      debugPrint('API /v1/members/me/salarycycle status: ');
       throw Exception(e);
     }
   }

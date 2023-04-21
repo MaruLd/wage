@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Level/level_model.dart';
 import '../network_services/dio_adapter.dart';
@@ -18,7 +19,7 @@ class LevelService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/levels status: ${response.statusCode}');
+      debugPrint('API /v1/levels status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final level = Level.fromJson(response.data["message"][0]);
         return level;
@@ -26,7 +27,7 @@ class LevelService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('/v1/levels status: ');
+      debugPrint('/v1/levels status: ');
       throw Exception(e);
     }
   }

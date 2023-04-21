@@ -26,7 +26,7 @@ class ProjectPage extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SubHeader('Các dự án'),
+          const SubHeader(headerText: 'Các dự án'),
           const SizedBox(
             height: 90,
           ),

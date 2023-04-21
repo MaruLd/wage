@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Transaction/transaction_model.dart';
 import '../network_services/dio_adapter.dart';
@@ -23,7 +24,8 @@ class TransactionService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me/transactions status: ${response.statusCode}');
+      debugPrint(
+          'API /v1/members/me/transactions status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Transaction> transactions =
@@ -33,7 +35,7 @@ class TransactionService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/members/me/transactions status: ');
+      debugPrint('API /v1/members/me/transactions status: ');
       throw Exception(e);
     }
   }

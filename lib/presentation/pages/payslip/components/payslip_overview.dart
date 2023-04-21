@@ -42,7 +42,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
               color: global.background,
               border:
                   Border.all(color: Colors.grey.withOpacity(0.3), width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
             height: 65,
             width: 160,
@@ -80,7 +80,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
               color: global.background,
               border:
                   Border.all(color: Colors.grey.withOpacity(0.3), width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
             height: 65,
             width: 160,
@@ -123,7 +123,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(15, 48, 188, 150),
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
@@ -132,7 +132,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FaIcon(FontAwesomeIcons.coins, color: global.yellow, size: 20),
+                const FaIcon(FontAwesomeIcons.coins, color: global.yellow, size: 20),
                 const SizedBox(
                   width: 10,
                 ),
@@ -147,7 +147,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                         ));
                   },
                   error: (error, stackTrace) {
-                    print(error.toString());
+                    debugPrint(error.toString());
                     showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
@@ -176,13 +176,13 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                                 ),
                               ],
                             ));
-                    return LoadingShimmer(
+                    return const LoadingShimmer(
                       height: 20.0,
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206),
                     );
                   },
-                  loading: () => LoadingShimmer(
+                  loading: () => const LoadingShimmer(
                       height: 20.0,
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206)),
@@ -194,7 +194,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             width: 10,
           ),
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(15, 48, 188, 151),
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
@@ -203,7 +203,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FaIcon(FontAwesomeIcons.hourglassHalf,
+                const FaIcon(FontAwesomeIcons.hourglassHalf,
                     color: global.darkGreen, size: 18),
                 const SizedBox(
                   width: 10,
@@ -218,14 +218,14 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                         ));
                   },
                   error: (error, stackTrace) {
-                    print(error.toString());
-                    return LoadingShimmer(
+                    debugPrint(error.toString());
+                    return const LoadingShimmer(
                       height: 20.0,
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206),
                     );
                   },
-                  loading: () => LoadingShimmer(
+                  loading: () => const LoadingShimmer(
                       height: 20.0,
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206)),
@@ -238,46 +238,42 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
       const SizedBox(
         height: 15,
       ),
-
       PayslipPointDetail(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
         payslipItemType: PayslipItemTypeEnum.p1,
         pointTitle: 'Tổng Point P1',
         description: 'Vị trí (Level)',
-        icon: FaIcon(FontAwesomeIcons.businessTime,
+        icon: const FaIcon(FontAwesomeIcons.businessTime,
                 color: global.background, size: 23)
             .centered(),
         iconColor: global.cyan,
       ),
-
       PayslipPointDetail(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
         payslipItemType: PayslipItemTypeEnum.p2,
         pointTitle: 'Tổng Point P2',
         description: 'Năng lực',
-        icon: FaIcon(FontAwesomeIcons.userClock,
+        icon: const FaIcon(FontAwesomeIcons.userClock,
                 color: global.background, size: 23)
             .centered(),
         iconColor: global.yellow,
       ),
-
       PayslipPointDetail(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
         payslipItemType: PayslipItemTypeEnum.p3,
         pointTitle: 'Tổng Point P3',
         description: 'Hiệu suất làm việc',
-        icon: FaIcon(FontAwesomeIcons.fileCircleCheck,
+        icon: const FaIcon(FontAwesomeIcons.fileCircleCheck,
                 color: global.background, size: 23)
             .centered(),
         iconColor: global.primary,
       ),
-
       PayslipPointDetail(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
         payslipItemType: PayslipItemTypeEnum.bonus,
         pointTitle: 'Tổng Bonus',
         description: 'Point được thưởng',
-        icon: FaIcon(FontAwesomeIcons.moneyCheckDollar,
+        icon: const FaIcon(FontAwesomeIcons.moneyCheckDollar,
                 color: global.background, size: 23)
             .centered(),
         iconColor: global.danger,

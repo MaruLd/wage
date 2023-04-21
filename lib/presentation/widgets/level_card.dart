@@ -65,7 +65,7 @@ class LevelCard extends ConsumerWidget {
                   data: (data) => Text(data.memberLevels!.level.levelName,
                       style: global.boldTextStyle),
                   error: (error, stackTrace) {
-                    print(error.toString());
+                    debugPrint(error.toString());
                     return LoadingShimmer(
                       height: 30.0,
                       width: 100.0,

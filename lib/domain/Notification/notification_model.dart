@@ -25,6 +25,8 @@ enum NotificationTypeEnum {
   salaryCycleUpdateFail,
   @JsonValue("salaryCyclePaid")
   salaryCyclePaid,
+  @JsonValue("salaryCycleStarted")
+  salaryCycleStarted,
   @JsonValue("projectCreate")
   projectCreate,
   @JsonValue("projectUpdate")

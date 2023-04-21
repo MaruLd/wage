@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class SubHeader extends StatelessWidget {
-  const SubHeader(this.headerText, {super.key});
+  const SubHeader({super.key, required this.headerText});
   final String headerText;
 
   @override

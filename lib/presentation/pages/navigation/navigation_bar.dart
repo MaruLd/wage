@@ -18,7 +18,7 @@ import '../salary_cycle/salary_cycle_page.dart';
 import '../setting/setting_page.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Background message: ${message.data}");
+  debugPrint("Background message: ${message.data}");
 }
 
 class Navigation extends ConsumerStatefulWidget {
@@ -45,16 +45,18 @@ class _NavigationState extends ConsumerState<Navigation> {
     super.initState();
     Future.delayed(Duration.zero, () {
       ref.read(fcmTokenProvider);
+      ref.read(havePinProvider);
     });
   }
 
   init() async {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
+      debugPrint('Got a message whilst in the foreground!');
+      debugPrint('Message data: ${message.data}');
       if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
+        debugPrint(
+            'Message also contained a notification: ${message.notification}');
       }
       final notification = FCMNotificationModel.fromJson(message.data);
 
@@ -77,6 +79,7 @@ class _NavigationState extends ConsumerState<Navigation> {
           ],
         ).show();
         ref.refresh(voucherListFutureProvider);
+        ref.refresh(notificationFutureProvider(10));
         ref.refresh(memberVoucherListFutureProvider);
         ref.refresh(walletsFutureProvider);
       } else if (notification.Type ==
@@ -134,12 +137,12 @@ class _NavigationState extends ConsumerState<Navigation> {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (serverAvailable.valueOrNull == null &&
               !serverAvailable.isLoading) {
-            print('ERROR: Server is down');
+            debugPrint('ERROR: Server is down');
             Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
               builder: (_) => ErrorPage(),
             ));
           } else if (authState.valueOrNull == null && !authState.isLoading) {
-            print('ERROR: Token not found');
+            debugPrint('ERROR: Token not found');
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignInPage()),
@@ -147,7 +150,7 @@ class _NavigationState extends ConsumerState<Navigation> {
           }
         });
       } catch (ex) {
-        print(Exception(ex));
+        debugPrint(ex.toString());
       }
     });
     return token.when(

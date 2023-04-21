@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Member/member_model.dart';
-import 'package:wage/infrastructure/authentication_service/auth_service.dart';
 import '../network_services/dio_adapter.dart';
 
 class MemberService {
@@ -17,7 +17,7 @@ class MemberService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me status: ${response.statusCode}');
+      debugPrint('API /v1/members/me status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
         return member;
@@ -25,7 +25,7 @@ class MemberService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/members/me status: ');
+      debugPrint('API /v1/members/me status: ');
       throw Exception(e);
     }
   }

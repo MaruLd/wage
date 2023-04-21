@@ -48,7 +48,7 @@ class PointCard extends ConsumerWidget {
                     ));
               },
               error: (error, stackTrace) {
-                print(error.toString());
+                debugPrint(error.toString());
                 return LoadingShimmer(
                   height: 25.0,
                   width: 70.0,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Wallets/wallets_model.dart';
 import 'package:wage/infrastructure/network_services/dio_adapter.dart';
@@ -15,7 +16,7 @@ class WalletsService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API/v1/members/me/wallets status: ${response.statusCode}');
+      debugPrint('API/v1/members/me/wallets status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final wallets = Wallets.fromJson(response.data["message"]);
         return wallets;
@@ -23,7 +24,7 @@ class WalletsService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API/v1/members/me/wallets status: ');
+      debugPrint('API/v1/members/me/wallets status: ');
       throw Exception(e);
     }
   }

@@ -3,13 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class VoucherTabs extends StatelessWidget {
-  VoucherTabs({
+  const VoucherTabs({
     Key? key,
-    required this.changeTabs,
+    required this.changeTabBuyVoucher,
+    required this.changeTabMyVoucher,
     required this.tabBuyVoucher,
     required this.tabMyVoucher,
   }) : super(key: key);
-  VoidCallback changeTabs;
+  final VoidCallback changeTabBuyVoucher;
+  final VoidCallback changeTabMyVoucher;
   final bool tabBuyVoucher;
   final bool tabMyVoucher;
 
@@ -25,7 +27,7 @@ class VoucherTabs extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextButton(
-            onPressed: changeTabs,
+            onPressed: changeTabMyVoucher,
             child: Text('Đổi Voucher',
                 style: GoogleFonts.montserrat(
                   color: tabBuyVoucher
@@ -36,7 +38,7 @@ class VoucherTabs extends StatelessWidget {
                 )),
           ),
           TextButton(
-            onPressed: changeTabs,
+            onPressed: changeTabBuyVoucher,
             child: Text('Voucher của tôi',
                 style: GoogleFonts.montserrat(
                   color: !tabBuyVoucher

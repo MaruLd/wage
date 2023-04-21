@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
 import '../network_services/dio_adapter.dart';
@@ -20,7 +21,7 @@ class PayslipService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/members/me/payslips status: ${response.statusCode}');
+      debugPrint('API /v1/members/me/payslips status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final payslip = Payslip.fromJson(response.data["message"][0]);
         return payslip;
@@ -28,16 +29,17 @@ class PayslipService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/members/me/payslips status: $e');
+      debugPrint('API /v1/members/me/payslips status: $e');
       throw Exception(e);
     }
   }
 
-  Future<Payslip> getSelfPayslipItem(String projectId) async {
-    final storage = new FlutterSecureStorage();
+  Future<double> getSelfProjectXP(String projectId) async {
+    const storage = FlutterSecureStorage();
     var param = {
       'ProjectId': projectId,
     };
+    debugPrint('$param');
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/payslipitems/total',
@@ -46,15 +48,15 @@ class PayslipService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/payslipitems/total status: ${response.statusCode}');
+      debugPrint('API /v1/payslipitems/total status: ${response.statusCode}');
       if (response.statusCode == 200) {
-        final payslip = Payslip.fromJson(response.data["message"][0]);
-        return payslip;
+        final payslip = response.data["message"]["totalXP"];
+        return payslip.toDouble();
       } else {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/payslipitems/total error: $e');
+      debugPrint('API /v1/payslipitems/total error: $e');
       throw Exception(e);
     }
   }

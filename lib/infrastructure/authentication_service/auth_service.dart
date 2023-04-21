@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/Auth/auth_model.dart';
@@ -18,18 +19,18 @@ class AuthDAO {
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
           }));
-      print('/v1/users/login-google ${response.statusCode}');
+      debugPrint('/v1/users/login-google ${response.statusCode}');
       if (response.statusCode == 200) {
         final auth = AuthInfo.fromJson(response.data["message"]);
         await storage.write(key: 'jwt', value: auth.token);
         String? jwtToken = await storage.read(key: 'jwt');
-        print('jwt in storage: $jwtToken');
+        debugPrint('jwt in storage: $jwtToken');
         return auth;
       } else {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('/v1/users/login-google $e');
+      debugPrint('/v1/users/login-google $e');
     }
   }
 }

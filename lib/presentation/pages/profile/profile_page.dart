@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wage/presentation/pages/profile/components/profile_body.dart';
-import 'package:wage/presentation/pages/setting/components/logout_button.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/sub_header.dart';
 import '../../widgets/sub_page_avatar.dart';
-import 'components/profile_edit_button.dart';
 import 'components/project_row.dart';
 import 'components/self_overview.dart';
 
@@ -30,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SubHeader('HỒ SƠ'),
+            const SubHeader(headerText: 'HỒ SƠ'),
             const SizedBox(
               height: 30,
             ),
@@ -49,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       const ProfileOverview(),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                       const ProjectProgress(),
                     ],

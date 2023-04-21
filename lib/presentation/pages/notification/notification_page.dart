@@ -16,7 +16,7 @@ class NotificationPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SubHeader('THÔNG BÁO'),
+          const SubHeader(headerText:'THÔNG BÁO'),
           const SizedBox(
             height: 15,
           ),

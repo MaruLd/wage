@@ -43,7 +43,7 @@ class HomeHeader extends ConsumerWidget {
                         style: global.boldTextStyle,
                       ),
                       error: (error, stackTrace) {
-                        print(error.toString());
+                        debugPrint(error.toString());
                         return LoadingShimmer(
                           height: 25.0,
                           width: 190.0,
@@ -88,7 +88,7 @@ class HomeHeader extends ConsumerWidget {
                           ? Image.network(userData.imageUrl!)
                           : Image.asset('assets/images/ANYAA.png'),
                       error: (error, stackTrace) {
-                        print(error.toString());
+                        debugPrint(error.toString());
                         return LoadingShimmer(
                           height: 25.0,
                           width: 190.0,

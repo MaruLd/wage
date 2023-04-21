@@ -45,7 +45,7 @@ class SettingBody extends StatelessWidget {
           SettingRow(
             icon: FaIcon(FontAwesomeIcons.lock, color: global.primary2),
             name: 'Đổi mã PIN',
-            navigate: () => profilePageNavigation(context),
+            navigate: () => pinPageNavigation(context),
           ),
           const SizedBox(
             height: 45,

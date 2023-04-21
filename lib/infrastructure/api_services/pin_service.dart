@@ -1,46 +1,44 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../domain/Notification/notification_model.dart';
 import '../network_services/dio_adapter.dart';
 
-class NotificationService {
-  Future<List<NotificationModel>> getNotifications(int? currentPage) async {
+class PINService {
+  Future<bool> getPIN() async {
     const storage = FlutterSecureStorage();
-    var param = {"OrderBy": "dateDesc", "page-size": 10 * (currentPage ?? 1)};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.get('/v1/members/me/notifications',
-          queryParameters: param,
+      final response = await dio.get('/v1/users/me/pin',
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      if (kDebugMode) {
-        debugPrint(
-            'API /v1/members/me/notifications status: ${response.statusCode}');
-      }
+      debugPrint('API /v1/users/me/pin status: ${response.statusCode}');
       if (response.statusCode == 200) {
-        List data = response.data["message"];
-        List<NotificationModel> notifications =
-            data.map((e) => NotificationModel.fromJson(e)).toList();
-        return notifications;
+        final data = response.data["message"];
+        await storage.write(key: 'havePin', value: data);
+        String? havePin = await storage.read(key: 'havePin');
+        debugPrint('jwt in storage: $havePin');
+        return data;
       } else {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/notifications status: ');
+      debugPrint('/v1/users/me/pin status: ');
       throw Exception(e);
     }
   }
 
-  Future<int?> isReadNotification(String notificationId) async {
+  Future<bool> updatePIN(String oldCode, String newCode) async {
     const storage = FlutterSecureStorage();
+    var param = {"oldPinCode": oldCode, "newPinCode": newCode};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.post('/v1/notification/$notificationId/read',
+      final response = await dio.post('/v1/users/me/pin-code',
+          data: jsonEncode(param),
           options: Options(
               followRedirects: false,
               validateStatus: (status) {
@@ -50,11 +48,9 @@ class NotificationService {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
-      debugPrint(
-          'API /v1/notification/$notificationId/read status: ${response.statusCode}');
-      return response.statusCode;
+      debugPrint('API /v1/users/me/pin-code status: ${response.statusCode}');
+      return response.data['message'];
     } catch (e) {
-      debugPrint('API /v1/notification/$notificationId/read status:');
       throw Exception(e);
     }
   }

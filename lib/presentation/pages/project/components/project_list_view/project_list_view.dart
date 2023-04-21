@@ -38,7 +38,7 @@ class ProjectListView extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) {
-          print(error);
+          debugPrint(error.toString());
           return const ShimmerList(
               height: 126.0,
               width: 325.0,

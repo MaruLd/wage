@@ -6,10 +6,11 @@ import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 
 class MemberVoucherItem extends ConsumerWidget {
-  MemberVoucherItem({Key? key, required this.voucher}) : super(key: key);
-  MemberVoucher voucher;
+  const MemberVoucherItem({Key? key, required this.voucher}) : super(key: key);
+  final MemberVoucher voucher;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,13 +40,17 @@ class MemberVoucherItem extends ConsumerWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text(
-                    voucher.voucher.voucherName!,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.montserrat(
-                      color: global.headerText,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
+                  Container(
+                    width: 320,
+                    constraints: BoxConstraints(maxHeight: 50),
+                    child: Text(
+                      voucher.voucher.voucherName!,
+                      overflow: TextOverflow.clip,
+                      style: GoogleFonts.montserrat(
+                        color: global.headerText,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -104,6 +109,23 @@ class MemberVoucherItem extends ConsumerWidget {
                   fontSize: 22,
                 ),
               ),
+              SwipeButton(
+                width: 200,
+                child: Text(
+                  "Swipe to ...",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onSwipe: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Swipped"),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ).py8());

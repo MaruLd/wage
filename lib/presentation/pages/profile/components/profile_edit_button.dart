@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-import 'package:wage/application/providers/api_provider.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});

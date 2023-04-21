@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/pages/profile/components/sub_project_list_view/sub_project_item.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../widgets/loading_shimmer.dart';
 

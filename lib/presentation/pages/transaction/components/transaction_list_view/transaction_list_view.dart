@@ -33,7 +33,7 @@ class _TransactionListViewState extends ConsumerState<TransactionListView> {
       });
     }
 
-    FilterParameters filterParam = FilterParameters(
+    Parameters filterParam = Parameters(
         parameterList: [widget.startDate, widget.endDate, _currentPage]);
     final transactionList =
         ref.watch(transactionListFutureProvider(filterParam));
@@ -78,7 +78,7 @@ class _TransactionListViewState extends ConsumerState<TransactionListView> {
             );
           },
           error: (error, stackTrace) {
-            print(error);
+            debugPrint(error.toString());
             return const ShimmerList(
                 height: 50.0,
                 width: 325.0,

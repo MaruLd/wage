@@ -10,9 +10,10 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../infrastructure/api_services/voucher_service.dart';
 import '../../../../widgets/loading_shimmer.dart';
+import '../pin_check/pin_confirm_page.dart';
 
 class VoucherItem extends ConsumerStatefulWidget {
-  VoucherItem({Key? key, required this.voucher}) : super(key: key);
+  const VoucherItem({Key? key, required this.voucher}) : super(key: key);
   final Voucher voucher;
 
   @override
@@ -37,29 +38,12 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
           ).centered(),
           onPressed: () async {
             Navigator.pop(context);
-            VoucherService voucherService = VoucherService();
-            var buySuccess =
-                await voucherService.buyVoucher(widget.voucher.voucherId);
-
-            if (buySuccess == 400) {
-              Alert(
-                context: context,
-                type: AlertType.error,
-                title: "Đổi Voucher thất bại",
-                desc: "Số Point của bạn không đủ",
-                useRootNavigator: false,
-                buttons: [
-                  DialogButton(
-                    child: Text(
-                      "Ok",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                    width: 120,
-                  )
-                ],
-              ).show();
-            }
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PinConfirmPage(voucherId: widget.voucher.voucherId),
+              ),
+            );
           },
         )
       ],
@@ -94,6 +78,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
               ),
               Container(
                 width: 320,
+                constraints: BoxConstraints(maxHeight: 50),
                 child: Text(
                   widget.voucher.voucherName!,
                   overflow: TextOverflow.clip,

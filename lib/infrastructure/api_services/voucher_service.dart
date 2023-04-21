@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import '../network_services/dio_adapter.dart';
@@ -16,7 +17,7 @@ class VoucherService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/vouchers status: ${response.statusCode}');
+      debugPrint('API /v1/vouchers status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Voucher> vouchers = data.map((e) => Voucher.fromJson(e)).toList();
@@ -25,7 +26,7 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/vouchers status: ');
+      debugPrint('API /v1/vouchers status: ');
       throw Exception(e);
     }
   }
@@ -39,7 +40,7 @@ class VoucherService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      print('API /v1/vouchers status: ${response.statusCode}');
+      debugPrint('API /v1/vouchers status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<MemberVoucher> vouchers =
@@ -49,14 +50,14 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      print('API /v1/vouchers status: ');
+      debugPrint('API /v1/vouchers status: ');
       throw Exception(e);
     }
   }
 
-  Future<int?> buyVoucher(String voucherId) async {
+  Future<int?> buyVoucher(String voucherId, String pinCode) async {
     final storage = new FlutterSecureStorage();
-    var param = {"action": "buy"};
+    var param = {"action": "buy", "pinCode": pinCode};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.post('/v1/vouchers/${voucherId}/action',
@@ -70,7 +71,7 @@ class VoucherService {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
-      print(
+      debugPrint(
           'API /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
       return response.statusCode;
     } catch (e) {

@@ -119,7 +119,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                   );
                 },
                 error: (error, stackTrace) {
-                  print(error.toString());
+                  debugPrint(error.toString());
                   return LoadingShimmer(
                     height: 20.0,
                     width: 70.0,
@@ -153,7 +153,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
             data: (data) {
               final itemList = data.items!
                   .where((item) => item.type == widget.payslipItemType);
-              return data.items!.isNotEmpty
+              return itemList.isNotEmpty
                   ? Column(
                       children: [
                         const SizedBox(
@@ -165,10 +165,27 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                                 .toList()),
                       ],
                     )
-                  : Container();
+                  : Column(children: [
+                      const SizedBox(
+                        height: 19,
+                      ),
+                      Container(
+                        child: Text(
+                          'Không có point',
+                          style: GoogleFonts.montserrat(
+                            color: global.smallText,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                    ]);
             },
             error: (error, stackTrace) {
-              print(error.toString());
+              debugPrint(error.toString());
               return Column(
                 children: [
                   const SizedBox(

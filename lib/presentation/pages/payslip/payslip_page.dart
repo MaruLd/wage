@@ -17,7 +17,7 @@ class PayslipPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SubHeader('PHIẾU LƯƠNG'),
+          const SubHeader(headerText: 'PHIẾU LƯƠNG'),
           const SizedBox(
             height: 80,
           ),

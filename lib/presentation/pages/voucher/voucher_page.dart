@@ -26,11 +26,20 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
   bool tabMyVoucher = false;
   @override
   Widget build(BuildContext context) {
-    void changeTab() {
+    void changeTabBuyVoucher() {
       setState(
         () {
-          tabBuyVoucher = !tabBuyVoucher;
-          tabMyVoucher = !tabMyVoucher;
+          tabBuyVoucher = false;
+          tabMyVoucher = true;
+        },
+      );
+    }
+
+    void changeTabMyVoucher() {
+      setState(
+        () {
+          tabBuyVoucher = true;
+          tabMyVoucher = false;
         },
       );
     }
@@ -47,7 +56,7 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SubHeader('Vouchers'),
+          const SubHeader(headerText: 'Vouchers'),
           const SizedBox(
             height: 90,
           ),
@@ -63,7 +72,8 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
                 ),
                 const SizedBox(height: 10),
                 VoucherTabs(
-                  changeTabs: changeTab,
+                  changeTabBuyVoucher: changeTabBuyVoucher,
+                  changeTabMyVoucher: changeTabMyVoucher,
                   tabBuyVoucher: tabBuyVoucher,
                   tabMyVoucher: tabMyVoucher,
                 ),

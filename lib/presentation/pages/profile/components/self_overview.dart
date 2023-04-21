@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -29,7 +27,7 @@ class ProfileOverview extends StatelessWidget {
       const SizedBox(
         height: 10,
       ),
-      OverviewRow(),
+      const OverviewRow(),
     ]);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Level/level_model.dart';
 import 'package:wage/domain/Member/member_model.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
@@ -16,6 +17,7 @@ import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../infrastructure/api_services/fcm_service.dart';
 import '../../infrastructure/api_services/notification_service.dart';
 import '../../infrastructure/api_services/payslip_service.dart';
+import '../../infrastructure/api_services/pin_service.dart';
 import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
 import '../../infrastructure/api_services/transaction_service.dart';
@@ -48,6 +50,8 @@ final payslipProvider = Provider((ref) => PayslipService());
 
 final fcmProvider = Provider((ref) => FCMService());
 
+final pinProvider = Provider((ref) => PINService());
+
 final voucherProvider = Provider((ref) => VoucherService());
 
 final transactionProvider = Provider((ref) => TransactionService());
@@ -65,6 +69,29 @@ final fcmTokenProvider = FutureProvider<void>(
   (ref) {
     final fcm = ref.watch(fcmProvider).sendFCMToken();
     return fcm;
+  },
+);
+
+final havePinProvider = FutureProvider<bool>(
+  (ref) async {
+    const storage = FlutterSecureStorage();
+    String? havePinString = await storage.read(key: 'havePin');
+    bool havePin =
+        havePinString != null ? havePinString.toLowerCase() == 'true' : false;
+    if (havePin) {
+      final checkHavePin = ref.watch(pinProvider).getPIN();
+      return checkHavePin;
+    }
+    return havePin;
+  },
+);
+
+final updatePinProvider = FutureProvider.autoDispose.family<bool, Parameters>(
+  (ref, param) async {
+    final checkHavePin = ref
+        .watch(pinProvider)
+        .updatePIN(param.parameterList[0], param.parameterList[1]);
+    return checkHavePin;
   },
 );
 
@@ -88,14 +115,14 @@ final payslipFutureProvider = FutureProvider.family<Payslip, String>(
 );
 
 final payslipItemFutureProvider =
-    FutureProvider.autoDispose.family<Payslip, String>(
+    FutureProvider.autoDispose.family<double, String>(
   (ref, projectId) {
-    return ref.watch(payslipProvider).getSelfPayslipItem(projectId);
+    return ref.watch(payslipProvider).getSelfProjectXP(projectId);
   },
 );
 
 final salaryCycleFutureProvider =
-    FutureProvider.family<List<SalaryCycle>, FilterParameters>(
+    FutureProvider.family<List<SalaryCycle>, Parameters>(
   (ref, param) {
     return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle(
         param.parameterList[0], param.parameterList[1], param.parameterList[2]);
@@ -121,9 +148,12 @@ final voucherListFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
   },
 );
 
-final buyVoucherFutureProvider = FutureProvider.family<int?, String>(
-  (ref, voucherId) {
-    return ref.watch(voucherProvider).buyVoucher(voucherId);
+final buyVoucherFutureProvider =
+    FutureProvider.autoDispose.family<int?, Parameters>(
+  (ref, param) {
+    return ref
+        .watch(voucherProvider)
+        .buyVoucher(param.parameterList[0], param.parameterList[1]);
   },
 );
 
@@ -166,7 +196,7 @@ final projectFutureProvider =
 });
 
 final transactionListFutureProvider =
-    FutureProvider.family<List<Transaction>, FilterParameters>((ref, param) {
+    FutureProvider.family<List<Transaction>, Parameters>((ref, param) {
   return ref.watch(transactionProvider).getTransactions(
       param.parameterList[0], param.parameterList[1], param.parameterList[2]);
 });
