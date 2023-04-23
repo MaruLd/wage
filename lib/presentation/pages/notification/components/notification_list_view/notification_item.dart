@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/providers/api_provider.dart';
@@ -24,26 +25,34 @@ class _NotificationItemState extends ConsumerState<NotificationItem> {
   @override
   Widget build(BuildContext context) {
     Future<void> readedNotification(NotificationModel notification) async {
-      // final result = await ref
-      //     .read(isReadnotificationFutureProvider(notification.notificationId));
-      showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-                title: Text(notification.title),
-                content: Text(notification.content),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Ok'),
-                    child: const Text('Ok'),
-                  ),
-                ],
-              ));
+      Alert(
+        context: context,
+        type: AlertType.info,
+        title: notification.title,
+        desc: notification.content,
+        useRootNavigator: false,
+        buttons: [
+          DialogButton(
+            child: Text(
+              "Ok",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+            width: 120,
+          )
+        ],
+      ).show();
       NotificationService service = NotificationService();
       final result = service.isReadNotification(notification.notificationId);
-
-      if (result == 200) {
+      final isReadProvider = ref
+          .read(isReadnotificationFutureProvider(notification.notificationId));
+      isReadProvider.whenOrNull(
+        data: (data) => data,
+      );
+      if (isReadProvider == 200) {
         setState(() {
           isRead = true;
+          ref.refresh(notificationFutureProvider(10));
         });
       }
     }

@@ -207,10 +207,10 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                   );
                   // conditions for validating
                 },
-                child: Center(
+                child: const Center(
                     child: Text(
                   "Xác nhận",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),

@@ -125,22 +125,22 @@ class MenuBody extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  walletPageNavigation(context);
+                  settingPageNavigation(context);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.account_balance_wallet,
+                    FaIcon(
+                      FontAwesomeIcons.solidUser,
                       color: global.background,
-                      size: 25,
+                      size: 24,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      'Ví của tôi',
+                      'Hồ sơ',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: global.background,

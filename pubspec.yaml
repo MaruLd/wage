@@ -85,6 +85,8 @@ dependencies:
   dropdown_button2: ^2.0.1
   pin_code_fields: ^7.4.0
   flutter_swipe_button: ^2.1.1+1
+  qr_flutter: ^4.0.0
+  qr_code_scanner: ^1.0.1
 
 dev_dependencies:
   flutter_test:

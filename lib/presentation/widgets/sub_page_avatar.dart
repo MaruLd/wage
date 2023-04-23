@@ -12,10 +12,7 @@ class Avatar extends ConsumerWidget {
     final userData = ref.watch(userFutureProvider);
     final walletsData = ref.watch(walletsFutureProvider);
     return userData.when(
-        error: (error, stackTrace) => Text(
-              'Please check your internet connection!',
-              style: global.boldTextStyle,
-            ),
+        error: (error, stackTrace) => CircularProgressIndicator().centered(),
         loading: () => CircularProgressIndicator().centered(),
         data: (userData) {
           return Column(

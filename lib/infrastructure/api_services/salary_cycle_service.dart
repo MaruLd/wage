@@ -14,7 +14,7 @@ class SalaryCycleService {
       "StartedAt": startDate,
       "EndedBefore": endDate,
       "OrderBy": "dateDesc",
-      "page-size": 10 * (currentPage ?? 1) + 1
+      "page-size": 10 * (currentPage ?? 1)
     };
     try {
       String? jwtToken = await storage.read(key: 'jwt');

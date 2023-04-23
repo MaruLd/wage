@@ -42,7 +42,7 @@ class SalaryCycleItem extends ConsumerWidget {
                   height: 20,
                 ),
                 Container(
-                  width: 290,
+                  width: 320,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -57,7 +57,7 @@ class SalaryCycleItem extends ConsumerWidget {
                         Text(
                           totalPoint ?? '0',
                           style: GoogleFonts.montserrat(
-                            color: global.headerText,
+                            color: global.primary,
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),

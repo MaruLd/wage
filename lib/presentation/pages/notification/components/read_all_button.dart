@@ -24,7 +24,7 @@ class ReadAllButton extends ConsumerWidget {
                 .isReadNotification(notification.notificationId);
           }
         }
-        ref.refresh(notificationFutureProvider(100));
+        ref.refresh(notificationFutureProvider(10));
       }
     }
 

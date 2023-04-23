@@ -15,18 +15,7 @@ class NotificationBell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final unreadNotificationCount =
-        ref.watch(notificationFutureProvider(100)).whenOrNull(
-      data: (datas) {
-        int temp = 0;
-        for (var data in datas) {
-          if (data.isRead != null && data.isRead == false) {
-            temp++;
-          }
-        }
-        return temp;
-      },
-    );
+    final notificationProvider = ref.watch(notificationFutureProvider(100));
     return Container(
       width: 60,
       height: 60,
@@ -39,36 +28,53 @@ class NotificationBell extends ConsumerWidget {
               color: global.background,
               size: 35.0,
             ).centered(),
-            if (unreadNotificationCount != 0 && unreadNotificationCount != null)
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.topRight,
-                margin: EdgeInsets.only(
-                  top: 5,
-                ),
-                child: Container(
-                  width: 19,
-                  height: 19,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 175, 37, 37),
-                      border: Border.all(color: Colors.white, width: 1)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(0.0),
-                    child: Center(
-                      child: Text(
-                        '${(unreadNotificationCount) < 100 ? unreadNotificationCount : '99+'}',
-                        style: GoogleFonts.montserrat(
-                          color: global.background,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 9,
+            notificationProvider.when(
+              data: (datas) {
+                int temp = 0;
+                for (var data in datas) {
+                  if (data.isRead != null && data.isRead == false) {
+                    temp++;
+                  }
+                }
+                return temp > 0
+                    ? Container(
+                        width: 40,
+                        height: 40,
+                        alignment: Alignment.topRight,
+                        margin: EdgeInsets.only(
+                          top: 5,
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+                        child: Container(
+                          width: 19,
+                          height: 19,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromARGB(255, 175, 37, 37),
+                              border:
+                                  Border.all(color: Colors.white, width: 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Center(
+                              child: Text(
+                                '${(temp) < 100 ? temp : '99+'}',
+                                style: GoogleFonts.montserrat(
+                                  color: global.background,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container();
+              },
+              error: (Object error, StackTrace stackTrace) {
+                debugPrint(error.toString());
+                return Container();
+              },
+              loading: () => Container(),
+            )
           ],
         ),
       ),

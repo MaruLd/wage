@@ -81,7 +81,7 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
           loading: () => const ShimmerList(
               height: 50.0,
               width: 325.0,
-              row: 3,
+              row: 5,
               color: Color.fromARGB(118, 2, 193, 123),
               baseColor: Color.fromARGB(118, 0, 100, 63))),
       const SizedBox(
@@ -94,8 +94,8 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
                 color: Color.fromARGB(255, 46, 205, 202), width: 1.0),
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
-          height: 35,
-          width: 120,
+          height: 38,
+          width: 130,
           child: MaterialButton(
             onPressed: () => onLoadMoreClick(),
             child: Text('Load thêm',

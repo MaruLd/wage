@@ -12,40 +12,44 @@ class PinCheckPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: global.primary2,
-        body: Column(children: [
-          const SizedBox(
-            height: 20,
+        backgroundColor: global.background,
+        body: SafeArea(
+          child: Container(
+            color: global.primary2,
+            child: Column(children: [
+              const SizedBox(
+                height: 20,
+              ),
+              const SubHeader(headerText: 'NHẬP MÃ PIN'),
+              const SizedBox(
+                height: 30,
+              ),
+              Expanded(
+                child: MainBody(
+                    child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      width: 250,
+                      child: Text("Nhập mã PIN của bạn để xác nhận",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            color: global.primary2,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24,
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    PinCheckfield()
+                  ],
+                ).offset(offset: Offset(0, 70))),
+              )
+            ]),
           ),
-          const SubHeader(headerText: 'NHẬP MÃ PIN'),
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 680,
-            child: MainBody(
-                child: Column(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  width: 250,
-                  child: Text("Nhập mã PIN của bạn để xác nhận",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                        color: global.primary2,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                      )),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                PinCheckfield()
-              ],
-            ).offset(offset: Offset(0, 70))),
-          )
-        ]));
+        ));
   }
 }

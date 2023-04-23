@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:wage/application/utils/navigation.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
@@ -185,8 +184,8 @@ class _PinUpdatefieldState extends ConsumerState<PinUpdatefield> {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(
                                 "Xác nhận thành công",
-                                style: TextStyle(color: global.primary),
                               ),
+                              backgroundColor: global.primary,
                               behavior: SnackBarBehavior.floating,
                             ));
 

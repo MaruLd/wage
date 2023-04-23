@@ -19,10 +19,10 @@ class PayslipItem extends StatelessWidget {
       children: [
         FaIcon(FontAwesomeIcons.moneyCheck, color: global.primary2, size: 18),
         const SizedBox(
-          width: 12,
+          width: 18,
         ),
         Container(
-            width: 160,
+            width: 180,
             child: payslipItem.type == PayslipItemTypeEnum.p1
                 ? Text(payslipItem.note ?? '',
                     style: GoogleFonts.montserrat(

@@ -49,7 +49,7 @@ class _SalaryCycleListViewState extends ConsumerState<SalaryCycleListView> {
               });
             }
             return Container(
-              width: 340,
+              width: 360,
               constraints: new BoxConstraints(
                 minHeight: 300,
               ),
@@ -101,8 +101,8 @@ class _SalaryCycleListViewState extends ConsumerState<SalaryCycleListView> {
                 color: Color.fromARGB(255, 46, 205, 202), width: 1.0),
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
-          height: 35,
-          width: 120,
+          height: 38,
+          width: 130,
           child: MaterialButton(
             onPressed: () => _onLoadMoreClick(),
             child: Text('Load thêm',

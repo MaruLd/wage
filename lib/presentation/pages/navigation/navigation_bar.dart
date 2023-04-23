@@ -45,7 +45,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     super.initState();
     Future.delayed(Duration.zero, () {
       ref.read(fcmTokenProvider);
-      ref.read(havePinProvider);
+      ref.read(checkPinProvider);
     });
   }
 

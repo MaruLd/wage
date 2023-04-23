@@ -109,19 +109,22 @@ class MemberVoucherItem extends ConsumerWidget {
                   fontSize: 22,
                 ),
               ),
+              const SizedBox(height: 10),
               SwipeButton(
                 width: 200,
+                height: 38,
                 child: Text(
-                  "Swipe to ...",
+                  "Đã sử dụng...",
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 onSwipe: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text("Swipped"),
-                      backgroundColor: Colors.green,
+                      backgroundColor: global.primary,
+                      behavior: SnackBarBehavior.floating,
                     ),
                   );
                 },

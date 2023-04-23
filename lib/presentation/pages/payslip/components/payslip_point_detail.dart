@@ -148,7 +148,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
       AnimatedCrossFade(
         duration: const Duration(milliseconds: 200),
         firstChild: Container(
-          width: 310,
+          width: 350,
           child: payslip.when(
             data: (data) {
               final itemList = data.items!

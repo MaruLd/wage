@@ -72,7 +72,7 @@ final fcmTokenProvider = FutureProvider<void>(
   },
 );
 
-final havePinProvider = FutureProvider<bool>(
+final checkPinProvider = FutureProvider<bool>(
   (ref) async {
     const storage = FlutterSecureStorage();
     String? havePinString = await storage.read(key: 'havePin');
@@ -130,7 +130,7 @@ final salaryCycleFutureProvider =
 );
 
 final notificationFutureProvider =
-    FutureProvider.family<List<NotificationModel>, int>(
+    FutureProvider.autoDispose.family<List<NotificationModel>, int>(
   (ref, currentPage) {
     return ref.watch(notificationProvider).getNotifications(currentPage);
   },

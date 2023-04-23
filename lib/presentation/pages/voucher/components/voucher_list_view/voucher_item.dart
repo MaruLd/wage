@@ -3,13 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../infrastructure/api_services/voucher_service.dart';
-import '../../../../widgets/loading_shimmer.dart';
 import '../pin_check/pin_confirm_page.dart';
 
 class VoucherItem extends ConsumerStatefulWidget {

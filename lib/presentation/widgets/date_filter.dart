@@ -20,10 +20,10 @@ class _DateFilterState extends State<DateFilter> {
       '${DateFormat('dd/MM/yyyy').format(DateTime.now().subtract(const Duration(days: 30)))} - ${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
   @override
   Widget build(BuildContext context) {
-    void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    void onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
       widget.changeDateRange(
         args.value.startDate,
-        args.value.endDate,
+        args.value.endDate.add(Duration(days: 1)),
       );
       setState(() {
         _dateRange =
@@ -45,7 +45,7 @@ class _DateFilterState extends State<DateFilter> {
             SfDateRangePicker(
               navigationMode: DateRangePickerNavigationMode.scroll,
               view: DateRangePickerView.year,
-              onSelectionChanged: _onSelectionChanged,
+              onSelectionChanged: onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.range,
               initialSelectedRange: PickerDateRange(
                   DateTime.now().subtract(const Duration(days: 30)),

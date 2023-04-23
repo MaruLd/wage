@@ -12,42 +12,17 @@ class LevelsDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      const SizedBox(height: 10),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            width: 18,
-          ),
           Text('KINH NGHIỆM',
               style: TextStyle(
-                color: global.normalText,
+                color: global.headerText,
                 fontFamily: global.headerFont,
-                fontWeight: FontWeight.w700,
-                fontSize: 19.sp,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
               )),
-          const SizedBox(
-            width: 75,
-          ),
-          TextButton(
-              onPressed: () {},
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Quý 4/2023',
-                    style: TextStyle(
-                      color: global.normalText,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18.sp,
-                    ),
-                  ), // <-- Text
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(Icons.calendar_month, color: global.normalText)
-                      .offset(offset: Offset(0, -2)),
-                ],
-              ))
         ],
       ),
       ProjectXPListView(),
