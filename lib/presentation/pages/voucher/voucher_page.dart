@@ -1,8 +1,11 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../application/providers/api_provider.dart';
+import '../../../domain/FCMNotification/fcm_notification_model.dart';
 import '../../widgets/main_body.dart';
 import '../../widgets/refresher.dart';
 import 'components/search_voucher_card.dart';
@@ -24,6 +27,72 @@ class VoucherPage extends ConsumerStatefulWidget {
 class _VoucherPageState extends ConsumerState<VoucherPage> {
   bool tabBuyVoucher = true;
   bool tabMyVoucher = false;
+
+  @override
+  void initState() {
+    fireBaseMessage();
+    super.initState();
+  }
+
+  fireBaseMessage() async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      debugPrint('Got a message whilst in the foreground!');
+      debugPrint('Message data: ${message.data}');
+      if (message.notification != null) {
+        debugPrint(
+            'Message also contained a notification: ${message.notification}');
+      }
+      final notification = FCMNotificationModel.fromJson(message.data);
+
+      if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+        ref.refresh(voucherListFutureProvider);
+        ref.refresh(notificationFutureProvider(10));
+        ref.refresh(memberVoucherListFutureProvider);
+        ref.refresh(walletsFutureProvider);
+      } else if (notification.Type ==
+          FCMNotificationTypeEnum.voucherRedeemFailed) {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     void changeTabBuyVoucher() {

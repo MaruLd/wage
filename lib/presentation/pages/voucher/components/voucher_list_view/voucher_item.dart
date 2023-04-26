@@ -52,7 +52,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
         type: AlertType.warning,
         title: "Xác nhận đổi Voucher",
         desc:
-            "Bạn chắc chắn muốn đổi Voucher ${widget.voucher.voucherName}?\nvới ${pointFormat(widget.voucher.voucherCost)} Point",
+            "Bạn chắc chắn muốn đổi ${widget.voucher.voucherName}\nvới ${pointFormat(widget.voucher.voucherCost)} Point?",
         useRootNavigator: false,
         buttons: [
           DialogButton(

@@ -12,11 +12,6 @@ class PinCheckPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    checkIfHavePin() async {
-      const storage = FlutterSecureStorage();
-      String? havePinString = await storage.read(key: 'havePin');
-    }
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: global.background,

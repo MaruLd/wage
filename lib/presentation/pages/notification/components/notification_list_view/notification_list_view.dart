@@ -73,15 +73,15 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
             );
           },
           error: (error, stackTrace) => const ShimmerList(
-              height: 50.0,
+              height: 60.0,
               width: 325.0,
               row: 5,
               color: Color.fromARGB(118, 2, 193, 123),
               baseColor: Color.fromARGB(118, 0, 100, 63)),
           loading: () => const ShimmerList(
-              height: 50.0,
+              height: 60.0,
               width: 325.0,
-              row: 5,
+              row: 7,
               color: Color.fromARGB(118, 2, 193, 123),
               baseColor: Color.fromARGB(118, 0, 100, 63))),
       const SizedBox(

@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../application/providers/api_provider.dart';
+import '../../../../../infrastructure/api_services/pin_service.dart';
 import '../../../../../infrastructure/param/filter_params.dart';
 import '../../../../widgets/loading_shimmer.dart';
 
@@ -55,9 +56,6 @@ class _PinUpdatefieldState extends ConsumerState<PinUpdatefield> {
 
   @override
   Widget build(BuildContext context) {
-    Parameters pinCodes = Parameters(parameterList: [widget.oldPin, pinCode]);
-    final pinProvider = ref.watch(updatePinProvider(pinCodes));
-
     return Column(
       children: <Widget>[
         const SizedBox(height: 30),
@@ -139,19 +137,12 @@ class _PinUpdatefieldState extends ConsumerState<PinUpdatefield> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: isLoading
-              ? const LoadingShimmer(
-                  height: 18.0,
-                  width: 200.0,
-                  color: Color.fromARGB(118, 2, 193, 123),
-                  baseColor: Color.fromARGB(118, 0, 100, 63),
-                )
-              : Text(hasError ? "Mã PIN chưa chính xác" : "",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  )),
+          child: Text(hasError ? "Mã PIN chưa chính xác" : "",
+              style: GoogleFonts.montserrat(
+                color: Colors.red,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              )),
         ),
         const SizedBox(
           height: 10,
@@ -162,72 +153,72 @@ class _PinUpdatefieldState extends ConsumerState<PinUpdatefield> {
               color: global.primary2,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: ButtonTheme(
-              height: 60,
-              child: TextButton(
-                onPressed: () {
-                  formKey.currentState!.validate();
-                  pinProvider.when(
-                    data: (verified) {
-                      if (verified == false) {
-                        errorController!.add(ErrorAnimationType
-                            .shake); // Triggering error shake animation
+            child: isLoading
+                ? const LoadingShimmer(
+                    height: 48.0,
+                    width: 300.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  )
+                : ButtonTheme(
+                    height: 60,
+                    child: TextButton(
+                      onPressed: () async {
+                        PINService pinService = PINService();
                         setState(() {
-                          isLoading = false;
-                          hasError = true;
+                          isLoading = true;
                         });
-                      } else if (verified) {
-                        setState(
-                          () {
+                        bool verified =
+                            await pinService.updatePIN(widget.oldPin, pinCode);
+                        if (verified == false) {
+                          errorController!.add(ErrorAnimationType
+                              .shake); // Triggering error shake animation
+                          setState(() {
                             isLoading = false;
-                            hasError = false;
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                "Xác nhận thành công",
-                              ),
-                              backgroundColor: global.primary,
-                              behavior: SnackBarBehavior.floating,
-                            ));
+                            hasError = true;
+                          });
+                        } else if (verified) {
+                          formKey.currentState!.validate();
+                          setState(
+                            () {
+                              isLoading = false;
+                              hasError = false;
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(
+                                  "Đổi mã PIN thành công",
+                                ),
+                                backgroundColor: global.primary,
+                                behavior: SnackBarBehavior.floating,
+                              ));
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SettingPage(),
-                              ),
-                            );
-                          },
-                        );
-                      } else {
-                        setState(
-                          () {
-                            isLoading = false;
-                            hasError = false;
-                          },
-                        );
-                      }
-                    },
-                    error: (error, stackTrace) {
-                      errorController!.add(ErrorAnimationType
-                          .shake); // Triggering error shake animation
-                      setState(() {
-                        isLoading = false;
-                        hasError = true;
-                      });
-                    },
-                    loading: () => setState(() => isLoading = true),
-                  );
-                  // conditions for validating
-                },
-                child: Center(
-                    child: Text(
-                  "Xác nhận",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                )),
-              ),
-            )),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SettingPage(),
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          setState(
+                            () {
+                              isLoading = false;
+                              hasError = false;
+                            },
+                          );
+                        }
+                      },
+                      child: Center(
+                          child: Text(
+                        "Xác nhận",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  )),
         const SizedBox(
           height: 16,
         ),

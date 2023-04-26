@@ -80,15 +80,15 @@ class _SalaryCycleListViewState extends ConsumerState<SalaryCycleListView> {
             );
           },
           error: (error, stackTrace) => const ShimmerList(
-              height: 50.0,
-              width: 340.0,
-              row: 5,
+              height: 60.0,
+              width: 350.0,
+              row: 6,
               color: Color.fromARGB(118, 2, 193, 123),
               baseColor: Color.fromARGB(118, 0, 100, 63)),
           loading: () => const ShimmerList(
-              height: 50.0,
-              width: 340.0,
-              row: 5,
+              height: 60.0,
+              width: 350.0,
+              row: 6,
               color: Color.fromARGB(118, 2, 193, 123),
               baseColor: Color.fromARGB(118, 0, 100, 63))),
       const SizedBox(

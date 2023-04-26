@@ -6,14 +6,78 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import 'loading_shimmer.dart';
+
 class Avatar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userData = ref.watch(userFutureProvider);
     final walletsData = ref.watch(walletsFutureProvider);
     return userData.when(
-        error: (error, stackTrace) => CircularProgressIndicator().centered(),
-        loading: () => CircularProgressIndicator().centered(),
+        error: (error, stackTrace) => Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const LoadingShimmer(
+                    height: 90.0,
+                    width: 90.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ).clipOval(),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  const LoadingShimmer(
+                    height: 30.0,
+                    width: 150.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  const LoadingShimmer(
+                    height: 20.0,
+                    width: 240.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                ]),
+        loading: () => Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const LoadingShimmer(
+                    height: 90.0,
+                    width: 90.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ).clipOval(),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  const LoadingShimmer(
+                    height: 30.0,
+                    width: 150.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  const LoadingShimmer(
+                    height: 20.0,
+                    width: 240.0,
+                    color: Color.fromARGB(118, 2, 193, 123),
+                    baseColor: Color.fromARGB(118, 0, 100, 63),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                ]),
         data: (userData) {
           return Column(
             mainAxisSize: MainAxisSize.max,

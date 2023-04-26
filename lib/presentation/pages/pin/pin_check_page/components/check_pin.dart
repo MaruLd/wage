@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:wage/infrastructure/api_services/pin_service.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/providers/api_provider.dart';
@@ -56,10 +57,6 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
 
   @override
   Widget build(BuildContext context) {
-    Parameters pinCodes = Parameters(parameterList: [pinCode, pinCode]);
-    final pinProvider = ref.watch(updatePinProvider(pinCodes));
-    
-
     return Column(
       children: <Widget>[
         const SizedBox(height: 30),
@@ -141,19 +138,12 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: isLoading
-              ? const LoadingShimmer(
-                  height: 18.0,
-                  width: 200.0,
-                  color: Color.fromARGB(118, 2, 193, 123),
-                  baseColor: Color.fromARGB(118, 0, 100, 63),
-                )
-              : Text(hasError ? "Mã PIN chưa chính xác" : "",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  )),
+          child: Text(hasError ? "Mã PIN chưa chính xác" : "",
+              style: GoogleFonts.montserrat(
+                color: Colors.red,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              )),
         ),
         const SizedBox(
           height: 10,
@@ -166,63 +156,61 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
             ),
             child: ButtonTheme(
               height: 60,
-              child: TextButton(
-                onPressed: () async {
-                  formKey.currentState!.validate();
-                  pinProvider.when(
-                    data: (verified) {
-                      debugPrint('Check Pin: ' + verified.toString());
-                      if (verified == false) {
-                        errorController!.add(ErrorAnimationType
-                            .shake); // Triggering error shake animation
+              child: isLoading
+                  ? const LoadingShimmer(
+                      height: 48.0,
+                      width: 300.0,
+                      color: Color.fromARGB(118, 2, 193, 123),
+                      baseColor: Color.fromARGB(118, 0, 100, 63),
+                    )
+                  : TextButton(
+                      onPressed: () async {
+                        PINService pinService = PINService();
                         setState(() {
-                          isLoading = false;
-                          hasError = true;
+                          isLoading = true;
                         });
-                      } else if (verified) {
-                        setState(
-                          () {
+                        bool verified = await pinService.checkPIN(pinCode);
+                        if (verified == false) {
+                          errorController!.add(ErrorAnimationType
+                              .shake); // Triggering error shake animation
+                          setState(() {
                             isLoading = false;
-                            hasError = false;
-                          },
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                PinUpdatePage(oldPin: pinCode),
-                          ),
-                        );
-                      } else {
-                        setState(
-                          () {
-                            isLoading = false;
-                            hasError = false;
-                          },
-                        );
-                      }
-                    },
-                    error: (error, stackTrace) {
-                      errorController!.add(ErrorAnimationType
-                          .shake); // Triggering error shake animation
-                      setState(() {
-                        isLoading = false;
-                        hasError = true;
-                      });
-                    },
-                    loading: () => setState(() => isLoading = true),
-                  );
-                  // conditions for validating
-                },
-                child: Center(
-                    child: Text(
-                  "Xác nhận",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                )),
-              ),
+                            hasError = true;
+                          });
+                        } else if (verified == true) {
+                          formKey.currentState!.validate();
+                          setState(
+                            () {
+                              verified = false;
+                              isLoading = false;
+                              hasError = false;
+                            },
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  PinUpdatePage(oldPin: pinCode),
+                            ),
+                          );
+                        } else {
+                          setState(
+                            () {
+                              isLoading = false;
+                              hasError = false;
+                            },
+                          );
+                        }
+                      },
+                      child: Center(
+                          child: Text(
+                        "Xác nhận",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
             )),
         const SizedBox(
           height: 16,

@@ -5,6 +5,8 @@ import 'package:wage/presentation/pages/navigation/navigation_bar.dart';
 import 'package:wage/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:wage/application/providers/auth_datas_provider.dart';
 
+import '../../presentation/pages/setting/setting_page.dart';
+
 final _key = GlobalKey<NavigatorState>();
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -20,6 +22,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: Navigation.routeName,
         builder: (context, state) {
           return const Navigation();
+        },
+      ),
+      GoRoute(
+        path: SettingPage.routeLocation,
+        name: SettingPage.routeName,
+        builder: (context, state) {
+          return const SettingPage();
         },
       ),
       GoRoute(

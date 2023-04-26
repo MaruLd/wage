@@ -34,14 +34,11 @@ class SettingBody extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          SettingRow(
-            icon: FaIcon(FontAwesomeIcons.wallet, color: global.primary2),
-            name: 'Ví của tôi',
-            navigate: () => profilePageNavigation(context),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
+          // SettingRow(
+          //   icon: FaIcon(FontAwesomeIcons.wallet, color: global.primary2),
+          //   name: 'Ví của tôi',
+          //   navigate: () => profilePageNavigation(context),
+          // ),
           SettingRow(
             icon: FaIcon(FontAwesomeIcons.lock, color: global.primary2),
             name: 'Mã PIN',

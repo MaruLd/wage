@@ -6,7 +6,7 @@ import '../../presentation/pages/navigation/navigation_bar.dart';
 import '../../presentation/pages/notification/notification_page.dart';
 import '../../presentation/pages/payslip/payslip_page.dart';
 import '../../presentation/pages/payslip_detail/payslip_detail_page.dart';
-import '../../presentation/pages/pin/pin_check_page/pin_page.dart';
+import '../../presentation/pages/pin/pin_check_page/pin_check_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
 import '../../presentation/pages/sign_in/sign_in_page.dart';

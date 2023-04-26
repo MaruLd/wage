@@ -60,7 +60,7 @@ class PINService {
     var param = {"oldPinCode": oldCode, "newPinCode": newCode};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
-      final response = await dio.post('/v1/users/me/pin-code',
+      final response = await dio.put('/v1/users/me/pin-code',
           data: jsonEncode(param),
           options: Options(
               followRedirects: false,

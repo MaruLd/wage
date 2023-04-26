@@ -87,6 +87,13 @@ final checkPinProvider = FutureProvider<bool>(
   },
 );
 
+final verifiedPinProvider = FutureProvider.autoDispose.family<bool, String>(
+  (ref, pinCode) async {
+    final checkHavePin = ref.watch(pinProvider).checkPIN(pinCode);
+    return checkHavePin;
+  },
+);
+
 final updatePinProvider = FutureProvider.autoDispose.family<bool, Parameters>(
   (ref, param) async {
     final checkHavePin = ref

@@ -7,11 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rflutter_alert/rflutter_alert.dart' as Prefix;
+import 'package:wage/infrastructure/api_services/voucher_service.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../../application/providers/api_provider.dart';
 import '../../../../../../application/utils/navigation.dart';
 import '../../../../../../domain/FCMNotification/fcm_notification_model.dart';
+import '../../../../../../infrastructure/api_services/pin_service.dart';
 import '../../../../../../infrastructure/param/filter_params.dart';
 import '../../../../../widgets/loading_shimmer.dart';
 
@@ -28,7 +30,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
 
   StreamController<ErrorAnimationType>? errorController;
 
-  bool hasPointError = false;
+  bool hasError = false;
   bool hasPinError = false;
   bool isLoading = false;
   String pinCode = "";
@@ -40,66 +42,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
   }
-
-  fireBaseMessage() async {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      debugPrint('Got a message whilst in the foreground!');
-      debugPrint('Message data: ${message.data}');
-      if (message.notification != null) {
-        debugPrint(
-            'Message also contained a notification: ${message.notification}');
-      }
-      final notification = FCMNotificationModel.fromJson(message.data);
-
-      if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
-        Prefix.Alert(
-          context: context,
-          type: Prefix.AlertType.success,
-          title: notification.Title,
-          desc: notification.Content,
-          useRootNavigator: false,
-          buttons: [
-            Prefix.DialogButton(
-              child: Text(
-                "Ok",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () {
-                voucherPageNavigation(context);
-              },
-              width: 120,
-            )
-          ],
-        ).show();
-        ref.refresh(voucherListFutureProvider);
-        ref.refresh(notificationFutureProvider(10));
-        ref.refresh(memberVoucherListFutureProvider);
-        ref.refresh(walletsFutureProvider);
-      } else if (notification.Type ==
-          FCMNotificationTypeEnum.voucherRedeemFailed) {
-        Prefix.Alert(
-          context: context,
-          type: Prefix.AlertType.error,
-          title: notification.Title,
-          desc: notification.Content,
-          useRootNavigator: false,
-          buttons: [
-            Prefix.DialogButton(
-              child: Text(
-                "Ok",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () {
-                voucherPageNavigation(context);
-              },
-              width: 120,
-            )
-          ],
-        ).show();
-      }
-    });
-  }
-
+  
   @override
   void dispose() {
     errorController!.close();
@@ -201,24 +144,17 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: isLoading
-              ? const LoadingShimmer(
-                  height: 18.0,
-                  width: 200.0,
-                  color: Color.fromARGB(118, 2, 193, 123),
-                  baseColor: Color.fromARGB(118, 0, 100, 63),
-                )
-              : Text(
-                  hasPointError
-                      ? "Số Point trong tài khoản chưa đủ"
-                      : hasPinError
-                          ? "Mã PIN chưa chính xác"
-                          : "",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  )),
+          child: Text(
+              hasPinError
+                  ? "Mã PIN chưa chính xác"
+                  : hasError
+                      ? "Đã có lỗi xảy ra khi đổi Voucher"
+                      : "",
+              style: GoogleFonts.montserrat(
+                color: Colors.red,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              )),
         ),
         const SizedBox(
           height: 10,
@@ -231,64 +167,74 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
             ),
             child: ButtonTheme(
               height: 60,
-              child: TextButton(
-                onPressed: () async {
-                  final buyVoucherProvider =
-                      ref.read(buyVoucherFutureProvider(param));
-                  await fireBaseMessage();
-                  formKey.currentState!.validate();
-                  buyVoucherProvider.when(
-                    data: (response) {
-                      print(response);
-                      if (response.statusCode == 400) {
-                        errorController!.add(ErrorAnimationType
-                            .shake); // Triggering error shake animation
+              child: isLoading
+                  ? const LoadingShimmer(
+                      height: 48.0,
+                      width: 300.0,
+                      color: Color.fromARGB(118, 2, 193, 123),
+                      baseColor: Color.fromARGB(118, 0, 100, 63),
+                    )
+                  : TextButton(
+                      onPressed: () async {
+                        PINService pinService = PINService();
+                        VoucherService voucherService = VoucherService();
                         setState(() {
-                          isLoading = false;
-                          if (response.data['ErrorName'] ==
-                              'INSUFFICENT_TOKEN') {
-                            hasPointError = true;
-                          } else {
-                            hasPinError = true;
-                          }
+                          isLoading = true;
                         });
-                      } else if (response.statusCode == 200) {
-                        setState(
-                          () {
+                        bool verified = await pinService.checkPIN(pinCode);
+
+                        if (verified == false) {
+                          errorController!.add(ErrorAnimationType
+                              .shake); // Triggering error shake animation
+                          setState(() {
                             isLoading = false;
-                            hasPointError = false;
-                          },
-                        );
-                      } else {
-                        setState(
-                          () {
-                            isLoading = false;
-                            hasPointError = false;
-                          },
-                        );
-                      }
-                    },
-                    error: (error, stackTrace) {
-                      errorController!.add(ErrorAnimationType
-                          .shake); // Triggering error shake animation
-                      setState(() {
-                        isLoading = false;
-                        hasPointError = true;
-                      });
-                    },
-                    loading: () => setState(() => isLoading = true),
-                  );
-                  // conditions for validating
-                },
-                child: const Center(
-                    child: Text(
-                  "Xác nhận",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                )),
-              ),
+                            hasPinError = true;
+                          });
+                        } else if (verified == true) {
+                          final response = await voucherService.buyVoucher(
+                              widget.voucherId, pinCode);
+                          if (response.statusCode == 400) {
+                            errorController!.add(ErrorAnimationType
+                                .shake); // Triggering error shake animation
+                            setState(() {
+                              isLoading = false;
+                              hasError = true;
+                            });
+                          } else if (response.statusCode == 200) {
+                            formKey.currentState!.validate();
+                            setState(
+                              () {
+                                isLoading = false;
+                                hasError = false;
+                              },
+                            );
+                            Navigator.pop(context);
+                          } else {
+                            setState(
+                              () {
+                                isLoading = false;
+                                hasError = true;
+                              },
+                            );
+                          }
+                        } else {
+                          setState(
+                            () {
+                              isLoading = false;
+                              hasError = true;
+                            },
+                          );
+                        }
+                      },
+                      child: const Center(
+                          child: Text(
+                        "Xác nhận",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
             )),
         const SizedBox(
           height: 16,
@@ -318,7 +264,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                 textEditingController.clear();
                 setState(
                   () {
-                    hasPointError = false;
+                    hasError = false;
                   },
                 );
               },
