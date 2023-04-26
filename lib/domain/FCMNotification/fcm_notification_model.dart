@@ -16,6 +16,8 @@ class FCMNotificationModel with _$FCMNotificationModel {
 }
 
 enum FCMNotificationTypeEnum {
+  @JsonValue("SalaryCycleStarted")
+  salaryCycleStarted,
   @JsonValue("SalaryCycleUpdateSuccess")
   salaryCycleUpdateSuccess,
   @JsonValue("SalaryCycleUpdateFail")

@@ -25,6 +25,7 @@ Map<String, dynamic> _$$_FCMNotificationModelToJson(
     };
 
 const _$FCMNotificationTypeEnumEnumMap = {
+  FCMNotificationTypeEnum.salaryCycleStarted: 'SalaryCycleStarted',
   FCMNotificationTypeEnum.salaryCycleUpdateSuccess: 'SalaryCycleUpdateSuccess',
   FCMNotificationTypeEnum.salaryCycleUpdateFail: 'SalaryCycleUpdateFail',
   FCMNotificationTypeEnum.salaryCyclePaid: 'SalaryCyclePaid',

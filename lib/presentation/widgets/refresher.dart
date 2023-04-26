@@ -44,8 +44,9 @@ class Refresher extends ConsumerWidget {
           color: global.primary2,
           triggerMode: RefreshIndicatorTriggerMode.anywhere,
           onRefresh: _refreshData,
-          child: ListView(
-              children: [Container(color: global.primary2, child: child)]),
+          child: ListView(children: [
+            Container(color: global.primary2, child: child),
+          ]),
         ));
   }
 }

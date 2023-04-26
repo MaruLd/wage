@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Level/level_model.dart';
@@ -102,7 +103,7 @@ final apiTokenProvider = FutureProvider<AuthInfo?>(
   },
 );
 
-final userFutureProvider = FutureProvider<Member>(
+final userFutureProvider = FutureProvider.autoDispose<Member>(
   (ref) {
     return ref.watch(userProvider).getSelfInfo();
   },
@@ -122,7 +123,7 @@ final payslipItemFutureProvider =
 );
 
 final salaryCycleFutureProvider =
-    FutureProvider.family<List<SalaryCycle>, Parameters>(
+    FutureProvider.autoDispose.family<List<SalaryCycle>, Parameters>(
   (ref, param) {
     return ref.watch(salaryCycleProvider).getSelfAllSalaryCycle(
         param.parameterList[0], param.parameterList[1], param.parameterList[2]);
@@ -149,7 +150,7 @@ final voucherListFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
 );
 
 final buyVoucherFutureProvider =
-    FutureProvider.autoDispose.family<int?, Parameters>(
+    FutureProvider.autoDispose.family<Response, Parameters>(
   (ref, param) {
     return ref
         .watch(voucherProvider)
@@ -195,8 +196,8 @@ final projectFutureProvider =
   return ref.watch(projectProvider).getProject(param);
 });
 
-final transactionListFutureProvider =
-    FutureProvider.family<List<Transaction>, Parameters>((ref, param) {
+final transactionListFutureProvider = FutureProvider.autoDispose
+    .family<List<Transaction>, Parameters>((ref, param) {
   return ref.watch(transactionProvider).getTransactions(
       param.parameterList[0], param.parameterList[1], param.parameterList[2]);
 });

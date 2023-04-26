@@ -47,7 +47,7 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
             return Container(
               width: 340,
               constraints: const BoxConstraints(
-                minHeight: 300,
+                maxHeight: 800,
               ),
               child: notificationList.isNotEmpty
                   ? ListView.builder(

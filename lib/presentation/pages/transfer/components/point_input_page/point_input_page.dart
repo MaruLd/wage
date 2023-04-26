@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/presentation/pages/pin/pin_check_page/components/check_pin.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/sub_header.dart';
 
-import 'components/confirm_pin.dart';
+import 'components/point_field.dart';
 
-class PinConfirmPage extends StatelessWidget {
-  final String voucherId;
-  const PinConfirmPage({
-    super.key,
-    required this.voucherId,
-  });
-
+class AddPinPage extends StatelessWidget {
+  const AddPinPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +19,7 @@ class PinConfirmPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const SubHeader(headerText: 'NHẬP MÃ PIN'),
+          const SubHeader(headerText: 'CHUYỂN POINT'),
           const SizedBox(
             height: 30,
           ),
@@ -37,7 +33,7 @@ class PinConfirmPage extends StatelessWidget {
                 ),
                 Container(
                   width: 250,
-                  child: Text("Nhập mã PIN của bạn để mua voucher",
+                  child: Text("Nhập số point bạn muốn chuyển",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         color: global.primary2,
@@ -48,7 +44,7 @@ class PinConfirmPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                PinConfirmBuy(voucherId: voucherId)
+                PointField(),
               ],
             ).offset(offset: Offset(0, 70))),
           )

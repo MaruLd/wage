@@ -3,11 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../pin_check/pin_confirm_page.dart';
+import '../pin_confirm/pin_confirm_page.dart';
 
 class VoucherItem extends ConsumerStatefulWidget {
   const VoucherItem({Key? key, required this.voucher}) : super(key: key);
@@ -18,34 +19,64 @@ class VoucherItem extends ConsumerStatefulWidget {
 }
 
 class _VoucherItemState extends ConsumerState<VoucherItem> {
-  confirmBuyVoucher() {
-    Alert(
-      context: context,
-      type: AlertType.warning,
-      title: "Xác nhận đổi Voucher",
-      desc: "Bạn chắc chắn muốn đổi Voucher ${widget.voucher.voucherName}?",
-      useRootNavigator: false,
-      buttons: [
-        DialogButton(
-          width: 150,
-          color: global.primary2,
-          child: Text(
-            "Đổi Voucher",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ).centered(),
-          onPressed: () async {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PinConfirmPage(voucherId: widget.voucher.voucherId),
-              ),
-            );
-          },
-        )
-      ],
-    ).show();
-    ;
+  confirmBuyVoucher() async {
+    double? userPoint = await ref.read(walletsFutureProvider).whenOrNull(
+              data: (data) => data.totalPoint,
+            ) ??
+        0;
+    if (widget.voucher.voucherCost > userPoint) {
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "Số Point của bạn không đủ",
+        desc:
+            "Bạn còn thiếu ${pointFormat(widget.voucher.voucherCost - userPoint)} Point nữa",
+        useRootNavigator: false,
+        buttons: [
+          DialogButton(
+            width: 150,
+            color: global.primary2,
+            child: Text(
+              "Ok",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ).centered(),
+            onPressed: () async {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ).show();
+    } else {
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "Xác nhận đổi Voucher",
+        desc:
+            "Bạn chắc chắn muốn đổi Voucher ${widget.voucher.voucherName}?\nvới ${pointFormat(widget.voucher.voucherCost)} Point",
+        useRootNavigator: false,
+        buttons: [
+          DialogButton(
+            width: 150,
+            color: global.primary2,
+            child: Text(
+              "Đổi Voucher",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ).centered(),
+            onPressed: () async {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PinConfirmPage(voucherId: widget.voucher.voucherId),
+                ),
+              );
+            },
+          )
+        ],
+      ).show();
+      ;
+    }
   }
 
   @override

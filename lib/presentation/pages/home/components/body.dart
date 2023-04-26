@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/widgets/point_card.dart';
 import 'package:wage/presentation/widgets/level_card.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../../application/utils/navigation.dart';
-import '../../voucher/voucher_page.dart';
 
 class MenuBody extends StatelessWidget {
   const MenuBody({
@@ -41,12 +39,7 @@ class MenuBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => VoucherPage()),
-                  );
-                },
+                onPressed: () => voucherPageNavigation(context),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,

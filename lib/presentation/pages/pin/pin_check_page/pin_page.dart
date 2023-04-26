@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/pin/pin_check_page/components/check_pin.dart';
@@ -8,8 +9,14 @@ import 'package:wage/presentation/widgets/sub_header.dart';
 
 class PinCheckPage extends StatelessWidget {
   const PinCheckPage({super.key});
+
   @override
   Widget build(BuildContext context) {
+    checkIfHavePin() async {
+      const storage = FlutterSecureStorage();
+      String? havePinString = await storage.read(key: 'havePin');
+    }
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: global.background,

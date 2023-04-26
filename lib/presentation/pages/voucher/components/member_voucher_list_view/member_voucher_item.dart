@@ -114,15 +114,17 @@ class MemberVoucherItem extends ConsumerWidget {
                 width: 200,
                 height: 38,
                 child: Text(
-                  "Đã sử dụng...",
+                  "Xóa voucher...",
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
+                activeThumbColor: global.danger,
+                activeTrackColor: global.primary3,
                 onSwipe: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("Swipped"),
+                      content: Text("Đã dùng voucher"),
                       backgroundColor: global.primary,
                       behavior: SnackBarBehavior.floating,
                     ),

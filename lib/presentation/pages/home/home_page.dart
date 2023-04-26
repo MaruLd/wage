@@ -8,7 +8,7 @@ import 'components/body.dart';
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
   static String get routeName => 'home';
-  static String get routeLocation => '/';
+  static String get routeLocation => '/home';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

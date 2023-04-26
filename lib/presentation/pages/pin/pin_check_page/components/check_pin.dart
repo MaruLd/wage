@@ -58,7 +58,7 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
   Widget build(BuildContext context) {
     Parameters pinCodes = Parameters(parameterList: [pinCode, pinCode]);
     final pinProvider = ref.watch(updatePinProvider(pinCodes));
-    final havePinProvider = ref.watch(checkPinProvider);
+    
 
     return Column(
       children: <Widget>[

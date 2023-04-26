@@ -63,7 +63,7 @@ class _DateFilterState extends State<DateFilter> {
       ),
     );
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           width: 300,

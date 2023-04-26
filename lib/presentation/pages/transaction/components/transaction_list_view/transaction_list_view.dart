@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -51,7 +50,7 @@ class _TransactionListViewState extends ConsumerState<TransactionListView> {
               });
             }
             return Container(
-              width: 340,
+              width: 360,
               constraints: const BoxConstraints(
                 minHeight: 300,
               ),

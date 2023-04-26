@@ -55,7 +55,7 @@ class VoucherService {
     }
   }
 
-  Future<int?> buyVoucher(String voucherId, String pinCode) async {
+  Future<Response> buyVoucher(String voucherId, String pinCode) async {
     final storage = new FlutterSecureStorage();
     var param = {"action": "buy", "pinCode": pinCode};
     try {
@@ -73,7 +73,8 @@ class VoucherService {
               }));
       debugPrint(
           'API /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
-      return response.statusCode;
+      debugPrint('${response.data}');
+      return response;
     } catch (e) {
       throw Exception(e);
     }

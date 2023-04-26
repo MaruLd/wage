@@ -46,7 +46,7 @@ class ProjectItem extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 230,
+                      width: 210,
                       child: Text(
                         project.projectName,
                         overflow: TextOverflow.ellipsis,
@@ -135,24 +135,24 @@ class ProjectItem extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Xem thêm ',
-                      style: GoogleFonts.openSans(
-                        color: global.yellow,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      ),
-                    ),
-                    FaIcon(FontAwesomeIcons.arrowRight,
-                        size: 16, color: global.yellow),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     Text(
+                //       'Xem thêm ',
+                //       style: GoogleFonts.openSans(
+                //         color: global.yellow,
+                //         fontWeight: FontWeight.w500,
+                //         fontSize: 16,
+                //       ),
+                //     ),
+                //     FaIcon(FontAwesomeIcons.arrowRight,
+                //         size: 16, color: global.yellow),
+                //     const SizedBox(
+                //       width: 12,
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(
                   height: 15,
                 ),

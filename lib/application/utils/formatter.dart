@@ -87,7 +87,7 @@ String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
     case SalaryCycleStatusEnum.ongoing:
       return 'Khởi Tạo';
     case SalaryCycleStatusEnum.locked:
-      return 'Giai đoạn báo cáo Task';
+      return 'Báo cáo';
     case SalaryCycleStatusEnum.paid:
       return 'Đã Trả';
     case SalaryCycleStatusEnum.cancelled:
@@ -102,7 +102,7 @@ Color salaryCycleStatusColor(SalaryCycleStatusEnum status) {
     case SalaryCycleStatusEnum.ongoing:
       return global.medium;
     case SalaryCycleStatusEnum.locked:
-      return global.danger;
+      return global.yellow;
     case SalaryCycleStatusEnum.paid:
       return global.primary;
     case SalaryCycleStatusEnum.cancelled:

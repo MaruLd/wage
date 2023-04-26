@@ -32,6 +32,29 @@ class PINService {
     }
   }
 
+  Future<bool> checkPIN(String pinCode) async {
+    const storage = FlutterSecureStorage();
+    var param = {"pinCode": pinCode};
+    try {
+      String? jwtToken = await storage.read(key: 'jwt');
+      final response = await dio.post('/v1/users/me/pin-code',
+          data: jsonEncode(param),
+          options: Options(
+              followRedirects: false,
+              validateStatus: (status) {
+                return status! < 500;
+              },
+              headers: {
+                HttpHeaders.contentTypeHeader: "application/json",
+                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+              }));
+      debugPrint('API /v1/users/me/pin-code status: ${response.statusCode}');
+      return response.data['message'];
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<bool> updatePIN(String oldCode, String newCode) async {
     const storage = FlutterSecureStorage();
     var param = {"oldPinCode": oldCode, "newPinCode": newCode};

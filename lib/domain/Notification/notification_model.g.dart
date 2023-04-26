@@ -33,6 +33,7 @@ const _$NotificationTypeEnumEnumMap = {
   NotificationTypeEnum.salaryCycleUpdateSuccess: 'salaryCycleUpdateSuccess',
   NotificationTypeEnum.salaryCycleUpdateFail: 'salaryCycleUpdateFail',
   NotificationTypeEnum.salaryCyclePaid: 'salaryCyclePaid',
+  NotificationTypeEnum.salaryCycleStarted: 'salaryCycleStarted',
   NotificationTypeEnum.projectCreate: 'projectCreate',
   NotificationTypeEnum.projectUpdate: 'projectUpdate',
   NotificationTypeEnum.voucherReedemSuccess: 'voucherReedemSuccess',
