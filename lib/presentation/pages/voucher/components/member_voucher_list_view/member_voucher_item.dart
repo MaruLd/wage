@@ -169,7 +169,7 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'Xem thêm',
+                              'Xem mã',
                               style: GoogleFonts.openSans(
                                 color: global.primary2,
                                 fontWeight: FontWeight.w500,

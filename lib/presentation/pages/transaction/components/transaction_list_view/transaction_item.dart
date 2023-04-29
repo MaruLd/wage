@@ -5,7 +5,10 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/utils/formatter.dart';
 import '../../../../../domain/Transaction/transaction_model.dart';
+import '../../../../../domain/Wallets/wallets_model.dart';
 import '../../../../widgets/note_parser.dart';
+import '../../../../widgets/point_icon.dart';
+import '../../../../widgets/xp_icon.dart';
 
 class TransactionItem extends StatelessWidget {
   TransactionItem({
@@ -17,6 +20,23 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String isReceived = transaction.isReceived ? '+' : '-';
+    Widget wallletTokenTransform(WalletTokenEnum status) {
+      switch (status) {
+        case WalletTokenEnum.point:
+          return PointIcon(
+            size: 18,
+            color: transaction.isReceived ? global.primary2 : global.danger,
+          );
+        case WalletTokenEnum.xp:
+          return XpIcon(
+            size: 18,
+            color: transaction.isReceived ? global.primary2 : global.danger,
+          );
+        default:
+          return Container();
+      }
+    }
+
     return Container(
       width: 330,
       decoration: BoxDecoration(
@@ -42,15 +62,27 @@ class TransactionItem extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              Text(
-                '$isReceived ${pointFormat(transaction.amount)} ${wallletTokenTransform(transaction.token)}',
-                style: GoogleFonts.montserrat(
-                  color:
-                      transaction.isReceived ? global.primary2 : global.danger,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: 80,
+                    child: Text(
+                      '$isReceived ${pointFormat(transaction.amount)}',
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.montserrat(
+                        color: transaction.isReceived
+                            ? global.primary2
+                            : global.danger,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  wallletTokenTransform(transaction.token),
+                ],
+              )
             ],
           ),
           const SizedBox(

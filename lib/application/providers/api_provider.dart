@@ -194,6 +194,12 @@ final nextLevelFutureProvider = FutureProvider<Level>(
   },
 );
 
+final levelsFutureProvider = FutureProvider<List<Level>>(
+  (ref) {
+    return ref.watch(levelProvider).getLevels();
+  },
+);
+
 final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
   return ref.watch(projectProvider).getProjects();
 });

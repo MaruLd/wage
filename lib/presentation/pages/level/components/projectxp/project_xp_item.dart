@@ -1,30 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/providers/api_provider.dart';
 import '../../../../../application/utils/formatter.dart';
+import '../../../../../domain/Level/level_model.dart';
+import '../../../../widgets/point_icon.dart';
+import '../../../../widgets/xp_icon.dart';
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
 
 class ProjectXPItem extends ConsumerWidget {
   ProjectXPItem({Key? key, required this.project, this.onTap})
       : super(key: key);
-  Project project;
+  Level project;
   final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double projectXP =
-        ref.watch(payslipItemFutureProvider(project.projectId)).whenOrNull(
-                  data: (data) => data,
-                ) ??
-            0;
     return GestureDetector(
       onTap: () {},
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          FaIcon(
+            FontAwesomeIcons.leaf,
+            color: HexColor(project.levelColor),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -34,9 +53,9 @@ class ProjectXPItem extends ConsumerWidget {
                   height: 12,
                 ),
                 Text(
-                  project.projectName,
+                  project.levelName,
                   style: TextStyle(
-                    color: global.headerText,
+                    color: global.normalText,
                     fontFamily: global.headerFont,
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
@@ -48,37 +67,38 @@ class ProjectXPItem extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      '${projectStatusTransform(project.projectStatus)} - ',
+                      'Base point: ',
                       style: TextStyle(
-                        color: projectStatusColor(
-                            projectDateToPercent(project.createdAt)),
+                        color: global.smallText,
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      project.endedAt != null
-                          ? DateFormat('dd/MM/yyyy').format(project.updatedAt!)
-                          : '',
-                      style: TextStyle(
-                        color: global.headerText,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
+                      '${pointFormat(project.basePoint)}',
+                      style: GoogleFonts.montserrat(
+                        color: global.yellow,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
                     ),
+                    PointIcon(size: 14, color: global.yellow),
                   ],
                 ),
               ],
             ),
           ),
           Text(
-            '+ ${pointFormat(projectXP)} XP',
-            style: TextStyle(
-              color: global.medium,
-              fontFamily: global.numberFont,
-              fontWeight: FontWeight.w500,
+            '${pointFormat(project.xpNeeded)}',
+            style: GoogleFonts.montserrat(
+              color: global.primary2,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
+          ),
+          XpIcon(size: 14, color: global.primary2),
+          const SizedBox(
+            width: 10,
           ),
         ],
       ),

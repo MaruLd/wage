@@ -7,6 +7,7 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../application/utils/formatter.dart';
 import '../../../widgets/note_parser.dart';
+import '../../../widgets/point_icon.dart';
 
 class PayslipItem extends StatelessWidget {
   const PayslipItem({Key? key, required this.payslipItem}) : super(key: key);
@@ -43,14 +44,7 @@ class PayslipItem extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              Text(
-                ' ${wallletTokenTransform(payslipItem.token)}',
-                style: GoogleFonts.montserrat(
-                  color: global.headerText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
-              ),
+              PointIcon(size: 14, color: global.yellow),
             ],
           ).px4(),
         ),

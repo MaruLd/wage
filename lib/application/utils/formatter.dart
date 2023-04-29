@@ -127,17 +127,6 @@ String transactionTypeTransform(TransactionTypeEnum status) {
   }
 }
 
-String wallletTokenTransform(WalletTokenEnum status) {
-  switch (status) {
-    case WalletTokenEnum.point:
-      return 'Point';
-    case WalletTokenEnum.xp:
-      return 'XP';
-    default:
-      return '';
-  }
-}
-
 String notificationTypeTransform(String string) {
   switch (string) {
     case 'VOUCHER_BOUGHT':

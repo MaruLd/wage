@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:wage/presentation/widgets/point_icon.dart';
 
 import '../../../../../application/providers/api_provider.dart';
 import '../../../../../application/utils/navigation.dart';
@@ -54,14 +55,25 @@ class SalaryCycleItem extends ConsumerWidget {
                             fontSize: 18,
                           ),
                         ),
-                        Text(
-                          totalPoint ?? '0',
-                          style: GoogleFonts.montserrat(
-                            color: global.primary,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 80,
+                              child: Text(
+                                totalPoint ?? '0',
+                                overflow: TextOverflow.clip,
+                                textAlign: TextAlign.end,
+                                style: GoogleFonts.montserrat(
+                                  color: global.yellow,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            PointIcon(size: 16, color: global.yellow),
+                          ],
+                        )
                       ]),
                 ),
                 const SizedBox(

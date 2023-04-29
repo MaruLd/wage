@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:wage/presentation/widgets/point_icon.dart';
 
 import 'card.dart';
 import 'loading_shimmer.dart';
@@ -29,7 +30,7 @@ class PointCard extends ConsumerWidget {
                   'Số point khả dụng',
                   style: GoogleFonts.montserrat(
                     color: global.background,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
@@ -40,12 +41,25 @@ class PointCard extends ConsumerWidget {
             padding: EdgeInsetsDirectional.fromSTEB(25, 10, 20, 0),
             child: walletsData.when(
               data: (data) {
-                return Text(pointFormatForCard(data.totalPoint),
-                    style: GoogleFonts.montserrat(
-                      color: global.background,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 25,
-                    ));
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      width: 80,
+                      child: Text(
+                        pointFormatForCard(data.totalPoint),
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.montserrat(
+                          color: global.yellow,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                    PointIcon(size: 23, color: global.yellow),
+                  ],
+                );
               },
               error: (error, stackTrace) {
                 debugPrint(error.toString());

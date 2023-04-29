@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
@@ -41,9 +42,8 @@ class LevelProgress extends ConsumerWidget {
               children: [
                 Text('Hiện có: ${pointFormat(userXp ?? 0)}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       color: global.background,
-                      fontFamily: global.headerFont,
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
                     )),
@@ -66,14 +66,13 @@ class LevelProgress extends ConsumerWidget {
                 Text(
                   'Level kế: ${pointFormat(xpNeededToLevelUp)}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: global.primary,
-                    fontFamily: global.headerFont,
+                  style: GoogleFonts.montserrat(
+                    color: global.primary2,
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
-                XpIcon(size: 14, color: global.primary),
+                XpIcon(size: 14, color: global.primary2),
               ],
             ),
           ),
