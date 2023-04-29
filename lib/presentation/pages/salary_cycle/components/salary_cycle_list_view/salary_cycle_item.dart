@@ -47,7 +47,7 @@ class SalaryCycleItem extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${salaryCycle.name}',
+                          'Phiếu Lương ${DateFormat('MM/yyyy').format(salaryCycle.createdAt)}',
                           style: GoogleFonts.montserrat(
                             color: global.headerText,
                             fontWeight: FontWeight.w700,
@@ -66,14 +66,6 @@ class SalaryCycleItem extends ConsumerWidget {
                 ),
                 const SizedBox(
                   height: 5,
-                ),
-                Text(
-                  DateFormat('dd/MM/yyyy').format(salaryCycle.createdAt),
-                  style: GoogleFonts.montserrat(
-                    color: global.smallText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

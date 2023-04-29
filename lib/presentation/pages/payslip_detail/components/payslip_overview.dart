@@ -8,8 +8,7 @@ import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
-import 'package:wage/presentation/pages/payslip/components/payslip_item.dart';
-import 'package:wage/presentation/pages/payslip/components/payslip_point_detail.dart';
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_point_detail.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../widgets/loading_shimmer.dart';
@@ -132,7 +131,8 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const FaIcon(FontAwesomeIcons.coins, color: global.yellow, size: 20),
+                const FaIcon(FontAwesomeIcons.coins,
+                    color: global.yellow, size: 20),
                 const SizedBox(
                   width: 10,
                 ),
@@ -157,8 +157,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20,
                                   )),
-                              content: Text(
-                                  'Kỳ lương này không có phiếu lương hoặc chưa có',
+                              content: Text('Phiếu lương hiên tại báo cáo xong',
                                   style: GoogleFonts.montserrat(
                                     color: global.normalText,
                                     fontWeight: FontWeight.w500,

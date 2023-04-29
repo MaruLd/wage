@@ -22,7 +22,7 @@ class MemberVoucherListView extends ConsumerWidget {
     return memberVoucherProvider.when(
         data: (data) {
           return Container(
-            width: 340,
+            width: 370,
             constraints: const BoxConstraints(
               minHeight: 300,
             ),
@@ -31,10 +31,10 @@ class MemberVoucherListView extends ConsumerWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: data.length,
+                    itemCount: voucherList.length,
                     itemBuilder: (context, int index) {
                       return MemberVoucherItem(
-                        voucher: voucherList[index],
+                        memberVoucher: voucherList[index],
                       );
                     },
                   )
@@ -50,14 +50,14 @@ class MemberVoucherListView extends ConsumerWidget {
         },
         error: (error, stackTrace) => const ShimmerList(
             height: 126.0,
-            width: 325.0,
-            row: 3,
+            width: 370.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
         loading: () => const ShimmerList(
             height: 126.0,
-            width: 325.0,
-            row: 3,
+            width: 370.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

@@ -43,8 +43,11 @@ class VoucherService {
       debugPrint('API /v1/vouchers status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
-        List<MemberVoucher> vouchers =
-            data.map((e) => MemberVoucher.fromJson(e)).toList();
+        List<MemberVoucher> vouchers = data
+            .map((e) => MemberVoucher.fromJson(e))
+            .where(
+                (voucher) => voucher.status == MemberVoucherStatusEnum.created)
+            .toList();
         return vouchers;
       } else {
         throw Exception(response.statusMessage);
@@ -73,6 +76,34 @@ class VoucherService {
               }));
       debugPrint(
           'API /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
+      debugPrint('${response.data}');
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> usedVoucher(
+      String memberVoucherId) async {
+    const storage = FlutterSecureStorage();
+    var param = {
+      "memberVoucherId": memberVoucherId,
+      "status": "used"
+    };
+    try {
+      String? jwtToken = await storage.read(key: 'jwt');
+      final response = await dio.put('/v1/membervoucher',
+          data: jsonEncode(param),
+          options: Options(
+              followRedirects: false,
+              validateStatus: (status) {
+                return status! < 500;
+              },
+              headers: {
+                HttpHeaders.contentTypeHeader: "application/json",
+                HttpHeaders.authorizationHeader: "Bearer $jwtToken"
+              }));
+      debugPrint('API /v1/membervoucher status: ${response.statusCode}');
       debugPrint('${response.data}');
       return response;
     } catch (e) {

@@ -185,7 +185,7 @@ class MenuBody extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'Kỳ lương',
+                      'Phiếu Lương',
                       style: GoogleFonts.montserrat(
                         color: Colors.brown,
                         fontWeight: FontWeight.w700,

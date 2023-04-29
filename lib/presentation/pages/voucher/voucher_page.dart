@@ -30,67 +30,7 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
 
   @override
   void initState() {
-    fireBaseMessage();
     super.initState();
-  }
-
-  fireBaseMessage() async {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      debugPrint('Got a message whilst in the foreground!');
-      debugPrint('Message data: ${message.data}');
-      if (message.notification != null) {
-        debugPrint(
-            'Message also contained a notification: ${message.notification}');
-      }
-      final notification = FCMNotificationModel.fromJson(message.data);
-
-      if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
-        Alert(
-          context: context,
-          type: AlertType.success,
-          title: notification.Title,
-          desc: notification.Content,
-          useRootNavigator: false,
-          buttons: [
-            DialogButton(
-              child: Text(
-                "Ok",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              width: 120,
-            )
-          ],
-        ).show();
-        ref.refresh(voucherListFutureProvider);
-        ref.refresh(notificationFutureProvider(10));
-        ref.refresh(memberVoucherListFutureProvider);
-        ref.refresh(walletsFutureProvider);
-      } else if (notification.Type ==
-          FCMNotificationTypeEnum.voucherRedeemFailed) {
-        Alert(
-          context: context,
-          type: AlertType.error,
-          title: notification.Title,
-          desc: notification.Content,
-          useRootNavigator: false,
-          buttons: [
-            DialogButton(
-              child: Text(
-                "Ok",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              width: 120,
-            )
-          ],
-        ).show();
-      }
-    });
   }
 
   @override

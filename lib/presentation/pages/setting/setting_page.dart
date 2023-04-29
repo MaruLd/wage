@@ -32,6 +32,9 @@ class SettingPage extends StatelessWidget {
                   height: 32,
                 ),
                 SettingBody(),
+                const SizedBox(
+                  height: 70,
+                ),
               ],
             ),
           )

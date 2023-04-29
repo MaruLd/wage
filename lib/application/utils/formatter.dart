@@ -23,11 +23,7 @@ String numberFormat(
 String pointFormat(
   double point,
 ) {
-  if (point / 9999 > 1) {
-    return NumberFormat.compact(locale: "en_US").format(point);
-  } else {
-    return NumberFormat.decimalPattern().format(point);
-  }
+  return NumberFormat.decimalPattern().format(point);
 }
 
 String pointFormatForCard(double point) {

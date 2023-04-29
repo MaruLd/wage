@@ -22,7 +22,7 @@ class VoucherListView extends ConsumerWidget {
     return voucherProvider.when(
         data: (data) {
           return Container(
-            width: 340,
+            width: 370,
             constraints: const BoxConstraints(
               minHeight: 300,
             ),
@@ -49,15 +49,15 @@ class VoucherListView extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) => const ShimmerList(
-            height: 126.0,
-            width: 325.0,
-            row: 3,
+            height: 125.0,
+            width: 370.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)),
         loading: () => const ShimmerList(
-            height: 126.0,
-            width: 325.0,
-            row: 3,
+            height: 125.0,
+            width: 370.0,
+            row: 5,
             color: Color.fromARGB(118, 2, 193, 123),
             baseColor: Color.fromARGB(118, 0, 100, 63)));
   }

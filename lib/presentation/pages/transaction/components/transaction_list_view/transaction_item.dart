@@ -45,10 +45,8 @@ class TransactionItem extends StatelessWidget {
               Text(
                 '$isReceived ${pointFormat(transaction.amount)} ${wallletTokenTransform(transaction.token)}',
                 style: GoogleFonts.montserrat(
-                  color: transaction.transactionType ==
-                          TransactionTypeEnum.buyVoucher
-                      ? global.danger
-                      : global.primary2,
+                  color:
+                      transaction.isReceived ? global.primary2 : global.danger,
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
                 ),

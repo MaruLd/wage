@@ -24,7 +24,7 @@ class SalaryCycleCard extends StatelessWidget {
             height: 14,
           ),
           Text(
-            'Kỳ lương',
+            'Phiếu lương',
             style: GoogleFonts.montserrat(
               color: global.secondary2,
               fontWeight: FontWeight.w500,

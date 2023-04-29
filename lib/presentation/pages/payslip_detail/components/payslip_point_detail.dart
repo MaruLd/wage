@@ -6,7 +6,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
-import 'package:wage/presentation/pages/payslip/components/payslip_item.dart';
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_item.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../widgets/loading_shimmer.dart';

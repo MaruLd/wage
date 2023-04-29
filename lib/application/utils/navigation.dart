@@ -4,8 +4,7 @@ import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
 import '../../presentation/pages/notification/notification_page.dart';
-import '../../presentation/pages/payslip/payslip_page.dart';
-import '../../presentation/pages/payslip_detail/payslip_detail_page.dart';
+import '../../presentation/pages/payslip_detail/payslip_page.dart';
 import '../../presentation/pages/pin/pin_check_page/pin_check_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
@@ -32,18 +31,6 @@ void payslipPageNavigation(BuildContext context, SalaryCycle salaryCycle) {
     context,
     MaterialPageRoute(
       builder: (context) => PayslipPage(
-        salaryCycle: salaryCycle,
-      ),
-    ),
-  );
-}
-
-void payslipDetailPageNavigation(
-    BuildContext context, SalaryCycle salaryCycle) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => PayslipDetailPage(
         salaryCycle: salaryCycle,
       ),
     ),

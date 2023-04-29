@@ -12,6 +12,9 @@ _$_Voucher _$$_VoucherFromJson(Map<String, dynamic> json) => _$_Voucher(
       voucherDescription: json['voucherDescription'] as String?,
       voucherCost: (json['voucherCost'] as num).toDouble(),
       voucherAmount: json['voucherAmount'] as int,
+      supplier: json['supplier'] == null
+          ? null
+          : Supplier.fromJson(json['supplier'] as Map<String, dynamic>),
       imageUrl: json['imageUrl'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
     );
@@ -23,9 +26,30 @@ Map<String, dynamic> _$$_VoucherToJson(_$_Voucher instance) =>
       'voucherDescription': instance.voucherDescription,
       'voucherCost': instance.voucherCost,
       'voucherAmount': instance.voucherAmount,
+      'supplier': instance.supplier,
       'imageUrl': instance.imageUrl,
       'createdAt': instance.createdAt.toIso8601String(),
     };
+
+_$_Supplier _$$_SupplierFromJson(Map<String, dynamic> json) => _$_Supplier(
+      supplierId: json['supplierId'] as String,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      status: $enumDecodeNullable(_$SupplierStatusEnumEnumMap, json['status']),
+    );
+
+Map<String, dynamic> _$$_SupplierToJson(_$_Supplier instance) =>
+    <String, dynamic>{
+      'supplierId': instance.supplierId,
+      'name': instance.name,
+      'description': instance.description,
+      'status': _$SupplierStatusEnumEnumMap[instance.status],
+    };
+
+const _$SupplierStatusEnumEnumMap = {
+  SupplierStatusEnum.available: 'available',
+  SupplierStatusEnum.unavailable: 'unavailable',
+};
 
 _$_MemberVoucher _$$_MemberVoucherFromJson(Map<String, dynamic> json) =>
     _$_MemberVoucher(

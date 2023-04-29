@@ -3,6 +3,7 @@ import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/refresher.dart';
 
+import '../../../domain/Payslip/payslip_model.dart';
 import '../../widgets/sub_header.dart';
 import 'components/payslip_overview.dart';
 import '../../widgets/salary_cycle_date_card.dart';

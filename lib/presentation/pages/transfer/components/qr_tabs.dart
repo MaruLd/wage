@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wage/presentation/pages/transfer/components/qr_scanner.dart';
+import 'package:wage/presentation/pages/transfer/components/point_input_page/point_input_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 class QRTabs extends StatelessWidget {
@@ -57,7 +57,7 @@ class QRTabs extends StatelessWidget {
           width: 160,
           child: TextButton(
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const QRScannerView(),
+              builder: (context) => const PointInputPage(),
             )),
             child: Text('Chuyển Point',
                 style: GoogleFonts.montserrat(

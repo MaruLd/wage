@@ -11,11 +11,25 @@ class Voucher with _$Voucher {
     String? voucherDescription,
     required double voucherCost,
     required int voucherAmount,
+    Supplier? supplier,
     String? imageUrl,
     required DateTime createdAt,
   }) = _Voucher;
   factory Voucher.fromJson(Map<String, dynamic> json) =>
       _$VoucherFromJson(json);
+}
+
+@freezed
+class Supplier with _$Supplier {
+  const Supplier._();
+  factory Supplier({
+    required String supplierId,
+    String? name,
+    String? description,
+    SupplierStatusEnum? status,
+  }) = _Supplier;
+  factory Supplier.fromJson(Map<String, dynamic> json) =>
+      _$SupplierFromJson(json);
 }
 
 @freezed
@@ -40,4 +54,11 @@ enum MemberVoucherStatusEnum {
   used,
   @JsonValue("expired ")
   expired,
+}
+
+enum SupplierStatusEnum {
+  @JsonValue("available")
+  available,
+  @JsonValue("unavailable")
+  unavailable,
 }

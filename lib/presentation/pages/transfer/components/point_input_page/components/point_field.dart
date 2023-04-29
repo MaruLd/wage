@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../../widgets/loading_shimmer.dart';
+
 class PointField extends ConsumerStatefulWidget {
   const PointField({
     Key? key,
@@ -20,7 +22,7 @@ class _PointFieldState extends ConsumerState<PointField> {
 
   bool hasError = false;
   bool isLoading = false;
-  String pinCode = "";
+  String point = "";
 
   final formKey = GlobalKey<FormState>();
 
@@ -48,9 +50,6 @@ class _PointFieldState extends ConsumerState<PointField> {
 
   @override
   Widget build(BuildContext context) {
-    // Parameters pinCodes = Parameters(parameterList: [pinCode, pinCode]);
-    // final pinProvider = ref.watch(updatePinProvider(pinCodes));
-
     return Column(
       children: <Widget>[
         const SizedBox(height: 30),
@@ -64,16 +63,16 @@ class _PointFieldState extends ConsumerState<PointField> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: TextField(
+                  cursorColor: global.primary2,
                   textAlign: TextAlign.center,
-                  showCursor: false,
                   style: GoogleFonts.montserrat(
-                    fontSize: 22,
+                    fontSize: 24,
                     color: global.primary2,
                     fontWeight: FontWeight.w600,
                   ),
                   decoration: InputDecoration(
                     hintStyle: GoogleFonts.montserrat(
-                      fontSize: 22,
+                      fontSize: 24,
                       color: global.primary2,
                       fontWeight: FontWeight.w600,
                     ),
@@ -107,6 +106,36 @@ class _PointFieldState extends ConsumerState<PointField> {
             ),
           ),
         ),
+        const SizedBox(
+          height: 24,
+        ),
+        Container(
+            margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+            decoration: BoxDecoration(
+              color: global.primary2,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: ButtonTheme(
+              height: 60,
+              child: isLoading
+                  ? const LoadingShimmer(
+                      height: 48.0,
+                      width: 300.0,
+                      color: Color.fromARGB(118, 2, 193, 123),
+                      baseColor: Color.fromARGB(118, 0, 100, 63),
+                    )
+                  : TextButton(
+                      onPressed: () async {},
+                      child: const Center(
+                          child: Text(
+                        "Chuyển Point",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
+            )),
         const SizedBox(
           height: 16,
         ),

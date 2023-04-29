@@ -42,35 +42,69 @@ class Navigation extends ConsumerStatefulWidget {
 class _NavigationState extends ConsumerState<Navigation> {
   @override
   void initState() {
-    init();
     super.initState();
-    Future.delayed(Duration.zero, () {
-      ref.read(fcmTokenProvider);
-      ref.read(checkPinProvider);
-      ref.refresh(workHoursFutureProvider);
-      ref.refresh(projectsCountProvider);
-      ref.refresh(projectListFutureProvider);
-      ref.refresh(nextLevelFutureProvider);
-      ref.refresh(userFutureProvider);
-      ref.refresh(walletsFutureProvider);
-      ref.refresh(salaryCycleFutureProvider(Parameters(parameterList: [
-        DateTime.now().subtract(const Duration(days: 30)),
-        DateTime.now(),
-      ])));
-      ref.refresh(voucherListFutureProvider);
-      ref.refresh(memberVoucherListFutureProvider);
-      ref.refresh(serverAvailableProvider);
-      ref.refresh(transactionListFutureProvider(Parameters(parameterList: [
-        DateTime.now().subtract(const Duration(days: 30)),
-        DateTime.now(),
-      ])));
-      ref.refresh(notificationFutureProvider(10));
-      debugPrint('refreshing data...');
-    });
+    FirebaseMessaging.instance.getToken();
+    firebaseMessaging();
   }
 
-  init() async {
+  firebaseMessaging() {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      debugPrint('Got a message whilst in the foreground!');
+      debugPrint('Message data: ${message.data}');
+      if (message.notification != null) {
+        debugPrint(
+            'Message also contained a notification: ${message.notification}');
+      }
+      final notification = FCMNotificationModel.fromJson(message.data);
+
+      if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+        ref.refresh(voucherListFutureProvider);
+        ref.refresh(notificationFutureProvider(10));
+        ref.refresh(memberVoucherListFutureProvider);
+        ref.refresh(walletsFutureProvider);
+      } else if (notification.Type ==
+          FCMNotificationTypeEnum.voucherRedeemFailed) {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+      }
+    });
   }
 
   Map<int, GlobalKey<NavigatorState>> navigatorKeys = {
@@ -93,6 +127,8 @@ class _NavigationState extends ConsumerState<Navigation> {
     setState(() {
       Navigation._selectedIndex = index;
     });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Navigation()));
   }
 
   @override

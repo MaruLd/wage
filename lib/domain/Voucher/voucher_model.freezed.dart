@@ -25,6 +25,7 @@ mixin _$Voucher {
   String? get voucherDescription => throw _privateConstructorUsedError;
   double get voucherCost => throw _privateConstructorUsedError;
   int get voucherAmount => throw _privateConstructorUsedError;
+  Supplier? get supplier => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -44,8 +45,11 @@ abstract class $VoucherCopyWith<$Res> {
       String? voucherDescription,
       double voucherCost,
       int voucherAmount,
+      Supplier? supplier,
       String? imageUrl,
       DateTime createdAt});
+
+  $SupplierCopyWith<$Res>? get supplier;
 }
 
 /// @nodoc
@@ -66,6 +70,7 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
     Object? voucherDescription = freezed,
     Object? voucherCost = null,
     Object? voucherAmount = null,
+    Object? supplier = freezed,
     Object? imageUrl = freezed,
     Object? createdAt = null,
   }) {
@@ -90,6 +95,10 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      supplier: freezed == supplier
+          ? _value.supplier
+          : supplier // ignore: cast_nullable_to_non_nullable
+              as Supplier?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -99,6 +108,18 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SupplierCopyWith<$Res>? get supplier {
+    if (_value.supplier == null) {
+      return null;
+    }
+
+    return $SupplierCopyWith<$Res>(_value.supplier!, (value) {
+      return _then(_value.copyWith(supplier: value) as $Val);
+    });
   }
 }
 
@@ -115,8 +136,12 @@ abstract class _$$_VoucherCopyWith<$Res> implements $VoucherCopyWith<$Res> {
       String? voucherDescription,
       double voucherCost,
       int voucherAmount,
+      Supplier? supplier,
       String? imageUrl,
       DateTime createdAt});
+
+  @override
+  $SupplierCopyWith<$Res>? get supplier;
 }
 
 /// @nodoc
@@ -134,6 +159,7 @@ class __$$_VoucherCopyWithImpl<$Res>
     Object? voucherDescription = freezed,
     Object? voucherCost = null,
     Object? voucherAmount = null,
+    Object? supplier = freezed,
     Object? imageUrl = freezed,
     Object? createdAt = null,
   }) {
@@ -158,6 +184,10 @@ class __$$_VoucherCopyWithImpl<$Res>
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      supplier: freezed == supplier
+          ? _value.supplier
+          : supplier // ignore: cast_nullable_to_non_nullable
+              as Supplier?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -179,6 +209,7 @@ class _$_Voucher extends _Voucher {
       this.voucherDescription,
       required this.voucherCost,
       required this.voucherAmount,
+      this.supplier,
       this.imageUrl,
       required this.createdAt})
       : super._();
@@ -197,13 +228,15 @@ class _$_Voucher extends _Voucher {
   @override
   final int voucherAmount;
   @override
+  final Supplier? supplier;
+  @override
   final String? imageUrl;
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Voucher(voucherId: $voucherId, voucherName: $voucherName, voucherDescription: $voucherDescription, voucherCost: $voucherCost, voucherAmount: $voucherAmount, imageUrl: $imageUrl, createdAt: $createdAt)';
+    return 'Voucher(voucherId: $voucherId, voucherName: $voucherName, voucherDescription: $voucherDescription, voucherCost: $voucherCost, voucherAmount: $voucherAmount, supplier: $supplier, imageUrl: $imageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -221,6 +254,8 @@ class _$_Voucher extends _Voucher {
                 other.voucherCost == voucherCost) &&
             (identical(other.voucherAmount, voucherAmount) ||
                 other.voucherAmount == voucherAmount) &&
+            (identical(other.supplier, supplier) ||
+                other.supplier == supplier) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.createdAt, createdAt) ||
@@ -229,8 +264,16 @@ class _$_Voucher extends _Voucher {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, voucherId, voucherName,
-      voucherDescription, voucherCost, voucherAmount, imageUrl, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      voucherId,
+      voucherName,
+      voucherDescription,
+      voucherCost,
+      voucherAmount,
+      supplier,
+      imageUrl,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -253,6 +296,7 @@ abstract class _Voucher extends Voucher {
       final String? voucherDescription,
       required final double voucherCost,
       required final int voucherAmount,
+      final Supplier? supplier,
       final String? imageUrl,
       required final DateTime createdAt}) = _$_Voucher;
   _Voucher._() : super._();
@@ -270,12 +314,213 @@ abstract class _Voucher extends Voucher {
   @override
   int get voucherAmount;
   @override
+  Supplier? get supplier;
+  @override
   String? get imageUrl;
   @override
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_VoucherCopyWith<_$_Voucher> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Supplier _$SupplierFromJson(Map<String, dynamic> json) {
+  return _Supplier.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Supplier {
+  String get supplierId => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  SupplierStatusEnum? get status => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SupplierCopyWith<Supplier> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SupplierCopyWith<$Res> {
+  factory $SupplierCopyWith(Supplier value, $Res Function(Supplier) then) =
+      _$SupplierCopyWithImpl<$Res, Supplier>;
+  @useResult
+  $Res call(
+      {String supplierId,
+      String? name,
+      String? description,
+      SupplierStatusEnum? status});
+}
+
+/// @nodoc
+class _$SupplierCopyWithImpl<$Res, $Val extends Supplier>
+    implements $SupplierCopyWith<$Res> {
+  _$SupplierCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? supplierId = null,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_value.copyWith(
+      supplierId: null == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SupplierStatusEnum?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SupplierCopyWith<$Res> implements $SupplierCopyWith<$Res> {
+  factory _$$_SupplierCopyWith(
+          _$_Supplier value, $Res Function(_$_Supplier) then) =
+      __$$_SupplierCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String supplierId,
+      String? name,
+      String? description,
+      SupplierStatusEnum? status});
+}
+
+/// @nodoc
+class __$$_SupplierCopyWithImpl<$Res>
+    extends _$SupplierCopyWithImpl<$Res, _$_Supplier>
+    implements _$$_SupplierCopyWith<$Res> {
+  __$$_SupplierCopyWithImpl(
+      _$_Supplier _value, $Res Function(_$_Supplier) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? supplierId = null,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_$_Supplier(
+      supplierId: null == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SupplierStatusEnum?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Supplier extends _Supplier {
+  _$_Supplier(
+      {required this.supplierId, this.name, this.description, this.status})
+      : super._();
+
+  factory _$_Supplier.fromJson(Map<String, dynamic> json) =>
+      _$$_SupplierFromJson(json);
+
+  @override
+  final String supplierId;
+  @override
+  final String? name;
+  @override
+  final String? description;
+  @override
+  final SupplierStatusEnum? status;
+
+  @override
+  String toString() {
+    return 'Supplier(supplierId: $supplierId, name: $name, description: $description, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Supplier &&
+            (identical(other.supplierId, supplierId) ||
+                other.supplierId == supplierId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, supplierId, name, description, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SupplierCopyWith<_$_Supplier> get copyWith =>
+      __$$_SupplierCopyWithImpl<_$_Supplier>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SupplierToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Supplier extends Supplier {
+  factory _Supplier(
+      {required final String supplierId,
+      final String? name,
+      final String? description,
+      final SupplierStatusEnum? status}) = _$_Supplier;
+  _Supplier._() : super._();
+
+  factory _Supplier.fromJson(Map<String, dynamic> json) = _$_Supplier.fromJson;
+
+  @override
+  String get supplierId;
+  @override
+  String? get name;
+  @override
+  String? get description;
+  @override
+  SupplierStatusEnum? get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SupplierCopyWith<_$_Supplier> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
