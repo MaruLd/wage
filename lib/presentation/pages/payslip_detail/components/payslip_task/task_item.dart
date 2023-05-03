@@ -37,7 +37,7 @@ class TaskSortedByProject extends StatelessWidget {
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Container(
-            width: 380,
+            width: 520,
             child: Column(
               children: [
                 Table(
@@ -81,7 +81,20 @@ class TaskSortedByProject extends StatelessWidget {
                           child: Container(
                               height: 40,
                               width: 32,
-                              child: Text('Point từ Task',
+                              child: Text('Task Point',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.montserrat(
+                                    color: global.normalText,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  )).centered()),
+                        ),
+                        TableCell(
+                          verticalAlignment: TableCellVerticalAlignment.top,
+                          child: Container(
+                              height: 40,
+                              width: 32,
+                              child: Text('Point Thưởng',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.montserrat(
                                     color: global.normalText,
@@ -132,9 +145,33 @@ class TaskSortedByProject extends StatelessWidget {
                                   Container(
                                     width: 70,
                                     child: Text(
-                                      pointFormat(task.taskPoint +
-                                          task.taskRealHour +
-                                          task.taskBonus),
+                                      pointFormat(
+                                          task.taskPoint + task.taskRealHour),
+                                      overflow: TextOverflow.clip,
+                                      textAlign: TextAlign.end,
+                                      style: GoogleFonts.montserrat(
+                                        color: global.yellow,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                  PointIcon(size: 16, color: global.yellow),
+                                ],
+                              ).centered().py4(),
+                            ),
+                          ),
+                          TableCell(
+                            verticalAlignment: TableCellVerticalAlignment.top,
+                            child: Container(
+                              width: 70,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 70,
+                                    child: Text(
+                                      pointFormat(task.taskBonus),
                                       overflow: TextOverflow.clip,
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.montserrat(

@@ -45,6 +45,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     firebaseMessaging();
     super.initState();
     ref.read(fcmTokenProvider);
+    ref.read(userFutureProvider);
   }
 
   firebaseMessaging() {

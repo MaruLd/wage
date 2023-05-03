@@ -26,7 +26,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
   bool _openDetail = false;
   String title = 'Tổng số Task';
   String description = 'Chi tiết các Task';
-  Widget icon = const FaIcon(FontAwesomeIcons.fileCircleCheck,
+  Widget icon = const FaIcon(FontAwesomeIcons.listCheck,
           color: global.background, size: 23)
       .centered();
   Color iconColor = global.medium;
@@ -150,10 +150,13 @@ class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
                   groupBy(taskList, (Task obj) => obj.project!.projectName);
 
               Widget taskSortedListWidget() {
-                List<TaskSortedByProject> temp = [];
+                List<Widget> temp = [];
                 sortedList.forEach((project, list) {
                   temp.add(TaskSortedByProject(
                       projectName: project, taskList: list));
+                  temp.add(const SizedBox(
+                    height: 14,
+                  ));
                 });
                 return Column(
                   children: temp,

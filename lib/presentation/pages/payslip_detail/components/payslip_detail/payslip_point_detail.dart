@@ -101,7 +101,10 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                       totalPoint = data.totalP2;
                       break;
                     case PayslipItemTypeEnum.p3:
-                      totalPoint = data.totalP3! + data.totalBonus!;
+                      totalPoint = data.totalP3;
+                      break;
+                    case PayslipItemTypeEnum.bonus:
+                      totalPoint = data.totalBonus;
                       break;
                     default:
                       break;
@@ -160,17 +163,10 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
           child: payslip.when(
             data: (data) {
               List<Item> itemList;
-              if (widget.payslipItemType == PayslipItemTypeEnum.p3) {
-                itemList = data.items!
-                    .where((item) =>
-                        item.type == widget.payslipItemType ||
-                        item.type == PayslipItemTypeEnum.bonus)
-                    .toList();
-              } else {
-                itemList = data.items!
-                    .where((item) => item.type == widget.payslipItemType)
-                    .toList();
-              }
+
+              itemList = data.items!
+                  .where((item) => item.type == widget.payslipItemType)
+                  .toList();
               return itemList.isNotEmpty
                   ? Column(
                       children: [

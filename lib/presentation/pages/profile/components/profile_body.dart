@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/presentation/pages/profile/components/profile_edit_button.dart';
 import 'package:wage/presentation/pages/profile/components/profile_row.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/shimmer_list.dart';

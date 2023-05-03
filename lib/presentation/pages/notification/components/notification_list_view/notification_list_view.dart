@@ -46,9 +46,6 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
             }
             return Container(
               width: 340,
-              constraints: const BoxConstraints(
-                maxHeight: 800,
-              ),
               child: notificationList.isNotEmpty
                   ? ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),

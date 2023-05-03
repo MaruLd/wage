@@ -48,10 +48,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isAuth = authState.valueOrNull != null;
       final isLoggingIn = state.location == SignInPage.routeLocation;
 
-      if (isLoggingIn)
-        return isAuth ? Navigation.routeLocation : SignInPage.routeLocation;
+      if (isLoggingIn) return isAuth ? Navigation.routeLocation : null;
 
-      return isAuth ? Navigation.routeLocation : null;
+      return isAuth ? null : SignInPage.routeLocation;
     },
   );
 });

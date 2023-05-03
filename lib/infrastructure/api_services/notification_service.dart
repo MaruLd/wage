@@ -9,7 +9,9 @@ import '../network_services/dio_adapter.dart';
 class NotificationService {
   Future<List<NotificationModel>> getNotifications(int? currentPage) async {
     const storage = FlutterSecureStorage();
+
     var param = {"OrderBy": "dateDesc", "page-size": 10 * (currentPage ?? 1)};
+
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/notifications',

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
 
+import '../../../../application/utils/navigation.dart';
 
 class Logout extends ConsumerWidget {
   const Logout({super.key});
@@ -29,7 +30,6 @@ class Logout extends ConsumerWidget {
           icon: FaIcon(FontAwesomeIcons.arrowRightFromBracket,
               color: Color.fromARGB(255, 246, 103, 103), size: 23),
           onPressed: () {
-            
             authProvider.signOutWithGoogle();
           }),
     );

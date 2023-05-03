@@ -269,6 +269,16 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             .centered(),
         iconColor: global.primary,
       ),
+      PayslipPointDetail(
+        salaryCycleId: widget.salaryCycle.salaryCycleId,
+        payslipItemType: PayslipItemTypeEnum.bonus,
+        pointTitle: 'Tổng Bonus',
+        description: 'Point thưởng',
+        icon: const FaIcon(FontAwesomeIcons.gift,
+                color: global.background, size: 23)
+            .centered(),
+        iconColor: global.danger,
+      ),
       PayslipWithTask(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
       ),

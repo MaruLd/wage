@@ -25,7 +25,7 @@ class PayslipItem extends StatelessWidget {
         Container(
             width: 180,
             child: payslipItem.type == PayslipItemTypeEnum.p1
-                ? Text(payslipItem.note ?? '',
+                ? Text('Lương cơ bản',
                     style: GoogleFonts.montserrat(
                       color: global.normalText,
                       fontWeight: FontWeight.w500,

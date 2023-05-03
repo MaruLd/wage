@@ -36,12 +36,16 @@ class ProfileRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              name,
-              style: GoogleFonts.openSans(
-                color: global.smallText,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
+            Container(
+              width: 250,
+              child: Text(
+                name,
+                overflow: TextOverflow.clip,
+                style: GoogleFonts.openSans(
+                  color: global.smallText,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
               ),
             ),
             const SizedBox(
