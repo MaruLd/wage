@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/presentation/pages/transfer/components/point_input_page/point_input_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../application/utils/navigation.dart';
+
 class QRTabs extends StatelessWidget {
   const QRTabs({
     Key? key,
@@ -56,9 +58,7 @@ class QRTabs extends StatelessWidget {
           height: 40,
           width: 160,
           child: TextButton(
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const PointInputPage(),
-            )),
+            onPressed: () => qrPageNavigation(context),
             child: Text('Chuyển Point',
                 style: GoogleFonts.montserrat(
                   color: tabTransfer

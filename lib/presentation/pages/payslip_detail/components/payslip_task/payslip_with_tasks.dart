@@ -4,40 +4,37 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
-import 'package:wage/application/utils/formatter.dart';
-import 'package:wage/domain/Payslip/payslip_model.dart';
-import 'package:wage/presentation/pages/payslip_detail/components/payslip_item.dart';
+import "package:collection/collection.dart";
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_task/task_item.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../widgets/loading_shimmer.dart';
+import '../../../../../domain/Task/task_model.dart';
+import '../../../../widgets/loading_shimmer.dart';
 
-class PayslipPointDetail extends ConsumerStatefulWidget {
-  const PayslipPointDetail({
+class PayslipWithTask extends ConsumerStatefulWidget {
+  const PayslipWithTask({
     Key? key,
-    required this.pointTitle,
-    required this.description,
     required this.salaryCycleId,
-    required this.payslipItemType,
-    required this.icon,
-    required this.iconColor,
   }) : super(key: key);
   final String salaryCycleId;
-  final PayslipItemTypeEnum payslipItemType;
-  final String pointTitle;
-  final String description;
-  final Widget icon;
-  final Color iconColor;
 
   @override
-  ConsumerState<PayslipPointDetail> createState() => _PayslipOverviewState();
+  ConsumerState<PayslipWithTask> createState() => _PayslipOverviewState();
 }
 
-class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
+class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
   bool _openDetail = false;
+  String title = 'Tổng số Task';
+  String description = 'Chi tiết các Task';
+  Widget icon = const FaIcon(FontAwesomeIcons.fileCircleCheck,
+          color: global.background, size: 23)
+      .centered();
+  Color iconColor = global.medium;
 
   @override
   Widget build(BuildContext context) {
     final payslip = ref.watch(payslipFutureProvider(widget.salaryCycleId));
+    final tasks = ref.watch(taskListFutureProvider(widget.salaryCycleId));
     return Column(children: [
       GestureDetector(
         onTap: () {
@@ -52,18 +49,18 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           height: 75,
-          width: 330,
+          width: 370,
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Container(
                 decoration: BoxDecoration(
-                  color: widget.iconColor,
+                  color: iconColor,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
                 height: 50,
                 width: 50,
-                child: widget.icon,
+                child: icon,
               ),
               const SizedBox(width: 15),
               Column(
@@ -71,7 +68,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.pointTitle,
+                    title,
                     style: GoogleFonts.montserrat(
                       color: global.normalText,
                       fontWeight: FontWeight.w600,
@@ -79,7 +76,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                     ),
                   ),
                   Text(
-                    widget.description,
+                    description,
                     style: GoogleFonts.montserrat(
                       color: Colors.grey.withOpacity(0.9),
                       fontWeight: FontWeight.w500,
@@ -90,32 +87,30 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
               ),
             ]),
             Container(
-              child: payslip.when(
+              child: tasks.when(
                 data: (data) {
-                  double? totalPoint = 0;
-                  switch (widget.payslipItemType) {
-                    case PayslipItemTypeEnum.p1:
-                      totalPoint = data.totalP1;
-                      break;
-                    case PayslipItemTypeEnum.p2:
-                      totalPoint = data.totalP2;
-                      break;
-                    case PayslipItemTypeEnum.p3:
-                      totalPoint = data.totalP3;
-                      break;
-                    case PayslipItemTypeEnum.bonus:
-                      totalPoint = data.totalBonus;
-                      break;
-                    default:
-                      break;
-                  }
-                  return Text(
-                    pointFormat(totalPoint!),
-                    style: GoogleFonts.montserrat(
-                      color: global.headerText,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          '${data.length}',
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.montserrat(
+                            color: global.medium,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      const FaIcon(FontAwesomeIcons.listCheck,
+                          color: global.medium, size: 16),
+                    ],
                   );
                 },
                 error: (error, stackTrace) {
@@ -148,21 +143,31 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
       AnimatedCrossFade(
         duration: const Duration(milliseconds: 200),
         firstChild: Container(
-          width: 350,
-          child: payslip.when(
-            data: (data) {
-              final itemList = data.items!
-                  .where((item) => item.type == widget.payslipItemType);
-              return itemList.isNotEmpty
+          width: 380,
+          child: tasks.when(
+            data: (taskList) {
+              final sortedList =
+                  groupBy(taskList, (Task obj) => obj.project!.projectName);
+
+              Widget taskSortedListWidget() {
+                List<TaskSortedByProject> temp = [];
+                sortedList.forEach((project, list) {
+                  temp.add(TaskSortedByProject(
+                      projectName: project, taskList: list));
+                });
+                return Column(
+                  children: temp,
+                );
+              }
+
+              return taskList.isNotEmpty
                   ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const SizedBox(
                           height: 15,
                         ),
-                        Column(
-                            children: itemList
-                                .map((item) => PayslipItem(payslipItem: item))
-                                .toList()),
+                        taskSortedListWidget(),
                       ],
                     )
                   : Column(children: [
@@ -171,7 +176,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipPointDetail> {
                       ),
                       Container(
                         child: Text(
-                          'Không có point',
+                          'Không có task nào',
                           style: GoogleFonts.montserrat(
                             color: global.smallText,
                             fontWeight: FontWeight.w500,

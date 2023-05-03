@@ -8,7 +8,8 @@ import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
 import 'package:wage/domain/Payslip/payslip_model.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
-import 'package:wage/presentation/pages/payslip_detail/components/payslip_point_detail.dart';
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_detail/payslip_point_detail.dart';
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_task/payslip_with_tasks.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../widgets/loading_shimmer.dart';
@@ -131,15 +132,10 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const FaIcon(FontAwesomeIcons.coins,
-                    color: global.yellow, size: 20),
-                const SizedBox(
-                  width: 10,
-                ),
                 payslip.when(
                   data: (data) {
                     return Text(
-                        'Point: ${pointFormat(data.totalP1! + data.totalP2! + data.totalP3! + data.totalBonus!)}',
+                        'Tổng: ${pointFormat(data.totalP1! + data.totalP2! + data.totalP3! + data.totalBonus!)}',
                         style: GoogleFonts.montserrat(
                           color: global.yellow,
                           fontWeight: FontWeight.w600,
@@ -157,12 +153,13 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20,
                                   )),
-                              content: Text('Phiếu lương hiên tại báo cáo xong',
-                                  style: GoogleFonts.montserrat(
-                                    color: global.normalText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                  )),
+                              content:
+                                  Text('Phiếu lương hiên tại chưa báo cáo xong',
+                                      style: GoogleFonts.montserrat(
+                                        color: global.normalText,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18,
+                                      )),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () => Navigator.pop(context, 'Ok'),
@@ -186,6 +183,11 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206)),
                 ),
+                const SizedBox(
+                  width: 4,
+                ),
+                const FaIcon(FontAwesomeIcons.coins,
+                    color: global.yellow, size: 16),
               ],
             ),
           ),
@@ -202,11 +204,6 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const FaIcon(FontAwesomeIcons.hourglassHalf,
-                    color: global.darkGreen, size: 18),
-                const SizedBox(
-                  width: 10,
-                ),
                 payslip.when(
                   data: (data) {
                     return Text('XP: ${pointFormat(data.totalXP!)}',
@@ -229,6 +226,11 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                       width: 70.0,
                       color: Color.fromARGB(146, 31, 255, 206)),
                 ),
+                const SizedBox(
+                  width: 4,
+                ),
+                const FaIcon(FontAwesomeIcons.solidPaperPlane,
+                    color: global.darkGreen, size: 16),
               ],
             ),
           ),
@@ -267,15 +269,8 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             .centered(),
         iconColor: global.primary,
       ),
-      PayslipPointDetail(
+      PayslipWithTask(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
-        payslipItemType: PayslipItemTypeEnum.bonus,
-        pointTitle: 'Tổng Bonus',
-        description: 'Point được thưởng',
-        icon: const FaIcon(FontAwesomeIcons.moneyCheckDollar,
-                color: global.background, size: 23)
-            .centered(),
-        iconColor: global.danger,
       ),
     ]);
   }

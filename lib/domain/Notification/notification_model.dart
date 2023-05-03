@@ -35,4 +35,8 @@ enum NotificationTypeEnum {
   voucherReedemSuccess,
   @JsonValue("voucherRedeemFailed")
   voucherRedeemFailed,
+  @JsonValue("memberSendPointFailed")
+  memberSendPointFailed,
+  @JsonValue("memberSendPointSuccess")
+  memberSendPointSuccess,
 }

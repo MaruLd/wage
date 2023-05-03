@@ -9,21 +9,24 @@ import '../../presentation/pages/pin/pin_check_page/pin_check_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
 import '../../presentation/pages/sign_in/sign_in_page.dart';
+import '../../presentation/pages/transfer/components/point_input_page/point_input_page.dart';
+import '../../presentation/pages/transfer/components/qr_scanner_page.dart';
 import '../../presentation/pages/voucher/voucher_page.dart';
+
+void transactionPageNavigation(BuildContext context) {
+  Navigation.setPageIndex(context, 1);
+}
+
+void transferPageNavigation(BuildContext context) {
+  Navigation.setPageIndex(context, 2);
+}
 
 void salaryCyclePageNavigation(BuildContext context) {
   Navigation.setPageIndex(context, 3);
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(builder: (context) => SalaryCyclePage()),
-  // );
 }
 
-void reportPageNavigation(BuildContext context) {
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(builder: (context) => SalaryCyclePage()),
-  // );
+void settingPageNavigation(BuildContext context) {
+  Navigation.setPageIndex(context, 4);
 }
 
 void payslipPageNavigation(BuildContext context, SalaryCycle salaryCycle) {
@@ -35,33 +38,6 @@ void payslipPageNavigation(BuildContext context, SalaryCycle salaryCycle) {
       ),
     ),
   );
-}
-
-void walletPageNavigation(BuildContext context) {
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(builder: (context) => ErrorPage()),
-  // );
-}
-
-void settingPageNavigation(BuildContext context) {
-  Navigation.setPageIndex(context, 4);
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) => ProfilePage(),
-  //   ),
-  // );
-}
-
-void transactionPageNavigation(BuildContext context) {
-  Navigation.setPageIndex(context, 1);
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) => ProfilePage(),
-  //   ),
-  // );
 }
 
 void profilePageNavigation(BuildContext context) {
@@ -113,6 +89,24 @@ void pinPageNavigation(context) {
     context,
     MaterialPageRoute(
       builder: (context) => PinCheckPage(),
+    ),
+  );
+}
+
+void pointInputPageNavigation(context, toMemberId) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => PointInputPage(toMemberId: toMemberId),
+    ),
+  );
+}
+
+void qrPageNavigation(context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => QRScannerPage(),
     ),
   );
 }

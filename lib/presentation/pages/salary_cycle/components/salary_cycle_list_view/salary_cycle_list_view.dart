@@ -49,7 +49,7 @@ class _SalaryCycleListViewState extends ConsumerState<SalaryCycleListView> {
               });
             }
             return Container(
-              width: 360,
+              width: 370,
               constraints: new BoxConstraints(
                 minHeight: 300,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../application/providers/api_provider.dart';
+import '../../../../infrastructure/param/filter_params.dart';
 
 class WelcomeBody extends ConsumerWidget {
   const WelcomeBody({Key? key}) : super(key: key);
@@ -79,8 +81,10 @@ class WelcomeBody extends ConsumerWidget {
                 left: 10,
                 right: 10,
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                    googleSignInProvider.googleLogin();
+                  onPressed: () async {
+                    await googleSignInProvider.googleLogin();
+                    ref.refresh(userProvider);
+                    await ref.read(userFutureProvider);
                   },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.all(18.0)),

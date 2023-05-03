@@ -38,4 +38,6 @@ const _$NotificationTypeEnumEnumMap = {
   NotificationTypeEnum.projectUpdate: 'projectUpdate',
   NotificationTypeEnum.voucherReedemSuccess: 'voucherReedemSuccess',
   NotificationTypeEnum.voucherRedeemFailed: 'voucherRedeemFailed',
+  NotificationTypeEnum.memberSendPointFailed: 'memberSendPointFailed',
+  NotificationTypeEnum.memberSendPointSuccess: 'memberSendPointSuccess',
 };

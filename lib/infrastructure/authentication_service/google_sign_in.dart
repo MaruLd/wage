@@ -36,7 +36,7 @@ class GoogleSignInService extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     // Sign out with google
     await _googleSignIn.signOut();
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     await storage.delete(key: 'jwt');
 
     notifyListeners();

@@ -32,4 +32,8 @@ enum FCMNotificationTypeEnum {
   voucherReedemSuccess,
   @JsonValue("VoucherRedeemFailed")
   voucherRedeemFailed,
+  @JsonValue("MemberSendPointFailed")
+  memberSendPointFailed,
+  @JsonValue("MemberSendPointSuccess")
+  memberSendPointSuccess,
 }

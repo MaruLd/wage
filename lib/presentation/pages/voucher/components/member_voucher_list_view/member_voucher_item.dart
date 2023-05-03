@@ -148,7 +148,7 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                               style: GoogleFonts.montserrat(
                                 color: global.normalText,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14,
+                                fontSize: 12,
                               ),
                             ),
                             Text(
@@ -156,7 +156,7 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                               style: GoogleFonts.montserrat(
                                 color: global.normalText,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14,
+                                fontSize: 12,
                               ),
                             ),
                           ],
@@ -164,7 +164,6 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                       ),
                       Container(
                         width: 220,
-                        height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [

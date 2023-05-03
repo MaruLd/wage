@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/application/utils/formatter.dart';
@@ -15,6 +16,7 @@ class PointCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final walletsData = ref.watch(walletsFutureProvider);
+    
     return MainCard(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -41,6 +43,8 @@ class PointCard extends ConsumerWidget {
             padding: EdgeInsetsDirectional.fromSTEB(25, 10, 20, 0),
             child: walletsData.when(
               data: (data) {
+                const storage = FlutterSecureStorage();
+                storage.write(key: 'userPoint', value: data.totalPoint.toString());
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

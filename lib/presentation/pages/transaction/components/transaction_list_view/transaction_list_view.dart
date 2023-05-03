@@ -50,7 +50,7 @@ class _TransactionListViewState extends ConsumerState<TransactionListView> {
               });
             }
             return Container(
-              width: 360,
+              width: 370,
               constraints: const BoxConstraints(
                 minHeight: 300,
               ),

@@ -9,7 +9,7 @@ import '../network_services/dio_adapter.dart';
 
 class PayslipService {
   Future<Payslip> getSelfPayslip(String salaryCycleId) async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     var param = {
       'SalaryCycleId': salaryCycleId,
     };

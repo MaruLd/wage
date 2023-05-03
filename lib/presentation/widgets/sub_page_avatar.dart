@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-
 import 'loading_shimmer.dart';
 
 class Avatar extends ConsumerWidget {

@@ -52,7 +52,7 @@ class SalaryCycleItem extends ConsumerWidget {
                           style: GoogleFonts.montserrat(
                             color: global.headerText,
                             fontWeight: FontWeight.w700,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                         Row(

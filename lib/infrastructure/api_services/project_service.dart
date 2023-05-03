@@ -8,7 +8,7 @@ import 'package:wage/infrastructure/network_services/dio_adapter.dart';
 
 class ProjectService {
   Future<List<Project>> getProjects() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/projects?OrderBy=dateDesc',
@@ -31,7 +31,7 @@ class ProjectService {
   }
 
   Future<Project> getProject(String projectId) async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/projects/${projectId}',
@@ -53,7 +53,7 @@ class ProjectService {
   }
 
   Future<int> getProjectsCount() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/projects/count',

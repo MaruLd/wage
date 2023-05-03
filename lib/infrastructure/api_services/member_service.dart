@@ -8,7 +8,7 @@ import '../network_services/dio_adapter.dart';
 
 class MemberService {
   Future<Member> getSelfInfo([data]) async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
 
@@ -31,7 +31,7 @@ class MemberService {
   }
 
   Future<int> getSelfAchievement() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/achievements',

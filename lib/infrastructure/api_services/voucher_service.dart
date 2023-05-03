@@ -9,7 +9,7 @@ import '../network_services/dio_adapter.dart';
 
 class VoucherService {
   Future<List<Voucher>> getVouchers() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/vouchers?page-size=100',
@@ -32,7 +32,7 @@ class VoucherService {
   }
 
   Future<List<MemberVoucher>> getSelfVouchers() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.get('/v1/members/me/vouchers?page-size=100',
@@ -59,7 +59,7 @@ class VoucherService {
   }
 
   Future<Response> buyVoucher(String voucherId, String pinCode) async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     var param = {"action": "buy", "pinCode": pinCode};
     try {
       String? jwtToken = await storage.read(key: 'jwt');

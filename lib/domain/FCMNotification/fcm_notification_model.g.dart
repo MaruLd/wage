@@ -33,4 +33,6 @@ const _$FCMNotificationTypeEnumEnumMap = {
   FCMNotificationTypeEnum.projectUpdate: 'ProjectUpdate',
   FCMNotificationTypeEnum.voucherReedemSuccess: 'VoucherReedemSuccess',
   FCMNotificationTypeEnum.voucherRedeemFailed: 'VoucherRedeemFailed',
+  FCMNotificationTypeEnum.memberSendPointFailed: 'MemberSendPointFailed',
+  FCMNotificationTypeEnum.memberSendPointSuccess: 'MemberSendPointSuccess',
 };

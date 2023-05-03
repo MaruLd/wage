@@ -12,7 +12,6 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../application/providers/api_provider.dart';
 import '../../../application/providers/auth_datas_provider.dart';
 import '../../../domain/FCMNotification/fcm_notification_model.dart';
-import '../../../infrastructure/param/filter_params.dart';
 import '../error/error_page.dart';
 import '../home/home_page.dart';
 import '../salary_cycle/salary_cycle_page.dart';
@@ -42,9 +41,9 @@ class Navigation extends ConsumerStatefulWidget {
 class _NavigationState extends ConsumerState<Navigation> {
   @override
   void initState() {
-    super.initState();
     FirebaseMessaging.instance.getToken();
     firebaseMessaging();
+    super.initState();
   }
 
   firebaseMessaging() {
@@ -104,6 +103,52 @@ class _NavigationState extends ConsumerState<Navigation> {
           ],
         ).show();
       }
+      if (notification.Type == FCMNotificationTypeEnum.memberSendPointSuccess) {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+        ref.refresh(voucherListFutureProvider);
+        ref.refresh(notificationFutureProvider(10));
+        ref.refresh(memberVoucherListFutureProvider);
+        ref.refresh(walletsFutureProvider);
+      } else if (notification.Type ==
+          FCMNotificationTypeEnum.memberSendPointFailed) {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: notification.Title,
+          desc: notification.Content,
+          useRootNavigator: false,
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+      }
     });
   }
 
@@ -127,7 +172,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     setState(() {
       Navigation._selectedIndex = index;
     });
-    Navigator.push(
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Navigation()));
   }
 

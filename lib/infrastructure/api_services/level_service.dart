@@ -8,7 +8,7 @@ import '../network_services/dio_adapter.dart';
 
 class LevelService {
   Future<Level> getNextLevel(double? MinXPNeeded) async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     var param = {'MinXPNeeded': MinXPNeeded == 0 ? 1 : MinXPNeeded!.round()};
 
     try {
@@ -33,7 +33,7 @@ class LevelService {
   }
 
   Future<List<Level>> getLevels() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
 
     try {
       String? jwtToken = await storage.read(key: 'jwt');

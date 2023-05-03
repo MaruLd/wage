@@ -118,9 +118,6 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
                       blurRadius: 10,
                     )
                   ],
-                  onCompleted: (v) {
-                    debugPrint("Completed");
-                  },
                   onChanged: (value) {
                     debugPrint(value);
                     setState(() {

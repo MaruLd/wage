@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/infrastructure/param/filter_params.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../application/providers/api_provider.dart';
@@ -15,7 +14,7 @@ class Refresher extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future<Null> _refreshData() async {
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         ref.refresh(workHoursFutureProvider);
         ref.refresh(projectsCountProvider);
         ref.refresh(projectListFutureProvider);

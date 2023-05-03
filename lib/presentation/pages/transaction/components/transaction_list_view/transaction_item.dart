@@ -25,12 +25,16 @@ class TransactionItem extends StatelessWidget {
         case WalletTokenEnum.point:
           return PointIcon(
             size: 18,
-            color: transaction.isReceived ? global.primary2 : global.danger,
+            color: transaction.isReceived
+                ? global.primary2
+                : Color.fromARGB(255, 255, 93, 93),
           );
         case WalletTokenEnum.xp:
           return XpIcon(
             size: 18,
-            color: transaction.isReceived ? global.primary2 : global.danger,
+            color: transaction.isReceived
+                ? global.primary2
+                : Color.fromARGB(255, 255, 93, 93),
           );
         default:
           return Container();
@@ -59,7 +63,7 @@ class TransactionItem extends StatelessWidget {
                 style: GoogleFonts.montserrat(
                   color: global.headerText,
                   fontWeight: FontWeight.w700,
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
               Row(
@@ -74,7 +78,7 @@ class TransactionItem extends StatelessWidget {
                       style: GoogleFonts.montserrat(
                         color: transaction.isReceived
                             ? global.primary2
-                            : global.danger,
+                            : Color.fromARGB(255, 255, 93, 93),
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                       ),

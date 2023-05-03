@@ -9,7 +9,7 @@ import '../network_services/dio_adapter.dart';
 
 class FCMService {
   void sendFCMToken() async {
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     var token = await getDeviceToken();
     debugPrint('fcm token: ' + token);
     if (token == "") {

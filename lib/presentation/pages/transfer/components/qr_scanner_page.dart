@@ -7,16 +7,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../application/utils/navigation.dart';
 import '../../../widgets/sub_header.dart';
 
-class QRScannerView extends StatefulWidget {
-  const QRScannerView({Key? key}) : super(key: key);
+class QRScannerPage extends StatefulWidget {
+  const QRScannerPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _QRScannerViewState();
+  State<StatefulWidget> createState() => _QRScannerPageState();
 }
 
-class _QRScannerViewState extends State<QRScannerView> {
+class _QRScannerPageState extends State<QRScannerPage> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -54,6 +55,26 @@ class _QRScannerViewState extends State<QRScannerView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: global.primary, width: 1.0),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(12)),
+                        ),
+                        height: 50,
+                        width: 320,
+                        child: TextButton.icon(
+                            label: Text('Chuyển Point',
+                                style: GoogleFonts.openSans(
+                                  color: global.primary,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                )),
+                            icon: FaIcon(FontAwesomeIcons.moneyBillTransfer,
+                                color: global.primary, size: 23),
+                            onPressed: () => pointInputPageNavigation(context,
+                                '155d72e0-bfae-4769-b7a1-08db4479c2ff')),
+                      ),
                       if (result != null) ...[
                         Text('Người nhận: ${result!.code}'),
                         Container(
@@ -74,7 +95,8 @@ class _QRScannerViewState extends State<QRScannerView> {
                                   )),
                               icon: FaIcon(FontAwesomeIcons.moneyBillTransfer,
                                   color: global.primary, size: 23),
-                              onPressed: () {}),
+                              onPressed: () => pointInputPageNavigation(
+                                  context, result!.code)),
                         ),
                       ] else ...[
                         const Text('Scan mã QR của người dùng'),
@@ -119,6 +141,7 @@ class _QRScannerViewState extends State<QRScannerView> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
+      controller.pauseCamera();
       setState(() {
         result = scanData;
       });

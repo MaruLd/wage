@@ -15,12 +15,14 @@ import 'package:wage/infrastructure/param/filter_params.dart';
 import '../../domain/Auth/auth_model.dart';
 import '../../domain/Notification/notification_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
+import '../../domain/Task/task_model.dart';
 import '../../infrastructure/api_services/fcm_service.dart';
 import '../../infrastructure/api_services/notification_service.dart';
 import '../../infrastructure/api_services/payslip_service.dart';
 import '../../infrastructure/api_services/pin_service.dart';
 import '../../infrastructure/api_services/salary_cycle_service.dart';
 import '../../infrastructure/api_services/server_service.dart';
+import '../../infrastructure/api_services/task_service.dart';
 import '../../infrastructure/api_services/transaction_service.dart';
 import '../../infrastructure/api_services/voucher_service.dart';
 import '../../infrastructure/authentication_service/auth_service.dart';
@@ -33,11 +35,14 @@ final googleProvider = Provider((ref) => GoogleSignInService());
 final tokenProvider = Provider((ref) => AuthDAO());
 
 final userProvider = Provider((ref) {
-  ref.watch(apiTokenProvider);
+  ref.watch(tokenProvider);
   return MemberService();
 });
 
-final walletsProvider = Provider((ref) => WalletsService());
+final walletsProvider = Provider((ref) {
+  ref.watch(userProvider);
+  return WalletService();
+});
 
 final projectProvider = Provider((ref) => ProjectService());
 
@@ -56,6 +61,8 @@ final pinProvider = Provider((ref) => PINService());
 final voucherProvider = Provider((ref) => VoucherService());
 
 final transactionProvider = Provider((ref) => TransactionService());
+
+final taskProvider = Provider((ref) => TaskService());
 
 final notificationProvider = Provider((ref) => NotificationService());
 
@@ -116,7 +123,8 @@ final userFutureProvider = FutureProvider.autoDispose<Member>(
   },
 );
 
-final payslipFutureProvider = FutureProvider.family<Payslip, String>(
+final payslipFutureProvider =
+    FutureProvider.autoDispose.family<Payslip, String>(
   (ref, salaryCycleId) {
     return ref.watch(payslipProvider).getSelfPayslip(salaryCycleId);
   },
@@ -144,7 +152,8 @@ final notificationFutureProvider =
   },
 );
 
-final isReadnotificationFutureProvider = FutureProvider.family<int?, String>(
+final isReadnotificationFutureProvider =
+    FutureProvider.autoDispose.family<int?, String>(
   (ref, notificationId) {
     return ref.watch(notificationProvider).isReadNotification(notificationId);
   },
@@ -205,7 +214,7 @@ final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
 });
 
 final projectFutureProvider =
-    FutureProvider.family<Project, String>((ref, param) {
+    FutureProvider.autoDispose.family<Project, String>((ref, param) {
   return ref.watch(projectProvider).getProject(param);
 });
 
@@ -213,6 +222,11 @@ final transactionListFutureProvider = FutureProvider.autoDispose
     .family<List<Transaction>, Parameters>((ref, param) {
   return ref.watch(transactionProvider).getTransactions(
       param.parameterList[0], param.parameterList[1], param.parameterList[2]);
+});
+
+final taskListFutureProvider =
+    FutureProvider.autoDispose.family<List<Task>, String>((ref, salaryCycleId) {
+  return ref.watch(taskProvider).getTasks(salaryCycleId);
 });
 
 final projectsCountProvider = FutureProvider<int>((ref) {

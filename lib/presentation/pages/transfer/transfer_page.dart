@@ -10,7 +10,7 @@ import '../../../application/providers/api_provider.dart';
 import '../../widgets/main_header.dart';
 import '../../widgets/sub_page_avatar.dart';
 import 'components/qr_code.dart';
-import 'components/qr_scanner.dart';
+import 'components/qr_scanner_page.dart';
 import 'components/qr_tabs.dart';
 
 class TransferPage extends ConsumerStatefulWidget {
@@ -86,6 +86,9 @@ class _TransferPageState extends ConsumerState<TransferPage> {
                         color: Color.fromARGB(118, 2, 193, 123),
                         baseColor: Color.fromARGB(118, 0, 100, 63))),
                 visible: tabMyQR,
+              ),
+              const SizedBox(
+                height: 40,
               ),
             ],
           ))
