@@ -16,6 +16,10 @@ class FCMNotificationModel with _$FCMNotificationModel {
 }
 
 enum FCMNotificationTypeEnum {
+  @JsonValue("MemberSendPointFailed")
+  memberSendPointFailed,
+  @JsonValue("MemberSendPointSuccess")
+  memberSendPointSuccess,
   @JsonValue("SalaryCycleStarted")
   salaryCycleStarted,
   @JsonValue("SalaryCycleUpdateSuccess")
@@ -32,8 +36,4 @@ enum FCMNotificationTypeEnum {
   voucherReedemSuccess,
   @JsonValue("VoucherRedeemFailed")
   voucherRedeemFailed,
-  @JsonValue("MemberSendPointFailed")
-  memberSendPointFailed,
-  @JsonValue("MemberSendPointSuccess")
-  memberSendPointSuccess,
 }

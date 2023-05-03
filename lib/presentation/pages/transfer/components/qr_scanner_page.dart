@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../application/utils/navigation.dart';
@@ -18,7 +19,8 @@ class QRScannerPage extends StatefulWidget {
 }
 
 class _QRScannerPageState extends State<QRScannerPage> {
-  Barcode? result;
+  String? memberId;
+  String? memberEmail;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -55,28 +57,8 @@ class _QRScannerPageState extends State<QRScannerPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: global.primary, width: 1.0),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(12)),
-                        ),
-                        height: 50,
-                        width: 320,
-                        child: TextButton.icon(
-                            label: Text('Chuyển Point',
-                                style: GoogleFonts.openSans(
-                                  color: global.primary,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                )),
-                            icon: FaIcon(FontAwesomeIcons.moneyBillTransfer,
-                                color: global.primary, size: 23),
-                            onPressed: () => pointInputPageNavigation(context,
-                                '155d72e0-bfae-4769-b7a1-08db4479c2ff')),
-                      ),
-                      if (result != null) ...[
-                        Text('Người nhận: ${result!.code}'),
+                      if (memberId != null) ...[
+                        Text('Người nhận: $memberEmail').centered(),
                         Container(
                           decoration: BoxDecoration(
                             border:
@@ -95,8 +77,8 @@ class _QRScannerPageState extends State<QRScannerPage> {
                                   )),
                               icon: FaIcon(FontAwesomeIcons.moneyBillTransfer,
                                   color: global.primary, size: 23),
-                              onPressed: () => pointInputPageNavigation(
-                                  context, result!.code)),
+                              onPressed: () =>
+                                  pointInputPageNavigation(context, memberId)),
                         ),
                       ] else ...[
                         const Text('Scan mã QR của người dùng'),
@@ -142,8 +124,10 @@ class _QRScannerPageState extends State<QRScannerPage> {
     });
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
+      List<String> list = scanData.code!.split("+");
       setState(() {
-        result = scanData;
+        memberId = list[0];
+        memberEmail = list[1];
       });
     });
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,19 +9,24 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wage/infrastructure/api_services/voucher_service.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
+import '../../../../../../application/utils/navigation.dart';
 import '../../../../../../infrastructure/api_services/pin_service.dart';
+import '../../../../../../infrastructure/api_services/wallet_service.dart';
 import '../../../../../../infrastructure/param/filter_params.dart';
 import '../../../../../widgets/loading_shimmer.dart';
 
-class PinConfirmBuy extends ConsumerStatefulWidget {
-  const PinConfirmBuy({Key? key, required this.voucherId}) : super(key: key);
-  final String voucherId;
+class PinConfirmTransfer extends ConsumerStatefulWidget {
+  const PinConfirmTransfer(
+      {Key? key, required this.memberId, required this.transferPoint})
+      : super(key: key);
+  final String memberId;
+  final String transferPoint;
 
   @override
-  ConsumerState<PinConfirmBuy> createState() => _PinUpdatefieldState();
+  ConsumerState<PinConfirmTransfer> createState() => _PinConfirmTransferState();
 }
 
-class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
+class _PinConfirmTransferState extends ConsumerState<PinConfirmTransfer> {
   TextEditingController textEditingController = TextEditingController();
 
   StreamController<ErrorAnimationType>? errorController;
@@ -29,6 +35,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
   bool hasPinError = false;
   bool isLoading = false;
   String pinCode = "";
+  String errorMessage = "";
 
   final formKey = GlobalKey<FormState>();
 
@@ -37,7 +44,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
   }
-  
+
   @override
   void dispose() {
     errorController!.close();
@@ -56,7 +63,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
 
   @override
   Widget build(BuildContext context) {
-    Parameters param = Parameters(parameterList: [widget.voucherId, pinCode]);
+    Parameters param = Parameters(parameterList: [widget.memberId, pinCode]);
 
     return Column(
       children: <Widget>[
@@ -139,12 +146,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text(
-              hasPinError
-                  ? "Mã PIN chưa chính xác"
-                  : hasError
-                      ? "Đã có lỗi xảy ra khi đổi Voucher"
-                      : "",
+          child: Text(hasPinError ? "Mã PIN chưa chính xác" : errorMessage,
               style: GoogleFonts.montserrat(
                 color: Colors.red,
                 fontWeight: FontWeight.w500,
@@ -186,14 +188,22 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                             hasPinError = true;
                           });
                         } else if (verified == true) {
-                          final response = await voucherService.buyVoucher(
-                              widget.voucherId, pinCode);
-                          if (response.statusCode == 400) {
-                            errorController!.add(ErrorAnimationType
-                                .shake); // Triggering error shake animation
+                          WalletService walletService = WalletService();
+                          Response response = await walletService.transferPoint(
+                              widget.memberId,
+                              double.parse(widget.transferPoint));
+                          if (response.data['ErrorName'] ==
+                              'MEMBER_NOT_FOUND') {
                             setState(() {
                               isLoading = false;
-                              hasError = true;
+                              errorMessage = 'Không tìm thấy người dùng';
+                            });
+                          }
+                          if (response.data['ErrorName'] == 'EXCEED_LIMIT') {
+                            setState(() {
+                              isLoading = false;
+                              errorMessage =
+                                  'Point chuyển vượt quá giới hạn cho phép trong tháng';
                             });
                           } else if (response.statusCode == 200) {
                             formKey.currentState!.validate();
@@ -203,22 +213,17 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                                 hasError = false;
                               },
                             );
-                            Navigator.pop(context);
+                            Future.delayed(Duration.zero, () {
+                              transferPageNavigation(context);
+                            });
                           } else {
                             setState(
                               () {
                                 isLoading = false;
-                                hasError = true;
+                                hasError = false;
                               },
                             );
                           }
-                        } else {
-                          setState(
-                            () {
-                              isLoading = false;
-                              hasError = true;
-                            },
-                          );
                         }
                       },
                       child: const Center(

@@ -71,7 +71,7 @@ class _TransferPageState extends ConsumerState<TransferPage> {
                           qrSize: 280,
                           qrPadding: 16,
                           qrBorderRadius: 16,
-                          qrData: data.memberId,
+                          qrData: '${data.memberId}+${data.emailAddress}',
                           qrBackgroundColor: global.primary2,
                         ),
                     error: (Object error, StackTrace stackTrace) =>

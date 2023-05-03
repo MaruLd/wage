@@ -44,6 +44,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     FirebaseMessaging.instance.getToken();
     firebaseMessaging();
     super.initState();
+    ref.read(fcmTokenProvider);
   }
 
   firebaseMessaging() {
@@ -56,7 +57,7 @@ class _NavigationState extends ConsumerState<Navigation> {
             'Message also contained a notification: ${message.notification}');
       }
       final notification = FCMNotificationModel.fromJson(message.data);
-
+      print(notification);
       if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
         Alert(
           context: context,
@@ -102,8 +103,8 @@ class _NavigationState extends ConsumerState<Navigation> {
             )
           ],
         ).show();
-      }
-      if (notification.Type == FCMNotificationTypeEnum.memberSendPointSuccess) {
+      } else if (notification.Type ==
+          FCMNotificationTypeEnum.memberSendPointSuccess) {
         Alert(
           context: context,
           type: AlertType.success,
@@ -172,7 +173,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     setState(() {
       Navigation._selectedIndex = index;
     });
-    Navigator.pushReplacement(
+    Navigator.push(
         context, MaterialPageRoute(builder: (context) => Navigation()));
   }
 

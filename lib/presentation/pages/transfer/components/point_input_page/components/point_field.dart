@@ -12,6 +12,8 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import '../../../../../../application/utils/navigation.dart';
 import '../../../../../../infrastructure/api_services/wallet_service.dart';
 import '../../../../../widgets/loading_shimmer.dart';
+import '../../pin_confirm/components/confirm_pin.dart';
+import '../../pin_confirm/pin_confirm_page.dart';
 
 class PointField extends ConsumerStatefulWidget {
   const PointField({
@@ -164,45 +166,13 @@ class _PointFieldState extends ConsumerState<PointField> {
                         if (hasError == true) {
                           errorController!.add(ErrorAnimationType.shake);
                         } else {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          WalletService walletService = WalletService();
-                          Response response = await walletService.transferPoint(
-                              widget.toMemberId, double.parse(transferPoint));
-                          print(response.data);
-                          print(double.parse(transferPoint));
-                          if (response.data['ErrorName'] ==
-                              'MEMBER_NOT_FOUND') {
-                            setState(() {
-                              isLoading = false;
-                              hasError = true;
-                              errorMessage = 'Không tìm thấy người dùng';
-                            });
-                          }
-                          if (response.data['ErrorName'] == 'EXCEED_LIMIT') {
-                            setState(() {
-                              isLoading = false;
-                              hasError = true;
-                              errorMessage =
-                                  'Point chuyển vượt quá giới hạn cho phép trong tháng';
-                            });
-                          } else if (response.statusCode == 200) {
-                            setState(
-                              () {
-                                isLoading = false;
-                                hasError = false;
-                              },
-                            );
-                            transferPageNavigation(context);
-                          } else {
-                            setState(
-                              () {
-                                isLoading = false;
-                                hasError = false;
-                              },
-                            );
-                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PinConfirmTransferPage(memberId: widget.toMemberId,
+                                  transferPoint: transferPoint),
+                            ),
+                          );
                         }
                       },
                       child: const Center(

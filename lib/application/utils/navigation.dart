@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
+import 'package:wage/presentation/pages/transfer/transfer_page.dart';
 
 import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
@@ -18,7 +19,12 @@ void transactionPageNavigation(BuildContext context) {
 }
 
 void transferPageNavigation(BuildContext context) {
-  Navigation.setPageIndex(context, 2);
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => TransferPage(),
+    ),
+  );
 }
 
 void salaryCyclePageNavigation(BuildContext context) {
