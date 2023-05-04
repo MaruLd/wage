@@ -21,7 +21,7 @@ class PayslipService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/members/me/payslips status: ${response.statusCode}');
+      debugPrint('GET /v1/members/me/payslips status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final payslip = Payslip.fromJson(response.data["message"][0]);
         return payslip;
@@ -29,7 +29,7 @@ class PayslipService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/payslips status: $e');
+      debugPrint('GET /v1/members/me/payslips status: $e');
       throw Exception(e);
     }
   }
@@ -48,7 +48,7 @@ class PayslipService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/payslipitems/total status: ${response.statusCode}');
+      debugPrint('GET /v1/payslipitems/total status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final payslip = response.data["message"]["totalXP"];
         return payslip.toDouble();
@@ -56,7 +56,7 @@ class PayslipService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/payslipitems/total error: $e');
+      debugPrint('GET /v1/payslipitems/total error: $e');
       throw Exception(e);
     }
   }

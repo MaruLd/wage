@@ -25,9 +25,9 @@ class FCMService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/users/fcm-token status: ${response.statusCode}');
+      debugPrint('POST /v1/users/fcm-token status: ${response.statusCode}');
     } catch (e) {
-      debugPrint('API /v1/users/fcm-token status: ');
+      debugPrint('POST /v1/users/fcm-token error: $e');
       throw Exception(e);
     }
   }

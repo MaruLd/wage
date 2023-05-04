@@ -3,14 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wage/presentation/pages/setting/setting_page.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../infrastructure/api_services/pin_service.dart';
-import '../../../../../infrastructure/param/filter_params.dart';
 import '../../../../widgets/loading_shimmer.dart';
 
 class PinUpdatefield extends ConsumerStatefulWidget {

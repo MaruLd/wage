@@ -6,6 +6,7 @@ import '../../presentation/pages/level/level_page.dart';
 import '../../presentation/pages/navigation/navigation_bar.dart';
 import '../../presentation/pages/notification/notification_page.dart';
 import '../../presentation/pages/payslip_detail/payslip_page.dart';
+import '../../presentation/pages/pin/add_new_pin_page/add_new_pin_page.dart';
 import '../../presentation/pages/pin/pin_check_page/pin_check_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
@@ -95,6 +96,15 @@ void pinPageNavigation(context) {
     context,
     MaterialPageRoute(
       builder: (context) => PinCheckPage(),
+    ),
+  );
+}
+
+void newPinPageNavigation(context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => AddNewPinPage(),
     ),
   );
 }

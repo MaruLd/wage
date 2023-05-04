@@ -5,27 +5,24 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:wage/infrastructure/api_services/pin_service.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-import '../../../../widgets/loading_shimmer.dart';
-import '../../pin_update_page/pin_update_page.dart';
 
-class PinCheckfield extends ConsumerStatefulWidget {
-  const PinCheckfield({
+import '../../confirm_add_new_pin_page/confirm_add_new_pin_page.dart';
+
+class PinAddField extends ConsumerStatefulWidget {
+  const PinAddField({
     Key? key,
   }) : super(key: key);
 
   @override
-  ConsumerState<PinCheckfield> createState() => _PinCodeTextfieldState();
+  ConsumerState<PinAddField> createState() => _PinAddfieldState();
 }
 
-class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
+class _PinAddfieldState extends ConsumerState<PinAddField> {
   TextEditingController textEditingController = TextEditingController();
 
   StreamController<ErrorAnimationType>? errorController;
 
-  bool hasError = false;
-  bool isLoading = false;
   String pinCode = "";
 
   final formKey = GlobalKey<FormState>();
@@ -115,6 +112,9 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
                       blurRadius: 10,
                     )
                   ],
+                  onCompleted: (v) {
+                    debugPrint("Completed");
+                  },
                   onChanged: (value) {
                     debugPrint(value);
                     setState(() {
@@ -131,14 +131,8 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
           height: 20,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text(hasError ? "Mã PIN chưa chính xác" : "",
-              style: GoogleFonts.montserrat(
-                color: Colors.red,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-              )),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Container()),
         const SizedBox(
           height: 10,
         ),
@@ -150,61 +144,29 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
             ),
             child: ButtonTheme(
               height: 60,
-              child: isLoading
-                  ? const LoadingShimmer(
-                      height: 48.0,
-                      width: 300.0,
-                      color: Color.fromARGB(118, 2, 193, 123),
-                      baseColor: Color.fromARGB(118, 0, 100, 63),
-                    )
-                  : TextButton(
-                      onPressed: () async {
-                        PINService pinService = PINService();
-                        setState(() {
-                          isLoading = true;
-                        });
-                        bool verified = await pinService.checkPIN(pinCode);
-                        if (verified == false) {
-                          errorController!.add(ErrorAnimationType
-                              .shake); // Triggering error shake animation
-                          setState(() {
-                            isLoading = false;
-                            hasError = true;
-                          });
-                        } else if (verified == true) {
-                          formKey.currentState!.validate();
-                          setState(
-                            () {
-                              verified = false;
-                              isLoading = false;
-                              hasError = false;
-                            },
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  PinUpdatePage(oldPin: pinCode),
-                            ),
-                          );
-                        } else {
-                          setState(
-                            () {
-                              isLoading = false;
-                              hasError = false;
-                            },
-                          );
-                        }
-                      },
-                      child: Center(
-                          child: Text(
-                        "Xác nhận",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      )),
-                    ),
+              child: TextButton(
+                onPressed: () {
+                  if (pinCode.length < 6) {
+                    errorController!.add(ErrorAnimationType.shake);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ConfirmAddNewPinPage(pinCode: pinCode),
+                      ),
+                    );
+                  }
+                },
+                child: Center(
+                    child: Text(
+                  "Xác nhận",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                )),
+              ),
             )),
         const SizedBox(
           height: 16,
@@ -232,11 +194,6 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
               ),
               onPressed: () {
                 textEditingController.clear();
-                setState(
-                  () {
-                    hasError = false;
-                  },
-                );
               },
             ),
           ],

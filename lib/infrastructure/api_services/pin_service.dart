@@ -16,18 +16,16 @@ class PINService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/users/me/pin status: ${response.statusCode}');
+      debugPrint('GET /v1/users/me/pin status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final data = response.data["message"];
-        await storage.write(key: 'havePin', value: data);
-        String? havePin = await storage.read(key: 'havePin');
-        debugPrint('jwt in storage: $havePin');
+        await storage.write(key: 'havePin', value: data.toString());
         return data;
       } else {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('/v1/users/me/pin status: ');
+      debugPrint('GET /v1/users/me/pin error: $e');
       throw Exception(e);
     }
   }
@@ -48,9 +46,10 @@ class PINService {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
-      debugPrint('API /v1/users/me/pin-code status: ${response.statusCode}');
+      debugPrint('POST /v1/users/me/pin-code status: ${response.statusCode}');
       return response.data['message'];
     } catch (e) {
+      debugPrint('POST /v1/users/me/pin error: $e');
       throw Exception(e);
     }
   }
@@ -71,9 +70,10 @@ class PINService {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
-      debugPrint('API /v1/users/me/pin-code status: ${response.statusCode}');
+      debugPrint('PUT /v1/users/me/pin-code status: ${response.statusCode}');
       return response.data['message'];
     } catch (e) {
+      debugPrint('PUT /v1/users/me/pin error: $e');
       throw Exception(e);
     }
   }

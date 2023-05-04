@@ -27,7 +27,7 @@ String pointFormat(
 }
 
 String pointFormatForCard(double point) {
-  if (point / 9999999 > 1) {
+  if (point / 999999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(point);
   } else {
     return NumberFormat.decimalPattern().format(point);

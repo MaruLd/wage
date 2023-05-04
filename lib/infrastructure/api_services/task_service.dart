@@ -19,7 +19,7 @@ class TaskService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/members/me/tasks status: ${response.statusCode}');
+      debugPrint('GET /v1/members/me/tasks status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Task> tasks = data.map((e) => Task.fromJson(e)).toList();
@@ -28,7 +28,7 @@ class TaskService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('/v1/levels status: ');
+      debugPrint('GET /v1/members/me/tasks error: $e');
       throw Exception(e);
     }
   }

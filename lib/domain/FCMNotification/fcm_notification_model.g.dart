@@ -25,6 +25,8 @@ Map<String, dynamic> _$$_FCMNotificationModelToJson(
     };
 
 const _$FCMNotificationTypeEnumEnumMap = {
+  FCMNotificationTypeEnum.memberSendPointFailed: 'MemberSendPointFailed',
+  FCMNotificationTypeEnum.memberSendPointSuccess: 'MemberSendPointSuccess',
   FCMNotificationTypeEnum.salaryCycleStarted: 'SalaryCycleStarted',
   FCMNotificationTypeEnum.salaryCycleUpdateSuccess: 'SalaryCycleUpdateSuccess',
   FCMNotificationTypeEnum.salaryCycleUpdateFail: 'SalaryCycleUpdateFail',
@@ -33,6 +35,4 @@ const _$FCMNotificationTypeEnumEnumMap = {
   FCMNotificationTypeEnum.projectUpdate: 'ProjectUpdate',
   FCMNotificationTypeEnum.voucherReedemSuccess: 'VoucherReedemSuccess',
   FCMNotificationTypeEnum.voucherRedeemFailed: 'VoucherRedeemFailed',
-  FCMNotificationTypeEnum.memberSendPointFailed: 'MemberSendPointFailed',
-  FCMNotificationTypeEnum.memberSendPointSuccess: 'MemberSendPointSuccess',
 };

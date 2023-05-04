@@ -16,7 +16,7 @@ class PointCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final walletsData = ref.watch(walletsFutureProvider);
-    
+
     return MainCard(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -44,26 +44,24 @@ class PointCard extends ConsumerWidget {
             child: walletsData.when(
               data: (data) {
                 const storage = FlutterSecureStorage();
-                storage.write(key: 'userPoint', value: data.totalPoint.toString());
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 80,
-                      child: Text(
-                        pointFormatForCard(data.totalPoint),
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.end,
-                        style: GoogleFonts.montserrat(
-                          color: global.yellow,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 25,
+                storage.write(
+                    key: 'userPoint', value: data.totalPoint.toString());
+                return Container(
+                    width: 150,
+                    child: Row(
+                      children: [
+                        Text(
+                          pointFormatForCard(data.totalPoint),
+                          overflow: TextOverflow.clip,
+                          style: GoogleFonts.montserrat(
+                            color: global.yellow,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25,
+                          ),
                         ),
-                      ),
-                    ),
-                    PointIcon(size: 23, color: global.yellow),
-                  ],
-                );
+                        PointIcon(size: 23, color: global.yellow),
+                      ],
+                    ));
               },
               error: (error, stackTrace) {
                 debugPrint(error.toString());

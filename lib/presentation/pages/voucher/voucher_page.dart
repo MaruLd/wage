@@ -1,11 +1,8 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../application/providers/api_provider.dart';
-import '../../../domain/FCMNotification/fcm_notification_model.dart';
 import '../../widgets/main_body.dart';
 import '../../widgets/refresher.dart';
 import 'components/search_voucher_card.dart';
@@ -79,7 +76,7 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
                       ? (totalVoucher ?? 0)
                       : (totalMyVoucher ?? 0),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 VoucherTabs(
                   changeTabBuyVoucher: changeTabBuyVoucher,
                   changeTabMyVoucher: changeTabMyVoucher,

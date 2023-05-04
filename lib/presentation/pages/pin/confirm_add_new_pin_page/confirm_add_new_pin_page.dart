@@ -6,8 +6,11 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/main_body.dart';
 import 'package:wage/presentation/widgets/sub_header.dart';
 
-class AddPinPage extends StatelessWidget {
-  const AddPinPage({super.key});
+import 'components/confirm_pin.dart';
+
+class ConfirmAddNewPinPage extends StatelessWidget {
+  const ConfirmAddNewPinPage({super.key, required this.pinCode});
+  final String pinCode;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +34,7 @@ class AddPinPage extends StatelessWidget {
                 ),
                 Container(
                   width: 250,
-                  child: Text("Tạo mã PIN cho bạn",
+                  child: Text("Nhập lại mã PIN của bạn",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         color: global.primary2,
@@ -42,7 +45,7 @@ class AddPinPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                PinCheckfield()
+                PinConfirmField(pinCode)
               ],
             ).offset(offset: Offset(0, 70))),
           )

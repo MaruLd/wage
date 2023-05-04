@@ -11,6 +11,7 @@ class Voucher with _$Voucher {
     String? voucherDescription,
     required double voucherCost,
     required int voucherAmount,
+    required VoucherTypeEnum voucherType,
     Supplier? supplier,
     String? imageUrl,
     required DateTime createdAt,
@@ -27,6 +28,8 @@ class Supplier with _$Supplier {
     String? name,
     String? description,
     SupplierStatusEnum? status,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _Supplier;
   factory Supplier.fromJson(Map<String, dynamic> json) =>
       _$SupplierFromJson(json);
@@ -61,4 +64,23 @@ enum SupplierStatusEnum {
   available,
   @JsonValue("unavailable")
   unavailable,
+}
+
+enum VoucherTypeEnum {
+  @JsonValue("fnB")
+  fnB,
+  @JsonValue("telecom")
+  telecom,
+  @JsonValue("shopping")
+  shopping,
+  @JsonValue("services")
+  services,
+  @JsonValue("educattional")
+  educattional,
+  @JsonValue("beauty")
+  beauty,
+  @JsonValue("entertainment")
+  entertainment,
+  @JsonValue("others ")
+  others,
 }

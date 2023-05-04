@@ -19,7 +19,7 @@ class LevelService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/levels status: ${response.statusCode}');
+      debugPrint('GET /v1/levels status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final level = Level.fromJson(response.data["message"][0]);
         return level;
@@ -27,7 +27,7 @@ class LevelService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('/v1/levels status: ');
+      debugPrint('GET /v1/levels error: $e');
       throw Exception(e);
     }
   }

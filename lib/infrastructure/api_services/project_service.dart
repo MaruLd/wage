@@ -16,7 +16,7 @@ class ProjectService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/members/me/projects status: ${response.statusCode}');
+      debugPrint('GET /v1/members/me/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Project> projects = data.map((e) => Project.fromJson(e)).toList();
@@ -25,7 +25,7 @@ class ProjectService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/projects status: ');
+      debugPrint('GET /v1/members/me/projects error: $e');
       throw Exception(e);
     }
   }
@@ -39,7 +39,7 @@ class ProjectService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/projects status: ${response.statusCode}');
+      debugPrint('GET /v1/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final project = Project.fromJson(response.data['message']);
         return project;
@@ -47,7 +47,7 @@ class ProjectService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/projects error: $e');
+      debugPrint('GET /v1/projects error: $e');
       throw Exception(e);
     }
   }

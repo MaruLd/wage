@@ -80,17 +80,10 @@ final fcmTokenProvider = FutureProvider<void>(
   },
 );
 
-final checkPinProvider = FutureProvider<bool>(
-  (ref) async {
-    const storage = FlutterSecureStorage();
-    String? havePinString = await storage.read(key: 'havePin');
-    bool havePin =
-        havePinString != null ? havePinString.toLowerCase() == 'true' : false;
-    if (havePin) {
-      final checkHavePin = ref.watch(pinProvider).getPIN();
-      return checkHavePin;
-    }
-    return havePin;
+final checkPinProvider = FutureProvider.autoDispose<bool>(
+  (ref) {
+    final checkHavePin = ref.watch(pinProvider).getPIN();
+    return checkHavePin;
   },
 );
 
@@ -194,7 +187,7 @@ final walletsFutureProvider = FutureProvider<Wallets>(
   },
 );
 
-final nextLevelFutureProvider = FutureProvider<Level>(
+final nextLevelFutureProvider = FutureProvider.autoDispose<Level>(
   (ref) {
     double? xpNeeded = ref
         .watch(walletsFutureProvider)
@@ -203,13 +196,13 @@ final nextLevelFutureProvider = FutureProvider<Level>(
   },
 );
 
-final levelsFutureProvider = FutureProvider<List<Level>>(
+final levelsFutureProvider = FutureProvider.autoDispose<List<Level>>(
   (ref) {
     return ref.watch(levelProvider).getLevels();
   },
 );
 
-final projectListFutureProvider = FutureProvider<List<Project>>((ref) {
+final projectListFutureProvider = FutureProvider.autoDispose<List<Project>>((ref) {
   return ref.watch(projectProvider).getProjects();
 });
 

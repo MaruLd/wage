@@ -25,7 +25,7 @@ class TransactionService {
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
       debugPrint(
-          'API /v1/members/me/transactions status: ${response.statusCode}');
+          'GET /v1/members/me/transactions status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Transaction> transactions =
@@ -35,7 +35,7 @@ class TransactionService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/transactions status: ');
+      debugPrint('GET /v1/members/me/transactions error: $e');
       throw Exception(e);
     }
   }

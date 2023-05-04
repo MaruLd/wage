@@ -22,7 +22,7 @@ class NotificationService {
           }));
       if (kDebugMode) {
         debugPrint(
-            'API /v1/members/me/notifications status: ${response.statusCode}');
+            'GET /v1/members/me/notifications status: ${response.statusCode}');
       }
       if (response.statusCode == 200) {
         List data = response.data["message"];
@@ -33,7 +33,7 @@ class NotificationService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/notifications status: ');
+      debugPrint('GET /v1/members/me/notifications error: ');
       throw Exception(e);
     }
   }
@@ -53,10 +53,10 @@ class NotificationService {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       debugPrint(
-          'API /v1/notification/$notificationId/read status: ${response.statusCode}');
+          'POST /v1/notification/$notificationId/read status: ${response.statusCode}');
       return response.statusCode;
     } catch (e) {
-      debugPrint('API /v1/notification/$notificationId/read status:');
+      debugPrint('POST /v1/notification/$notificationId/read error: $e');
       throw Exception(e);
     }
   }

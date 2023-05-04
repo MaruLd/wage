@@ -12,6 +12,7 @@ _$_Voucher _$$_VoucherFromJson(Map<String, dynamic> json) => _$_Voucher(
       voucherDescription: json['voucherDescription'] as String?,
       voucherCost: (json['voucherCost'] as num).toDouble(),
       voucherAmount: json['voucherAmount'] as int,
+      voucherType: $enumDecode(_$VoucherTypeEnumEnumMap, json['voucherType']),
       supplier: json['supplier'] == null
           ? null
           : Supplier.fromJson(json['supplier'] as Map<String, dynamic>),
@@ -26,16 +27,34 @@ Map<String, dynamic> _$$_VoucherToJson(_$_Voucher instance) =>
       'voucherDescription': instance.voucherDescription,
       'voucherCost': instance.voucherCost,
       'voucherAmount': instance.voucherAmount,
+      'voucherType': _$VoucherTypeEnumEnumMap[instance.voucherType]!,
       'supplier': instance.supplier,
       'imageUrl': instance.imageUrl,
       'createdAt': instance.createdAt.toIso8601String(),
     };
+
+const _$VoucherTypeEnumEnumMap = {
+  VoucherTypeEnum.fnB: 'fnB',
+  VoucherTypeEnum.telecom: 'telecom',
+  VoucherTypeEnum.shopping: 'shopping',
+  VoucherTypeEnum.services: 'services',
+  VoucherTypeEnum.educattional: 'educattional',
+  VoucherTypeEnum.beauty: 'beauty',
+  VoucherTypeEnum.entertainment: 'entertainment',
+  VoucherTypeEnum.others: 'others ',
+};
 
 _$_Supplier _$$_SupplierFromJson(Map<String, dynamic> json) => _$_Supplier(
       supplierId: json['supplierId'] as String,
       name: json['name'] as String?,
       description: json['description'] as String?,
       status: $enumDecodeNullable(_$SupplierStatusEnumEnumMap, json['status']),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$_SupplierToJson(_$_Supplier instance) =>
@@ -44,6 +63,8 @@ Map<String, dynamic> _$$_SupplierToJson(_$_Supplier instance) =>
       'name': instance.name,
       'description': instance.description,
       'status': _$SupplierStatusEnumEnumMap[instance.status],
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
 const _$SupplierStatusEnumEnumMap = {

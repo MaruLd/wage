@@ -6,7 +6,6 @@ import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/utils/formatter.dart';
-import '../../../../widgets/loading_shimmer.dart';
 import '../../../../widgets/xp_icon.dart';
 
 class LevelProgress extends ConsumerWidget {

@@ -17,7 +17,7 @@ class WalletService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API/v1/members/me/wallets status: ${response.statusCode}');
+      debugPrint('GET /v1/members/me/wallets status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final wallets = Wallets.fromJson(response.data["message"]);
         return wallets;
@@ -25,7 +25,7 @@ class WalletService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API/v1/members/me/wallets status: ');
+      debugPrint('GET /v1/members/me/wallets error: $e');
       throw Exception(e);
     }
   }
@@ -48,9 +48,10 @@ class WalletService {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       debugPrint(
-          'API /v1/members/me/wallets/transactions status: ${response.statusCode}');
+          'POST /v1/members/me/wallets/transactions status: ${response.statusCode}');
       return response;
     } catch (e) {
+      debugPrint('POST /v1/members/me/wallets/transactions status: $e');
       throw Exception(e);
     }
   }

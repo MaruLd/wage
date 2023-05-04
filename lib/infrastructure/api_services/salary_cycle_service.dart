@@ -26,7 +26,7 @@ class SalaryCycleService {
           }));
       if (kDebugMode) {
         debugPrint(
-            'API /v1/members/me/salarycycle status: ${response.statusCode}');
+            'GET /v1/members/me/salarycycle status: ${response.statusCode}');
       }
       if (response.statusCode == 200) {
         List data = response.data["message"];
@@ -37,7 +37,7 @@ class SalaryCycleService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me/salarycycle status: ');
+      debugPrint('GET /v1/members/me/salarycycle error: $e');
       throw Exception(e);
     }
   }

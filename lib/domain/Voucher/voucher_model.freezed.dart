@@ -25,6 +25,7 @@ mixin _$Voucher {
   String? get voucherDescription => throw _privateConstructorUsedError;
   double get voucherCost => throw _privateConstructorUsedError;
   int get voucherAmount => throw _privateConstructorUsedError;
+  VoucherTypeEnum get voucherType => throw _privateConstructorUsedError;
   Supplier? get supplier => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $VoucherCopyWith<$Res> {
       String? voucherDescription,
       double voucherCost,
       int voucherAmount,
+      VoucherTypeEnum voucherType,
       Supplier? supplier,
       String? imageUrl,
       DateTime createdAt});
@@ -70,6 +72,7 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
     Object? voucherDescription = freezed,
     Object? voucherCost = null,
     Object? voucherAmount = null,
+    Object? voucherType = null,
     Object? supplier = freezed,
     Object? imageUrl = freezed,
     Object? createdAt = null,
@@ -95,6 +98,10 @@ class _$VoucherCopyWithImpl<$Res, $Val extends Voucher>
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      voucherType: null == voucherType
+          ? _value.voucherType
+          : voucherType // ignore: cast_nullable_to_non_nullable
+              as VoucherTypeEnum,
       supplier: freezed == supplier
           ? _value.supplier
           : supplier // ignore: cast_nullable_to_non_nullable
@@ -136,6 +143,7 @@ abstract class _$$_VoucherCopyWith<$Res> implements $VoucherCopyWith<$Res> {
       String? voucherDescription,
       double voucherCost,
       int voucherAmount,
+      VoucherTypeEnum voucherType,
       Supplier? supplier,
       String? imageUrl,
       DateTime createdAt});
@@ -159,6 +167,7 @@ class __$$_VoucherCopyWithImpl<$Res>
     Object? voucherDescription = freezed,
     Object? voucherCost = null,
     Object? voucherAmount = null,
+    Object? voucherType = null,
     Object? supplier = freezed,
     Object? imageUrl = freezed,
     Object? createdAt = null,
@@ -184,6 +193,10 @@ class __$$_VoucherCopyWithImpl<$Res>
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      voucherType: null == voucherType
+          ? _value.voucherType
+          : voucherType // ignore: cast_nullable_to_non_nullable
+              as VoucherTypeEnum,
       supplier: freezed == supplier
           ? _value.supplier
           : supplier // ignore: cast_nullable_to_non_nullable
@@ -209,6 +222,7 @@ class _$_Voucher extends _Voucher {
       this.voucherDescription,
       required this.voucherCost,
       required this.voucherAmount,
+      required this.voucherType,
       this.supplier,
       this.imageUrl,
       required this.createdAt})
@@ -228,6 +242,8 @@ class _$_Voucher extends _Voucher {
   @override
   final int voucherAmount;
   @override
+  final VoucherTypeEnum voucherType;
+  @override
   final Supplier? supplier;
   @override
   final String? imageUrl;
@@ -236,7 +252,7 @@ class _$_Voucher extends _Voucher {
 
   @override
   String toString() {
-    return 'Voucher(voucherId: $voucherId, voucherName: $voucherName, voucherDescription: $voucherDescription, voucherCost: $voucherCost, voucherAmount: $voucherAmount, supplier: $supplier, imageUrl: $imageUrl, createdAt: $createdAt)';
+    return 'Voucher(voucherId: $voucherId, voucherName: $voucherName, voucherDescription: $voucherDescription, voucherCost: $voucherCost, voucherAmount: $voucherAmount, voucherType: $voucherType, supplier: $supplier, imageUrl: $imageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -254,6 +270,8 @@ class _$_Voucher extends _Voucher {
                 other.voucherCost == voucherCost) &&
             (identical(other.voucherAmount, voucherAmount) ||
                 other.voucherAmount == voucherAmount) &&
+            (identical(other.voucherType, voucherType) ||
+                other.voucherType == voucherType) &&
             (identical(other.supplier, supplier) ||
                 other.supplier == supplier) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -271,6 +289,7 @@ class _$_Voucher extends _Voucher {
       voucherDescription,
       voucherCost,
       voucherAmount,
+      voucherType,
       supplier,
       imageUrl,
       createdAt);
@@ -296,6 +315,7 @@ abstract class _Voucher extends Voucher {
       final String? voucherDescription,
       required final double voucherCost,
       required final int voucherAmount,
+      required final VoucherTypeEnum voucherType,
       final Supplier? supplier,
       final String? imageUrl,
       required final DateTime createdAt}) = _$_Voucher;
@@ -313,6 +333,8 @@ abstract class _Voucher extends Voucher {
   double get voucherCost;
   @override
   int get voucherAmount;
+  @override
+  VoucherTypeEnum get voucherType;
   @override
   Supplier? get supplier;
   @override
@@ -335,6 +357,8 @@ mixin _$Supplier {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   SupplierStatusEnum? get status => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -351,7 +375,9 @@ abstract class $SupplierCopyWith<$Res> {
       {String supplierId,
       String? name,
       String? description,
-      SupplierStatusEnum? status});
+      SupplierStatusEnum? status,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -371,6 +397,8 @@ class _$SupplierCopyWithImpl<$Res, $Val extends Supplier>
     Object? name = freezed,
     Object? description = freezed,
     Object? status = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       supplierId: null == supplierId
@@ -389,6 +417,14 @@ class _$SupplierCopyWithImpl<$Res, $Val extends Supplier>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SupplierStatusEnum?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -404,7 +440,9 @@ abstract class _$$_SupplierCopyWith<$Res> implements $SupplierCopyWith<$Res> {
       {String supplierId,
       String? name,
       String? description,
-      SupplierStatusEnum? status});
+      SupplierStatusEnum? status,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -422,6 +460,8 @@ class __$$_SupplierCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? status = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_Supplier(
       supplierId: null == supplierId
@@ -440,6 +480,14 @@ class __$$_SupplierCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SupplierStatusEnum?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -448,7 +496,12 @@ class __$$_SupplierCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Supplier extends _Supplier {
   _$_Supplier(
-      {required this.supplierId, this.name, this.description, this.status})
+      {required this.supplierId,
+      this.name,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.updatedAt})
       : super._();
 
   factory _$_Supplier.fromJson(Map<String, dynamic> json) =>
@@ -462,10 +515,14 @@ class _$_Supplier extends _Supplier {
   final String? description;
   @override
   final SupplierStatusEnum? status;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Supplier(supplierId: $supplierId, name: $name, description: $description, status: $status)';
+    return 'Supplier(supplierId: $supplierId, name: $name, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -478,13 +535,17 @@ class _$_Supplier extends _Supplier {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, supplierId, name, description, status);
+  int get hashCode => Object.hash(
+      runtimeType, supplierId, name, description, status, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -505,7 +566,9 @@ abstract class _Supplier extends Supplier {
       {required final String supplierId,
       final String? name,
       final String? description,
-      final SupplierStatusEnum? status}) = _$_Supplier;
+      final SupplierStatusEnum? status,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$_Supplier;
   _Supplier._() : super._();
 
   factory _Supplier.fromJson(Map<String, dynamic> json) = _$_Supplier.fromJson;
@@ -518,6 +581,10 @@ abstract class _Supplier extends Supplier {
   String? get description;
   @override
   SupplierStatusEnum? get status;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_SupplierCopyWith<_$_Supplier> get copyWith =>

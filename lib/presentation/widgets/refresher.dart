@@ -26,6 +26,8 @@ class Refresher extends ConsumerWidget {
           DateTime.now(),
         ])));
         ref.refresh(voucherListFutureProvider);
+        ref.refresh(checkPinProvider);
+        ref.refresh(levelsFutureProvider);
         ref.refresh(memberVoucherListFutureProvider);
         ref.refresh(serverAvailableProvider);
         ref.refresh(transactionListFutureProvider(Parameters(parameterList: [

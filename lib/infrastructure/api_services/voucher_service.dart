@@ -17,7 +17,7 @@ class VoucherService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/vouchers status: ${response.statusCode}');
+      debugPrint('GET /v1/vouchers status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<Voucher> vouchers = data.map((e) => Voucher.fromJson(e)).toList();
@@ -26,7 +26,7 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/vouchers status: ');
+      debugPrint('GET /v1/vouchers error: $e');
       throw Exception(e);
     }
   }
@@ -40,7 +40,7 @@ class VoucherService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/vouchers status: ${response.statusCode}');
+      debugPrint('GET /v1/vouchers status: ${response.statusCode}');
       if (response.statusCode == 200) {
         List data = response.data["message"];
         List<MemberVoucher> vouchers = data
@@ -53,7 +53,7 @@ class VoucherService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/vouchers status: ');
+      debugPrint('GET /v1/vouchers error: $e');
       throw Exception(e);
     }
   }
@@ -75,21 +75,18 @@ class VoucherService {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       debugPrint(
-          'API /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
+          'POST /v1/vouchers/${voucherId}/action status: ${response.statusCode}');
       debugPrint('${response.data}');
       return response;
     } catch (e) {
+      debugPrint('POST /v1/vouchers/${voucherId}/action error: $e');
       throw Exception(e);
     }
   }
 
-  Future<Response> usedVoucher(
-      String memberVoucherId) async {
+  Future<Response> usedVoucher(String memberVoucherId) async {
     const storage = FlutterSecureStorage();
-    var param = {
-      "memberVoucherId": memberVoucherId,
-      "status": "used"
-    };
+    var param = {"memberVoucherId": memberVoucherId, "status": "used"};
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.put('/v1/membervoucher',
@@ -103,10 +100,10 @@ class VoucherService {
                 HttpHeaders.contentTypeHeader: "application/json",
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
-      debugPrint('API /v1/membervoucher status: ${response.statusCode}');
-      debugPrint('${response.data}');
+      debugPrint('PUT /v1/membervoucher status: ${response.statusCode}');
       return response;
     } catch (e) {
+      debugPrint('PUT /v1/membervoucher error: $e');
       throw Exception(e);
     }
   }

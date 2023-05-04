@@ -17,7 +17,7 @@ class MemberService {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader: "Bearer $jwtToken"
           }));
-      debugPrint('API /v1/members/me status: ${response.statusCode}');
+      debugPrint('GET /v1/members/me status: ${response.statusCode}');
       if (response.statusCode == 200) {
         final member = Member.fromJson(response.data["message"]);
         return member;
@@ -25,7 +25,7 @@ class MemberService {
         throw Exception(response.statusMessage);
       }
     } catch (e) {
-      debugPrint('API /v1/members/me status: ');
+      debugPrint('GET /v1/members/me status: $e');
       throw Exception(e);
     }
   }
