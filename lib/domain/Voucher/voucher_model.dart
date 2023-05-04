@@ -67,6 +67,8 @@ enum SupplierStatusEnum {
 }
 
 enum VoucherTypeEnum {
+  @JsonValue("all")
+  all,
   @JsonValue("fnB")
   fnB,
   @JsonValue("telecom")
@@ -81,6 +83,6 @@ enum VoucherTypeEnum {
   beauty,
   @JsonValue("entertainment")
   entertainment,
-  @JsonValue("others ")
+  @JsonValue("others")
   others,
 }

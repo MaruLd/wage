@@ -23,9 +23,10 @@ class VoucherTabs extends StatelessWidget {
         children: [
           Container(
               decoration: BoxDecoration(
-                border: Border.all(color: global.primary2, width: 1.0),
-                borderRadius: const BorderRadius.all(Radius.circular(30)),
-              ),
+                  color: global.background,
+                  border: BorderDirectional(
+                      bottom: BorderSide(
+                          color: Colors.grey.withOpacity(0.5), width: 1))),
               height: 40,
               width: 160,
               child: TextButton(
@@ -41,9 +42,10 @@ class VoucherTabs extends StatelessWidget {
               )),
           Container(
             decoration: BoxDecoration(
-              border: Border.all(color: global.primary2, width: 1.0),
-              borderRadius: const BorderRadius.all(Radius.circular(30)),
-            ),
+                color: global.background,
+                border: BorderDirectional(
+                    bottom: BorderSide(
+                        color: Colors.grey.withOpacity(0.5), width: 1))),
             height: 40,
             width: 170,
             child: TextButton(

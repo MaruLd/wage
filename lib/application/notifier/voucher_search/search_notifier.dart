@@ -16,6 +16,15 @@ class SearchVoucherNotifier extends StateNotifier<SearchVoucherState> {
 
         state = state.copyWith(voucherList: searchedVoucherList);
       },
+      filteredVoucherChanged: (filteredVoucherChangedEvent) {
+        final voucherList = [...state.voucherList];
+        final filteredVoucherList = voucherList
+            .where((voucher) =>
+                voucher.voucherType == filteredVoucherChangedEvent.type)
+            .toList();
+
+        state = state.copyWith(voucherList: filteredVoucherList);
+      },
       updateVoucherListItems: (updateListItemsEvent) {
         state = state.copyWith(
           voucherList: updateListItemsEvent.voucherList,

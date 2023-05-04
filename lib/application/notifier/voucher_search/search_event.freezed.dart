@@ -19,18 +19,21 @@ mixin _$SearchVoucherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type) filteredVoucherChanged,
     required TResult Function(List<Voucher> voucherList) updateVoucherListItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult? Function(List<Voucher> voucherList)? updateVoucherListItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult Function(List<Voucher> voucherList)? updateVoucherListItems,
     required TResult orElse(),
   }) =>
@@ -39,6 +42,8 @@ mixin _$SearchVoucherEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedVoucherTextChanged value)
         searchedVoucherTextChanged,
+    required TResult Function(FilteredVoucherChanged value)
+        filteredVoucherChanged,
     required TResult Function(UpdateVoucherListItems value)
         updateVoucherListItems,
   }) =>
@@ -47,6 +52,7 @@ mixin _$SearchVoucherEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult? Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult? Function(UpdateVoucherListItems value)? updateVoucherListItems,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +60,7 @@ mixin _$SearchVoucherEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult Function(UpdateVoucherListItems value)? updateVoucherListItems,
     required TResult orElse(),
   }) =>
@@ -146,6 +153,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type) filteredVoucherChanged,
     required TResult Function(List<Voucher> voucherList) updateVoucherListItems,
   }) {
     return searchedVoucherTextChanged(text);
@@ -155,6 +163,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult? Function(List<Voucher> voucherList)? updateVoucherListItems,
   }) {
     return searchedVoucherTextChanged?.call(text);
@@ -164,6 +173,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult Function(List<Voucher> voucherList)? updateVoucherListItems,
     required TResult orElse(),
   }) {
@@ -178,6 +188,8 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedVoucherTextChanged value)
         searchedVoucherTextChanged,
+    required TResult Function(FilteredVoucherChanged value)
+        filteredVoucherChanged,
     required TResult Function(UpdateVoucherListItems value)
         updateVoucherListItems,
   }) {
@@ -189,6 +201,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult? Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult? Function(UpdateVoucherListItems value)? updateVoucherListItems,
   }) {
     return searchedVoucherTextChanged?.call(this);
@@ -199,6 +212,7 @@ class _$SearchedVoucherTextChanged implements SearchedVoucherTextChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult Function(UpdateVoucherListItems value)? updateVoucherListItems,
     required TResult orElse(),
   }) {
@@ -217,6 +231,152 @@ abstract class SearchedVoucherTextChanged implements SearchVoucherEvent {
   @JsonKey(ignore: true)
   _$$SearchedVoucherTextChangedCopyWith<_$SearchedVoucherTextChanged>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilteredVoucherChangedCopyWith<$Res> {
+  factory _$$FilteredVoucherChangedCopyWith(_$FilteredVoucherChanged value,
+          $Res Function(_$FilteredVoucherChanged) then) =
+      __$$FilteredVoucherChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({VoucherTypeEnum type});
+}
+
+/// @nodoc
+class __$$FilteredVoucherChangedCopyWithImpl<$Res>
+    extends _$SearchVoucherEventCopyWithImpl<$Res, _$FilteredVoucherChanged>
+    implements _$$FilteredVoucherChangedCopyWith<$Res> {
+  __$$FilteredVoucherChangedCopyWithImpl(_$FilteredVoucherChanged _value,
+      $Res Function(_$FilteredVoucherChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$FilteredVoucherChanged(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as VoucherTypeEnum,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilteredVoucherChanged implements FilteredVoucherChanged {
+  const _$FilteredVoucherChanged({required this.type});
+
+  @override
+  final VoucherTypeEnum type;
+
+  @override
+  String toString() {
+    return 'SearchVoucherEvent.filteredVoucherChanged(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilteredVoucherChanged &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilteredVoucherChangedCopyWith<_$FilteredVoucherChanged> get copyWith =>
+      __$$FilteredVoucherChangedCopyWithImpl<_$FilteredVoucherChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String text) searchedVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type) filteredVoucherChanged,
+    required TResult Function(List<Voucher> voucherList) updateVoucherListItems,
+  }) {
+    return filteredVoucherChanged(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String text)? searchedVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredVoucherChanged,
+    TResult? Function(List<Voucher> voucherList)? updateVoucherListItems,
+  }) {
+    return filteredVoucherChanged?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String text)? searchedVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredVoucherChanged,
+    TResult Function(List<Voucher> voucherList)? updateVoucherListItems,
+    required TResult orElse(),
+  }) {
+    if (filteredVoucherChanged != null) {
+      return filteredVoucherChanged(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchedVoucherTextChanged value)
+        searchedVoucherTextChanged,
+    required TResult Function(FilteredVoucherChanged value)
+        filteredVoucherChanged,
+    required TResult Function(UpdateVoucherListItems value)
+        updateVoucherListItems,
+  }) {
+    return filteredVoucherChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SearchedVoucherTextChanged value)?
+        searchedVoucherTextChanged,
+    TResult? Function(FilteredVoucherChanged value)? filteredVoucherChanged,
+    TResult? Function(UpdateVoucherListItems value)? updateVoucherListItems,
+  }) {
+    return filteredVoucherChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchedVoucherTextChanged value)?
+        searchedVoucherTextChanged,
+    TResult Function(FilteredVoucherChanged value)? filteredVoucherChanged,
+    TResult Function(UpdateVoucherListItems value)? updateVoucherListItems,
+    required TResult orElse(),
+  }) {
+    if (filteredVoucherChanged != null) {
+      return filteredVoucherChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilteredVoucherChanged implements SearchVoucherEvent {
+  const factory FilteredVoucherChanged({required final VoucherTypeEnum type}) =
+      _$FilteredVoucherChanged;
+
+  VoucherTypeEnum get type;
+  @JsonKey(ignore: true)
+  _$$FilteredVoucherChangedCopyWith<_$FilteredVoucherChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -293,6 +453,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type) filteredVoucherChanged,
     required TResult Function(List<Voucher> voucherList) updateVoucherListItems,
   }) {
     return updateVoucherListItems(voucherList);
@@ -302,6 +463,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult? Function(List<Voucher> voucherList)? updateVoucherListItems,
   }) {
     return updateVoucherListItems?.call(voucherList);
@@ -311,6 +473,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredVoucherChanged,
     TResult Function(List<Voucher> voucherList)? updateVoucherListItems,
     required TResult orElse(),
   }) {
@@ -325,6 +488,8 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedVoucherTextChanged value)
         searchedVoucherTextChanged,
+    required TResult Function(FilteredVoucherChanged value)
+        filteredVoucherChanged,
     required TResult Function(UpdateVoucherListItems value)
         updateVoucherListItems,
   }) {
@@ -336,6 +501,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult? Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult? Function(UpdateVoucherListItems value)? updateVoucherListItems,
   }) {
     return updateVoucherListItems?.call(this);
@@ -346,6 +512,7 @@ class _$UpdateVoucherListItems implements UpdateVoucherListItems {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedVoucherTextChanged value)?
         searchedVoucherTextChanged,
+    TResult Function(FilteredVoucherChanged value)? filteredVoucherChanged,
     TResult Function(UpdateVoucherListItems value)? updateVoucherListItems,
     required TResult orElse(),
   }) {

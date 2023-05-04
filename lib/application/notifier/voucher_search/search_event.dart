@@ -6,6 +6,8 @@ part 'search_event.freezed.dart';
 class SearchVoucherEvent with _$SearchVoucherEvent {
   const factory SearchVoucherEvent.searchedVoucherTextChanged(
       {required String text}) = SearchedVoucherTextChanged;
+  const factory SearchVoucherEvent.filteredVoucherChanged(
+      {required VoucherTypeEnum type}) = FilteredVoucherChanged;
   const factory SearchVoucherEvent.updateVoucherListItems(
       {required List<Voucher> voucherList}) = UpdateVoucherListItems;
 }

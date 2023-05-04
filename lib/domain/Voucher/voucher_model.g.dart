@@ -34,6 +34,7 @@ Map<String, dynamic> _$$_VoucherToJson(_$_Voucher instance) =>
     };
 
 const _$VoucherTypeEnumEnumMap = {
+  VoucherTypeEnum.all: 'all',
   VoucherTypeEnum.fnB: 'fnB',
   VoucherTypeEnum.telecom: 'telecom',
   VoucherTypeEnum.shopping: 'shopping',
@@ -41,7 +42,7 @@ const _$VoucherTypeEnumEnumMap = {
   VoucherTypeEnum.educattional: 'educattional',
   VoucherTypeEnum.beauty: 'beauty',
   VoucherTypeEnum.entertainment: 'entertainment',
-  VoucherTypeEnum.others: 'others ',
+  VoucherTypeEnum.others: 'others',
 };
 
 _$_Supplier _$$_SupplierFromJson(Map<String, dynamic> json) => _$_Supplier(
