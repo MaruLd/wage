@@ -19,6 +19,8 @@ mixin _$SearchMemberVoucherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedMemberVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type)
+        filteredMemberVoucherChanged,
     required TResult Function(List<MemberVoucher> memberVoucherList)
         updateMemberVoucherListItems,
   }) =>
@@ -26,6 +28,7 @@ mixin _$SearchMemberVoucherEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedMemberVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult? Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
   }) =>
@@ -33,6 +36,7 @@ mixin _$SearchMemberVoucherEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedMemberVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
     required TResult orElse(),
@@ -42,6 +46,8 @@ mixin _$SearchMemberVoucherEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedMemberVoucherTextChanged value)
         searchedMemberVoucherTextChanged,
+    required TResult Function(FilteredMemberVoucherChanged value)
+        filteredMemberVoucherChanged,
     required TResult Function(UpdateMemberVoucherListItems value)
         updateMemberVoucherListItems,
   }) =>
@@ -50,6 +56,8 @@ mixin _$SearchMemberVoucherEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult? Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult? Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
   }) =>
@@ -58,6 +66,8 @@ mixin _$SearchMemberVoucherEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
     required TResult orElse(),
@@ -155,6 +165,8 @@ class _$SearchedMemberVoucherTextChanged
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedMemberVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type)
+        filteredMemberVoucherChanged,
     required TResult Function(List<MemberVoucher> memberVoucherList)
         updateMemberVoucherListItems,
   }) {
@@ -165,6 +177,7 @@ class _$SearchedMemberVoucherTextChanged
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedMemberVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult? Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
   }) {
@@ -175,6 +188,7 @@ class _$SearchedMemberVoucherTextChanged
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedMemberVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
     required TResult orElse(),
@@ -190,6 +204,8 @@ class _$SearchedMemberVoucherTextChanged
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedMemberVoucherTextChanged value)
         searchedMemberVoucherTextChanged,
+    required TResult Function(FilteredMemberVoucherChanged value)
+        filteredMemberVoucherChanged,
     required TResult Function(UpdateMemberVoucherListItems value)
         updateMemberVoucherListItems,
   }) {
@@ -201,6 +217,8 @@ class _$SearchedMemberVoucherTextChanged
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult? Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult? Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
   }) {
@@ -212,6 +230,8 @@ class _$SearchedMemberVoucherTextChanged
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
     required TResult orElse(),
@@ -232,6 +252,164 @@ abstract class SearchedMemberVoucherTextChanged
   @JsonKey(ignore: true)
   _$$SearchedMemberVoucherTextChangedCopyWith<
           _$SearchedMemberVoucherTextChanged>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilteredMemberVoucherChangedCopyWith<$Res> {
+  factory _$$FilteredMemberVoucherChangedCopyWith(
+          _$FilteredMemberVoucherChanged value,
+          $Res Function(_$FilteredMemberVoucherChanged) then) =
+      __$$FilteredMemberVoucherChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({VoucherTypeEnum type});
+}
+
+/// @nodoc
+class __$$FilteredMemberVoucherChangedCopyWithImpl<$Res>
+    extends _$SearchMemberVoucherEventCopyWithImpl<$Res,
+        _$FilteredMemberVoucherChanged>
+    implements _$$FilteredMemberVoucherChangedCopyWith<$Res> {
+  __$$FilteredMemberVoucherChangedCopyWithImpl(
+      _$FilteredMemberVoucherChanged _value,
+      $Res Function(_$FilteredMemberVoucherChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$FilteredMemberVoucherChanged(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as VoucherTypeEnum,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilteredMemberVoucherChanged implements FilteredMemberVoucherChanged {
+  const _$FilteredMemberVoucherChanged({required this.type});
+
+  @override
+  final VoucherTypeEnum type;
+
+  @override
+  String toString() {
+    return 'SearchMemberVoucherEvent.filteredMemberVoucherChanged(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilteredMemberVoucherChanged &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilteredMemberVoucherChangedCopyWith<_$FilteredMemberVoucherChanged>
+      get copyWith => __$$FilteredMemberVoucherChangedCopyWithImpl<
+          _$FilteredMemberVoucherChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String text) searchedMemberVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type)
+        filteredMemberVoucherChanged,
+    required TResult Function(List<MemberVoucher> memberVoucherList)
+        updateMemberVoucherListItems,
+  }) {
+    return filteredMemberVoucherChanged(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String text)? searchedMemberVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
+    TResult? Function(List<MemberVoucher> memberVoucherList)?
+        updateMemberVoucherListItems,
+  }) {
+    return filteredMemberVoucherChanged?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String text)? searchedMemberVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
+    TResult Function(List<MemberVoucher> memberVoucherList)?
+        updateMemberVoucherListItems,
+    required TResult orElse(),
+  }) {
+    if (filteredMemberVoucherChanged != null) {
+      return filteredMemberVoucherChanged(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchedMemberVoucherTextChanged value)
+        searchedMemberVoucherTextChanged,
+    required TResult Function(FilteredMemberVoucherChanged value)
+        filteredMemberVoucherChanged,
+    required TResult Function(UpdateMemberVoucherListItems value)
+        updateMemberVoucherListItems,
+  }) {
+    return filteredMemberVoucherChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SearchedMemberVoucherTextChanged value)?
+        searchedMemberVoucherTextChanged,
+    TResult? Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
+    TResult? Function(UpdateMemberVoucherListItems value)?
+        updateMemberVoucherListItems,
+  }) {
+    return filteredMemberVoucherChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchedMemberVoucherTextChanged value)?
+        searchedMemberVoucherTextChanged,
+    TResult Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
+    TResult Function(UpdateMemberVoucherListItems value)?
+        updateMemberVoucherListItems,
+    required TResult orElse(),
+  }) {
+    if (filteredMemberVoucherChanged != null) {
+      return filteredMemberVoucherChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilteredMemberVoucherChanged
+    implements SearchMemberVoucherEvent {
+  const factory FilteredMemberVoucherChanged(
+      {required final VoucherTypeEnum type}) = _$FilteredMemberVoucherChanged;
+
+  VoucherTypeEnum get type;
+  @JsonKey(ignore: true)
+  _$$FilteredMemberVoucherChangedCopyWith<_$FilteredMemberVoucherChanged>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -314,6 +492,8 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String text) searchedMemberVoucherTextChanged,
+    required TResult Function(VoucherTypeEnum type)
+        filteredMemberVoucherChanged,
     required TResult Function(List<MemberVoucher> memberVoucherList)
         updateMemberVoucherListItems,
   }) {
@@ -324,6 +504,7 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String text)? searchedMemberVoucherTextChanged,
+    TResult? Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult? Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
   }) {
@@ -334,6 +515,7 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String text)? searchedMemberVoucherTextChanged,
+    TResult Function(VoucherTypeEnum type)? filteredMemberVoucherChanged,
     TResult Function(List<MemberVoucher> memberVoucherList)?
         updateMemberVoucherListItems,
     required TResult orElse(),
@@ -349,6 +531,8 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   TResult map<TResult extends Object?>({
     required TResult Function(SearchedMemberVoucherTextChanged value)
         searchedMemberVoucherTextChanged,
+    required TResult Function(FilteredMemberVoucherChanged value)
+        filteredMemberVoucherChanged,
     required TResult Function(UpdateMemberVoucherListItems value)
         updateMemberVoucherListItems,
   }) {
@@ -360,6 +544,8 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult? Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult? Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
   }) {
@@ -371,6 +557,8 @@ class _$UpdateMemberVoucherListItems implements UpdateMemberVoucherListItems {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchedMemberVoucherTextChanged value)?
         searchedMemberVoucherTextChanged,
+    TResult Function(FilteredMemberVoucherChanged value)?
+        filteredMemberVoucherChanged,
     TResult Function(UpdateMemberVoucherListItems value)?
         updateMemberVoucherListItems,
     required TResult orElse(),

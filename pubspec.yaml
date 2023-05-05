@@ -75,7 +75,6 @@ dependencies:
   dio_http2_adapter: ^2.1.0
   rflutter_alert: ^2.0.4
   collection:
-  filter_list: ^1.0.2
 
   # Push Notifications
   firebase_messaging: ^14.5.0

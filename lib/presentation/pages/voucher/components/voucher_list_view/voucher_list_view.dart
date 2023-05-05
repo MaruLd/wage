@@ -5,9 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/presentation/pages/voucher/components/voucher_list_view/voucher_filter_item.dart';
 import 'package:wage/presentation/pages/voucher/components/voucher_list_view/voucher_item.dart';
 import 'package:wage/presentation/widgets/shimmer_list.dart';
-import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../application/notifier/voucher_search/search_event.dart';
 import '../../../../../application/providers/api_provider.dart';
 import '../../../../../application/providers/search_provider.dart';
 import '../../../../../domain/Voucher/voucher_model.dart';
@@ -20,8 +18,17 @@ class VoucherListView extends ConsumerStatefulWidget {
 }
 
 class _VoucherListViewState extends ConsumerState<VoucherListView> {
+  VoucherTypeEnum activeVoucherType = VoucherTypeEnum.all;
   @override
   Widget build(BuildContext context) {
+    void ChangeActiveVoucherType(VoucherTypeEnum type) {
+      setState(
+        () {
+          activeVoucherType = type;
+        },
+      );
+    }
+
     final voucherProvider = ref.watch(voucherListFutureProvider);
     final List<Voucher> voucherList =
         ref.watch(searchVoucherProvider).voucherList;
@@ -38,8 +45,10 @@ class _VoucherListViewState extends ConsumerState<VoucherListView> {
                     itemCount: voucherTypeList.length,
                     itemBuilder: (context, int index) {
                       return VoucherFilterItem(
-                              voucherType: voucherTypeList[index])
-                          .p4();
+                        voucherType: voucherTypeList[index],
+                        activeVoucherType: activeVoucherType,
+                        ChangeActiveVoucherType: ChangeActiveVoucherType,
+                      ).p4();
                     },
                   )),
               const SizedBox(

@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../application/notifier/voucher_search/search_event.dart';
+import '../../../../../application/notifier/member_voucher_search/search_event.dart';
 import '../../../../../application/providers/search_provider.dart';
 import '../../../../../application/utils/formatter.dart';
 
-class VoucherFilterItem extends ConsumerWidget {
-  const VoucherFilterItem({
+class MemberVoucherFilterItem extends ConsumerWidget {
+  const MemberVoucherFilterItem({
     Key? key,
     required this.voucherType,
     required this.activeVoucherType,
@@ -34,11 +34,11 @@ class VoucherFilterItem extends ConsumerWidget {
         onPressed: () {
           ChangeActiveVoucherType(voucherType);
           if (voucherType == VoucherTypeEnum.all) {
-            ref.refresh(searchVoucherProvider);
+            ref.refresh(searchMemberVoucherProvider);
           } else {
-            ref.refresh(searchVoucherProvider);
-            ref.read(searchVoucherProvider.notifier).mapEventsToState(
-                  FilteredVoucherChanged(
+            ref.refresh(searchMemberVoucherProvider);
+            ref.read(searchMemberVoucherProvider.notifier).mapEventsToState(
+                  FilteredMemberVoucherChanged(
                     type: voucherType,
                   ),
                 );
