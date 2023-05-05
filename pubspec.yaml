@@ -78,8 +78,8 @@ dependencies:
   filter_list: ^1.0.2
 
   # Push Notifications
-  firebase_messaging: ^14.4.0
-  firebase_analytics: ^10.2.0
+  firebase_messaging: ^14.5.0
+  firebase_analytics: ^10.3.0
 
   # UI
   flip_card: ^0.7.0

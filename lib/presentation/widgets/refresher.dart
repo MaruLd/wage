@@ -21,10 +21,6 @@ class Refresher extends ConsumerWidget {
         ref.refresh(nextLevelFutureProvider);
         ref.refresh(userFutureProvider);
         ref.refresh(walletsFutureProvider);
-        ref.refresh(salaryCycleFutureProvider(Parameters(parameterList: [
-          DateTime.now().subtract(const Duration(days: 30)),
-          DateTime.now(),
-        ])));
         ref.refresh(voucherListFutureProvider);
         ref.refresh(checkPinProvider);
         ref.refresh(levelsFutureProvider);
@@ -34,7 +30,11 @@ class Refresher extends ConsumerWidget {
           DateTime.now().subtract(const Duration(days: 30)),
           DateTime.now(),
         ])));
-        ref.refresh(notificationFutureProvider(10));
+        ref.refresh(salaryCycleFutureProvider(Parameters(parameterList: [
+          DateTime.now().subtract(const Duration(days: 30)),
+          DateTime.now(),
+        ])));
+        ref.refresh(notificationFutureProvider(100));
         debugPrint('refreshing data...');
       });
     }

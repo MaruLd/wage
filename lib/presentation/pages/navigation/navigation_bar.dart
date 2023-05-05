@@ -41,7 +41,6 @@ class Navigation extends ConsumerStatefulWidget {
 class _NavigationState extends ConsumerState<Navigation> {
   @override
   void initState() {
-    FirebaseMessaging.instance.getToken();
     firebaseMessaging();
     super.initState();
     ref.read(fcmTokenProvider);

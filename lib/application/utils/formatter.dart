@@ -113,7 +113,7 @@ String transactionTypeTransform(TransactionTypeEnum status) {
     case TransactionTypeEnum.buyVoucher:
       return 'Mua Voucher';
     case TransactionTypeEnum.projectSalary:
-      return 'Phiếu lương';
+      return 'Lương dự án';
     case TransactionTypeEnum.projectBonus:
       return 'Thưởng Project';
     case TransactionTypeEnum.systemSalary:
