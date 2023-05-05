@@ -18,7 +18,6 @@ class SettingBody extends ConsumerWidget {
     final havePin = ref.watch(checkPinProvider).whenOrNull(
           data: (data) => data,
         );
-    print(havePin);
     return Container(
       width: 340,
       child: Column(

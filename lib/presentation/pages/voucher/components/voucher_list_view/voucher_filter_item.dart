@@ -6,6 +6,7 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../../../../application/notifier/voucher_search/search_event.dart';
 import '../../../../../application/providers/search_provider.dart';
+import '../../../../../application/utils/formatter.dart';
 
 class VoucherFilterItem extends ConsumerWidget {
   const VoucherFilterItem({Key? key, required this.voucherType})
@@ -14,8 +15,10 @@ class VoucherFilterItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool allType = voucherType == VoucherTypeEnum.all;
     return Container(
       decoration: BoxDecoration(
+        color: allType ? global.primary2 : global.background,
         border: Border.all(color: global.primary2, width: 1.0),
         borderRadius: const BorderRadius.all(Radius.circular(30)),
       ),
@@ -33,13 +36,12 @@ class VoucherFilterItem extends ConsumerWidget {
                 );
           }
         },
-        child:
-            Text('${voucherType.name == 'all' ? 'Tất cả' : voucherType.name}',
-                style: GoogleFonts.montserrat(
-                  color: global.primary2,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                )),
+        child: Text('${voucherTypeTransform(voucherType)}',
+            style: GoogleFonts.montserrat(
+              color: allType ? global.background : global.primary2,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            )),
       ),
     );
   }

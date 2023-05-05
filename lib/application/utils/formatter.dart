@@ -6,6 +6,7 @@ import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../domain/Transaction/transaction_model.dart';
+import '../../domain/Voucher/voucher_model.dart';
 import '../../domain/Wallets/wallets_model.dart';
 
 RegExp regexRemoveDecimal = RegExp(r'([.]*0)(?!.*\d)');
@@ -70,10 +71,9 @@ int daysBetween(DateTime from, DateTime to) {
   return (to.difference(from).inHours / 24).round();
 }
 
-double projectDateToPercent(DateTime date) {
-  var projectEndDate = DateTime(date.year, date.month + 6, date.day);
-  var projectMaxDays = daysBetween(date, projectEndDate);
-  var projectCurrentDays = daysBetween(date, DateTime.now());
+double projectDateToPercent(DateTime startDate, DateTime endDate) {
+  var projectMaxDays = daysBetween(startDate, endDate);
+  var projectCurrentDays = daysBetween(startDate, DateTime.now());
   var percent = projectCurrentDays / projectMaxDays;
   return percent;
 }
@@ -113,7 +113,7 @@ String transactionTypeTransform(TransactionTypeEnum status) {
     case TransactionTypeEnum.buyVoucher:
       return 'Mua Voucher';
     case TransactionTypeEnum.projectSalary:
-      return 'Từ dự án';
+      return 'Phiếu lương';
     case TransactionTypeEnum.projectBonus:
       return 'Thưởng Project';
     case TransactionTypeEnum.systemSalary:
@@ -127,16 +127,26 @@ String transactionTypeTransform(TransactionTypeEnum status) {
   }
 }
 
-String notificationTypeTransform(String string) {
-  switch (string) {
-    case 'VOUCHER_BOUGHT':
-      return 'Mua Voucher Thành Công!';
-    case 'VOUCHER_BOUGHT':
-      return 'Mua Voucher Thành Công!';
-    case 'PROJECT_CREATED':
-      return 'Dự án đã được tạo thành công';
-    case 'PROJECT_UPDATED':
-      return 'Dự án đã được bắt đầu';
+String voucherTypeTransform(VoucherTypeEnum type) {
+  switch (type) {
+    case VoucherTypeEnum.fnB:
+      return 'Ăn uống';
+    case VoucherTypeEnum.telecom:
+      return 'Viễn thông';
+    case VoucherTypeEnum.shopping:
+      return 'Mua sắm';
+    case VoucherTypeEnum.services:
+      return 'Dịch vụ';
+    case VoucherTypeEnum.educational:
+      return 'Giáo dục';
+    case VoucherTypeEnum.beauty:
+      return 'Làm đẹp';
+    case VoucherTypeEnum.entertainment:
+      return 'Giải trí';
+    case VoucherTypeEnum.others:
+      return 'Khác';
+    case VoucherTypeEnum.all:
+      return 'Tất cả';
     default:
       return '';
   }

@@ -15,6 +15,7 @@ class Transaction with _$Transaction {
     String? note,
     required WalletTokenEnum token,
     required double amount,
+    required double amountLeft,
     required bool isReceived,
     required DateTime createdAt,
   }) = _Transaction;

@@ -11,15 +11,18 @@ class ProjectProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color percentIndicatorColor = Colors.grey;
-    String percentToIndicator =
-        "${(projectDateToPercent(project.createdAt) * 100).toInt()}%";
+    double projectPercent = 0.0;
+    if (project.startedAt != null && project.endedAt != null) {
+      projectPercent =
+          projectDateToPercent(project.startedAt!, project.endedAt!);
+    }
+    String percentToIndicator = "${(projectPercent * 100).toInt()}%";
 
     return CircularPercentIndicator(
       circularStrokeCap: CircularStrokeCap.round,
       radius: 42.0,
       lineWidth: 12.0,
-      percent: projectDateToPercent(project.createdAt),
+      percent: projectPercent,
       animationDuration: 500,
       reverse: true,
       animation: true,
@@ -32,8 +35,7 @@ class ProjectProgress extends StatelessWidget {
           fontSize: 20,
         ),
       ),
-      progressColor:
-          projectStatusColor(projectDateToPercent(project.createdAt)),
+      progressColor: projectStatusColor(projectPercent),
     );
   }
 }

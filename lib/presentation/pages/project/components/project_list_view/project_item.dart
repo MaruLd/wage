@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -16,6 +15,11 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double projectPercent = 0.0;
+    if (project.startedAt != null && project.endedAt != null) {
+      projectPercent =
+          projectDateToPercent(project.startedAt!, project.endedAt!);
+    }
     return Container(
       width: 325,
       decoration: BoxDecoration(
@@ -34,7 +38,9 @@ class ProjectItem extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '[${project.projectShortName}] ',
@@ -46,10 +52,11 @@ class ProjectItem extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 210,
+                      width: 310,
                       child: Text(
-                        project.projectName,
+                        '${project.projectName}',
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                         style: GoogleFonts.openSans(
                           color: global.normalText,
                           fontWeight: FontWeight.w600,
@@ -95,8 +102,7 @@ class ProjectItem extends StatelessWidget {
                               projectStatusTransform(project.projectStatus),
                               textAlign: TextAlign.center,
                               style: GoogleFonts.openSans(
-                                color: projectStatusColor(
-                                    projectDateToPercent(project.createdAt)),
+                                color: projectStatusColor(projectPercent),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                               ),

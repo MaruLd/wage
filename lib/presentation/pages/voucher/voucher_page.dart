@@ -83,7 +83,7 @@ class _VoucherPageState extends ConsumerState<VoucherPage> {
                   tabBuyVoucher: tabBuyVoucher,
                   tabMyVoucher: tabMyVoucher,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 Visibility(
                   child: VoucherListView(),
                   visible: tabBuyVoucher,

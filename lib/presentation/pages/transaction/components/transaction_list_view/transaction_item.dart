@@ -32,9 +32,7 @@ class TransactionItem extends StatelessWidget {
         case WalletTokenEnum.xp:
           return XpIcon(
             size: 18,
-            color: transaction.isReceived
-                ? global.primary2
-                : Color.fromARGB(255, 255, 93, 93),
+            color: global.primary2,
           );
         default:
           return Container();
@@ -58,55 +56,80 @@ class TransactionItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '${transactionTypeTransform(transaction.transactionType)}',
-                style: GoogleFonts.montserrat(
-                  color: global.headerText,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 80,
-                    child: Text(
-                      '$isReceived ${pointFormat(transaction.amount)}',
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.montserrat(
-                        color: transaction.isReceived
-                            ? global.primary2
-                            : Color.fromARGB(255, 255, 93, 93),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),
+                  Text(
+                    '${transactionTypeTransform(transaction.transactionType)}',
+                    style: GoogleFonts.montserrat(
+                      color: global.headerText,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
                     ),
                   ),
-                  wallletTokenTransform(transaction.token),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    transaction.createdAt != null
+                        ? DateFormat('dd/MM/yyyy -')
+                            .add_Hm()
+                            .format(transaction.createdAt)
+                        : '',
+                    style: GoogleFonts.montserrat(
+                      color: global.smallText,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          '$isReceived ${pointFormat(transaction.amount)}',
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.montserrat(
+                            color: transaction.isReceived
+                                ? global.primary2
+                                : Color.fromARGB(255, 255, 93, 93),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      wallletTokenTransform(transaction.token),
+                    ],
+                  ),
+                  transaction.token == WalletTokenEnum.xp
+                      ? Container()
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 80,
+                              child: Text(
+                                '${pointFormat(transaction.amountLeft)}',
+                                overflow: TextOverflow.clip,
+                                textAlign: TextAlign.end,
+                                style: GoogleFonts.montserrat(
+                                  color: global.smallText,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            PointIcon(size: 14, color: global.smallText)
+                          ],
+                        ),
                 ],
               )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                transaction.createdAt != null
-                    ? DateFormat('dd/MM/yyyy -')
-                        .add_Hm()
-                        .format(transaction.createdAt)
-                    : '',
-                style: GoogleFonts.montserrat(
-                  color: global.smallText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
             ],
           ),
           const SizedBox(

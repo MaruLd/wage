@@ -23,11 +23,35 @@ class VoucherItem extends ConsumerStatefulWidget {
 
 class _VoucherItemState extends ConsumerState<VoucherItem> {
   confirmBuyVoucher() async {
+    final havePin = ref.watch(checkPinProvider).whenOrNull(
+          data: (data) => data,
+        );
     double? userPoint = await ref.read(walletsFutureProvider).whenOrNull(
               data: (data) => data.totalPoint,
             ) ??
         0;
-    if (widget.voucher.voucherCost > userPoint) {
+    if (havePin == false) {
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "Bạn chưa thêm mã PIN",
+        desc: "Bạn cần phải thêm mã PIN vào tài khoản của bạn",
+        useRootNavigator: false,
+        buttons: [
+          DialogButton(
+            width: 150,
+            color: global.primary2,
+            child: Text(
+              "Ok",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ).centered(),
+            onPressed: () async {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ).show();
+    } else if (widget.voucher.voucherCost > userPoint) {
       Alert(
         context: context,
         type: AlertType.warning,
@@ -126,12 +150,13 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                         width: 240,
                         constraints: BoxConstraints(maxHeight: 50),
                         child: Text(
-                          widget.voucher.voucherName!,
-                          overflow: TextOverflow.clip,
+                          '${widget.voucher.voucherName!}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                           style: GoogleFonts.montserrat(
                             color: global.normalText,
                             fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -142,11 +167,11 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                             style: GoogleFonts.montserrat(
                               color: global.normalText,
                               fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                              fontSize: 12,
                             ),
                           ),
                           Text(
-                            '${numberFormat(widget.voucher.voucherAmount)} Voucher',
+                            '${numberFormat(widget.voucher.voucherAmount)}',
                             style: GoogleFonts.montserrat(
                               color: global.primary2,
                               fontWeight: FontWeight.w600,
@@ -154,6 +179,25 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: global.primary2, width: 1.0),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(30)),
+                        ),
+                        height: 25,
+                        child: Text(
+                            '${voucherTypeTransform(widget.voucher.voucherType)}',
+                            style: GoogleFonts.montserrat(
+                              color: global.primary2,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            )).p4(),
                       ),
                     ],
                   ),
@@ -194,11 +238,29 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                       Container(
                                           width: 240,
                                           height: 240,
-                                          child: Image.network(
-                                            widget.voucher.imageUrl!,
-                                            width: 140,
-                                            height: 140,
-                                          )),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 5,
+                                                blurRadius: 7,
+                                                offset: Offset(0,
+                                                    3), // changes position of shadow
+                                              ),
+                                            ],
+                                          ),
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                              child: Image.network(
+                                                widget.voucher.imageUrl!,
+                                                width: 140,
+                                                height: 140,
+                                              ))),
                                       const SizedBox(height: 20),
                                       Text(
                                         widget.voucher.voucherName!,
@@ -206,7 +268,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                         style: GoogleFonts.openSans(
                                           color: global.normalText,
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 22,
+                                          fontSize: 20,
                                         ),
                                       ),
                                       const SizedBox(height: 10),
@@ -236,7 +298,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Nhà cung cấp:\n${widget.voucher.supplier?.name}',
+                                            'Loại voucher:',
                                             overflow: TextOverflow.clip,
                                             style: GoogleFonts.montserrat(
                                               color: global.normalText,
@@ -244,6 +306,66 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                               fontSize: 14,
                                             ),
                                           ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: global.primary2,
+                                                  width: 1.0),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(30)),
+                                            ),
+                                            height: 26,
+                                            child: Text(
+                                                '${voucherTypeTransform(widget.voucher.voucherType)}',
+                                                style: GoogleFonts.montserrat(
+                                                  color: global.primary2,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                )).p4(),
+                                          ).centered(),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Nhà cung cấp:',
+                                            overflow: TextOverflow.clip,
+                                            style: GoogleFonts.montserrat(
+                                              color: global.normalText,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: global.primary2,
+                                                  width: 1.0),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(30)),
+                                            ),
+                                            height: 26,
+                                            child: Text(
+                                                '${widget.voucher.supplier?.name}',
+                                                style: GoogleFonts.montserrat(
+                                                  color: global.primary2,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                )).p4(),
+                                          ).centered(),
                                         ],
                                       ),
                                       const SizedBox(
@@ -251,6 +373,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                       ),
                                       Container(
                                         decoration: BoxDecoration(
+                                          color: global.primary2,
                                           border: Border.all(
                                               color: global.primary2,
                                               width: 1.0),
@@ -272,7 +395,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                               Text(
                                                 'Đổi ngay',
                                                 style: GoogleFonts.openSans(
-                                                  color: global.primary2,
+                                                  color: global.background,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 18,
                                                 ),
@@ -283,7 +406,7 @@ class _VoucherItemState extends ConsumerState<VoucherItem> {
                                               FaIcon(
                                                   FontAwesomeIcons.arrowRight,
                                                   size: 18,
-                                                  color: global.primary2),
+                                                  color: global.background),
                                             ],
                                           ),
                                         ),

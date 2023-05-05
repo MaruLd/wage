@@ -39,7 +39,7 @@ const _$VoucherTypeEnumEnumMap = {
   VoucherTypeEnum.telecom: 'telecom',
   VoucherTypeEnum.shopping: 'shopping',
   VoucherTypeEnum.services: 'services',
-  VoucherTypeEnum.educattional: 'educattional',
+  VoucherTypeEnum.educational: 'educational',
   VoucherTypeEnum.beauty: 'beauty',
   VoucherTypeEnum.entertainment: 'entertainment',
   VoucherTypeEnum.others: 'others',

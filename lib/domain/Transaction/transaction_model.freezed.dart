@@ -27,6 +27,7 @@ mixin _$Transaction {
   String? get note => throw _privateConstructorUsedError;
   WalletTokenEnum get token => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
+  double get amountLeft => throw _privateConstructorUsedError;
   bool get isReceived => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -50,6 +51,7 @@ abstract class $TransactionCopyWith<$Res> {
       String? note,
       WalletTokenEnum token,
       double amount,
+      double amountLeft,
       bool isReceived,
       DateTime createdAt});
 }
@@ -74,6 +76,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? note = freezed,
     Object? token = null,
     Object? amount = null,
+    Object? amountLeft = null,
     Object? isReceived = null,
     Object? createdAt = null,
   }) {
@@ -106,6 +109,10 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      amountLeft: null == amountLeft
+          ? _value.amountLeft
+          : amountLeft // ignore: cast_nullable_to_non_nullable
+              as double,
       isReceived: null == isReceived
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
@@ -134,6 +141,7 @@ abstract class _$$_TransactionCopyWith<$Res>
       String? note,
       WalletTokenEnum token,
       double amount,
+      double amountLeft,
       bool isReceived,
       DateTime createdAt});
 }
@@ -156,6 +164,7 @@ class __$$_TransactionCopyWithImpl<$Res>
     Object? note = freezed,
     Object? token = null,
     Object? amount = null,
+    Object? amountLeft = null,
     Object? isReceived = null,
     Object? createdAt = null,
   }) {
@@ -188,6 +197,10 @@ class __$$_TransactionCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      amountLeft: null == amountLeft
+          ? _value.amountLeft
+          : amountLeft // ignore: cast_nullable_to_non_nullable
+              as double,
       isReceived: null == isReceived
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
@@ -211,6 +224,7 @@ class _$_Transaction extends _Transaction {
       this.note,
       required this.token,
       required this.amount,
+      required this.amountLeft,
       required this.isReceived,
       required this.createdAt})
       : super._();
@@ -233,13 +247,15 @@ class _$_Transaction extends _Transaction {
   @override
   final double amount;
   @override
+  final double amountLeft;
+  @override
   final bool isReceived;
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Transaction(transactionId: $transactionId, fromWalletId: $fromWalletId, toWalletId: $toWalletId, transactionType: $transactionType, note: $note, token: $token, amount: $amount, isReceived: $isReceived, createdAt: $createdAt)';
+    return 'Transaction(transactionId: $transactionId, fromWalletId: $fromWalletId, toWalletId: $toWalletId, transactionType: $transactionType, note: $note, token: $token, amount: $amount, amountLeft: $amountLeft, isReceived: $isReceived, createdAt: $createdAt)';
   }
 
   @override
@@ -258,6 +274,8 @@ class _$_Transaction extends _Transaction {
             (identical(other.note, note) || other.note == note) &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.amountLeft, amountLeft) ||
+                other.amountLeft == amountLeft) &&
             (identical(other.isReceived, isReceived) ||
                 other.isReceived == isReceived) &&
             (identical(other.createdAt, createdAt) ||
@@ -266,8 +284,18 @@ class _$_Transaction extends _Transaction {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, transactionId, fromWalletId,
-      toWalletId, transactionType, note, token, amount, isReceived, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      transactionId,
+      fromWalletId,
+      toWalletId,
+      transactionType,
+      note,
+      token,
+      amount,
+      amountLeft,
+      isReceived,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -292,6 +320,7 @@ abstract class _Transaction extends Transaction {
       final String? note,
       required final WalletTokenEnum token,
       required final double amount,
+      required final double amountLeft,
       required final bool isReceived,
       required final DateTime createdAt}) = _$_Transaction;
   _Transaction._() : super._();
@@ -313,6 +342,8 @@ abstract class _Transaction extends Transaction {
   WalletTokenEnum get token;
   @override
   double get amount;
+  @override
+  double get amountLeft;
   @override
   bool get isReceived;
   @override

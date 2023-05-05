@@ -58,7 +58,6 @@ class _NavigationState extends ConsumerState<Navigation> {
             'Message also contained a notification: ${message.notification}');
       }
       final notification = FCMNotificationModel.fromJson(message.data);
-      print(notification);
       if (notification.Type == FCMNotificationTypeEnum.voucherReedemSuccess) {
         Alert(
           context: context,

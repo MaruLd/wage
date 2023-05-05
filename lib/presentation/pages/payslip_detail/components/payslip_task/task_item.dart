@@ -51,7 +51,7 @@ class TaskSortedByProject extends StatelessWidget {
                     children: <TableRow>[
                       TableRow(children: <Widget>[
                         TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.top,
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: Container(
                               height: 40,
                               width: 180,
@@ -64,7 +64,7 @@ class TaskSortedByProject extends StatelessWidget {
                                   )).centered()),
                         ),
                         TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.top,
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: Container(
                               height: 40,
                               width: 30,
@@ -77,7 +77,7 @@ class TaskSortedByProject extends StatelessWidget {
                                   )).centered()),
                         ),
                         TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.top,
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: Container(
                               height: 40,
                               width: 32,
@@ -90,7 +90,7 @@ class TaskSortedByProject extends StatelessWidget {
                                   )).centered()),
                         ),
                         TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.top,
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: Container(
                               height: 40,
                               width: 32,
@@ -116,31 +116,36 @@ class TaskSortedByProject extends StatelessWidget {
                       .map(
                         (task) => TableRow(children: [
                           TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.top,
+                              verticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               child: Container(
-                                  width: 180,
-                                  child: Text(task.taskDescription ?? '',
-                                      style: GoogleFonts.montserrat(
-                                        color: global.normalText,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                      )).centered().py4())),
+                                      width: 180,
+                                      child: Text(task.taskName ?? '',
+                                          style: GoogleFonts.montserrat(
+                                            color: global.normalText,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                          )).p4())
+                                  .centered()),
                           TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.top,
+                              verticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               child: Container(
-                                  width: 50,
-                                  child: Text(pointFormat(task.taskRealHour),
-                                      style: GoogleFonts.montserrat(
-                                        color: global.normalText,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                      )).centered().py4())),
+                                      child:
+                                          Text(pointFormat(task.taskRealHour),
+                                              style: GoogleFonts.montserrat(
+                                                color: global.normalText,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                              )).p4())
+                                  .centered()),
                           TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.top,
+                            verticalAlignment:
+                                TableCellVerticalAlignment.middle,
                             child: Container(
                               width: 70,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 70,
@@ -162,11 +167,12 @@ class TaskSortedByProject extends StatelessWidget {
                             ),
                           ),
                           TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.top,
+                            verticalAlignment:
+                                TableCellVerticalAlignment.middle,
                             child: Container(
                               width: 70,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 70,

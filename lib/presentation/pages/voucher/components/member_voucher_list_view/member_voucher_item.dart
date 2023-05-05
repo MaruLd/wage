@@ -5,12 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:wage/application/providers/api_provider.dart';
 import 'package:wage/domain/Voucher/voucher_model.dart';
-import 'package:wage/infrastructure/api_services/voucher_service.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
-import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 
+import '../../../../../application/utils/formatter.dart';
 import '../../../transfer/components/qr_code.dart';
 
 class MemberVoucherItem extends ConsumerStatefulWidget {
@@ -36,9 +34,32 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      'Mã QR Voucher',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.openSans(
+                        color: global.headerText,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Container(
                         width: 240,
                         height: 240,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
                         child: QRCode(
                             qrSize: 110,
                             qrPadding: 16,
@@ -52,7 +73,7 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                       style: GoogleFonts.openSans(
                         color: global.normalText,
                         fontWeight: FontWeight.w600,
-                        fontSize: 22,
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -80,7 +101,7 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Nhà cung cấp:\n${widget.memberVoucher.voucher.supplier?.name}',
+                          'Loại voucher:',
                           overflow: TextOverflow.clip,
                           style: GoogleFonts.montserrat(
                             color: global.normalText,
@@ -88,6 +109,61 @@ class _MemberVoucherItemState extends ConsumerState<MemberVoucherItem> {
                             fontSize: 14,
                           ),
                         ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: global.primary2, width: 1.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                          ),
+                          height: 26,
+                          child: Text(
+                              '${voucherTypeTransform(widget.memberVoucher.voucher.voucherType)}',
+                              style: GoogleFonts.montserrat(
+                                color: global.primary2,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              )).p4(),
+                        ).centered(),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Nhà cung cấp:',
+                          overflow: TextOverflow.clip,
+                          style: GoogleFonts.montserrat(
+                            color: global.normalText,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: global.primary2, width: 1.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                          ),
+                          height: 26,
+                          child: Text(
+                              '${widget.memberVoucher.voucher.supplier?.name}',
+                              style: GoogleFonts.montserrat(
+                                color: global.primary2,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              )).p4(),
+                        ).centered(),
                       ],
                     ),
                   ],

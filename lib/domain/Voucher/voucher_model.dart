@@ -77,8 +77,8 @@ enum VoucherTypeEnum {
   shopping,
   @JsonValue("services")
   services,
-  @JsonValue("educattional")
-  educattional,
+  @JsonValue("educational")
+  educational,
   @JsonValue("beauty")
   beauty,
   @JsonValue("entertainment")

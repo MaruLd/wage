@@ -26,7 +26,6 @@ class _VoucherListViewState extends ConsumerState<VoucherListView> {
     final List<Voucher> voucherList =
         ref.watch(searchVoucherProvider).voucherList;
     List<dynamic> voucherTypeList = VoucherTypeEnum.values.toList();
-    print(voucherTypeList);
     return voucherProvider.when(
         data: (data) {
           return Column(
