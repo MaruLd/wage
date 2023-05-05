@@ -128,13 +128,7 @@ class _PinAddfieldState extends ConsumerState<PinAddField> {
           ]),
         ),
         const SizedBox(
-          height: 20,
-        ),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Container()),
-        const SizedBox(
-          height: 10,
+          height: 60,
         ),
         Container(
             margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),

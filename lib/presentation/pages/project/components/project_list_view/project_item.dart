@@ -102,7 +102,8 @@ class ProjectItem extends StatelessWidget {
                               projectStatusTransform(project.projectStatus),
                               textAlign: TextAlign.center,
                               style: GoogleFonts.openSans(
-                                color: projectStatusColor(projectPercent),
+                                color:
+                                    projectStatusColor(project.projectStatus),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                               ),

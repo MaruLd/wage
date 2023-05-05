@@ -35,20 +35,18 @@ String pointFormatForCard(double point) {
   }
 }
 
-Color projectStatusColor(double percent) {
-  if (percent < 0.25) {
-    return global.danger;
-  }
-  if (percent < 0.5) {
-    return global.medium;
-  }
-  if (percent < 0.75) {
-    return global.cyan;
-  }
-  if (percent >= 0.75) {
-    return global.primary;
-  } else {
-    return Colors.grey;
+Color projectStatusColor(ProjectStatusEnum status) {
+  switch (status) {
+    case ProjectStatusEnum.created:
+      return global.danger;
+    case ProjectStatusEnum.started:
+      return global.medium;
+    case ProjectStatusEnum.ended:
+      return global.primary2;
+    case ProjectStatusEnum.cancelled:
+      return Colors.red;
+    default:
+      return Colors.grey;
   }
 }
 
@@ -60,6 +58,8 @@ String projectStatusTransform(ProjectStatusEnum status) {
       return 'Hiện thực';
     case ProjectStatusEnum.ended:
       return 'Hoàn thành';
+    case ProjectStatusEnum.cancelled:
+      return 'Bị hủy';
     default:
       return '';
   }

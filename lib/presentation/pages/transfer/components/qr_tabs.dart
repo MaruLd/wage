@@ -23,6 +23,9 @@ class QRTabs extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final havePin = ref.watch(checkPinProvider).whenOrNull(
+          data: (data) => data,
+        );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -62,9 +65,6 @@ class QRTabs extends ConsumerWidget {
           width: 160,
           child: TextButton(
             onPressed: () {
-              final havePin = ref.watch(checkPinProvider).whenOrNull(
-                    data: (data) => data,
-                  );
               if (havePin == true) {
                 return qrPageNavigation(context);
               } else {

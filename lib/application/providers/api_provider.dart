@@ -80,21 +80,21 @@ final fcmTokenProvider = FutureProvider<void>(
   },
 );
 
-final checkPinProvider = FutureProvider.autoDispose<bool>(
+final checkPinProvider = FutureProvider<bool>(
   (ref) {
     final checkHavePin = ref.watch(pinProvider).getPIN();
     return checkHavePin;
   },
 );
 
-final verifiedPinProvider = FutureProvider.autoDispose.family<bool, String>(
+final verifiedPinProvider = FutureProvider.family<bool, String>(
   (ref, pinCode) async {
     final checkHavePin = ref.watch(pinProvider).checkPIN(pinCode);
     return checkHavePin;
   },
 );
 
-final updatePinProvider = FutureProvider.autoDispose.family<bool, Parameters>(
+final updatePinProvider = FutureProvider.family<bool, Parameters>(
   (ref, param) async {
     final checkHavePin = ref
         .watch(pinProvider)
@@ -123,8 +123,7 @@ final payslipFutureProvider =
   },
 );
 
-final payslipItemFutureProvider =
-    FutureProvider.autoDispose.family<double, String>(
+final payslipItemFutureProvider = FutureProvider.family<double, String>(
   (ref, projectId) {
     return ref.watch(payslipProvider).getSelfProjectXP(projectId);
   },
@@ -145,21 +144,19 @@ final notificationFutureProvider =
   },
 );
 
-final isReadnotificationFutureProvider =
-    FutureProvider.autoDispose.family<int?, String>(
+final isReadnotificationFutureProvider = FutureProvider.autoDispose.family<int?, String>(
   (ref, notificationId) {
     return ref.watch(notificationProvider).isReadNotification(notificationId);
   },
 );
 
-final voucherListFutureProvider = FutureProvider.autoDispose<List<Voucher>>(
+final voucherListFutureProvider = FutureProvider<List<Voucher>>(
   (ref) {
     return ref.watch(voucherProvider).getVouchers();
   },
 );
 
-final buyVoucherFutureProvider =
-    FutureProvider.autoDispose.family<Response, Parameters>(
+final buyVoucherFutureProvider = FutureProvider.family<Response, Parameters>(
   (ref, param) {
     return ref
         .watch(voucherProvider)
@@ -167,8 +164,7 @@ final buyVoucherFutureProvider =
   },
 );
 
-final memberVoucherListFutureProvider =
-    FutureProvider.autoDispose<List<MemberVoucher>>(
+final memberVoucherListFutureProvider = FutureProvider<List<MemberVoucher>>(
   (ref) {
     return ref.watch(voucherProvider).getSelfVouchers();
   },
@@ -218,10 +214,10 @@ final transactionListFutureProvider = FutureProvider.autoDispose
 });
 
 final taskListFutureProvider =
-    FutureProvider.autoDispose.family<List<Task>, String>((ref, salaryCycleId) {
+    FutureProvider.family<List<Task>, String>((ref, salaryCycleId) {
   return ref.watch(taskProvider).getTasks(salaryCycleId);
 });
 
-final projectsCountProvider = FutureProvider<int>((ref) {
+final projectsCountProvider = FutureProvider.autoDispose<int>((ref) {
   return ref.watch(projectProvider).getProjectsCount();
 });

@@ -13,6 +13,7 @@ class SubProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(project);
     double projectPercent = 0.0;
     if (project.startedAt != null && project.endedAt != null) {
       projectPercent =
@@ -42,7 +43,7 @@ class SubProjectItem extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          progressColor: projectStatusColor(projectPercent),
+          progressColor: projectStatusColor(project.projectStatus),
         ),
         const SizedBox(
           height: 12,
@@ -62,7 +63,7 @@ class SubProjectItem extends StatelessWidget {
           projectStatusTransform(project.projectStatus),
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: projectStatusColor(projectPercent),
+            color: projectStatusColor(project.projectStatus),
             fontFamily: global.headerFont,
             fontWeight: FontWeight.w500,
             fontSize: 16,

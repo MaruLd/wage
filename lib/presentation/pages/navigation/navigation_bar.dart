@@ -169,11 +169,13 @@ class _NavigationState extends ConsumerState<Navigation> {
   ];
 
   void _onItemTapped(int index) {
+    if (Navigation._selectedIndex == index) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Navigation()));
+    }
     setState(() {
       Navigation._selectedIndex = index;
     });
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Navigation()));
   }
 
   @override
@@ -253,7 +255,7 @@ class _NavigationState extends ConsumerState<Navigation> {
                     FaIcon(FontAwesomeIcons.fileInvoiceDollar, size: 23).py4(),
                 icon:
                     FaIcon(FontAwesomeIcons.fileInvoiceDollar, size: 20).py4(),
-                label: 'Kỳ Lương',
+                label: 'Phiếu Lương',
               ),
               BottomNavigationBarItem(
                 activeIcon: FaIcon(FontAwesomeIcons.solidUser, size: 23).py4(),

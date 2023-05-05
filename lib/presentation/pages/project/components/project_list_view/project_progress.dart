@@ -35,7 +35,7 @@ class ProjectProgress extends StatelessWidget {
           fontSize: 20,
         ),
       ),
-      progressColor: projectStatusColor(projectPercent),
+      progressColor: projectStatusColor(project.projectStatus),
     );
   }
 }
