@@ -50,7 +50,10 @@ class PinUpdatePage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    PinUpdatefield(oldPin: oldPin)
+                    PinUpdatefield(oldPin: oldPin),
+                    const SizedBox(
+                      height: 50,
+                    ),
                   ],
                 ).offset(offset: Offset(0, 70))),
               )

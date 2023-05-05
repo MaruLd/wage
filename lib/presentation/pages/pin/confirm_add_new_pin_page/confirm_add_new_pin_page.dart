@@ -45,7 +45,10 @@ class ConfirmAddNewPinPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                PinConfirmField(pinCode)
+                PinConfirmField(pinCode),
+                const SizedBox(
+                  height: 50,
+                ),
               ],
             ).offset(offset: Offset(0, 70))),
           )

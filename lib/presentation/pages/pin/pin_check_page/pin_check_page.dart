@@ -46,7 +46,10 @@ class PinCheckPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    PinCheckfield()
+                    PinCheckfield(),
+                    const SizedBox(
+                      height: 50,
+                    ),
                   ],
                 ).offset(offset: Offset(0, 70))),
               )

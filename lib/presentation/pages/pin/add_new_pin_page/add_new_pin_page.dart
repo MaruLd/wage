@@ -44,7 +44,10 @@ class AddNewPinPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                PinAddField()
+                PinAddField(),
+                const SizedBox(
+                  height: 50,
+                ),
               ],
             ).offset(offset: Offset(0, 70))),
           )
