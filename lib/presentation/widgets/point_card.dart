@@ -50,15 +50,20 @@ class PointCard extends ConsumerWidget {
                     width: 150,
                     child: Row(
                       children: [
-                        Text(
-                          pointFormatForCard(data.totalPoint),
-                          overflow: TextOverflow.clip,
-                          style: GoogleFonts.montserrat(
-                            color: global.yellow,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25,
-                          ),
-                        ),
+                        Container(
+                            constraints: new BoxConstraints(
+                              maxWidth: 120,
+                            ),
+                            child: Text(
+                              pointFormatForCard(data.totalPoint),
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.end,
+                              style: GoogleFonts.montserrat(
+                                color: global.yellow,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24,
+                              ),
+                            )),
                         PointIcon(size: 23, color: global.yellow),
                       ],
                     ));

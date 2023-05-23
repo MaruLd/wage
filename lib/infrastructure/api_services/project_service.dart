@@ -6,6 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/infrastructure/network_services/dio_adapter.dart';
 
+import '../../domain/Project Detail/project_detail_model.dart';
+
 class ProjectService {
   Future<List<Project>> getProjects() async {
     const storage = FlutterSecureStorage();
@@ -30,7 +32,7 @@ class ProjectService {
     }
   }
 
-  Future<Project> getProject(String projectId) async {
+  Future<ProjectDetail> getProject(String projectId) async {
     const storage = FlutterSecureStorage();
     try {
       String? jwtToken = await storage.read(key: 'jwt');
@@ -41,7 +43,7 @@ class ProjectService {
           }));
       debugPrint('GET /v1/projects status: ${response.statusCode}');
       if (response.statusCode == 200) {
-        final project = Project.fromJson(response.data['message']);
+        final project = ProjectDetail.fromJson(response.data['message']);
         return project;
       } else {
         throw Exception(response.statusMessage);

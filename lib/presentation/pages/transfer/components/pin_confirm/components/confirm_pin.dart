@@ -146,7 +146,8 @@ class _PinConfirmTransferState extends ConsumerState<PinConfirmTransfer> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text(hasPinError ? "Mã PIN chưa chính xác" : errorMessage,
+          child: Text(errorMessage,
+          textAlign: TextAlign.center,
               style: GoogleFonts.montserrat(
                 color: Colors.red,
                 fontWeight: FontWeight.w500,
@@ -178,32 +179,37 @@ class _PinConfirmTransferState extends ConsumerState<PinConfirmTransfer> {
                         setState(() {
                           isLoading = true;
                         });
-                        bool verified = await pinService.checkPIN(pinCode);
+                        Response verified = await pinService.checkPIN(pinCode);
 
-                        if (verified == false) {
+                        if (verified.statusCode == 400) {
                           errorController!.add(ErrorAnimationType
                               .shake); // Triggering error shake animation
                           setState(() {
                             isLoading = false;
-                            hasPinError = true;
+                            errorMessage = verified.data['ErrorMsg'];
                           });
-                        } else if (verified == true) {
+                        } else if (verified.statusCode == 200) {
                           WalletService walletService = WalletService();
                           Response response = await walletService.transferPoint(
                               widget.memberId,
-                              double.parse(widget.transferPoint));
-                          if (response.data['ErrorName'] ==
-                              'MEMBER_NOT_FOUND') {
+                              double.parse(widget.transferPoint),
+                              pinCode);
+                          if (response.statusCode == 400) {
                             setState(() {
                               isLoading = false;
-                              errorMessage = 'Không tìm thấy người dùng';
-                            });
-                          }
-                          if (response.data['ErrorName'] == 'EXCEED_LIMIT') {
-                            setState(() {
-                              isLoading = false;
-                              errorMessage =
-                                  'Point chuyển vượt quá giới hạn cho phép trong tháng';
+                              switch (response.data['ErrorName']) {
+                                case 'MEMBER_NOT_FOUND':
+                                  errorMessage = 'Không tìm thấy người dùng';
+                                  break;
+                                case 'EXCEED_LIMIT':
+                                  errorMessage =
+                                      'Point chuyển vượt quá giới hạn cho phép trong tháng';
+                                  break;
+                                case 'INVALID_PINCODE':
+                                case 'PIN_COOLDOWN':
+                                  errorMessage = response.data['ErrorMsg'];
+                                  break;
+                              }
                             });
                           } else if (response.statusCode == 200) {
                             formKey.currentState!.validate();
@@ -216,6 +222,34 @@ class _PinConfirmTransferState extends ConsumerState<PinConfirmTransfer> {
                             Future.delayed(Duration.zero, () {
                               transferPageNavigation(context);
                             });
+                            showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: Text('Thành công',
+                                  style: GoogleFonts.montserrat(
+                                    color: global.primary,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                  )),
+                              content:
+                                  Text('Yêu cầu đã gửi thành công, xin đợi trong giây lát.',
+                                      style: GoogleFonts.montserrat(
+                                        color: global.normalText,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18,
+                                      )),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Ok'),
+                                  child: Text('Ok',
+                                      style: GoogleFonts.montserrat(
+                                        color: global.primary,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18,
+                                      )),
+                                ),
+                              ],
+                            ));
                           } else {
                             setState(
                               () {

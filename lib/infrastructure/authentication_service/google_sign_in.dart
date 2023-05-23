@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:wage/domain/Auth/auth_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'auth_service.dart';
 
@@ -34,6 +34,7 @@ class GoogleSignInService extends ChangeNotifier {
   Future<void> signOutWithGoogle() async {
     // Sign out with firebase
     await FirebaseAuth.instance.signOut();
+    await FirebaseMessaging.instance.deleteToken();
     // Sign out with google
     await _googleSignIn.signOut();
     const storage = FlutterSecureStorage();

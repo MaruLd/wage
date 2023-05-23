@@ -14,6 +14,7 @@ import 'package:wage/infrastructure/param/filter_params.dart';
 
 import '../../domain/Auth/auth_model.dart';
 import '../../domain/Notification/notification_model.dart';
+import '../../domain/Project Detail/project_detail_model.dart';
 import '../../domain/SalaryCycle/salary_cycle_model.dart';
 import '../../domain/Task/task_model.dart';
 import '../../infrastructure/api_services/fcm_service.dart';
@@ -83,13 +84,6 @@ final fcmTokenProvider = FutureProvider<void>(
 final checkPinProvider = FutureProvider<bool>(
   (ref) {
     final checkHavePin = ref.watch(pinProvider).getPIN();
-    return checkHavePin;
-  },
-);
-
-final verifiedPinProvider = FutureProvider.family<bool, String>(
-  (ref, pinCode) async {
-    final checkHavePin = ref.watch(pinProvider).checkPIN(pinCode);
     return checkHavePin;
   },
 );
@@ -203,8 +197,8 @@ final projectListFutureProvider = FutureProvider.autoDispose<List<Project>>((ref
 });
 
 final projectFutureProvider =
-    FutureProvider.autoDispose.family<Project, String>((ref, param) {
-  return ref.watch(projectProvider).getProject(param);
+    FutureProvider.autoDispose.family<ProjectDetail, String>((ref, projectId) {
+  return ref.watch(projectProvider).getProject(projectId);
 });
 
 final transactionListFutureProvider = FutureProvider.autoDispose

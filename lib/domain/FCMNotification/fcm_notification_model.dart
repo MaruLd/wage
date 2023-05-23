@@ -36,4 +36,20 @@ enum FCMNotificationTypeEnum {
   voucherReedemSuccess,
   @JsonValue("VoucherRedeemFailed")
   voucherRedeemFailed,
+  @JsonValue("ProjectMemberRequestAccepted")
+  projectMemberRequestAccepted,
+  @JsonValue("ProjectMemberRequestRejected")
+  projectMemberRequestRejected,
+  @JsonValue("ProjectMemberRequestPending")
+  projectMemberRequestPending,
+  @JsonValue("ProjectPMChange")
+  projectPMChange,
+  @JsonValue("ProjectReportPending")
+  projectReportPending,
+  @JsonValue("ProjectReportAccepted")
+  projectReportAccepted,
+  @JsonValue("ProjectReportRejected")
+  projectReportRejected,
+  @JsonValue("Testing")
+  testing,
 }

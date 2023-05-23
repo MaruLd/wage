@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 
-import '../../../../../application/providers/api_provider.dart';
 import '../../../../../application/utils/formatter.dart';
 import '../../../../../domain/Level/level_model.dart';
 import '../../../../widgets/point_icon.dart';

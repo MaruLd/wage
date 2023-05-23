@@ -40,4 +40,15 @@ const _$NotificationTypeEnumEnumMap = {
   NotificationTypeEnum.voucherRedeemFailed: 'voucherRedeemFailed',
   NotificationTypeEnum.memberSendPointFailed: 'memberSendPointFailed',
   NotificationTypeEnum.memberSendPointSuccess: 'memberSendPointSuccess',
+  NotificationTypeEnum.projectMemberRequestAccepted:
+      'projectMemberRequestAccepted',
+  NotificationTypeEnum.projectMemberRequestRejected:
+      'projectMemberRequestRejected',
+  NotificationTypeEnum.projectMemberRequestPending:
+      'projectMemberRequestPending',
+  NotificationTypeEnum.projectPMChange: 'projectPMChange',
+  NotificationTypeEnum.projectReportPending: 'projectReportPending',
+  NotificationTypeEnum.projectReportAccepted: 'projectReportAccepted',
+  NotificationTypeEnum.projectReportRejected: 'projectReportRejected',
+  NotificationTypeEnum.testing: 'testing',
 };

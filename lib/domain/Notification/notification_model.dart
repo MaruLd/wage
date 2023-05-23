@@ -39,4 +39,20 @@ enum NotificationTypeEnum {
   memberSendPointFailed,
   @JsonValue("memberSendPointSuccess")
   memberSendPointSuccess,
+  @JsonValue("projectMemberRequestAccepted")
+  projectMemberRequestAccepted,
+  @JsonValue("projectMemberRequestRejected")
+  projectMemberRequestRejected,
+  @JsonValue("projectMemberRequestPending")
+  projectMemberRequestPending,
+  @JsonValue("projectPMChange")
+  projectPMChange,
+  @JsonValue("projectReportPending")
+  projectReportPending,
+  @JsonValue("projectReportAccepted")
+  projectReportAccepted,
+  @JsonValue("projectReportRejected")
+  projectReportRejected,
+  @JsonValue("testing")
+  testing,
 }

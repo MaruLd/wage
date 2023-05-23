@@ -18,19 +18,21 @@ class TaskSortedByProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Container(
-          width: 380,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text('Dự án: $projectName',
-                  style: GoogleFonts.montserrat(
-                    color: global.headerText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  )),
-            ],
-          )),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 370,
+            child: Text('Dự án: $projectName',
+                overflow: TextOverflow.clip,
+                style: GoogleFonts.montserrat(
+                  color: global.headerText,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                )),
+          )
+        ],
+      ),
       const SizedBox(
         height: 4,
       ),

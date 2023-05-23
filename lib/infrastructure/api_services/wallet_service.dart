@@ -31,9 +31,13 @@ class WalletService {
   }
 
   Future<Response> transferPoint(
-      String toMemberId, double transferPoint) async {
+      String toMemberId, double transferPoint, String pinCode) async {
     const storage = FlutterSecureStorage();
-    var param = {"toMemberId": toMemberId, "amount": transferPoint};
+    var param = {
+      "toMemberId": toMemberId,
+      "amount": transferPoint,
+      "pinCode": pinCode,
+    };
     try {
       String? jwtToken = await storage.read(key: 'jwt');
       final response = await dio.post('/v1/members/me/wallets/transactions',

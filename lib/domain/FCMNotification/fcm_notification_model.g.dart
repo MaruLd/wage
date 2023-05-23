@@ -35,4 +35,15 @@ const _$FCMNotificationTypeEnumEnumMap = {
   FCMNotificationTypeEnum.projectUpdate: 'ProjectUpdate',
   FCMNotificationTypeEnum.voucherReedemSuccess: 'VoucherReedemSuccess',
   FCMNotificationTypeEnum.voucherRedeemFailed: 'VoucherRedeemFailed',
+  FCMNotificationTypeEnum.projectMemberRequestAccepted:
+      'ProjectMemberRequestAccepted',
+  FCMNotificationTypeEnum.projectMemberRequestRejected:
+      'ProjectMemberRequestRejected',
+  FCMNotificationTypeEnum.projectMemberRequestPending:
+      'ProjectMemberRequestPending',
+  FCMNotificationTypeEnum.projectPMChange: 'ProjectPMChange',
+  FCMNotificationTypeEnum.projectReportPending: 'ProjectReportPending',
+  FCMNotificationTypeEnum.projectReportAccepted: 'ProjectReportAccepted',
+  FCMNotificationTypeEnum.projectReportRejected: 'ProjectReportRejected',
+  FCMNotificationTypeEnum.testing: 'Testing',
 };

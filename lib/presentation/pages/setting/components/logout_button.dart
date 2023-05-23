@@ -30,6 +30,7 @@ class Logout extends ConsumerWidget {
           icon: FaIcon(FontAwesomeIcons.arrowRightFromBracket,
               color: Color.fromARGB(255, 246, 103, 103), size: 23),
           onPressed: () {
+            homePageNavigation(context);
             authProvider.signOutWithGoogle();
           }),
     );

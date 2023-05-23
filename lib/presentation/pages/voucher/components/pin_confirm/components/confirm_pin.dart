@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,6 +30,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
   bool hasPinError = false;
   bool isLoading = false;
   String pinCode = "";
+  String errorMessage = "";
 
   final formKey = GlobalKey<FormState>();
 
@@ -37,7 +39,7 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
   }
-  
+
   @override
   void dispose() {
     errorController!.close();
@@ -139,17 +141,14 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text(
-              hasPinError
-                  ? "Mã PIN chưa chính xác"
-                  : hasError
-                      ? "Đã có lỗi xảy ra khi đổi Voucher"
-                      : "",
-              style: GoogleFonts.montserrat(
-                color: Colors.red,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-              )),
+          child:
+              Text(hasError ? "Đã có lỗi xảy ra khi đổi Voucher" : errorMessage,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.montserrat(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  )),
         ),
         const SizedBox(
           height: 10,
@@ -176,16 +175,16 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                         setState(() {
                           isLoading = true;
                         });
-                        bool verified = await pinService.checkPIN(pinCode);
+                        Response verified = await pinService.checkPIN(pinCode);
 
-                        if (verified == false) {
+                        if (verified.statusCode == 400) {
                           errorController!.add(ErrorAnimationType
                               .shake); // Triggering error shake animation
                           setState(() {
                             isLoading = false;
-                            hasPinError = true;
+                            errorMessage = verified.data['ErrorMsg'];
                           });
-                        } else if (verified == true) {
+                        } else if (verified.statusCode == 200) {
                           final response = await voucherService.buyVoucher(
                               widget.voucherId, pinCode);
                           if (response.statusCode == 400) {
@@ -204,6 +203,35 @@ class _PinUpdatefieldState extends ConsumerState<PinConfirmBuy> {
                               },
                             );
                             Navigator.pop(context);
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                      title: Text('Thành công',
+                                          style: GoogleFonts.montserrat(
+                                            color: global.primary,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                          )),
+                                      content: Text(
+                                          'Yêu cầu đã gửi thành công, xin đợi trong giây lát',
+                                          style: GoogleFonts.montserrat(
+                                            color: global.normalText,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                          )),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'Ok'),
+                                          child: Text('Ok',
+                                              style: GoogleFonts.montserrat(
+                                                color: global.primary,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 18,
+                                              )),
+                                        ),
+                                      ],
+                                    ));
                           } else {
                             setState(
                               () {

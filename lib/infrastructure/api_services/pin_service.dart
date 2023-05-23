@@ -30,7 +30,7 @@ class PINService {
     }
   }
 
-  Future<bool> checkPIN(String pinCode) async {
+  Future<Response> checkPIN(String pinCode) async {
     const storage = FlutterSecureStorage();
     var param = {"pinCode": pinCode};
     try {
@@ -47,7 +47,7 @@ class PINService {
                 HttpHeaders.authorizationHeader: "Bearer $jwtToken"
               }));
       debugPrint('POST /v1/users/me/pin-code status: ${response.statusCode}');
-      return response.data['message'];
+      return response;
     } catch (e) {
       debugPrint('POST /v1/users/me/pin error: $e');
       throw Exception(e);

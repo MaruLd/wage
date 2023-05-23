@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/domain/SalaryCycle/salary_cycle_model.dart';
 import 'package:wage/presentation/pages/transfer/transfer_page.dart';
 
@@ -10,10 +11,15 @@ import '../../presentation/pages/pin/add_new_pin_page/add_new_pin_page.dart';
 import '../../presentation/pages/pin/pin_check_page/pin_check_page.dart';
 import '../../presentation/pages/profile/profile_page.dart';
 import '../../presentation/pages/project/project_page.dart';
+import '../../presentation/pages/project_detail/project_detail_page.dart';
 import '../../presentation/pages/sign_in/sign_in_page.dart';
 import '../../presentation/pages/transfer/components/point_input_page/point_input_page.dart';
 import '../../presentation/pages/transfer/components/qr_scanner_page.dart';
 import '../../presentation/pages/voucher/voucher_page.dart';
+
+void homePageNavigation(BuildContext context) {
+  Navigation.setPageIndex(context, 0);
+}
 
 void transactionPageNavigation(BuildContext context) {
   Navigation.setPageIndex(context, 1);
@@ -69,6 +75,15 @@ void projectPageNavigation(BuildContext context) {
     context,
     MaterialPageRoute(
       builder: (context) => ProjectPage(),
+    ),
+  );
+}
+
+void projectDetailPageNavigation(BuildContext context, Project project) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ProjectDetailPage(project: project),
     ),
   );
 }

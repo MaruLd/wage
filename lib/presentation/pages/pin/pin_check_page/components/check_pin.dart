@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,7 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
   bool hasError = false;
   bool isLoading = false;
   String pinCode = "";
+  String errorMessage = "";
 
   final formKey = GlobalKey<FormState>();
 
@@ -132,7 +134,8 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Text(hasError ? "Mã PIN chưa chính xác" : "",
+          child: Text(errorMessage,
+              textAlign: TextAlign.center,
               style: GoogleFonts.montserrat(
                 color: Colors.red,
                 fontWeight: FontWeight.w500,
@@ -163,19 +166,19 @@ class _PinCodeTextfieldState extends ConsumerState<PinCheckfield> {
                         setState(() {
                           isLoading = true;
                         });
-                        bool verified = await pinService.checkPIN(pinCode);
-                        if (verified == false) {
+                        Response verified = await pinService.checkPIN(pinCode);
+
+                        if (verified.statusCode == 400) {
                           errorController!.add(ErrorAnimationType
                               .shake); // Triggering error shake animation
                           setState(() {
                             isLoading = false;
-                            hasError = true;
+                            errorMessage = verified.data['ErrorMsg'];
                           });
-                        } else if (verified == true) {
+                        } else if (verified.statusCode == 200) {
                           formKey.currentState!.validate();
                           setState(
                             () {
-                              verified = false;
                               isLoading = false;
                               hasError = false;
                             },

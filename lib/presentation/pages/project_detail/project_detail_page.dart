@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wage/domain/Project/project_model.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
 import 'package:wage/presentation/widgets/refresher.dart';
 import 'package:wage/presentation/widgets/sub_header.dart';
 
 import 'components/body.dart';
-import 'components/level_detail/level_detail.dart';
+import 'components/project_detail/project_details.dart';
 
-class LevelPage extends StatefulWidget {
-  const LevelPage({super.key});
-  static String get routeName => 'profile';
-  static String get routeLocation => '/profile';
+class ProjectDetailPage extends StatefulWidget {
+  const ProjectDetailPage({
+    super.key,
+    required this.project,
+  });
+  final Project project;
+  static String get routeName => 'projectDetail';
+  static String get routeLocation => '/projectDetail';
 
   @override
-  State<LevelPage> createState() => _LevelPageState();
+  State<ProjectDetailPage> createState() => _ProjectDetailPageState();
 }
 
-class _LevelPageState extends State<LevelPage> {
+class _ProjectDetailPageState extends State<ProjectDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Refresher(
@@ -24,7 +29,7 @@ class _LevelPageState extends State<LevelPage> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SubHeader(headerText: 'CẤP CỦA TÔI'),
+          SubHeader(headerText: widget.project.projectShortName),
           const SizedBox(
             height: 120,
           ),
@@ -34,8 +39,8 @@ class _LevelPageState extends State<LevelPage> {
                 color: global.background,
               ),
               child: Column(children: [
-                LevelBody(),
-                LevelsDetail(),
+                ProjectBody(widget.project),
+                ProjectDetail(widget.project),
               ]).offset(offset: Offset(0, -125)))
         ],
       ),
