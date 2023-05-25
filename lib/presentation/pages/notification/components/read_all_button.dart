@@ -13,9 +13,10 @@ class ReadAllButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future<void> readAllNotification() async {
-      final notificationList = ref.watch(notificationFutureProvider(100)).whenOrNull(
-            data: (data) => data,
-          );
+      final notificationList =
+          ref.watch(notificationFutureProvider(100)).whenOrNull(
+                data: (data) => data,
+              );
       if (notificationList != null) {
         NotificationService notificationService = NotificationService();
         for (NotificationModel notification in notificationList) {
@@ -33,15 +34,16 @@ class ReadAllButton extends ConsumerWidget {
         border: Border.all(color: global.cyan, width: 1.0),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
-      height: 40,
-      width: 120,
+      height: 25,
+      width: 100,
       child: MaterialButton(
+        padding: EdgeInsets.zero,
         onPressed: () => readAllNotification(),
         child: Text('Đọc hết',
             textAlign: TextAlign.center,
             style: GoogleFonts.montserrat(
               color: global.cyan,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
               fontSize: 18,
             )),
       ),
