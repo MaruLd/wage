@@ -8,199 +8,260 @@ import '../../../../../application/utils/formatter.dart';
 import '../../../../../domain/Task/task_model.dart';
 import '../../../../widgets/point_icon.dart';
 
-class TaskSortedByProject extends StatelessWidget {
-  const TaskSortedByProject(
-      {Key? key, required this.taskList, required this.projectName})
-      : super(key: key);
-  final String projectName;
-  final List<Task> taskList;
+class TaskItem extends StatelessWidget {
+  TaskItem({
+    Key? key,
+    required this.task,
+  }) : super(key: key);
+  final Task task;
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+    String taskEvaluation(int evaluation) {
+      switch (evaluation) {
+        case 100:
+          return 'A';
+        case 75:
+          return 'B';
+        case 50:
+          return 'C';
+        case 25:
+          return 'D';
+        default:
+          return 'N/A';
+      }
+    }
+
+    Color taskColorEvaluation(int evaluation) {
+      switch (evaluation) {
+        case 100:
+          return global.primary2;
+        case 75:
+          return global.yellow;
+        case 50:
+          return Color.fromARGB(255, 178, 107, 1);
+        case 25:
+          return Color.fromARGB(255, 223, 4, 4);
+        default:
+          return global.background;
+      }
+    }
+
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${task.taskName}',
+                    overflow: TextOverflow.clip,
+                    style: GoogleFonts.montserrat(
+                      color: global.primary2,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Điểm công việc:',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${pointFormat(task.taskPoint)}',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.yellow,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      PointIcon(
+                        size: 18,
+                        color: global.yellow,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Điểm thưởng:',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${pointFormat(task.taskBonus)}',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.yellow,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      PointIcon(
+                        size: 18,
+                        color: global.yellow,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Giờ làm dự kiến:',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${pointFormat(task.taskHour)} giờ',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Giờ làm thực tế:',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${pointFormat(task.taskRealHour)} giờ',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Đánh giá:',
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: global.normalText,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        taskEvaluation(task.taskEffort!.toInt()),
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.montserrat(
+                          color: taskColorEvaluation(task.taskEffort!.toInt()),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ));
+            });
+      },
+      child: Column(
         children: [
-          Container(
-            width: 370,
-            child: Text('Dự án: $projectName',
-                overflow: TextOverflow.clip,
-                style: GoogleFonts.montserrat(
-                  color: global.headerText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                )),
-          )
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              FaIcon(FontAwesomeIcons.check, size: 14, color: global.primary),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 200,
+                    child: Text(
+                      '${task.taskName}',
+                      style: GoogleFonts.montserrat(
+                        color: global.normalText,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: 110,
+                    child: Text(
+                      '${pointFormat(task.taskPoint * (task.taskEffort / 100))}',
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.montserrat(
+                        color: global.yellow,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  PointIcon(
+                    size: 14,
+                    color: global.yellow,
+                  ),
+                ],
+              )
+            ],
+          ),
         ],
       ),
-      const SizedBox(
-        height: 4,
-      ),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Container(
-            width: 520,
-            child: Column(
-              children: [
-                Table(
-                    border: TableBorder.all(),
-                    columnWidths: const <int, TableColumnWidth>{
-                      0: IntrinsicColumnWidth(),
-                      1: FlexColumnWidth(),
-                      2: FixedColumnWidth(120),
-                    },
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    children: <TableRow>[
-                      TableRow(children: <Widget>[
-                        TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.middle,
-                          child: Container(
-                              height: 40,
-                              width: 180,
-                              child: Text('Task',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
-                                    color: global.normalText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                  )).centered()),
-                        ),
-                        TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.middle,
-                          child: Container(
-                              height: 40,
-                              width: 30,
-                              child: Text('Giờ Làm Thực Tế',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
-                                    color: global.normalText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                  )).centered()),
-                        ),
-                        TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.middle,
-                          child: Container(
-                              height: 40,
-                              width: 32,
-                              child: Text('Task Point',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
-                                    color: global.normalText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                  )).centered()),
-                        ),
-                        TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.middle,
-                          child: Container(
-                              height: 40,
-                              width: 32,
-                              child: Text('Point Thưởng',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.montserrat(
-                                    color: global.normalText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                  )).centered()),
-                        ),
-                      ]),
-                    ]),
-                Table(
-                  border: TableBorder.all(),
-                  columnWidths: const <int, TableColumnWidth>{
-                    0: IntrinsicColumnWidth(),
-                    1: FlexColumnWidth(),
-                    2: FixedColumnWidth(120),
-                  },
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  children: taskList
-                      .map(
-                        (task) => TableRow(children: [
-                          TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Container(
-                                      width: 180,
-                                      child: Text(task.taskName ?? '',
-                                          style: GoogleFonts.montserrat(
-                                            color: global.normalText,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16,
-                                          )).p4())
-                                  .centered()),
-                          TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Container(
-                                      child:
-                                          Text(pointFormat(task.taskRealHour),
-                                              style: GoogleFonts.montserrat(
-                                                color: global.normalText,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 16,
-                                              )).p4())
-                                  .centered()),
-                          TableCell(
-                            verticalAlignment:
-                                TableCellVerticalAlignment.middle,
-                            child: Container(
-                              width: 70,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      pointFormat(
-                                          task.taskPoint + task.taskRealHour),
-                                      overflow: TextOverflow.clip,
-                                      textAlign: TextAlign.end,
-                                      style: GoogleFonts.montserrat(
-                                        color: global.yellow,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                  PointIcon(size: 16, color: global.yellow),
-                                ],
-                              ).centered().py4(),
-                            ),
-                          ),
-                          TableCell(
-                            verticalAlignment:
-                                TableCellVerticalAlignment.middle,
-                            child: Container(
-                              width: 70,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      pointFormat(task.taskBonus),
-                                      overflow: TextOverflow.clip,
-                                      textAlign: TextAlign.end,
-                                      style: GoogleFonts.montserrat(
-                                        color: global.yellow,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                  PointIcon(size: 16, color: global.yellow),
-                                ],
-                              ).centered().py4(),
-                            ),
-                          ),
-                        ]),
-                      )
-                      .toList(),
-                ),
-              ],
-            )),
-      ),
-    ]);
+    );
   }
 }

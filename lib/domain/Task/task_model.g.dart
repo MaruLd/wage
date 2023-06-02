@@ -13,9 +13,11 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
           : Project.fromJson(json['project'] as Map<String, dynamic>),
       taskName: json['taskName'] as String?,
       taskDescription: json['taskDescription'] as String?,
+      taskCode: json['taskCode'] as String?,
       taskHour: (json['taskHour'] as num).toDouble(),
       taskRealHour: (json['taskRealHour'] as num).toDouble(),
       taskPoint: (json['taskPoint'] as num).toDouble(),
+      taskEffort: (json['taskEffort'] as num).toDouble(),
       bonusReason: json['bonusReason'] as String?,
       taskBonus: (json['taskBonus'] as num).toDouble(),
     );
@@ -25,9 +27,11 @@ Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'project': instance.project,
       'taskName': instance.taskName,
       'taskDescription': instance.taskDescription,
+      'taskCode': instance.taskCode,
       'taskHour': instance.taskHour,
       'taskRealHour': instance.taskRealHour,
       'taskPoint': instance.taskPoint,
+      'taskEffort': instance.taskEffort,
       'bonusReason': instance.bonusReason,
       'taskBonus': instance.taskBonus,
     };

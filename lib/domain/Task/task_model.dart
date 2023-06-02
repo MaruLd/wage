@@ -12,9 +12,11 @@ class Task with _$Task {
     Project? project,
     String? taskName,
     String? taskDescription,
+    String? taskCode,
     required double taskHour,
     required double taskRealHour,
     required double taskPoint,
+    required double taskEffort,
     String? bonusReason,
     required double taskBonus,
   }) = _Task;

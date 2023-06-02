@@ -40,6 +40,8 @@ enum ProjectStatusEnum {
   ended,
   @JsonValue("cancelled")
   cancelled,
+  @JsonValue("stopped")
+  stopped,
 }
 
 enum ProjectTypeEnum {

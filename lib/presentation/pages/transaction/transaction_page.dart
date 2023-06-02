@@ -6,7 +6,6 @@ import 'package:wage/presentation/widgets/refresher.dart';
 
 import '../../widgets/date_filter.dart';
 import '../../widgets/main_header.dart';
-import 'components/transaction_list_view/transaction_item.dart';
 import 'components/transaction_list_view/transaction_list_view.dart';
 
 class TransactionPage extends StatefulWidget {

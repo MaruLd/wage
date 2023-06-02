@@ -30,7 +30,7 @@ class NotificationPage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const ReadAllButton(),
+                  // const ReadAllButton(),
                   const NotificationListView(),
                   const SizedBox(
                     height: 40,

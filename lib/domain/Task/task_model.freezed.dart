@@ -24,9 +24,11 @@ mixin _$Task {
   Project? get project => throw _privateConstructorUsedError;
   String? get taskName => throw _privateConstructorUsedError;
   String? get taskDescription => throw _privateConstructorUsedError;
+  String? get taskCode => throw _privateConstructorUsedError;
   double get taskHour => throw _privateConstructorUsedError;
   double get taskRealHour => throw _privateConstructorUsedError;
   double get taskPoint => throw _privateConstructorUsedError;
+  double get taskEffort => throw _privateConstructorUsedError;
   String? get bonusReason => throw _privateConstructorUsedError;
   double get taskBonus => throw _privateConstructorUsedError;
 
@@ -45,9 +47,11 @@ abstract class $TaskCopyWith<$Res> {
       Project? project,
       String? taskName,
       String? taskDescription,
+      String? taskCode,
       double taskHour,
       double taskRealHour,
       double taskPoint,
+      double taskEffort,
       String? bonusReason,
       double taskBonus});
 
@@ -71,9 +75,11 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? project = freezed,
     Object? taskName = freezed,
     Object? taskDescription = freezed,
+    Object? taskCode = freezed,
     Object? taskHour = null,
     Object? taskRealHour = null,
     Object? taskPoint = null,
+    Object? taskEffort = null,
     Object? bonusReason = freezed,
     Object? taskBonus = null,
   }) {
@@ -94,6 +100,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.taskDescription
           : taskDescription // ignore: cast_nullable_to_non_nullable
               as String?,
+      taskCode: freezed == taskCode
+          ? _value.taskCode
+          : taskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       taskHour: null == taskHour
           ? _value.taskHour
           : taskHour // ignore: cast_nullable_to_non_nullable
@@ -105,6 +115,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       taskPoint: null == taskPoint
           ? _value.taskPoint
           : taskPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      taskEffort: null == taskEffort
+          ? _value.taskEffort
+          : taskEffort // ignore: cast_nullable_to_non_nullable
               as double,
       bonusReason: freezed == bonusReason
           ? _value.bonusReason
@@ -141,9 +155,11 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       Project? project,
       String? taskName,
       String? taskDescription,
+      String? taskCode,
       double taskHour,
       double taskRealHour,
       double taskPoint,
+      double taskEffort,
       String? bonusReason,
       double taskBonus});
 
@@ -164,9 +180,11 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? project = freezed,
     Object? taskName = freezed,
     Object? taskDescription = freezed,
+    Object? taskCode = freezed,
     Object? taskHour = null,
     Object? taskRealHour = null,
     Object? taskPoint = null,
+    Object? taskEffort = null,
     Object? bonusReason = freezed,
     Object? taskBonus = null,
   }) {
@@ -187,6 +205,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.taskDescription
           : taskDescription // ignore: cast_nullable_to_non_nullable
               as String?,
+      taskCode: freezed == taskCode
+          ? _value.taskCode
+          : taskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       taskHour: null == taskHour
           ? _value.taskHour
           : taskHour // ignore: cast_nullable_to_non_nullable
@@ -198,6 +220,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
       taskPoint: null == taskPoint
           ? _value.taskPoint
           : taskPoint // ignore: cast_nullable_to_non_nullable
+              as double,
+      taskEffort: null == taskEffort
+          ? _value.taskEffort
+          : taskEffort // ignore: cast_nullable_to_non_nullable
               as double,
       bonusReason: freezed == bonusReason
           ? _value.bonusReason
@@ -219,9 +245,11 @@ class _$_Task extends _Task {
       this.project,
       this.taskName,
       this.taskDescription,
+      this.taskCode,
       required this.taskHour,
       required this.taskRealHour,
       required this.taskPoint,
+      required this.taskEffort,
       this.bonusReason,
       required this.taskBonus})
       : super._();
@@ -237,11 +265,15 @@ class _$_Task extends _Task {
   @override
   final String? taskDescription;
   @override
+  final String? taskCode;
+  @override
   final double taskHour;
   @override
   final double taskRealHour;
   @override
   final double taskPoint;
+  @override
+  final double taskEffort;
   @override
   final String? bonusReason;
   @override
@@ -249,7 +281,7 @@ class _$_Task extends _Task {
 
   @override
   String toString() {
-    return 'Task(projectReportMemberTaskId: $projectReportMemberTaskId, project: $project, taskName: $taskName, taskDescription: $taskDescription, taskHour: $taskHour, taskRealHour: $taskRealHour, taskPoint: $taskPoint, bonusReason: $bonusReason, taskBonus: $taskBonus)';
+    return 'Task(projectReportMemberTaskId: $projectReportMemberTaskId, project: $project, taskName: $taskName, taskDescription: $taskDescription, taskCode: $taskCode, taskHour: $taskHour, taskRealHour: $taskRealHour, taskPoint: $taskPoint, taskEffort: $taskEffort, bonusReason: $bonusReason, taskBonus: $taskBonus)';
   }
 
   @override
@@ -265,12 +297,16 @@ class _$_Task extends _Task {
                 other.taskName == taskName) &&
             (identical(other.taskDescription, taskDescription) ||
                 other.taskDescription == taskDescription) &&
+            (identical(other.taskCode, taskCode) ||
+                other.taskCode == taskCode) &&
             (identical(other.taskHour, taskHour) ||
                 other.taskHour == taskHour) &&
             (identical(other.taskRealHour, taskRealHour) ||
                 other.taskRealHour == taskRealHour) &&
             (identical(other.taskPoint, taskPoint) ||
                 other.taskPoint == taskPoint) &&
+            (identical(other.taskEffort, taskEffort) ||
+                other.taskEffort == taskEffort) &&
             (identical(other.bonusReason, bonusReason) ||
                 other.bonusReason == bonusReason) &&
             (identical(other.taskBonus, taskBonus) ||
@@ -285,9 +321,11 @@ class _$_Task extends _Task {
       project,
       taskName,
       taskDescription,
+      taskCode,
       taskHour,
       taskRealHour,
       taskPoint,
+      taskEffort,
       bonusReason,
       taskBonus);
 
@@ -311,9 +349,11 @@ abstract class _Task extends Task {
       final Project? project,
       final String? taskName,
       final String? taskDescription,
+      final String? taskCode,
       required final double taskHour,
       required final double taskRealHour,
       required final double taskPoint,
+      required final double taskEffort,
       final String? bonusReason,
       required final double taskBonus}) = _$_Task;
   _Task._() : super._();
@@ -329,11 +369,15 @@ abstract class _Task extends Task {
   @override
   String? get taskDescription;
   @override
+  String? get taskCode;
+  @override
   double get taskHour;
   @override
   double get taskRealHour;
   @override
   double get taskPoint;
+  @override
+  double get taskEffort;
   @override
   String? get bonusReason;
   @override

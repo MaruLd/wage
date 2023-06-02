@@ -57,6 +57,7 @@ const _$ProjectStatusEnumEnumMap = {
   ProjectStatusEnum.started: 'started',
   ProjectStatusEnum.ended: 'ended',
   ProjectStatusEnum.cancelled: 'cancelled',
+  ProjectStatusEnum.stopped: 'stopped',
 };
 
 const _$ProjectTypeEnumEnumMap = {

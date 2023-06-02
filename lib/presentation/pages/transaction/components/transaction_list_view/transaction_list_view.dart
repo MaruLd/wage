@@ -102,7 +102,7 @@ class _TransactionListViewState extends ConsumerState<TransactionListView> {
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
           height: 35,
-          width: 120,
+          width: 130,
           child: MaterialButton(
             onPressed: () => _onLoadMoreClick(),
             child: Text('Load thêm',

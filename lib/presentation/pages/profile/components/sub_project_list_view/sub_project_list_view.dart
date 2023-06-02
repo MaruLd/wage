@@ -18,7 +18,7 @@ class SubProjectListView extends ConsumerWidget {
         data: (projectData) {
           return SizedBox(
             width: 380,
-            height: 170,
+            height: 300,
             child: projectData.isNotEmpty
                 ? ListView.builder(
                     scrollDirection: Axis.horizontal,

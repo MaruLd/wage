@@ -5,9 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wage/application/providers/api_provider.dart';
 import "package:collection/collection.dart";
-import 'package:wage/presentation/pages/payslip_detail/components/payslip_task/task_item.dart';
+import 'package:wage/presentation/pages/payslip_detail/components/payslip_task/task_list_view.dart';
 import 'package:wage/presentation/theme/global_theme.dart' as global;
+import 'package:wage/presentation/widgets/point_icon.dart';
 
+import '../../../../../application/utils/formatter.dart';
 import '../../../../../domain/Task/task_model.dart';
 import '../../../../widgets/loading_shimmer.dart';
 
@@ -24,17 +26,22 @@ class PayslipWithTask extends ConsumerStatefulWidget {
 
 class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
   bool _openDetail = false;
-  String title = 'Tổng số Task';
-  String description = 'Chi tiết các Task';
-  Widget icon = const FaIcon(FontAwesomeIcons.listCheck,
+  String title = 'Tổng Point P3';
+  String description = 'Hiệu suất làm việc';
+  Widget icon = const FaIcon(FontAwesomeIcons.fileCircleCheck,
           color: global.background, size: 23)
       .centered();
-  Color iconColor = global.medium;
+  Color iconColor = global.primary2;
 
   @override
   Widget build(BuildContext context) {
     final payslip = ref.watch(payslipFutureProvider(widget.salaryCycleId));
+    var P3 = payslip.whenOrNull(data: ((data) => data.totalP3)) ?? 0;
     final tasks = ref.watch(taskListFutureProvider(widget.salaryCycleId));
+    double totalTaskPoint = 0;
+    tasks.whenOrNull(data: ((data) => data))?.forEach((task) {
+      totalTaskPoint += (task.taskPoint * (task.taskEffort / 100));
+    });
     return Column(children: [
       GestureDetector(
         onTap: () {
@@ -87,46 +94,25 @@ class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
               ),
             ]),
             Container(
-              child: tasks.when(
-                data: (data) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 80,
-                        child: Text(
-                          '${data.length}',
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.end,
-                          style: GoogleFonts.montserrat(
-                            color: global.medium,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      const FaIcon(FontAwesomeIcons.listCheck,
-                          color: global.medium, size: 16),
-                    ],
-                  );
-                },
-                error: (error, stackTrace) {
-                  debugPrint(error.toString());
-                  return LoadingShimmer(
-                    height: 20.0,
-                    width: 70.0,
-                    color: Color.fromARGB(146, 31, 255, 206),
-                  );
-                },
-                loading: () => LoadingShimmer(
-                    height: 20.0,
-                    width: 70.0,
-                    color: Color.fromARGB(146, 31, 255, 206)),
-              ),
-            ),
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 80,
+                  child: Text(
+                    pointFormat(P3),
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.end,
+                    style: GoogleFonts.montserrat(
+                      color: global.yellow,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                PointIcon(size: 16, color: global.yellow)
+              ],
+            )),
             AnimatedCrossFade(
               duration: const Duration(milliseconds: 100),
               firstChild: Icon(Icons.keyboard_arrow_down,
@@ -143,7 +129,7 @@ class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
       AnimatedCrossFade(
         duration: const Duration(milliseconds: 200),
         firstChild: Container(
-          width: 380,
+          width: 360,
           child: tasks.when(
             data: (taskList) {
               final sortedList =
@@ -171,6 +157,42 @@ class _PayslipOverviewState extends ConsumerState<PayslipWithTask> {
                           height: 15,
                         ),
                         taskSortedListWidget(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 240,
+                              child: Text('Point Hiệu Suất',
+                                  overflow: TextOverflow.clip,
+                                  style: GoogleFonts.montserrat(
+                                    color: global.headerText,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  )),
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 80,
+                                  child: Text(
+                                    pointFormat(P3 - totalTaskPoint),
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.montserrat(
+                                      color: global.yellow,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                PointIcon(
+                                  size: 14,
+                                  color: global.yellow,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ],
                     )
                   : Column(children: [

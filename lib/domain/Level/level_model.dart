@@ -12,7 +12,6 @@ class Level with _$Level {
     required String levelName,
     required double basePoint,
     required double basePointPerHour,
-    required double loyal,
     required String levelColor,
     required double xpNeeded,
   }) = _Level;

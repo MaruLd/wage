@@ -7,7 +7,6 @@ import 'package:wage/presentation/theme/global_theme.dart' as global;
 
 import '../../domain/Transaction/transaction_model.dart';
 import '../../domain/Voucher/voucher_model.dart';
-import '../../domain/Wallets/wallets_model.dart';
 
 RegExp regexRemoveDecimal = RegExp(r'([.]*0)(?!.*\d)');
 
@@ -31,7 +30,7 @@ String pointFormatForCard(double point) {
   if (point / 999999 > 1) {
     return NumberFormat.compact(locale: "en_US").format(point);
   } else {
-    return NumberFormat.decimalPattern().format(point);
+    return NumberFormat.decimalPattern().format(point.floor());
   }
 }
 
@@ -45,6 +44,8 @@ Color projectStatusColor(ProjectStatusEnum status) {
       return global.primary2;
     case ProjectStatusEnum.cancelled:
       return Colors.red;
+    case ProjectStatusEnum.stopped:
+      return Color.fromARGB(164, 244, 67, 54);
     default:
       return Colors.grey;
   }
@@ -60,6 +61,8 @@ String projectStatusTransform(ProjectStatusEnum status) {
       return 'Hoàn thành';
     case ProjectStatusEnum.cancelled:
       return 'Bị hủy';
+    case ProjectStatusEnum.stopped:
+      return 'Dừng';
     default:
       return '';
   }
@@ -74,18 +77,23 @@ int daysBetween(DateTime from, DateTime to) {
 double projectDateToPercent(DateTime startDate, DateTime endDate) {
   var projectMaxDays = daysBetween(startDate, endDate);
   var projectCurrentDays = daysBetween(startDate, DateTime.now());
-  var percent = projectCurrentDays / projectMaxDays;
+  var percent = 0.0;
+  if (projectCurrentDays / projectMaxDays >= 1.0) {
+    percent = 1.0;
+  } else {
+    percent = projectCurrentDays / projectMaxDays;
+  }
   return percent;
 }
 
 String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
   switch (status) {
     case SalaryCycleStatusEnum.ongoing:
-      return 'Khởi Tạo';
+      return 'Khởi tạo';
     case SalaryCycleStatusEnum.locked:
       return 'Báo cáo';
     case SalaryCycleStatusEnum.paid:
-      return 'Đã Trả';
+      return 'Hoàn tất';
     case SalaryCycleStatusEnum.cancelled:
       return 'Đã bị Hủy';
     default:
@@ -96,9 +104,9 @@ String salaryCycleStatusTransform(SalaryCycleStatusEnum status) {
 Color salaryCycleStatusColor(SalaryCycleStatusEnum status) {
   switch (status) {
     case SalaryCycleStatusEnum.ongoing:
-      return global.medium;
+      return global.danger;
     case SalaryCycleStatusEnum.locked:
-      return global.yellow;
+      return global.medium;
     case SalaryCycleStatusEnum.paid:
       return global.primary;
     case SalaryCycleStatusEnum.cancelled:
@@ -113,7 +121,7 @@ String transactionTypeTransform(TransactionTypeEnum status) {
     case TransactionTypeEnum.buyVoucher:
       return 'Mua Voucher';
     case TransactionTypeEnum.projectSalary:
-      return 'Lương dự án';
+      return 'Từ dự án';
     case TransactionTypeEnum.projectBonus:
       return 'Thưởng Project';
     case TransactionTypeEnum.systemSalary:
@@ -123,7 +131,7 @@ String transactionTypeTransform(TransactionTypeEnum status) {
     case TransactionTypeEnum.memberToMember:
       return 'Giao dịch';
     default:
-      return '';
+      return 'Giao dịch';
   }
 }
 

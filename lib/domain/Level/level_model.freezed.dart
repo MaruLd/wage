@@ -24,7 +24,6 @@ mixin _$Level {
   String get levelName => throw _privateConstructorUsedError;
   double get basePoint => throw _privateConstructorUsedError;
   double get basePointPerHour => throw _privateConstructorUsedError;
-  double get loyal => throw _privateConstructorUsedError;
   String get levelColor => throw _privateConstructorUsedError;
   double get xpNeeded => throw _privateConstructorUsedError;
 
@@ -43,7 +42,6 @@ abstract class $LevelCopyWith<$Res> {
       String levelName,
       double basePoint,
       double basePointPerHour,
-      double loyal,
       String levelColor,
       double xpNeeded});
 }
@@ -65,7 +63,6 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
     Object? levelName = null,
     Object? basePoint = null,
     Object? basePointPerHour = null,
-    Object? loyal = null,
     Object? levelColor = null,
     Object? xpNeeded = null,
   }) {
@@ -85,10 +82,6 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
       basePointPerHour: null == basePointPerHour
           ? _value.basePointPerHour
           : basePointPerHour // ignore: cast_nullable_to_non_nullable
-              as double,
-      loyal: null == loyal
-          ? _value.loyal
-          : loyal // ignore: cast_nullable_to_non_nullable
               as double,
       levelColor: null == levelColor
           ? _value.levelColor
@@ -113,7 +106,6 @@ abstract class _$$_LevelCopyWith<$Res> implements $LevelCopyWith<$Res> {
       String levelName,
       double basePoint,
       double basePointPerHour,
-      double loyal,
       String levelColor,
       double xpNeeded});
 }
@@ -131,7 +123,6 @@ class __$$_LevelCopyWithImpl<$Res> extends _$LevelCopyWithImpl<$Res, _$_Level>
     Object? levelName = null,
     Object? basePoint = null,
     Object? basePointPerHour = null,
-    Object? loyal = null,
     Object? levelColor = null,
     Object? xpNeeded = null,
   }) {
@@ -151,10 +142,6 @@ class __$$_LevelCopyWithImpl<$Res> extends _$LevelCopyWithImpl<$Res, _$_Level>
       basePointPerHour: null == basePointPerHour
           ? _value.basePointPerHour
           : basePointPerHour // ignore: cast_nullable_to_non_nullable
-              as double,
-      loyal: null == loyal
-          ? _value.loyal
-          : loyal // ignore: cast_nullable_to_non_nullable
               as double,
       levelColor: null == levelColor
           ? _value.levelColor
@@ -176,7 +163,6 @@ class _$_Level extends _Level {
       required this.levelName,
       required this.basePoint,
       required this.basePointPerHour,
-      required this.loyal,
       required this.levelColor,
       required this.xpNeeded})
       : super._();
@@ -193,15 +179,13 @@ class _$_Level extends _Level {
   @override
   final double basePointPerHour;
   @override
-  final double loyal;
-  @override
   final String levelColor;
   @override
   final double xpNeeded;
 
   @override
   String toString() {
-    return 'Level(levelId: $levelId, levelName: $levelName, basePoint: $basePoint, basePointPerHour: $basePointPerHour, loyal: $loyal, levelColor: $levelColor, xpNeeded: $xpNeeded)';
+    return 'Level(levelId: $levelId, levelName: $levelName, basePoint: $basePoint, basePointPerHour: $basePointPerHour, levelColor: $levelColor, xpNeeded: $xpNeeded)';
   }
 
   @override
@@ -216,7 +200,6 @@ class _$_Level extends _Level {
                 other.basePoint == basePoint) &&
             (identical(other.basePointPerHour, basePointPerHour) ||
                 other.basePointPerHour == basePointPerHour) &&
-            (identical(other.loyal, loyal) || other.loyal == loyal) &&
             (identical(other.levelColor, levelColor) ||
                 other.levelColor == levelColor) &&
             (identical(other.xpNeeded, xpNeeded) ||
@@ -226,7 +209,7 @@ class _$_Level extends _Level {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, levelId, levelName, basePoint,
-      basePointPerHour, loyal, levelColor, xpNeeded);
+      basePointPerHour, levelColor, xpNeeded);
 
   @JsonKey(ignore: true)
   @override
@@ -248,7 +231,6 @@ abstract class _Level extends Level {
       required final String levelName,
       required final double basePoint,
       required final double basePointPerHour,
-      required final double loyal,
       required final String levelColor,
       required final double xpNeeded}) = _$_Level;
   _Level._() : super._();
@@ -263,8 +245,6 @@ abstract class _Level extends Level {
   double get basePoint;
   @override
   double get basePointPerHour;
-  @override
-  double get loyal;
   @override
   String get levelColor;
   @override

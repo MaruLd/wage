@@ -24,10 +24,6 @@ class PayslipOverview extends ConsumerStatefulWidget {
 }
 
 class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
-  bool _openP1 = false;
-  bool _openP2 = false;
-  bool _openP3 = false;
-
   @override
   Widget build(BuildContext context) {
     final payslip =
@@ -259,15 +255,8 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
             .centered(),
         iconColor: global.yellow,
       ),
-      PayslipPointDetail(
+      PayslipWithTask(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
-        payslipItemType: PayslipItemTypeEnum.p3,
-        pointTitle: 'Tổng Point P3',
-        description: 'Hiệu suất làm việc',
-        icon: const FaIcon(FontAwesomeIcons.fileCircleCheck,
-                color: global.background, size: 23)
-            .centered(),
-        iconColor: global.primary,
       ),
       PayslipPointDetail(
         salaryCycleId: widget.salaryCycle.salaryCycleId,
@@ -278,9 +267,6 @@ class _PayslipOverviewState extends ConsumerState<PayslipOverview> {
                 color: global.background, size: 23)
             .centered(),
         iconColor: global.danger,
-      ),
-      PayslipWithTask(
-        salaryCycleId: widget.salaryCycle.salaryCycleId,
       ),
     ]);
   }

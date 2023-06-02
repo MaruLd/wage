@@ -6,6 +6,8 @@ part of 'payslip_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+
+
 Map<String, dynamic> _$PayslipToJson(Payslip instance) => <String, dynamic>{
       'payslipId': instance.payslipId,
       'note': instance.note,

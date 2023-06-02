@@ -90,7 +90,7 @@ class TransactionItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        width: 80,
+                        width: 120,
                         child: Text(
                           '$isReceived ${pointFormat(transaction.amount)}',
                           overflow: TextOverflow.clip,
@@ -113,7 +113,7 @@ class TransactionItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              width: 80,
+                              width: 120,
                               child: Text(
                                 '${pointFormat(transaction.amountLeft)}',
                                 overflow: TextOverflow.clip,
