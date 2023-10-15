@@ -42,44 +42,4 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDCmoBJJzqjCmfXukcHn-XJa6kLhSFfW08',
-    appId: '1:374281219673:web:16b6704c99760468a24b48',
-    messagingSenderId: '374281219673',
-    projectId: 'cnb-inclubbator',
-    authDomain: 'cnb-inclubbator.firebaseapp.com',
-    storageBucket: 'cnb-inclubbator.appspot.com',
-    measurementId: 'G-2540XH6XTD',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC4NQl7OKBRe4VU637O8Rzs8162eoM7hTQ',
-    appId: '1:374281219673:android:54cc0fe805f98be3a24b48',
-    messagingSenderId: '374281219673',
-    projectId: 'cnb-inclubbator',
-    storageBucket: 'cnb-inclubbator.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBpal-0I_2DlAE-n8OkyxSLT05B7XdyZ74',
-    appId: '1:374281219673:ios:0d61bc6025fbddb5a24b48',
-    messagingSenderId: '374281219673',
-    projectId: 'cnb-inclubbator',
-    storageBucket: 'cnb-inclubbator.appspot.com',
-    androidClientId: '374281219673-0fhp50ucata0qb2h53ml6siohrsvim37.apps.googleusercontent.com',
-    iosClientId: '374281219673-59eoo2f8je105fdk9qurhshqrfk2iu6f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.wage',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBpal-0I_2DlAE-n8OkyxSLT05B7XdyZ74',
-    appId: '1:374281219673:ios:0d61bc6025fbddb5a24b48',
-    messagingSenderId: '374281219673',
-    projectId: 'cnb-inclubbator',
-    storageBucket: 'cnb-inclubbator.appspot.com',
-    androidClientId: '374281219673-0fhp50ucata0qb2h53ml6siohrsvim37.apps.googleusercontent.com',
-    iosClientId: '374281219673-59eoo2f8je105fdk9qurhshqrfk2iu6f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.wage',
-  );
 }
